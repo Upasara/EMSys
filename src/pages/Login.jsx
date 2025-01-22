@@ -28,12 +28,15 @@ const Login = () => {
      <div className='form-section w-1/2 px-24 py-12'>
       {/* form content*/}
       <div className='logo-wrap flex justify-left gap-x-1 items-center'>
-       <CgProfile className='text-2xl text-primaryDark' />
-       <span>P E Mathew & Co.</span>
+       <CgProfile className='text-xl text-primaryDark shadow-lg' />
+       <span className='text-sm'>P E Mathew & Co.</span>
       </div>
-      <h1 className='text-3xl font-semibold mt-6 opacity-80 text-secondaryDark'>
-       Log in to the Account
+      <h1 className='text-2xl font-semibold mt-6  text-secondaryDark text-center'>
+       LOGIN
       </h1>
+      <p className='text-black opacity-90 mt-2'>
+       Welcome back : Login to your account
+      </p>
      </div>
      <div className='logo-section w-1/2 bg-primaryLight '>
       <div className='image-wrap'>
