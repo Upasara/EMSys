@@ -10,8 +10,11 @@ const Login = () => {
 
  const handleSubmit = async (e) => {
   e.preventDefault();
+  {
+   /* prevent from reloading */
+  }
   try {
-   const response = await axios.post('http://localhost:5000/api/auth /login', {
+   const response = await axios.post('https://localhost:5000/api/auth/login', {
     email,
     password,
    });
@@ -23,22 +26,62 @@ const Login = () => {
 
  return (
   <>
-   <div className='flex items-center justify-center h-screen bg-slate-50 w-full'>
-    <div className='form-container overflow-hidden flex shadow-lg border rounded-lg w-11/12 max-w-screen-xl justify-between'>
-     <div className='form-section w-1/2 px-24 py-12'>
+   <div className='flex items-center justify-center h-screen bg-slate-100 w-full'>
+    <div className='bg-white form-container overflow-hidden flex shadow-lg border rounded-lg w-11/12 max-w-screen-xl justify-between'>
+     <div className=' form-section w-1/2 px-24 py-12'>
       {/* form content*/}
       <div className='logo-wrap flex justify-left gap-x-1 items-center'>
        <CgProfile className='text-xl text-primaryDark shadow-lg' />
-       <span className='text-sm'>P E Mathew & Co.</span>
+       <span className='text-sm text-secondaryDark'>P E Mathew & Co.</span>
       </div>
-      <h1 className='text-2xl font-semibold mt-6  text-secondaryDark text-center'>
+      <h1 className='text-2xl font-semibold mt-6  text-primaryDark text-center'>
        LOGIN
       </h1>
-      <p className='text-black opacity-90 mt-2'>
+      <p className='text-secondaryDark opacity-90 mt-10'>
        Welcome back : Login to your account
       </p>
+
+      <form onSubmit={handleSubmit}>
+       {/*Email input */}
+       <div className='mb-6 mt-10'>
+        <input
+         type='email'
+         placeholder='Enter your email ...'
+         className='w-full px-2 py-1 border rounded-full'
+         onChange={(e) => setEmail(e.target.value)}
+        />
+       </div>
+       {/*password input */}
+       <div className='mb-6 '>
+        <input
+         type='password'
+         placeholder='Enter your password ...'
+         className='w-full px-2 py-1 border rounded-full'
+         onChange={(e) => setPassword(e.target.value)}
+        />
+       </div>
+       {/*remember me & forgot password*/}
+       <div className='mb-5 flex items-center justify-between'>
+        <label className='inline-flex items-center'>
+         <input type='checkbox' className='form-checkbox' />
+         <span className='ml-2 text-secondaryDark text-sm '> Remember Me</span>
+        </label>
+        <a href='#' className='text-primaryDark text-sm'>
+         Forgot Password
+        </a>
+       </div>
+       {/*button*/}
+       <div className='mt-4'>
+        <button
+         type='submit'
+         className='w-full bg-primaryDark text-white py-2 rounded-md'
+        >
+         Login
+        </button>
+       </div>
+      </form>
      </div>
-     <div className='logo-section w-1/2 bg-primaryLight '>
+     <div className='logo-section w-1/2 bg-primaryDark '>
       <div className='image-wrap'>
        <img className=' size-64 mx-auto' src={LoginImage} alt='' />
       </div>
