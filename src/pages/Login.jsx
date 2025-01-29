@@ -41,7 +41,6 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
        {/*Email input */}
        <div className='mb-6 mt-10'>
-        <label htmlFor='email'>EMAIL</label>
         <input
          type='email'
          placeholder='Enter your email ...'
@@ -51,7 +50,6 @@ const Login = () => {
        </div>
        {/*password input */}
        <div className='mb-6 '>
-        <label htmlFor='password'>Password</label>
         <input
          type='password'
          placeholder='Enter your password ...'

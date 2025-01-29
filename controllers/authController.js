@@ -13,7 +13,7 @@ try{
 
     const isMatch = await bcrypt.compare(password, user.password)
     if(!isMatch){
-        res.status(400).json({success:false,  error: 'Password is incorrect'})
+        res.status(404).json({success:false,  error: 'Password is incorrect'})
     }
 
     const token = jwtWebToken.sign({_id :user._id, role:user.role},
