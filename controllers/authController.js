@@ -1,5 +1,6 @@
 import User from '../models/User.js'
 import jwtWebToken from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 const login = async (req, res) => {
 try{
@@ -25,4 +26,4 @@ try{
 }
 }
 
-export {login}
+export {login} 

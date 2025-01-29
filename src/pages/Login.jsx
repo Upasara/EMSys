@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import LoginImage from '../assets/images/login.png';
 import { CgProfile } from 'react-icons/cg';
+import axios from 'axios';
 
 //handle login form
 const Login = () => {
@@ -10,11 +10,8 @@ const Login = () => {
 
  const handleSubmit = async (e) => {
   e.preventDefault();
-  {
-   /* prevent from reloading */
-  }
   try {
-   const response = await axios.post('https://localhost:5000/api/auth/login', {
+   const response = await axios.post('http://localhost:5000/api/auth/login', {
     email,
     password,
    });
@@ -44,6 +41,7 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
        {/*Email input */}
        <div className='mb-6 mt-10'>
+        <label htmlFor='email'>EMAIL</label>
         <input
          type='email'
          placeholder='Enter your email ...'
@@ -53,6 +51,7 @@ const Login = () => {
        </div>
        {/*password input */}
        <div className='mb-6 '>
+        <label htmlFor='password'>Password</label>
         <input
          type='password'
          placeholder='Enter your password ...'
