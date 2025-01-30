@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import LoginImage from '../assets/images/login.png';
 import { CgProfile } from 'react-icons/cg';
 import axios from 'axios';
+import { useAuth } from '../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 //handle login form
 const Login = () => {
  const [email, setEmail] = useState('');
  const [password, setPassword] = useState('');
+ const [error, setError] = useState(null);
+ const { login } = useAuth();
+ const navigate = useNavigate();
 
  const handleSubmit = async (e) => {
   e.preventDefault();
@@ -15,9 +20,21 @@ const Login = () => {
     email,
     password,
    });
-   console.log(response);
+   if (response.data.success) {
+    login(response.data.user);
+    localStorage.setItem('token', response.data.token);
+    if (response.data.user.role === 'admin') {
+     navigate('/admin-dashboard');
+    } else {
+     navigate('/employee-dashboard');
+    }
+   }
   } catch (error) {
-   console.log(error);
+   if (error.response && !error.response.data.success) {
+    setError(error.response.data.error);
+   } else {
+    setError('Server Error');
+   }
   }
  };
 
@@ -26,7 +43,6 @@ const Login = () => {
    <div className='flex items-center justify-center h-screen bg-slate-100 w-full'>
     <div className='bg-white form-container overflow-hidden flex shadow-lg border rounded-lg w-11/12 max-w-screen-xl justify-between'>
      <div className=' form-section w-1/2 px-24 py-12'>
-      {/* form content*/}
       <div className='logo-wrap flex justify-left gap-x-1 items-center'>
        <CgProfile className='text-xl text-primaryDark shadow-lg' />
        <span className='text-sm text-secondaryDark'>P E Mathew & Co.</span>
@@ -37,7 +53,7 @@ const Login = () => {
       <p className='text-secondaryDark opacity-90 mt-10'>
        Welcome back : Login to your account
       </p>
-
+      {/* form content*/}
       <form onSubmit={handleSubmit}>
        {/*Email input */}
        <div className='mb-6 mt-10'>
@@ -46,6 +62,7 @@ const Login = () => {
          placeholder='Enter your email ...'
          className='w-full px-2 py-1 border rounded-full'
          onChange={(e) => setEmail(e.target.value)}
+         required
         />
        </div>
        {/*password input */}
@@ -55,6 +72,7 @@ const Login = () => {
          placeholder='Enter your password ...'
          className='w-full px-2 py-1 border rounded-full'
          onChange={(e) => setPassword(e.target.value)}
+         required
         />
        </div>
        {/*remember me & forgot password*/}
@@ -77,6 +95,8 @@ const Login = () => {
         </button>
        </div>
       </form>
+      {/*error message*/}
+      {error && <p className='text-red-500 mt-4'>{error}</p>}
      </div>
      <div className='logo-section w-1/2 bg-primaryDark '>
       <div className='image-wrap'>
