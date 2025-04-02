@@ -4,7 +4,7 @@ import { useAuth } from '../context/authContext';
 const Admin = () => {
  const { user } = useAuth();
 
- return <div>Hello , {user && user.name}</div>;
+ return <div></div>;
 };
 
 export default Admin;
