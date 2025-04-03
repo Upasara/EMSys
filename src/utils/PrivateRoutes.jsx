@@ -1,7 +1,7 @@
 {
  /*PrivateRoutes and RoleBaseRoutes was used to define, in simple words once we login as an admin or employee
     if you open an another tab of the website it will not login as admin or employee. it will redireted to login.
-    So to prevent that.  */
+    So to prevent that.(session/token storage)  */
 }
 
 import React from 'react';
