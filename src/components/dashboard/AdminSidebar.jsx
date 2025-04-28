@@ -7,32 +7,54 @@ import { NavLink } from 'react-router-dom';
 
 const AdminSidebar = () => {
  return (
-  <div className='bg-primaryDark text-white h-screen fixed left-0 top-0 bottom-0 space-y-10 w-64'>
+  <div className='bg-gray-200 text-black h-screen fixed left-0 top-0 bottom-0 space-y-10 w-64 shadow-'>
    <div className='bg-secondaryDark  h-12 flex items-center justify-center'>
-    <h2 className='text-2xl text-primaryGold text-center '>EMSys</h2>
+    <h2 className='text-2xl text-primaryGold text-center font-bold'>EMSys</h2>
    </div>
-   <div>
-    <NavLink to='/admin-dashboard'>
+   <div className='px-4'>
+    <NavLink
+     to='/admin-dashboard'
+     className={({ isActive }) =>
+      `${
+       isActive ? 'bg-primaryDark shadow-md ' : ' '
+      }flex items-center space-x-4 block py-3 px-4 rounded-md`
+     }
+    >
      <FaTachometerAlt />
      <span>Dashboard</span>
     </NavLink>
-    <NavLink to='/admin-dashboard'>
+    <NavLink
+     to='/admin-dashboard'
+     className='flex items-center space-x-4 block py-3 px-4 rounded-md'
+    >
      <FaUserTie />
      <span>Employee</span>
     </NavLink>
-    <NavLink to='/admin-dashboard'>
+    <NavLink
+     to='/admin-dashboard'
+     className='flex items-center space-x-4 block py-3 px-4 rounded-md'
+    >
      <FaBuilding />
      <span>Department</span>
     </NavLink>
-    <NavLink to='/admin-dashboard'>
+    <NavLink
+     to='/admin-dashboard'
+     className='flex items-center space-x-4 block py-3 px-4 rounded-md'
+    >
      <MdDateRange />
      <span>Leave</span>
     </NavLink>
-    <NavLink to='/admin-dashboard'>
+    <NavLink
+     to='/admin-dashboard'
+     className='flex items-center space-x-4 block py-3 px-4 rounded-md'
+    >
      <FaMoneyBill1Wave />
      <span>Salary</span>
     </NavLink>
-    <NavLink to='/admin-dashboard'>
+    <NavLink
+     to='/admin-dashboard'
+     className='flex items-center space-x-4 block py-3 px-4 rounded-md'
+    >
      <LuSettings2 />
      <span>Settings</span>
     </NavLink>
