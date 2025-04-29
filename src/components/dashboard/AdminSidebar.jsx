@@ -1,8 +1,8 @@
 import React from 'react';
-import { FaBuilding, FaTachometerAlt, FaUserTie } from 'react-icons/fa';
-import { FaMoneyBill1Wave } from 'react-icons/fa6';
+import { FaBuilding, FaUserTie } from 'react-icons/fa';
+import { GiMoneyStack } from 'react-icons/gi';
 import { LuSettings2 } from 'react-icons/lu';
-import { MdDateRange } from 'react-icons/md';
+import { MdDashboard, MdDateRange } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 
 const AdminSidebar = () => {
@@ -20,7 +20,7 @@ const AdminSidebar = () => {
       }flex items-center space-x-4 block py-3 px-4 rounded-md`
      }
     >
-     <FaTachometerAlt />
+     <MdDashboard />
      <span>Dashboard</span>
     </NavLink>
     <NavLink
@@ -48,7 +48,7 @@ const AdminSidebar = () => {
      to='/admin-dashboard'
      className='flex items-center space-x-4 block py-3 px-4 rounded-md'
     >
-     <FaMoneyBill1Wave />
+     <GiMoneyStack />
      <span>Salary</span>
     </NavLink>
     <NavLink
