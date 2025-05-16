@@ -6,6 +6,7 @@ import PrivateRoutes from './utils/PrivateRoutes.jsx';
 import RoleBaseRoutes from './utils/RoleBaseRoutes.jsx';
 import AdminSummary from './components/dashboard/AdminSummary.jsx';
 import DepartmentList from './components/department/DepartmentList.jsx';
+import AddDepartment from './components/department/AddDepartment.jsx';
 
 function App() {
  return (
@@ -13,6 +14,7 @@ function App() {
    <Routes>
     <Route path='/' element={<Navigate to='/admin-dashboard' />}></Route>
     <Route path='/login' element={<Login />}></Route>
+
     <Route
      path='/admin-dashboard'
      element={
@@ -28,7 +30,12 @@ function App() {
       path='/admin-dashboard/department'
       element={<DepartmentList />}
      ></Route>
+     <Route
+      path='/admin-dashboard/add-department'
+      element={<AddDepartment />}
+     ></Route>
     </Route>
+
     <Route path='/employee-dashboard' element={<EmployeeDashboard />}></Route>
    </Routes>
   </BrowserRouter>
