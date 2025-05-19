@@ -32,7 +32,7 @@ const AdminSidebar = () => {
      <span>Employee</span>
     </NavLink>
     <NavLink
-     to='/admin-dashboard/department'
+     to='/admin-dashboard/departments'
      className={({ isActive }) =>
       `${
        isActive ? 'bg-primaryDark shadow-md ' : ' '

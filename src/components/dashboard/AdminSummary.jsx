@@ -17,21 +17,21 @@ const AdminSummary = () => {
      text='Total Employees'
      number={13}
      iconColor='text-primaryDark'
-     textColor='text-black'
+     textColor='text-primaryText'
     />
     <SummaryCard
      icon={<FaBuilding />}
      text='Total Departments'
      number={5}
      iconColor='text-primaryDark'
-     textColor='text-black'
+     textColor='text-primaryText'
     />
     <SummaryCard
      icon={<FaMoneyBill1Wave />}
      text='Monthly Salary'
      number='Rs. 60,000'
      iconColor='text-primaryDark'
-     textColor='text-black'
+     textColor='text-primaryText'
     />
    </div>
 

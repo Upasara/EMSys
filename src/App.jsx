@@ -27,7 +27,7 @@ function App() {
     >
      <Route index element={<AdminSummary />}></Route>
      <Route
-      path='/admin-dashboard/department'
+      path='/admin-dashboard/departments'
       element={<DepartmentList />}
      ></Route>
      <Route

@@ -16,7 +16,7 @@ const DepartmentList = () => {
     {/*button */}
     <Link
      to='/admin-dashboard/add-department'
-     className='border-solid border-2 border-primaryDark py-1 px-4 rounded-md hover:bg-primaryDark hover:text-white transition'
+     className='border-solid border-2 border-primaryDark py-1 px-4 rounded-md text-primaryText hover:bg-primaryDark hover:text-white transition'
     >
      Add New Department
     </Link>

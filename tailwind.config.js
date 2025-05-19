@@ -14,7 +14,8 @@ export default {
         primaryLight:"#DAAB2D",
         primaryGold: "#FFC812",
         secondaryDark: "#6D6A75",
-        secondaryLight: "#BFBDC1"
+        secondaryLight: "#BFBDC1",
+        primaryText: "#1f2937"
       }
     },
   },
