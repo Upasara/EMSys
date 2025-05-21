@@ -26,7 +26,7 @@ const DepartmentList = () => {
       dep_manager: dep.dep_manager,
       dep_email: dep.dep_email,
       dep_des: dep.dep_des,
-      actions: <DepartmentButtons />,
+      actions: <DepartmentButtons _id={dep._id} />,
      }));
      setDepartments(data);
     }
@@ -63,7 +63,7 @@ const DepartmentList = () => {
        Add New Department
       </Link>
      </div>
-     <div>
+     <div className='mt-5'>
       <DataTable columns={columns} data={departments} />
      </div>
     </div>

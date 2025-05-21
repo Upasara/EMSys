@@ -96,7 +96,7 @@ const AddDepartment = () => {
       className='mt-1 block p-2 w-full border border-primaryLight rounded-md outline-none'
      />
     </div>
-    <div className='flex justify-between items-center mt-5 gap-2'>
+    <div className='flex justify-between items-center mt-5 gap-3'>
      <button
       type='submit'
       className='w-1/2 bg-primaryDark py-1.5 rounded-md hover:bg-primaryLight text-white'

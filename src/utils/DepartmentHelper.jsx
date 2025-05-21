@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 {
  /* declare columns for the table */
 }
@@ -24,11 +26,17 @@ export const columns = [
  },
 ];
 
-export const DepartmentButtons = () => {
+export const DepartmentButtons = ({ _id }) => {
+ const navigate = useNavigate();
  return (
-  <div>
-   <button>Edit</button>
-   <button>Remove</button>
+  <div className='flex gap-2'>
+   <button
+    className='py-1 px-2 bg-orange-500 text-white rounded'
+    onClick={() => navigate(`/admin-dashboard/departments/${_id}`)}
+   >
+    Edit
+   </button>
+   <button className='py-1 px-2  bg-red-700 text-white rounded'>Remove</button>
   </div>
  );
 };
