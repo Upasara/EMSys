@@ -26,13 +26,16 @@ export const columns = [
  },
 ];
 
-export const DepartmentButtons = ({ _id }) => {
+{
+ /*Buttons on the Department List table declaration */
+}
+export const DepartmentButtons = ({ DepID }) => {
  const navigate = useNavigate();
  return (
   <div className='flex gap-2'>
    <button
     className='py-1 px-2 bg-orange-500 text-white rounded'
-    onClick={() => navigate(`/admin-dashboard/departments/${_id}`)}
+    onClick={() => navigate(`/admin-dashboard/department/${DepID}`)}
    >
     Edit
    </button>

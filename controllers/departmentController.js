@@ -1,5 +1,6 @@
 import Department from '../models/Department.js';
 
+{/*Controller to get details of departments from the data base */}
 const getDepartments = async(req, res)=> {
   try{
     const departments = await Department.find()
@@ -9,6 +10,8 @@ const getDepartments = async(req, res)=> {
     return res.status(500).json({success : false, error : "Get department server error"})
   }
 }
+
+{/*Controller to push departments to the data base */}
 
 const addDepartment = async (req, res) => {
   try {
@@ -28,14 +31,6 @@ const addDepartment = async (req, res) => {
   }
 };
 
-const editDepartment = async (req, res) => {
-  try{
-    const {id} = req.params
-    const department = await Department.findById({_id: id})
-    return res.status(200).json({success : true, department})
-  }catch(error){
-    return res.status(500).json({success : false, error : "Get department server error"})
-  }
-}
 
-export { addDepartment, getDepartments, editDepartment };
+
+export { addDepartment, getDepartments };

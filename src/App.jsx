@@ -16,6 +16,7 @@ function App() {
     <Route path='/' element={<Navigate to='/admin-dashboard' />}></Route>
     <Route path='/login' element={<Login />}></Route>
 
+    {/*Private routes for Admin Dashboard */}
     <Route
      path='/admin-dashboard'
      element={
@@ -27,23 +28,26 @@ function App() {
      }
     >
      <Route index element={<AdminSummary />}></Route>
-
+     {/*Department list route */}
      <Route
       path='/admin-dashboard/departments'
       element={<DepartmentList />}
      ></Route>
 
+     {/*Add department route */}
      <Route
       path='/admin-dashboard/add-department'
       element={<AddDepartment />}
      ></Route>
 
      <Route
-      path='/admin-dashboard/departments/:id'
+      path='/admin-dashboard/department/:id'
       element={<EditDepartment />}
      ></Route>
     </Route>
+    {/*End of Admin Dashboard route */}
 
+    {/*Private routes for Employee Dashboard */}
     <Route path='/employee-dashboard' element={<EmployeeDashboard />}></Route>
    </Routes>
   </BrowserRouter>

@@ -5,14 +5,22 @@ import { columns, DepartmentButtons } from '../../utils/DepartmentHelper';
 import axios from 'axios';
 
 const DepartmentList = () => {
+ /*holds ist of department data fetched from the database */
  const [departments, setDepartments] = useState([]);
+
+ /* tracks whether the data is currently loading, allowing the component to display a loading indicator */
  const [depLoading, setDepLoading] = useState(false);
 
+ /* userEffect Hook - used to fecth department dta when the component is mounted. 
+    this ensures the data is loaded only once whe the component is rendered */
  useEffect(() => {
   const fetchDepartments = async () => {
    setDepLoading(true);
+
    try {
     const response = await axios.get('http://localhost:5000/api/department', {
+     /* get request includes n authorization header with a token retirieved from localstorage,
+    to ensure that only authenticated user can access the data.  */
      headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
      },
@@ -26,7 +34,7 @@ const DepartmentList = () => {
       dep_manager: dep.dep_manager,
       dep_email: dep.dep_email,
       dep_des: dep.dep_des,
-      actions: <DepartmentButtons _id={dep._id} />,
+      actions: <DepartmentButtons DepID={dep._id} />,
      }));
      setDepartments(data);
     }
@@ -42,6 +50,7 @@ const DepartmentList = () => {
  }, []);
 
  return (
+  //laoding message is displayed while the data is being fetched
   <>
    {depLoading ? (
     <div>Loading...</div>
