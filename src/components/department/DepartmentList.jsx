@@ -11,6 +11,13 @@ const DepartmentList = () => {
  /* tracks whether the data is currently loading, allowing the component to display a loading indicator */
  const [depLoading, setDepLoading] = useState(false);
 
+ const [filteredDepartments, setFilteredDepartments] = useState([]);
+
+ const onDepartmentDelete = (id) => {
+  const data = departments.filter((dep) => dep._id !== id);
+  setDepartments(data);
+ };
+
  /* userEffect Hook - used to fecth department dta when the component is mounted. 
     this ensures the data is loaded only once whe the component is rendered */
  useEffect(() => {
@@ -34,9 +41,15 @@ const DepartmentList = () => {
       dep_manager: dep.dep_manager,
       dep_email: dep.dep_email,
       dep_des: dep.dep_des,
-      actions: <DepartmentButtons DepID={dep._id} />,
+      actions: (
+       <DepartmentButtons
+        DepID={dep._id}
+        onDepartmentDelete={onDepartmentDelete}
+       />
+      ),
      }));
      setDepartments(data);
+     setFilteredDepartments(data);
     }
    } catch (error) {
     if (error.response && !error.response.data.success) {
@@ -48,6 +61,13 @@ const DepartmentList = () => {
   };
   fetchDepartments();
  }, []);
+
+ const filterDepartments = (e) => {
+  const records = departments.filter((dep) =>
+   dep.dep_name.toLowerCase().includes(e.target.value.toLowerCase())
+  );
+  setFilteredDepartments(records);
+ };
 
  return (
   //laoding message is displayed while the data is being fetched
@@ -64,6 +84,7 @@ const DepartmentList = () => {
        type='text'
        placeholder='Search Department'
        className='px-4 py-0.5 border rounded-md'
+       onChange={filterDepartments}
       />
       <Link
        to='/admin-dashboard/add-department'
@@ -73,7 +94,7 @@ const DepartmentList = () => {
       </Link>
      </div>
      <div className='mt-5'>
-      <DataTable columns={columns} data={departments} />
+      <DataTable columns={columns} data={filteredDepartments} pagination />
      </div>
     </div>
    )}

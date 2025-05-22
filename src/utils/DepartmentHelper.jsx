@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 {
  /* declare columns for the table */
@@ -11,6 +12,7 @@ export const columns = [
  {
   name: 'Department Name',
   selector: (row) => row.dep_name,
+  sortable: true,
  },
  {
   name: 'Department Manager',
@@ -29,8 +31,34 @@ export const columns = [
 {
  /*Buttons on the Department List table declaration */
 }
-export const DepartmentButtons = ({ DepID }) => {
+export const DepartmentButtons = ({ DepID, onDepartmentDelete }) => {
  const navigate = useNavigate();
+
+ const handleDelete = async (id) => {
+  const confirm = window.confirm('Do you want to delete this department?');
+  if (confirm) {
+   try {
+    const response = await axios.delete(
+     `http://localhost:5000/api/department/${id}`,
+     {
+      /* get request includes n authorization header with a token retirieved from localstorage,
+                  to ensure that only authenticated user can access the data.  */
+      headers: {
+       Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+     }
+    );
+    if (response.data.success) {
+     onDepartmentDelete(id);
+    }
+   } catch (error) {
+    if (error.response && !error.response.data.success) {
+     alert(error.response.data.error);
+    }
+   }
+  }
+ };
+
  return (
   <div className='flex gap-2'>
    <button
@@ -39,7 +67,12 @@ export const DepartmentButtons = ({ DepID }) => {
    >
     Edit
    </button>
-   <button className='py-1 px-2  bg-red-700 text-white rounded'>Remove</button>
+   <button
+    className='py-1 px-2  bg-red-700 text-white rounded'
+    onClick={() => handleDelete(DepID)}
+   >
+    Remove
+   </button>
   </div>
  );
 };
