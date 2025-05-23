@@ -1,7 +1,8 @@
 import User from '../models/User.js'
 import jwtWebToken from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-
+{/* handles user authentication by validating credentials, generating a JWT and 
+    returning it along with user detailss */}
 const login = async (req, res) => {
 try{
 
@@ -26,6 +27,7 @@ try{
 }
 }
 
+{/* confirms validity of a token and provides the authenticatied user's info */}
 const verify = (req, res) => {
     return res.status(200).json({success:true, user:req.user})
 }

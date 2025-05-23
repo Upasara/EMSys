@@ -8,23 +8,31 @@ export const columns = [
  {
   name: 'S no',
   selector: (row) => row.sno,
+  responsive: true,
+  width: '80px',
  },
  {
   name: 'Department Name',
   selector: (row) => row.dep_name,
   sortable: true,
+  responsive: true,
  },
  {
   name: 'Department Manager',
   selector: (row) => row.dep_manager,
+  responsive: true,
  },
  {
   name: 'Department Email',
   selector: (row) => row.dep_email,
+  responsive: true,
  },
  {
   name: 'Actions',
   selector: (row) => row.actions,
+  responsive: true,
+
+  center: true,
  },
 ];
 

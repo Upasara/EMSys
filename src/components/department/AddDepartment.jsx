@@ -56,7 +56,7 @@ const AddDepartment = () => {
       type='text'
       name='dep_name'
       onChange={handleChange}
-      className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none'
+      className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none text-gray-600'
       required
      />
     </div>
@@ -68,7 +68,7 @@ const AddDepartment = () => {
       type='text'
       name='dep_manager'
       onChange={handleChange}
-      className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none'
+      className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none text-gray-600'
       required
      />
     </div>
@@ -80,7 +80,7 @@ const AddDepartment = () => {
       type='email'
       name='dep_email'
       onChange={handleChange}
-      className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none'
+      className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none text-gray-600'
       required
      />
     </div>
@@ -93,13 +93,13 @@ const AddDepartment = () => {
       type='text'
       name='dep_des'
       onChange={handleChange}
-      className='mt-1 block p-2 w-full border border-primaryLight rounded-md outline-none'
+      className='mt-1 block p-2 w-full border border-primaryLight rounded-md outline-none text-gray-600'
      />
     </div>
     <div className='flex justify-between items-center mt-5 gap-3'>
      <button
       type='submit'
-      className='w-1/2 bg-primaryDark py-1.5 rounded-md hover:bg-primaryLight text-white'
+      className='w-1/2 bg-green-700 py-1.5 rounded-md hover:bg-green-600 text-white'
      >
       Add Department
      </button>
