@@ -95,7 +95,7 @@ return res.status(200).json({success : true, message : "Employee data created...
 const getEmployees = async (req,res) =>{
 
     try{
-        const employees = await Employee.find().populate("userId").populate("emp_dep")
+        const employees = await Employee.find().populate("userId",{password:0}).populate("emp_dep")
         return res.status(200).json({success : true, employees})
     }catch(error){
         return res.status(500).json({success : false, error : "Employee fetching error..."})

@@ -6,11 +6,12 @@ const EmployeeList = () => {
  const [employees, setEmployees] = useState([]);
  const [empLoading, setEmpLoading] = useState(false);
 
+ //use effect to fetch employee data from DB
  useEffect(() => {
   const fetchEmployees = async () => {
-    setEmpLoading(true);
+   setEmpLoading(true);
    try {
-    const response = await axios.get("http://localhost:5000/api/employee", {
+    const response = await axios.get('http://localhost:5000/api/employee', {
      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
     if (response.data.success) {
@@ -18,21 +19,25 @@ const EmployeeList = () => {
      const data = await response.data.employees.map((emp) => ({
       _id: emp._id,
       sno: sno++,
-      dep.
+      name: emp.userId.name,
+      emp_designation: emp.emp_designation,
+      dep_name: emp.emp_dep.dep_name,
+      emp_dob: emp.emp_dob,
+      profileImage: emp.userId.profileImage,
      }));
      setEmployees(data);
      setFilteredEmployees(data);
     }
    } catch (error) {
-    if(error.response&& !error.response.data.success){
-        alert(error.response.data.error)
+    if (error.response && !error.response.data.success) {
+     alert(error.response.data.error);
     }
-   }finally{
+   } finally {
     setEmpLoading(false);
    }
   };
   fetchEmployees();
- },[]);
+ }, []);
 
  return (
   <div className='p-5'>
