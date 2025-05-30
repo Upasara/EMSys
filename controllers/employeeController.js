@@ -18,74 +18,89 @@ const storage = multer.diskStorage({
 const upload  = multer({storage :storage})
 
 const addEmployee = async (req,res) => {
-    try{
+try{
 const {
-    emp_Fname,
-    emp_name,
-    emp_address,
-    emp_Nid,
-    emp_dob,
-    emp_number1,
-    emp_number2,
-    emp_gender,
-    emp_Mstatus,
-    emp_designation,
-    emp_dep,
-    emp_Sdate,
-    emp_Enumber,
-    emp_medical,
-    emp_ethnicity,
-    emp_salary,
-    name,
-    email,
-    password,
-    role,
+emp_id,
+emp_Fname,
+emp_address,
+emp_Nid,
+emp_dob,
+emp_number1,
+emp_number2,
+emp_gender,
+emp_Mstatus,
+emp_designation,
+emp_dep,
+emp_Sdate,
+emp_Enumber,
+emp_medical,
+emp_ethnicity,
+emp_salary,
+name,
+email,
+password,
+role,
 
 } = req.body
 
 const user = await User.findOne({email})
 if(user){
-    return res.status(400).json({success : false, error : "user already exist"})
+return res.status(400).json({success : false, error : "user already exist"})
 }
 
-const  hashPassword = await bcrypt.hash(password, 10   )
+
+
+const  hashPassword = await bcrypt.hash(password, 10)
+
 
 const newUser = new User({
-    name,
-    email,
-    password : hashPassword,
-    role,
-    profileImage : req.file ? req.file.filename : ""
+name,
+email,
+password : hashPassword,
+role,
+profileImage : req.file ? req.file.filename : ""
 })
 
 const savedUser = await newUser.save()
 
 const newEmployee = new Employee({
-    userId : savedUser._id,
-    emp_Fname,
-    emp_name,
-    emp_address,
-    emp_Nid,
-    emp_dob,
-    emp_number1,
-    emp_number2,
-    emp_gender,
-    emp_Mstatus,
-    emp_designation,
-    emp_dep,
-    emp_Sdate,
-    emp_Enumber,
-    emp_medical,
-    emp_ethnicity,
-    emp_salary,
+userId : savedUser._id,
+emp_id,
+emp_Fname,
+emp_address,
+emp_Nid,
+emp_dob,
+emp_number1,
+emp_number2,
+emp_gender,
+emp_Mstatus,
+emp_designation,
+emp_dep,
+emp_Sdate,
+emp_Enumber,
+emp_medical,
+emp_ethnicity,
+emp_salary,
 })
 await newEmployee.save()
 return res.status(200).json({success : true, message : "Employee data created..."})
 
 }catch(error){
-return res.status(500).json({success : false, error : "employee adding error..."})
+    console.log(error.message)
+    return res.status(500).json({success : false, error : "Employee adding error..."})
 }
 
 }
 
-export {addEmployee, upload}
+const getEmployees = async (req,res) =>{
+
+    try{
+        const employees = await Employee.find().populate("userId").populate("emp_dep")
+        return res.status(200).json({success : true, employees})
+    }catch(error){
+        return res.status(500).json({success : false, error : "Employee fetching error..."})
+    }
+
+}
+
+export {addEmployee, upload, getEmployees}

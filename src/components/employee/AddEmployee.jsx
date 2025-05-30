@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchDepartments } from '../../utils/EmployeeHelper';
 import axios from 'axios';
 
 const AddEmployee = () => {
+ const navigate = useNavigate();
  const [departments, setDepartments] = useState([]);
  const [formData, setFormData] = useState({});
  useEffect(() => {
@@ -93,7 +94,7 @@ const AddEmployee = () => {
       <label className='block text-primaryText'>Name with Initials</label>
       <input
        type='text'
-       name='emp_name'
+       name='name'
        onChange={handleChange}
        placeholder='P D Dinesh Kumara'
        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
@@ -105,7 +106,7 @@ const AddEmployee = () => {
       <label className='block text-primaryText'>Employee ID</label>
       <input
        type='text'
-       name='emp_id '
+       name='emp_id'
        onChange={handleChange}
        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
        required
@@ -220,7 +221,7 @@ const AddEmployee = () => {
        <option value=''>Select department</option>
        {departments.map((dep) => (
         //dep_id could be an error
-        <option key={dep.dep_id} value={dep.dep_id}>
+        <option key={dep._id} value={dep._id}>
          {dep.dep_name}
         </option>
        ))}
@@ -288,9 +289,9 @@ const AddEmployee = () => {
       <label className='block text-primaryText'>Password</label>
       <input
        type='password'
-       name='emp_password'
+       name='password'
        onChange={handleChange}
-       placeholder='******************** '
+       placeholder='****************** '
        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
        required
       />
@@ -298,7 +299,7 @@ const AddEmployee = () => {
 
      {/* role */}
      <div>
-      <label className='block text-primaryText'>Password</label>
+      <label className='block text-primaryText'>Role</label>
       <select
        name='role'
        onChange={handleChange}
@@ -313,10 +314,10 @@ const AddEmployee = () => {
 
      {/* image upload */}
      <div>
-      <label className='block text-primaryText'>Password</label>
+      <label className='block text-primaryText'>Image</label>
       <input
        type='file'
-       name='emp_name'
+       name='image'
        onChange={handleChange}
        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
        accept='image/*'

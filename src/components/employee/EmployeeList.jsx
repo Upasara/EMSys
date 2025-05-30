@@ -1,7 +1,39 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const EmployeeList = () => {
+ const [employees, setEmployees] = useState([]);
+ const [empLoading, setEmpLoading] = useState(false);
+
+ useEffect(() => {
+  const fetchEmployees = async () => {
+    setEmpLoading(true);
+   try {
+    const response = await axios.get("http://localhost:5000/api/employee", {
+     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    });
+    if (response.data.success) {
+     let sno = 1;
+     const data = await response.data.employees.map((emp) => ({
+      _id: emp._id,
+      sno: sno++,
+      dep.
+     }));
+     setEmployees(data);
+     setFilteredEmployees(data);
+    }
+   } catch (error) {
+    if(error.response&& !error.response.data.success){
+        alert(error.response.data.error)
+    }
+   }finally{
+    setEmpLoading(false);
+   }
+  };
+  fetchEmployees();
+ },[]);
+
  return (
   <div className='p-5'>
    <div className='text-center'>
