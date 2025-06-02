@@ -33,7 +33,7 @@ emp_designation,
 emp_dep,
 emp_Sdate,
 emp_Enumber,
-emp_Ename,
+emp_Ename, 
 emp_medical,
 emp_ethnicity,
 emp_salary,
@@ -97,6 +97,7 @@ return res.status(200).json({success : true, message : "Employee data created...
 const getEmployees = async (req,res) =>{
 
     try{
+        //{password:0} to not show password in response
         const employees = await Employee.find().populate("userId",{password:0}).populate("emp_dep")
         return res.status(200).json({success : true, employees})
     }catch(error){

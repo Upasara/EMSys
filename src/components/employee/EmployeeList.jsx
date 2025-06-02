@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { columns, EmployeeButtons } from '../../utils/EmployeeHelper';
+import DataTable from 'react-data-table-component';
 
 const EmployeeList = () => {
  const [employees, setEmployees] = useState([]);
@@ -22,11 +24,16 @@ const EmployeeList = () => {
       name: emp.userId.name,
       emp_designation: emp.emp_designation,
       dep_name: emp.emp_dep.dep_name,
-      emp_dob: emp.emp_dob,
-      profileImage: emp.userId.profileImage,
+      profileImage: (
+       <img
+        width={40}
+        className='rounded-full'
+        src={`http://localhost:5000/${emp.userId.profileImage}`}
+       />
+      ),
+      action: <EmployeeButtons Id={emp._id} />,
      }));
      setEmployees(data);
-     setFilteredEmployees(data);
     }
    } catch (error) {
     if (error.response && !error.response.data.success) {
@@ -56,6 +63,9 @@ const EmployeeList = () => {
     >
      Add New Employee
     </Link>
+   </div>
+   <div>
+    <DataTable columns={columns} data={employees} />
    </div>
   </div>
  );
