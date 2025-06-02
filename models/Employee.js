@@ -17,6 +17,7 @@ const employeeSchema = new Schema({
     emp_dep : {type : Schema.Types.ObjectId, ref : "Department", required : true},
     emp_Sdate : {type : Date},
     emp_Enumber : { type: Number},
+    emp_Ename : { type: String},
     emp_medical : {type : String},
     emp_ethnicity : { type: String},
     emp_salary : { type: Number, required: true },

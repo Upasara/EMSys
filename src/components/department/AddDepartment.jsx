@@ -99,13 +99,13 @@ const AddDepartment = () => {
     <div className='flex justify-between items-center mt-5 gap-3'>
      <button
       type='submit'
-      className='w-1/2 bg-green-700 py-1.5 rounded-md hover:bg-green-600 text-white'
+      className='w-1/2 bg-green-700 py-1.5 rounded-md hover:bg-green-600 text-white transition'
      >
       Add Department
      </button>
      <Link
       to='/admin-dashboard/departments'
-      className='bg-red-700 py-1.5 w-1/2 text-center rounded-md text-white hover:bg-red-600'
+      className='bg-red-700 py-1.5 w-1/2 text-center rounded-md text-white hover:bg-red-600 transition'
      >
       Cancel
      </Link>

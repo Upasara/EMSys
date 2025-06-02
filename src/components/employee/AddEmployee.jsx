@@ -7,6 +7,10 @@ const AddEmployee = () => {
  const navigate = useNavigate();
  const [departments, setDepartments] = useState([]);
  const [formData, setFormData] = useState({});
+
+ //state to track validation errors
+ const [errors, setErrors] = useState({});
+
  useEffect(() => {
   const getDepartments = async () => {
    const departments = await fetchDepartments();
@@ -18,6 +22,41 @@ const AddEmployee = () => {
  //change handler function
  const handleChange = (e) => {
   const { name, value, files } = e.target;
+
+  // Validate phone numbers
+  let errorMessage = '';
+  const phoneRegex = /^[0-9]{10}$/; //phone number regex
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // email regex
+
+  if (
+   name === 'emp_number1' ||
+   name === 'emp_number2' ||
+   name === 'emp_Enumber'
+  ) {
+   if (!phoneRegex.test(value)) {
+    errorMessage = 'Phone number must be 10 digits long...';
+   }
+  }
+
+  if (name === 'email') {
+   if (!emailRegex.test(value)) {
+    errorMessage = 'Please enter a valid email address...';
+   }
+  }
+
+  //update error state
+  if (errorMessage) {
+   setErrors((prevErrors) => ({
+    ...prevErrors,
+    [name]: errorMessage,
+   }));
+  } else {
+   setErrors((prevErrors) => {
+    const { [name]: _, ...rest } = prevErrors; // remove the error for the current field
+    return rest;
+   });
+  }
+
   if (name === 'image') {
    setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
   } else {
@@ -58,287 +97,333 @@ const AddEmployee = () => {
  };
 
  return (
-  <div className='max-w-4xl mx-auto bg-white shadow-md rounded-md mt-10 p-8'>
-   <h3 className='text-2xl text-blue-800 font-medium text-center mb-5'>
-    Add New Employee
-   </h3>
-   <form onSubmit={handleSubmit}>
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
-     {/* full name */}
-     <div>
-      <label className='block text-primaryText'>Full Name</label>
-      <textarea
-       type='text'
-       name='emp_Fname'
-       onChange={handleChange}
-       placeholder='Pathiranage Don Dinesh Kumara'
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-       rows='2'
-      />
-     </div>
+  <div className='bg-slate-100'>
+   <div className='max-w-4xl mx-auto bg-white shadow-md rounded-md mt-10 p-8'>
+    <h3 className='text-2xl text-blue-800 font-medium text-center mb-10 mt-5'>
+     Employee Register Form
+    </h3>
+    <form onSubmit={handleSubmit}>
+     <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
+      {/* full name */}
+      <div>
+       <label className='block text-primaryText'>Full Name</label>
+       <textarea
+        type='text'
+        name='emp_Fname'
+        onChange={handleChange}
+        placeholder='eg : Pathiranage Don Dinesh Kumara'
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        rows='2'
+        required
+       />
+      </div>
 
-     {/* address */}
-     <div>
-      <label className='block text-primaryText'>Permanent Address</label>
-      <textarea
-       type='text'
-       name='emp_address'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-       rows='2'
-      />
-     </div>
+      {/* address */}
+      <div>
+       <label className='block text-primaryText'>Permanent Address</label>
+       <textarea
+        type='text'
+        name='emp_address'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        rows='2'
+        required
+       />
+      </div>
 
-     {/* name with initials*/}
-     <div>
-      <label className='block text-primaryText'>Name with Initials</label>
-      <input
-       type='text'
-       name='name'
-       onChange={handleChange}
-       placeholder='P D Dinesh Kumara'
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      />
-     </div>
+      {/* name with initials*/}
+      <div>
+       <label className='block text-primaryText'>Name with Initials</label>
+       <input
+        type='text'
+        name='name'
+        onChange={handleChange}
+        placeholder='eg : P D Dinesh Kumara'
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
 
-     {/* employee ID */}
-     <div>
-      <label className='block text-primaryText'>Employee ID</label>
-      <input
-       type='text'
-       name='emp_id'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-       required
-      />
-     </div>
+      {/* employee ID */}
+      <div>
+       <label className='block text-primaryText'>Employee ID</label>
+       <input
+        type='text'
+        name='emp_id'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
 
-     {/* national ID */}
-     <div>
-      <label className='block text-primaryText'>National ID</label>
-      <input
-       type='text'
-       name='emp_Nid'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      />
-     </div>
+      {/* national ID */}
+      <div>
+       <label className='block text-primaryText'>National ID</label>
+       <input
+        type='text'
+        name='emp_Nid'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
 
-     {/* DOB */}
-     <div>
-      <label className='block text-primaryText'>Date of Birth</label>
-      <input
-       type='date'
-       name='emp_dob'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      />
-     </div>
+      {/* DOB */}
+      <div>
+       <label className='block text-primaryText'>Date of Birth</label>
+       <input
+        type='date'
+        name='emp_dob'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
 
-     {/* phone number 1 */}
-     <div>
-      <label className='block text-primaryText'>Phone Number</label>
-      <input
-       type='number'
-       name='emp_number1'
-       onChange={handleChange}
-       placeholder='0112123456'
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      />
-     </div>
+      {/* phone number 1 */}
+      <div>
+       <label className='block text-primaryText'>Phone Number</label>
+       <input
+        type='number'
+        name='emp_number1'
+        onChange={handleChange}
+        placeholder='eg : 0112123456'
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+       />
+       {errors.emp_number1 && (
+        <p className='text-red-500 text-sm mt-1'>{errors.emp_number1}</p>
+       )}
+      </div>
 
-     {/* phone number 2*/}
-     <div>
-      <label className='block text-primaryText'>Mobile Number</label>
-      <input
-       type='number'
-       name='emp_number2'
-       onChange={handleChange}
-       placeholder='0711234567'
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      />
-     </div>
+      {/* phone number 2*/}
+      <div>
+       <label className='block text-primaryText'>Mobile Number</label>
+       <input
+        type='number'
+        name='emp_number2'
+        onChange={handleChange}
+        placeholder='eg : 0711234567'
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+       {errors.emp_number2 && (
+        <p className='text-red-500 text-sm mt-1'>{errors.emp_number2}</p>
+       )}
+      </div>
 
-     {/* email */}
-     <div>
-      <label className='block text-primaryText'>E-mail</label>
-      <input
-       type='email'
-       name='email'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      />
-     </div>
+      {/* email */}
+      <div>
+       <label className='block text-primaryText'>E-mail</label>
+       <input
+        type='email'
+        name='email'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+       {errors.email && (
+        <p className='text-red-500 text-sm mt-1'>{errors.email}</p>
+       )}
+      </div>
 
-     {/* gender */}
-     <div>
-      <label className='block text-primaryText'>Gender</label>
-      <select
-       name='emp_gender'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+      {/* gender */}
+      <div>
+       <label className='block text-primaryText'>Gender</label>
+       <select
+        name='emp_gender'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       >
+        <option value=''>Select Gender</option>
+        <option value='male'>Male</option>
+        <option value='female'>Female</option>
+        <option value='other'>Other</option>
+       </select>
+      </div>
+
+      {/* marital status */}
+      <div>
+       <label className='block text-primaryText'>Marital Status</label>
+       <select
+        name='emp_Mstatus'
+        onChange={handleChange}
+        className=' mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       >
+        <option value=''>Select Marital Status</option>
+        <option value='single'>Single</option>
+        <option value='married'>Married</option>
+       </select>
+      </div>
+
+      {/* designation */}
+      <div>
+       <label className='block text-primaryText'>Designation</label>
+       <input
+        type='text'
+        name='emp_designation'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
+
+      {/* department */}
+      <div>
+       <label className='block text-primaryText'>Department</label>
+       <select
+        name='emp_dep'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       >
+        <option value=''>Select department</option>
+        {departments.map((dep) => (
+         //dep_id could be an error
+         <option key={dep._id} value={dep._id}>
+          {dep.dep_name}
+         </option>
+        ))}
+       </select>
+      </div>
+
+      {/* start date */}
+      <div>
+       <label className='block text-primaryText'>Start Date</label>
+       <input
+        type='date'
+        name='emp_Sdate'
+        placeholder='date of joining'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
+
+      {/* salary */}
+      <div>
+       <label className='block text-primaryText'>Salary</label>
+       <input
+        type='number'
+        name='emp_salary'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
+
+      {/* password */}
+      <div>
+       <label className='block text-primaryText'>Password</label>
+       <input
+        type='password'
+        name='password'
+        onChange={handleChange}
+        placeholder='  ****************** '
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
+
+      {/* role */}
+      <div>
+       <label className='block text-primaryText'>Role</label>
+       <select
+        name='role'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       >
+        <option value=''>select a role</option>
+        <option value='admin'>ADMIN</option>
+        <option value='employee'>EMPLOYEE</option>
+       </select>
+      </div>
+
+      {/* image upload */}
+      <div>
+       <label className='block text-primaryText'>Image</label>
+       <input
+        type='file'
+        name='image'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        accept='image/*'
+       />
+      </div>
+
+      {/* emergency contact name */}
+      <div>
+       <label className='block text-primaryText'>Emergency Contact Name</label>
+       <input
+        type='text'
+        name='emp_Ename'
+        placeholder='Name of the emergency contact person'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
+
+      {/* emergency contact number*/}
+      <div>
+       <label className='block text-primaryText'>
+        Emergency Contact Number
+       </label>
+       <input
+        type='number'
+        name='emp_Enumber'
+        placeholder='Number of the emergency contact person'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+       {errors.emp_Enumber && (
+        <p className='text-red-500 text-sm mt-1'>{errors.emp_Enumber}</p>
+       )}
+      </div>
+
+      {/* medical history */}
+      <div>
+       <label className='block text-primaryText'>Medical History</label>
+       <textarea
+        type='text'
+        name='emp_medical'
+        placeholder='Any medical conditions or allergies?'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        rows='2'
+       />
+      </div>
+
+      {/* ethnicity */}
+      <div>
+       <label className='block text-primaryText'>Ethnicity</label>
+       <input
+        type='text'
+        name='emp_ethnicity'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+       />
+      </div>
+     </div>
+     <div className='flex justify-between items-center mt-5 gap-3'>
+      <button
+       type='submit'
+       className='w-1/2 bg-green-700 py-1.5 rounded-md hover:bg-green-600 text-white transition'
       >
-       <option value=''>Select Gender</option>
-       <option value='male'>Male</option>
-       <option value='female'>Female</option>
-       <option value='other'>Other</option>
-      </select>
-     </div>
-
-     {/* marital status */}
-     <div>
-      <label className='block text-primaryText'>Marital Status</label>
-      <select
-       name='emp_Mstatus'
-       onChange={handleChange}
-       className=' mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+       Register Employee
+      </button>
+      <Link
+       to='/admin-dashboard/employees'
+       className='bg-red-700 py-1.5 w-1/2 text-center rounded-md text-white hover:bg-red-600 transition'
       >
-       <option value=''>Select Marital Status</option>
-       <option value='single'>Single</option>
-       <option value='married'>Married</option>
-      </select>
+       Cancel
+      </Link>
      </div>
-
-     {/* designation */}
-     <div>
-      <label className='block text-primaryText'>Designation</label>
-      <input
-       type='text'
-       name='emp_designation'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      />
-     </div>
-
-     {/* department */}
-     <div>
-      <label className='block text-primaryText'>Department</label>
-      <select
-       name='emp_dep'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      >
-       <option value=''>Select department</option>
-       {departments.map((dep) => (
-        //dep_id could be an error
-        <option key={dep._id} value={dep._id}>
-         {dep.dep_name}
-        </option>
-       ))}
-      </select>
-     </div>
-
-     {/* start date */}
-     <div>
-      <label className='block text-primaryText'>Start Date</label>
-      <input
-       type='date'
-       name='emp_Sdate'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      />
-     </div>
-
-     {/* emergency contact */}
-     <div>
-      <label className='block text-primaryText'>Emergency Contact</label>
-      <input
-       type='number'
-       name='emp_Enumber'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      />
-     </div>
-
-     {/* medical history */}
-     <div>
-      <label className='block text-primaryText'>Medical History</label>
-      <input
-       type='text'
-       name='emp_medical'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      />
-     </div>
-
-     {/* ethnicity */}
-     <div>
-      <label className='block text-primaryText'>Ethnicity</label>
-      <input
-       type='text'
-       name='emp_ethnicity'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-      />
-     </div>
-
-     {/* salary */}
-     <div>
-      <label className='block text-primaryText'>Salary</label>
-      <input
-       type='number'
-       name='emp_salary'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-       required
-      />
-     </div>
-
-     {/* password */}
-     <div>
-      <label className='block text-primaryText'>Password</label>
-      <input
-       type='password'
-       name='password'
-       onChange={handleChange}
-       placeholder='****************** '
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-       required
-      />
-     </div>
-
-     {/* role */}
-     <div>
-      <label className='block text-primaryText'>Role</label>
-      <select
-       name='role'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-       required
-      >
-       <option value=''>select a role</option>
-       <option value='admin'>ADMIN</option>
-       <option value='employee'>EMPLOYEE</option>
-      </select>
-     </div>
-
-     {/* image upload */}
-     <div>
-      <label className='block text-primaryText'>Image</label>
-      <input
-       type='file'
-       name='image'
-       onChange={handleChange}
-       className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-       accept='image/*'
-      />
-     </div>
-    </div>
-    <div className='flex justify-between items-center mt-5 gap-3'>
-     <button
-      type='submit'
-      className='w-1/2 bg-green-700 py-1.5 rounded-md hover:bg-green-600 text-white'
-     >
-      Add Department
-     </button>
-     <Link
-      to='/admin-dashboard/employees'
-      className='bg-red-700 py-1.5 w-1/2 text-center rounded-md text-white hover:bg-red-600'
-     >
-      Cancel
-     </Link>
-    </div>
-   </form>
+    </form>
+   </div>
   </div>
  );
 };
