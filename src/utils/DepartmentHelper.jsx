@@ -31,8 +31,7 @@ export const columns = [
   name: 'Actions',
   selector: (row) => row.actions,
   responsive: true,
-
-  center: true,
+  center: 'true',
  },
 ];
 

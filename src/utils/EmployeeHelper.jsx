@@ -34,12 +34,10 @@ export const columns = [
   name: 'Actions',
   selector: (row) => row.actions,
   responsive: true,
-
-  center: true,
+  center: 'true',
  },
 ];
 
-axios;
 export const fetchDepartments = async () => {
  let departments;
  try {
@@ -67,7 +65,7 @@ export const EmployeeButtons = ({ Id }) => {
   <div className='flex gap-2'>
    <button
     className='py-1 px-2 bg-green-500 text-white rounded'
-    onClick={() => navigate(`/admin-dashboard/department/${DepID}`)}
+    onClick={() => navigate(`/admin-dashboard/employee/${Id}`)}
    >
     View
    </button>

@@ -156,6 +156,37 @@ const AddEmployee = () => {
        />
       </div>
 
+      {/* designation */}
+      <div>
+       <label className='block text-primaryText'>Designation</label>
+       <input
+        type='text'
+        name='emp_designation'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
+
+      {/* department */}
+      <div>
+       <label className='block text-primaryText'>Department</label>
+       <select
+        name='emp_dep'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       >
+        <option value=''>Select department</option>
+        {departments.map((dep) => (
+         //dep_id could be an error
+         <option key={dep._id} value={dep._id}>
+          {dep.dep_name}
+         </option>
+        ))}
+       </select>
+      </div>
+
       {/* national ID */}
       <div>
        <label className='block text-primaryText'>National ID</label>
@@ -254,37 +285,6 @@ const AddEmployee = () => {
         <option value=''>Select Marital Status</option>
         <option value='single'>Single</option>
         <option value='married'>Married</option>
-       </select>
-      </div>
-
-      {/* designation */}
-      <div>
-       <label className='block text-primaryText'>Designation</label>
-       <input
-        type='text'
-        name='emp_designation'
-        onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-        required
-       />
-      </div>
-
-      {/* department */}
-      <div>
-       <label className='block text-primaryText'>Department</label>
-       <select
-        name='emp_dep'
-        onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-        required
-       >
-        <option value=''>Select department</option>
-        {departments.map((dep) => (
-         //dep_id could be an error
-         <option key={dep._id} value={dep._id}>
-          {dep.dep_name}
-         </option>
-        ))}
        </select>
       </div>
 

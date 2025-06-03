@@ -10,6 +10,7 @@ import AddDepartment from './components/department/AddDepartment.jsx';
 import EditDepartment from './components/department/EditDepartment.jsx';
 import EmployeeList from './components/employee/EmployeeList.jsx';
 import AddEmployee from './components/employee/AddEmployee.jsx';
+import ViewEmployee from './components/employee/ViewEmployee.jsx';
 
 function App() {
  return (
@@ -57,6 +58,11 @@ function App() {
      <Route
       path='/admin-dashboard/add-employee'
       element={<AddEmployee />}
+     ></Route>
+     {/* View Employee route */}
+     <Route
+      path='/admin-dashboard/employee/:id'
+      element={<ViewEmployee />}
      ></Route>
     </Route>
     {/*End of Admin Dashboard route */}
