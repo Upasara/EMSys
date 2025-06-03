@@ -65,11 +65,16 @@ export const EmployeeButtons = ({ Id }) => {
   <div className='flex gap-2'>
    <button
     className='py-1 px-2 bg-green-500 text-white rounded'
-    onClick={() => navigate(`/admin-dashboard/employee/${Id}`)}
+    onClick={() => navigate(`/admin-dashboard/employees/${Id}`)}
    >
     View
    </button>
-   <button className='py-1 px-2  bg-orange-500 text-white rounded'>Edit</button>
+   <button
+    className='py-1 px-2  bg-orange-500 text-white rounded'
+    onClick={() => navigate(`/admin-dashboard/employees/edit/${Id}`)}
+   >
+    Edit
+   </button>
    <button className='py-1 px-2  bg-red-700 text-white rounded'>Salary</button>
    <button className='py-1 px-2  bg-red-700 text-white rounded'>Leave</button>
   </div>

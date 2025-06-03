@@ -11,6 +11,7 @@ import EditDepartment from './components/department/EditDepartment.jsx';
 import EmployeeList from './components/employee/EmployeeList.jsx';
 import AddEmployee from './components/employee/AddEmployee.jsx';
 import ViewEmployee from './components/employee/ViewEmployee.jsx';
+import EditEmployee from './components/employee/EditEmployee.jsx';
 
 function App() {
  return (
@@ -61,8 +62,13 @@ function App() {
      ></Route>
      {/* View Employee route */}
      <Route
-      path='/admin-dashboard/employee/:id'
+      path='/admin-dashboard/employees/:id'
       element={<ViewEmployee />}
+     ></Route>
+     {/* Edit Employee route */}
+     <Route
+      path='/admin-dashboard/employees/edit/:id'
+      element={<EditEmployee />}
      ></Route>
     </Route>
     {/*End of Admin Dashboard route */}
