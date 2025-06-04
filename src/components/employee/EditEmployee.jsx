@@ -7,7 +7,6 @@ const EditEmployee = () => {
  const navigate = useNavigate();
  const [employee, setEmployee] = useState([]);
  const [departments, setDepartments] = useState([]);
- const [formData, setFormData] = useState({});
 
  const { id } = useParams();
 
@@ -36,7 +35,19 @@ const EditEmployee = () => {
      }
     );
     if (response.data.success) {
-     setEmployee(response.data.employee);
+     //set employee state with formatted date of birth
+     const formattedDob = response.data.employee.emp_dob
+      ? new Date(response.data.employee.emp_dob).toISOString().split('T')[0]
+      : '';
+     //set employee state with formatted start date
+     const formattedSDate = response.data.employee.emp_Sdate
+      ? new Date(response.data.employee.emp_Sdate).toISOString().split('T')[0]
+      : '';
+     setEmployee({
+      ...response.data.employee,
+      emp_dob: formattedDob,
+      emp_Sdate: formattedSDate,
+     });
     }
    } catch (error) {
     if (error.response && !error.response.data.success) {
@@ -44,6 +55,7 @@ const EditEmployee = () => {
     }
    }
   };
+  console.log(employee.emp_dep);
   fetchEmployee();
  }, []);
 
@@ -86,9 +98,9 @@ const EditEmployee = () => {
   }
 
   if (name === 'image') {
-   setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
+   setEmployee((prevData) => ({ ...prevData, [name]: files[0] }));
   } else {
-   setFormData((prevData) => ({ ...prevData, [name]: value }));
+   setEmployee((prevData) => ({ ...prevData, [name]: value }));
   }
  };
 
@@ -96,15 +108,10 @@ const EditEmployee = () => {
  const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const formDataObj = new FormData();
-  Object.keys(formData).forEach((key) => {
-   formDataObj.append(key, formData[key]);
-  });
-
   try {
-   const response = await axios.post(
-    'http://localhost:5000/api/employee/add',
-    formDataObj,
+   const response = await axios.put(
+    `http://localhost:5000/api/employee/${id}`,
+    employee,
     {
      headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -215,6 +222,7 @@ const EditEmployee = () => {
          <select
           name='emp_dep'
           onChange={handleChange}
+          value={employee.emp_dep || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
          >
