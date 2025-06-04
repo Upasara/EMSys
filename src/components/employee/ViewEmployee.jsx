@@ -129,10 +129,6 @@ const ViewEmployee = () => {
          <p className='text-lg font-bold'>Medical History : </p>
          <p className='font-medium'>{employee.emp_medical}</p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Ethnicity : </p>
-         <p className='font-medium'>{employee.emp_ethnicity}</p>
-        </div>
        </div>
       </div>
      </div>

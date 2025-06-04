@@ -174,7 +174,7 @@ const AddEmployee = () => {
        <select
         name='emp_dep'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
         required
        >
         <option value=''>Select department</option>
@@ -263,7 +263,7 @@ const AddEmployee = () => {
        <select
         name='emp_gender'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
         required
        >
         <option value=''>Select Gender</option>
@@ -279,7 +279,7 @@ const AddEmployee = () => {
        <select
         name='emp_Mstatus'
         onChange={handleChange}
-        className=' mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className=' mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
         required
        >
         <option value=''>Select Marital Status</option>
@@ -332,7 +332,7 @@ const AddEmployee = () => {
        <select
         name='role'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
         required
        >
         <option value=''>select a role</option>
@@ -348,7 +348,7 @@ const AddEmployee = () => {
         type='file'
         name='image'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
         accept='image/*'
        />
       </div>
@@ -394,17 +394,6 @@ const AddEmployee = () => {
         onChange={handleChange}
         className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
         rows='2'
-       />
-      </div>
-
-      {/* ethnicity */}
-      <div>
-       <label className='block text-primaryText'>Ethnicity</label>
-       <input
-        type='text'
-        name='emp_ethnicity'
-        onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
        />
       </div>
      </div>
