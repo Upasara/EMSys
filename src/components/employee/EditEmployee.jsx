@@ -5,13 +5,9 @@ import axios from 'axios';
 
 const EditEmployee = () => {
  const navigate = useNavigate();
- const [employee, setEmployee] = useState([]);
  const [departments, setDepartments] = useState([]);
-
+ const [employee, setEmployee] = useState([]);
  const { id } = useParams();
-
- //state to track validation errors
- const [errors, setErrors] = useState({});
 
  useEffect(() => {
   const getDepartments = async () => {
@@ -28,26 +24,14 @@ const EditEmployee = () => {
      `http://localhost:5000/api/employee/${id}`,
      {
       /* get request includes n authorization header with a token retirieved from localstorage,
-                  to ensure that only authenticated user can access the data.  */
+              to ensure that only authenticated user can access the data.  */
       headers: {
        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
      }
     );
     if (response.data.success) {
-     //set employee state with formatted date of birth
-     const formattedDob = response.data.employee.emp_dob
-      ? new Date(response.data.employee.emp_dob).toISOString().split('T')[0]
-      : '';
-     //set employee state with formatted start date
-     const formattedSDate = response.data.employee.emp_Sdate
-      ? new Date(response.data.employee.emp_Sdate).toISOString().split('T')[0]
-      : '';
-     setEmployee({
-      ...response.data.employee,
-      emp_dob: formattedDob,
-      emp_Sdate: formattedSDate,
-     });
+     setEmployee(response.data.employee);
     }
    } catch (error) {
     if (error.response && !error.response.data.success) {
@@ -55,63 +39,30 @@ const EditEmployee = () => {
     }
    }
   };
-  console.log(employee.emp_dep);
   fetchEmployee();
  }, []);
 
  //change handler function
  const handleChange = (e) => {
-  const { name, value, files } = e.target;
-
+  const { name, value } = e.target;
   // Validate phone numbers
-  let errorMessage = '';
-  const phoneRegex = /^[0-9]{10}$/; //phone number regex
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // email regex
-
-  if (
-   name === 'emp_number1' ||
-   name === 'emp_number2' ||
-   name === 'emp_Enumber'
-  ) {
-   if (!phoneRegex.test(value)) {
-    errorMessage = 'Phone number must be 10 digits long...';
-   }
-  }
-
-  if (name === 'email') {
-   if (!emailRegex.test(value)) {
-    errorMessage = 'Please enter a valid email address...';
-   }
-  }
-
-  //update error state
-  if (errorMessage) {
-   setErrors((prevErrors) => ({
-    ...prevErrors,
-    [name]: errorMessage,
-   }));
-  } else {
-   setErrors((prevErrors) => {
-    const { [name]: _, ...rest } = prevErrors; // remove the error for the current field
-    return rest;
-   });
-  }
-
-  if (name === 'image') {
-   setEmployee((prevData) => ({ ...prevData, [name]: files[0] }));
-  } else {
-   setEmployee((prevData) => ({ ...prevData, [name]: value }));
-  }
+  setEmployee((prevData) => ({ ...prevData, [name]: value }));
+  console.log(name, value);
  };
 
  // submit handler function
  const handleSubmit = async (e) => {
   e.preventDefault();
 
+  const formDataObj = new FormData();
+  Object.keys(formData).forEach((key) => {
+   formDataObj.append(key, formData[key]);
+  });
+
   try {
-   const response = await axios.put(
-    `http://localhost:5000/api/employee/${id}`,
-    employee,
+   const response = await axios.post(
+    'http://localhost:5000/api/employee/add',
+    formDataObj,
     {
      headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -136,17 +87,11 @@ const EditEmployee = () => {
    {departments && employee ? (
     <div className='bg-slate-100'>
      <div className='max-w-4xl mx-auto bg-white shadow-md rounded-md mt-10 p-8'>
-      <h3 className='text-2xl text-blue-800 font-medium text-center mb-5 mt-5'>
-       Edit Employee Form
+      <h3 className='text-2xl text-blue-800 font-medium text-center mb-10 mt-5'>
+       Edit Employee
       </h3>
       <form onSubmit={handleSubmit}>
-       <div className='flex justify-center '>
-        <img
-         src={`http://localhost:5000/${employee.userId?.profileImage}`}
-         className='rounded-full border w-44 mb-5'
-        />
-       </div>
-       <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 '>
+       <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
         {/* full name */}
         <div>
          <label className='block text-primaryText'>Full Name</label>
@@ -222,8 +167,7 @@ const EditEmployee = () => {
          <select
           name='emp_dep'
           onChange={handleChange}
-          value={employee.emp_dep || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
           required
          >
           <option value=''>Select department</option>
@@ -273,9 +217,6 @@ const EditEmployee = () => {
           placeholder='eg : 0112123456'
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
          />
-         {errors.emp_number1 && (
-          <p className='text-red-500 text-sm mt-1'>{errors.emp_number1}</p>
-         )}
         </div>
 
         {/* phone number 2*/}
@@ -290,9 +231,6 @@ const EditEmployee = () => {
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
          />
-         {errors.emp_number2 && (
-          <p className='text-red-500 text-sm mt-1'>{errors.emp_number2}</p>
-         )}
         </div>
 
         {/* email */}
@@ -306,9 +244,6 @@ const EditEmployee = () => {
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
          />
-         {errors.email && (
-          <p className='text-red-500 text-sm mt-1'>{errors.email}</p>
-         )}
         </div>
 
         {/* gender */}
@@ -318,7 +253,7 @@ const EditEmployee = () => {
           name='emp_gender'
           onChange={handleChange}
           value={employee.emp_gender || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
           required
          >
           <option value=''>Select Gender</option>
@@ -335,7 +270,7 @@ const EditEmployee = () => {
           name='emp_Mstatus'
           onChange={handleChange}
           value={employee.emp_Mstatus || ''}
-          className=' mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className=' mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
           required
          >
           <option value=''>Select Marital Status</option>
@@ -378,25 +313,13 @@ const EditEmployee = () => {
           name='role'
           onChange={handleChange}
           value={employee.userId?.role || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
           required
          >
           <option value=''>select a role</option>
           <option value='admin'>ADMIN</option>
           <option value='employee'>EMPLOYEE</option>
          </select>
-        </div>
-
-        {/* image upload */}
-        <div>
-         <label className='block text-primaryText'>Image</label>
-         <input
-          type='file'
-          name='image'
-          onChange={handleChange}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-          accept='image/*'
-         />
         </div>
 
         {/* emergency contact name */}
@@ -429,9 +352,6 @@ const EditEmployee = () => {
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
          />
-         {errors.emp_Enumber && (
-          <p className='text-red-500 text-sm mt-1'>{errors.emp_Enumber}</p>
-         )}
         </div>
 
         {/* medical history */}

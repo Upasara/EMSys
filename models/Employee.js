@@ -4,7 +4,7 @@ import { Schema } from "mongoose";
 const employeeSchema = new Schema({
     //data from User.js fetched here (name, email, password, role, profileImage)
     userId : {type : Schema.Types.ObjectId, ref : "User", required: true},
-    emp_id : {type : String, required : true, unique: true},
+    emp_id : {type : String, required : true},
     emp_Fname : {type : String},
     emp_address : {type : String},
     emp_Nid : {type : String},

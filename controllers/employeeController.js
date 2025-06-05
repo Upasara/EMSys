@@ -4,7 +4,7 @@ import User from "../models/User.js"
 import bcrypt from "bcrypt"
 import path from "path"
 import Department from "../models/Department.js"
-import { error } from "console"
+
 
 
 const storage = multer.diskStorage({
@@ -116,71 +116,6 @@ const getEmployee = async (req,res) => {
     }
 }
 
-const updateEmployee = async (req,res)=>{
-    try{
-        const {id} = req.params
-        const {
-            emp_Fname,
-            emp_address,
-            emp_Nid,
-            emp_dob,
-            emp_number1,
-            emp_number2,
-            emp_gender,
-            emp_Mstatus,
-            emp_designation,
-            emp_dep,
-            emp_Sdate,
-            emp_Enumber,
-            emp_Ename, 
-            emp_medical,
-            emp_salary,
-            name,
-            email,
-            role,
-            
-            } = req.body    
 
-            const employee = await Employee.findById({_id:id})
-            if(!employee){
-                return res.status(404).json({success : false, error : "Employee not found..."})
-            }
-            const user = await User.findById({_id:employee.userId})
 
-            if(!user){
-                return res.status(404).json({success : false, error : "User not found..."})
-            }
-            const updateUser = await User.findByIdAndUpdate({_id:employee.userId}, {
-                name, 
-                email, 
-                role,
-                profileImage : req.file ? req.file.filename : ""
-            })
-            const updateEmployee = await Employee.findByIdAndUpdate({_id: id},{
-                emp_Fname,
-                emp_address,
-                emp_Nid,
-                emp_dob,
-                emp_number1,
-                emp_number2,
-                emp_gender,
-                emp_Mstatus,
-                emp_designation,
-                emp_dep,
-                emp_Sdate,
-                emp_Enumber,
-                emp_Ename, 
-                emp_medical,
-                emp_salary,
-            })
-
-            if(!updateEmployee || !updateUser){
-                return res.status(404).json({success : false, error:"Document not found..."})
-            }
-            return res.status(200).json({sccuess:true, message: "Employee updated successfully..."})
-    }catch(error){
-        return res.status(500).json({success : false, error : "Employee updating error..."})
-    }
-}
-
-export {addEmployee, upload, getEmployees, getEmployee, updateEmployee}
+export {addEmployee, upload, getEmployees, getEmployee}
