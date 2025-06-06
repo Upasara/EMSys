@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchDepartments } from '../../utils/EmployeeHelper';
 import axios from 'axios';
@@ -6,8 +6,38 @@ import axios from 'axios';
 const EditEmployee = () => {
  const navigate = useNavigate();
  const [departments, setDepartments] = useState([]);
- const [employee, setEmployee] = useState([]);
+ const [employee, setEmployee] = useState({
+  emp_id: '',
+  emp_Fname: '',
+  emp_address: '',
+  emp_Nid: '',
+  emp_dob: '',
+  emp_number1: '',
+  emp_number2: '',
+  emp_gender: '',
+  emp_Mstatus: '',
+  emp_designation: '',
+  emp_dep: '',
+  emp_Sdate: '',
+  emp_Enumber: '',
+  emp_Ename: '',
+  emp_medical: '',
+  emp_salary: 0,
+  name: '',
+  email: '',
+  role: '',
+  //   profileImage: '',
+  //   image: null, // For file upload
+ });
  const { id } = useParams();
+
+ //  const fileInputRef = useRef(null);
+
+ //  const resetFileInput = () => {
+ //   if (fileInputRef.current) {
+ //    fileInputRef.current.value = '';
+ //   }
+ //  };
 
  useEffect(() => {
   const getDepartments = async () => {
@@ -30,8 +60,27 @@ const EditEmployee = () => {
       },
      }
     );
+
     if (response.data.success) {
-     setEmployee(response.data.employee);
+     // Format the date of birth to YYYY-MM-DD format
+     const formattedDob = response.data.employee.emp_dob
+      ? new Date(response.data.employee.emp_dob).toISOString().split('T')[0]
+      : '';
+     const formattedSdate = response.data.employee.emp_Sdate
+      ? new Date(response.data.employee.emp_Sdate).toISOString().split('T')[0]
+      : '';
+
+     setEmployee({
+      ...response.data.employee,
+      name: response.data.employee.userId.name || '',
+      email: response.data.employee.userId.email || '',
+      role: response.data.employee.userId.role || '',
+      emp_dep: response.data.employee.emp_dep || '', // Ensure emp_dep is set correctly
+      emp_dob: formattedDob,
+      emp_Sdate: formattedSdate,
+
+      // profileImage: response.data.employee.userId.profileImage || '',
+     });
     }
    } catch (error) {
     if (error.response && !error.response.data.success) {
@@ -44,25 +93,25 @@ const EditEmployee = () => {
 
  //change handler function
  const handleChange = (e) => {
-  const { name, value } = e.target;
+  const { name, value, files } = e.target;
   // Validate phone numbers
+  //   if (name === 'image') {
+  //    setEmployee((prevData) => ({ ...prevData, [name]: files[0] }));
+  //    console.log(name, files[0]);
+  //   } else {
   setEmployee((prevData) => ({ ...prevData, [name]: value }));
   console.log(name, value);
+  //   }
  };
 
  // submit handler function
  const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const formDataObj = new FormData();
-  Object.keys(formData).forEach((key) => {
-   formDataObj.append(key, formData[key]);
-  });
-
   try {
-   const response = await axios.post(
-    'http://localhost:5000/api/employee/add',
-    formDataObj,
+   const response = await axios.put(
+    `http://localhost:5000/api/employee/${id}`,
+    employee,
     {
      headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -90,6 +139,18 @@ const EditEmployee = () => {
       <h3 className='text-2xl text-blue-800 font-medium text-center mb-10 mt-5'>
        Edit Employee
       </h3>
+      <div className='flex justify-center mb-5'>
+       <img
+        src={`http://localhost:5000/${employee.userId?.profileImage}`}
+        className='rounded-full border w-44 '
+       />
+      </div>
+      <div className='flex justify-center mb-5'>
+       {/* <img
+        src={`http://localhost:5000/${employee.userId?.profileImage}`}
+        className='rounded-full border w-44 '
+       /> */}
+      </div>
       <form onSubmit={handleSubmit}>
        <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
         {/* full name */}
@@ -128,7 +189,7 @@ const EditEmployee = () => {
           type='text'
           name='name'
           onChange={handleChange}
-          value={employee.userId?.name || ''}
+          value={employee.name || ''}
           placeholder='eg : P D Dinesh Kumara'
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
@@ -240,7 +301,7 @@ const EditEmployee = () => {
           type='email'
           name='email'
           onChange={handleChange}
-          value={employee.userId?.email || ''}
+          value={employee.email || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
          />
@@ -312,7 +373,7 @@ const EditEmployee = () => {
          <select
           name='role'
           onChange={handleChange}
-          value={employee.userId?.role || ''}
+          value={employee.role || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
           required
          >
@@ -321,6 +382,19 @@ const EditEmployee = () => {
           <option value='employee'>EMPLOYEE</option>
          </select>
         </div>
+
+        {/* image upload
+        <div>
+         <label className='block text-primaryText'>Image</label>
+         <input
+          type='file'
+          name='image'
+          ref={fileInputRef}
+          onChange={handleChange}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
+          accept='image/*'
+         />
+        </div> */}
 
         {/* emergency contact name */}
         <div>
@@ -373,7 +447,7 @@ const EditEmployee = () => {
          type='submit'
          className='w-1/2 bg-green-700 py-1.5 rounded-md hover:bg-green-600 text-white transition'
         >
-         Register Employee
+         Edit Employee
         </button>
         <Link
          to='/admin-dashboard/employees'

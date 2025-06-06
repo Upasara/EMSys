@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 const ViewEmployee = () => {
  const { id } = useParams();
+ console.log(id);
  const [employee, setEmployee] = useState([]);
  const [empLoading, setEmpLoading] = useState(false);
 
@@ -42,7 +43,7 @@ const ViewEmployee = () => {
    ) : (
     <div className='bg-slate-100'>
      <div className='max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md'>
-      <h3 className='text-2xl font-bold text-blue-800 text-center'>
+      <h3 className='text-2xl font-bold text-blue-800 text-center mb-10'>
        Employee Details
       </h3>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
