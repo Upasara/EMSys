@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 const ViewEmployee = () => {
  const { id } = useParams();
- console.log(id);
  const [employee, setEmployee] = useState([]);
  const [empLoading, setEmpLoading] = useState(false);
 
@@ -49,7 +48,11 @@ const ViewEmployee = () => {
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
        <div>
         <img
-         src={`http://localhost:5000/${employee.userId?.profileImage}`}
+         src={
+          employee.userId?.profileImage
+           ? `http://localhost:5000/${employee.userId?.profileImage}`
+           : '/public/placeholder.avif'
+         }
          className='rounded-full border w-72'
         />
        </div>

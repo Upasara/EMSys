@@ -26,18 +26,11 @@ const EditEmployee = () => {
   name: '',
   email: '',
   role: '',
-  //   profileImage: '',
-  //   image: null, // For file upload
+  profileImage: '',
  });
  const { id } = useParams();
 
- //  const fileInputRef = useRef(null);
-
- //  const resetFileInput = () => {
- //   if (fileInputRef.current) {
- //    fileInputRef.current.value = '';
- //   }
- //  };
+ const [errors, setErrors] = useState({});
 
  useEffect(() => {
   const getDepartments = async () => {
@@ -75,6 +68,7 @@ const EditEmployee = () => {
       name: response.data.employee.userId.name || '',
       email: response.data.employee.userId.email || '',
       role: response.data.employee.userId.role || '',
+      profileImage: response.data.employee.userId.profileImage || '',
       emp_dep: response.data.employee.emp_dep || '', // Ensure emp_dep is set correctly
       emp_dob: formattedDob,
       emp_Sdate: formattedSdate,
@@ -93,15 +87,43 @@ const EditEmployee = () => {
 
  //change handler function
  const handleChange = (e) => {
-  const { name, value, files } = e.target;
+  const { name, value } = e.target;
+
   // Validate phone numbers
-  //   if (name === 'image') {
-  //    setEmployee((prevData) => ({ ...prevData, [name]: files[0] }));
-  //    console.log(name, files[0]);
-  //   } else {
+  let errorMessage = '';
+  const phoneRegex = /^[0-9]{9}$/; //phone number regex
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // email regex
+
+  if (
+   name === 'emp_number1' ||
+   name === 'emp_number2' ||
+   name === 'emp_Enumber'
+  ) {
+   if (!phoneRegex.test(value)) {
+    errorMessage = 'Phone number must be 10 digits long...';
+   }
+  }
+
+  if (name === 'email') {
+   if (!emailRegex.test(value)) {
+    errorMessage = 'Please enter a valid email address...';
+   }
+  }
+
+  //update error state
+  if (errorMessage) {
+   setErrors((prevErrors) => ({
+    ...prevErrors,
+    [name]: errorMessage,
+   }));
+  } else {
+   setErrors((prevErrors) => {
+    const { [name]: _, ...rest } = prevErrors; // remove the error for the current field
+    return rest;
+   });
+  }
+
   setEmployee((prevData) => ({ ...prevData, [name]: value }));
-  console.log(name, value);
-  //   }
  };
 
  // submit handler function
@@ -141,16 +163,15 @@ const EditEmployee = () => {
       </h3>
       <div className='flex justify-center mb-5'>
        <img
-        src={`http://localhost:5000/${employee.userId?.profileImage}`}
+        src={
+         employee.profileImage
+          ? `http://localhost:5000/${employee.profileImage}`
+          : '/placeholder.avif'
+        }
         className='rounded-full border w-44 '
        />
       </div>
-      <div className='flex justify-center mb-5'>
-       {/* <img
-        src={`http://localhost:5000/${employee.userId?.profileImage}`}
-        className='rounded-full border w-44 '
-       /> */}
-      </div>
+
       <form onSubmit={handleSubmit}>
        <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
         {/* full name */}
@@ -167,7 +188,6 @@ const EditEmployee = () => {
           required
          />
         </div>
-
         {/* address */}
         <div>
          <label className='block text-primaryText'>Permanent Address</label>
@@ -181,7 +201,6 @@ const EditEmployee = () => {
           required
          />
         </div>
-
         {/* name with initials*/}
         <div>
          <label className='block text-primaryText'>Name with Initials</label>
@@ -195,7 +214,6 @@ const EditEmployee = () => {
           required
          />
         </div>
-
         {/* employee ID */}
         <div>
          <label className='block text-primaryText'>Employee ID</label>
@@ -208,7 +226,6 @@ const EditEmployee = () => {
           required
          />
         </div>
-
         {/* designation */}
         <div>
          <label className='block text-primaryText'>Designation</label>
@@ -221,13 +238,13 @@ const EditEmployee = () => {
           required
          />
         </div>
-
         {/* department */}
         <div>
          <label className='block text-primaryText'>Department</label>
          <select
           name='emp_dep'
           onChange={handleChange}
+          value={employee.emp_dep || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
           required
          >
@@ -240,7 +257,6 @@ const EditEmployee = () => {
           ))}
          </select>
         </div>
-
         {/* national ID */}
         <div>
          <label className='block text-primaryText'>National ID</label>
@@ -253,7 +269,6 @@ const EditEmployee = () => {
           required
          />
         </div>
-
         {/* DOB */}
         <div>
          <label className='block text-primaryText'>Date of Birth</label>
@@ -266,7 +281,6 @@ const EditEmployee = () => {
           required
          />
         </div>
-
         {/* phone number 1 */}
         <div>
          <label className='block text-primaryText'>Phone Number</label>
@@ -278,8 +292,10 @@ const EditEmployee = () => {
           placeholder='eg : 0112123456'
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
          />
+         {errors.emp_number1 && (
+          <p className='text-red-500 text-sm mt-1'>{errors.emp_number1}</p>
+         )}
         </div>
-
         {/* phone number 2*/}
         <div>
          <label className='block text-primaryText'>Mobile Number</label>
@@ -292,8 +308,10 @@ const EditEmployee = () => {
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
          />
+         {errors.emp_number2 && (
+          <p className='text-red-500 text-sm mt-1'>{errors.emp_number2}</p>
+         )}
         </div>
-
         {/* email */}
         <div>
          <label className='block text-primaryText'>E-mail</label>
@@ -306,7 +324,6 @@ const EditEmployee = () => {
           required
          />
         </div>
-
         {/* gender */}
         <div>
          <label className='block text-primaryText'>Gender</label>
@@ -323,7 +340,6 @@ const EditEmployee = () => {
           <option value='other'>Other</option>
          </select>
         </div>
-
         {/* marital status */}
         <div>
          <label className='block text-primaryText'>Marital Status</label>
@@ -339,7 +355,6 @@ const EditEmployee = () => {
           <option value='married'>Married</option>
          </select>
         </div>
-
         {/* start date */}
         <div>
          <label className='block text-primaryText'>Start Date</label>
@@ -353,7 +368,6 @@ const EditEmployee = () => {
           required
          />
         </div>
-
         {/* salary */}
         <div>
          <label className='block text-primaryText'>Salary</label>
@@ -366,7 +380,6 @@ const EditEmployee = () => {
           required
          />
         </div>
-
         {/* role */}
         <div>
          <label className='block text-primaryText'>Role</label>
@@ -382,20 +395,6 @@ const EditEmployee = () => {
           <option value='employee'>EMPLOYEE</option>
          </select>
         </div>
-
-        {/* image upload
-        <div>
-         <label className='block text-primaryText'>Image</label>
-         <input
-          type='file'
-          name='image'
-          ref={fileInputRef}
-          onChange={handleChange}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
-          accept='image/*'
-         />
-        </div> */}
-
         {/* emergency contact name */}
         <div>
          <label className='block text-primaryText'>
@@ -411,7 +410,6 @@ const EditEmployee = () => {
           required
          />
         </div>
-
         {/* emergency contact number*/}
         <div>
          <label className='block text-primaryText'>
@@ -426,8 +424,10 @@ const EditEmployee = () => {
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
          />
+         {errors.emp_Enumber && (
+          <p className='text-red-500 text-sm mt-1'>{errors.emp_Enumber}</p>
+         )}
         </div>
-
         {/* medical history */}
         <div>
          <label className='block text-primaryText'>Medical History</label>
