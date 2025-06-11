@@ -7,6 +7,7 @@ import DataTable from 'react-data-table-component';
 const EmployeeList = () => {
  const [employees, setEmployees] = useState([]);
  const [empLoading, setEmpLoading] = useState(false);
+ const [fileredEmployee, setFilteredEmployee] = useState([]);
 
  //use effect to fetch employee data from DB
  useEffect(() => {
@@ -34,6 +35,7 @@ const EmployeeList = () => {
       actions: <EmployeeButtons Id={emp._id} />,
      }));
      setEmployees(data);
+     setFilteredEmployee(data);
     }
    } catch (error) {
     if (error.response && !error.response.data.success) {
@@ -45,6 +47,13 @@ const EmployeeList = () => {
   };
   fetchEmployees();
  }, []);
+
+ const handleFilter = (e) => {
+  const records = employees.filter((emp) =>
+   emp.name.toLowerCase().includes(e.target.value.toLowerCase())
+  );
+  setFilteredEmployee(records);
+ };
 
  return (
   <>
@@ -60,6 +69,7 @@ const EmployeeList = () => {
        type='text'
        placeholder='Search Department'
        className='px-4 py-0.5 border rounded-md'
+       onChange={handleFilter}
       />
       <Link
        to='/admin-dashboard/add-employee'
@@ -69,7 +79,7 @@ const EmployeeList = () => {
       </Link>
      </div>
      <div className='mt-10'>
-      <DataTable columns={columns} data={employees} />
+      <DataTable columns={columns} data={fileredEmployee} pagination />
      </div>
     </div>
    )}
