@@ -6,6 +6,7 @@ export const columns = [
   name: 'S no',
   selector: (row) => row.sno,
   responsive: true,
+  sortable: true,
   width: '80px',
  },
  {
@@ -17,6 +18,7 @@ export const columns = [
  {
   name: 'Name',
   selector: (row) => row.name,
+  sortable: true,
   responsive: true,
  },
  {
