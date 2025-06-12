@@ -54,16 +54,17 @@ const AdminSidebar = () => {
      <span>Leave</span>
     </NavLink>
     <NavLink
-     to='/admin-dashboard'
-     className='flex items-center space-x-4  py-3 px-4 rounded-md'
+     to='/admin-dashboard/salary/add'
+     className={({ isActive }) =>
+      `${
+       isActive ? 'bg-primaryDark shadow-md ' : ' '
+      }flex items-center space-x-4  py-3 px-4 rounded-md `
+     }
     >
      <GiMoneyStack />
      <span>Salary</span>
     </NavLink>
-    <NavLink
-     to='/admin-dashboard'
-     className='flex items-center space-x-4  py-3 px-4 rounded-md'
-    >
+    <NavLink to='/admin-dashboard'>
      <LuSettings2 />
      <span>Settings</span>
     </NavLink>

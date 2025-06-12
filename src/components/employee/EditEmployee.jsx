@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchDepartments } from '../../utils/EmployeeHelper';
 import axios from 'axios';
@@ -323,6 +323,9 @@ const EditEmployee = () => {
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
          />
+         {errors.email && (
+          <p className='text-red-500 text-sm mt-1'>{errors.email}</p>
+         )}
         </div>
         {/* gender */}
         <div>
