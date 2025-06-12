@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchDepartments, getEmployees } from '../../utils/EmployeeHelper';
 import axios from 'axios';
 
@@ -35,7 +35,16 @@ const AddSalary = () => {
  //change handler function
  const handleChange = (e) => {
   const { name, value } = e.target;
-  setSalary((prevData) => ({ ...prevData, [name]: value }));
+  setSalary((prevData) => {
+   const updatedData = { ...prevData, [name]: value };
+
+   const basicSalary = parseInt(updatedData.basic_salary) || 0;
+   const allowances = parseInt(updatedData.allowances) || 0;
+   const deductions = parseInt(updatedData.deductions) || 0;
+
+   updatedData.net_salary = basicSalary + allowances - deductions;
+   return updatedData;
+  });
  };
 
  // submit handler function
@@ -54,7 +63,7 @@ const AddSalary = () => {
    );
 
    if (response.data.success) {
-    navigate('/admin-dashboard/departments');
+    navigate('/admin-dashboard/employees');
    } else {
     console.log(response);
    }
@@ -82,7 +91,7 @@ const AddSalary = () => {
          <select
           name='sal_dep'
           onChange={handleDepartment}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer bg-slate-100                               '
           required
          >
           <option value=''>Select department</option>
@@ -100,7 +109,7 @@ const AddSalary = () => {
          <select
           name='sal_emp_id'
           onChange={handleChange}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer bg-slate-100'
           required
          >
           <option value=''>Select Employee</option>
@@ -119,6 +128,7 @@ const AddSalary = () => {
           type='number'
           name='basic_salary'
           onChange={handleChange}
+          value={salary.basic_salary || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
          />
@@ -131,6 +141,7 @@ const AddSalary = () => {
           type='number'
           name='allowances'
           onChange={handleChange}
+          value={salary.allowances || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
          />
@@ -143,6 +154,7 @@ const AddSalary = () => {
           type='number'
           name='deductions'
           onChange={handleChange}
+          value={salary.deductions || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
          />
@@ -155,7 +167,9 @@ const AddSalary = () => {
           type='number'
           name='net_salary'
           onChange={handleChange}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          value={salary.net_salary || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 font-bold'
+          disabled
          />
         </div>
 

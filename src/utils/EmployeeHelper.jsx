@@ -73,8 +73,8 @@ export const getEmployees = async (id) => {
     },
    }
   );
-  console.log(response);
   if (response.data.success) {
+   console.log(response.data);
    employees = response.data.employees;
   }
  } catch (error) {
