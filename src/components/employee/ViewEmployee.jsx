@@ -51,7 +51,7 @@ const ViewEmployee = () => {
          src={
           employee.userId?.profileImage
            ? `http://localhost:5000/${employee.userId?.profileImage}`
-           : '/public/placeholder.avif'
+           : '/3.avif'
          }
          className='rounded-full border w-72'
         />
@@ -118,8 +118,12 @@ const ViewEmployee = () => {
          </p>
         </div>
         <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Salary : </p>
+         <p className='text-lg font-bold'>Basic Salary : </p>
          <p className='font-medium'>{employee.emp_salary}</p>
+        </div>
+        <div className='flex space-x-3 mb-5'>
+         <p className='text-lg font-bold'>Allowance : </p>
+         <p className='font-medium'>{employee.emp_allowance}</p>
         </div>
         <div className='flex space-x-3 mb-5'>
          <p className='text-lg font-bold'>Emergency Name : </p>

@@ -4,6 +4,7 @@ import User from "../models/User.js"
 import bcrypt from "bcrypt"
 import path from "path"
 import Department from "../models/Department.js"
+import { Await } from "react-router-dom"
 
 const storage = multer.diskStorage({
     destination : (req, file, cb) => {
@@ -16,7 +17,8 @@ const storage = multer.diskStorage({
 
 const upload  = multer({storage :storage})
 
-const addEmployee = async (req,res) => {
+const  addEmployee = async (req,res) => {
+    
 try{
 const {
 emp_id,
@@ -35,6 +37,7 @@ emp_Enumber,
 emp_Ename, 
 emp_medical,
 emp_salary,
+emp_allowance = 0, //default value for allowance
 name,
 email,
 password,
@@ -58,13 +61,12 @@ name,
 email,
 password : hashPassword,
 role,
-profileImage : req.file ? req.file.filename : ""
+profileImage : req.file ? req.file.filename : "/public/placeholder.avif"
 })
 
-const savedUser = await newUser.save()
 
 const newEmployee = new Employee({
-userId : savedUser._id,
+userId : newUser._id,
 emp_id,
 emp_Fname,
 emp_address,
@@ -81,8 +83,17 @@ emp_Enumber,
 emp_Ename,
 emp_medical,
 emp_salary,
+emp_allowance
 })
-await newEmployee.save()
+
+// save user and employee to database
+const savedEmployee = await newEmployee.save()
+const savedUser = await newUser.save()
+
+// if(!savedUser && !savedEmployee){
+//     return res.status(500).json({success : false, error : "Employee or User saving error..."})
+// }
+
 return res.status(200).json({success : true, message : "Employee data created..."})
 
 }catch(error){
@@ -135,6 +146,7 @@ const updateEmployee = async (req,res) => {
             emp_Ename, 
             emp_medical,
             emp_salary,
+            emp_allowance = 0, //default value for allowance
             name,
             email,
             role, 
@@ -172,7 +184,8 @@ const updateEmployee = async (req,res) => {
             emp_medical,
             emp_Mstatus,
             emp_Sdate,
-            emp_salary
+            emp_salary,
+            emp_allowance
         })
 
         if(!updateEmployee || !updateUser){

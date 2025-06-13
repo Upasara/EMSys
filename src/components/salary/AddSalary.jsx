@@ -38,6 +38,7 @@ const AddSalary = () => {
   setSalary((prevData) => {
    const updatedData = { ...prevData, [name]: value };
 
+   //net salary calculation
    const basicSalary = parseInt(updatedData.basic_salary) || 0;
    const allowances = parseInt(updatedData.allowances) || 0;
    const deductions = parseInt(updatedData.deductions) || 0;

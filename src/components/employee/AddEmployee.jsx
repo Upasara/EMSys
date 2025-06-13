@@ -58,7 +58,10 @@ const AddEmployee = () => {
   }
 
   if (name === 'image') {
-   setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
+   setFormData((prevData) => ({
+    ...prevData,
+    [name]: files[0] || 'public/1.jpg',
+   }));
   } else {
    setFormData((prevData) => ({ ...prevData, [name]: value }));
   }
@@ -69,6 +72,7 @@ const AddEmployee = () => {
   e.preventDefault();
 
   const formDataObj = new FormData();
+
   Object.keys(formData).forEach((key) => {
    formDataObj.append(key, formData[key]);
   });
@@ -80,6 +84,7 @@ const AddEmployee = () => {
     {
      headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'multipart/form-data', // Set the content type for file upload
      },
     }
    );
@@ -301,15 +306,28 @@ const AddEmployee = () => {
        />
       </div>
 
-      {/* salary */}
+      {/* basic salary */}
       <div>
-       <label className='block text-primaryText'>Salary</label>
+       <label className='block text-primaryText'>Basic Salary</label>
        <input
         type='number'
         name='emp_salary'
+        placeholder='Rs. 0'
         onChange={handleChange}
         className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
         required
+       />
+      </div>
+
+      {/* allowance */}
+      <div>
+       <label className='block text-primaryText'>Allowance</label>
+       <input
+        type='number'
+        name='emp_allowance'
+        placeholder='Rs.0'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
        />
       </div>
 

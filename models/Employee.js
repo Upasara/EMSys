@@ -4,7 +4,7 @@ import { Schema } from "mongoose";
 const employeeSchema = new Schema({
     //data from User.js fetched here (name, email, password, role, profileImage)
     userId : {type : Schema.Types.ObjectId, ref : "User", required: true},
-    emp_id : {type : String, required : true},
+    emp_id : {type : String, required : true, unique : true},
     emp_Fname : {type : String},
     emp_address : {type : String},
     emp_Nid : {type : String},
@@ -20,6 +20,7 @@ const employeeSchema = new Schema({
     emp_Enumber : { type: Number},
     emp_medical : {type : String},
     emp_salary : { type: Number, required: true },
+    emp_allowance : { type: Number, default: 0 },
     createdAt : {type : Date, default: Date.now},
     updatedAt : {type : Date, default: Date.now}
 

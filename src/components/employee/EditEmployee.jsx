@@ -23,6 +23,7 @@ const EditEmployee = () => {
   emp_Ename: '',
   emp_medical: '',
   emp_salary: 0,
+  emp_allowance: 0, // default value for allowance
   name: '',
   email: '',
   role: '',
@@ -381,6 +382,17 @@ const EditEmployee = () => {
           value={employee.emp_salary || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           required
+         />
+        </div>
+        {/* allowance */}
+        <div>
+         <label className='block text-primaryText'>Salary</label>
+         <input
+          type='number'
+          name='emp_allowance'
+          onChange={handleChange}
+          value={employee.emp_allowance || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
          />
         </div>
         {/* role */}
