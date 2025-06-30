@@ -36,4 +36,14 @@ return res.status(200).json({success : true})
 
 }
 
-export{addSalary}
+const getSalary = async (req,res) =>{
+    try{
+        const {id} = req.params;
+        const salary = await Salary.find({sal_emp_id: id}).populate('sal_emp_id', 'emp_id');
+        return res.status(200).json({success : true, salary})
+    }catch(error){
+        return res.status(500).json({success :false, error:"Salary get server error"})
+    }
+} 
+
+export{addSalary, getSalary}
