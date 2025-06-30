@@ -48,6 +48,22 @@ const AddSalary = () => {
   });
  };
 
+ const handleEmployeeChange = (e) => {
+  const selectedEmployeeId = e.target.value;
+
+  const selectedEmployee = employees.find(
+   (emp) => emp._id === selectedEmployeeId
+  );
+
+  if (selectedEmployee) {
+   setSalary((prevData) => ({
+    ...prevData,
+    sal_emp_id: selectedEmployeeId,
+    basic_salary: selectedEmployee.emp_salary || 0, // Assuming emp_salary is available
+    allowances: selectedEmployee.emp_allowance || 0, // Assuming emp_allowances is available
+   }));
+  }
+ };
  // submit handler function
  const handleSubmit = async (e) => {
   e.preventDefault();
@@ -109,7 +125,7 @@ const AddSalary = () => {
          <label className='block text-primaryText'>Department</label>
          <select
           name='sal_emp_id'
-          onChange={handleChange}
+          onChange={handleEmployeeChange}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer bg-slate-100'
           required
          >
@@ -135,7 +151,7 @@ const AddSalary = () => {
          />
         </div>
 
-        {/* basic salary */}
+        {/* allowances */}
         <div>
          <label className='block text-primaryText'>Allowances</label>
          <input
@@ -194,7 +210,7 @@ const AddSalary = () => {
          Add Salary
         </button>
         <Link
-         to='/admin-dashboard/employees'
+         to='/admin-dashboard/salary/add'
          className='bg-red-700 py-1.5 w-1/2 text-center rounded-md text-white hover:bg-red-600 transition'
         >
          Cancel

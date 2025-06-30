@@ -386,7 +386,7 @@ const EditEmployee = () => {
         </div>
         {/* allowance */}
         <div>
-         <label className='block text-primaryText'>Salary</label>
+         <label className='block text-primaryText'>Allowance</label>
          <input
           type='number'
           name='emp_allowance'
