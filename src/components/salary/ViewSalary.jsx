@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ViewSalary = () => {
  const [salaries, setSalaries] = useState([]);
  const [filteredSalaries, setFilteredSalaries] = useState([]);
+
+ const [sortOrder, setSortOrder] = useState('asc'); // State to manage sort order
+
  const { id } = useParams();
  let sno = 1;
 
@@ -33,11 +36,14 @@ const ViewSalary = () => {
 
  const filterSalaries = (q) => {
   const filteredRecords = salaries.filter((leave) =>
-   leave.sal_emp_id.toLocaleLowerCase().includes(q.toLocaleLowerCase())
+   leave.pay_date.toLocaleLowerCase().includes(q.toLocaleLowerCase())
   );
   setFilteredSalaries(filteredRecords);
  };
 
+ const toggleSortOrder = () => {
+  setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
+ };
  return (
   <>
    {filteredSalaries === null ? (
@@ -47,41 +53,53 @@ const ViewSalary = () => {
      <div className='text-center'>
       <h2 className='text-2xl font-bold'>Salary History</h2>
      </div>
-     <div className='flex justify-end my-3'>
-      <input
-       type='text'
-       placeholder='Search by Employee ID'
-       className='border px-2 rounded-md py-0.5 border-gray-300'
-       onChange={filterSalaries}
-      />
+     <div className='flex justify-end my-3 gap-1'>
+      <button
+       onClick={toggleSortOrder}
+       className='bg-green-700 text-white px-3 py-1 rounded-md'
+      >
+       Sort by Pay Date ({sortOrder === 'asc' ? 'New - Old' : 'Old - New'})
+      </button>
+      <button>
+       <Link
+        to='/admin-dashboard/employees'
+        className='bg-red-700 py-1 px-3 text-center rounded-md text-white hover:bg-red-600 transition'
+       >
+        Back
+       </Link>
+      </button>
      </div>
      {filteredSalaries.length > 0 ? (
       <table className='w-full text-sm text-gray-500'>
        <thead className='text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200'>
         <tr>
          <th className='px-6 py-3'>SNO</th>
-         <th className='px-6 py-3'>EMP ID</th>
+         <th className='px-6 py-3'>Pay Date</th>
          <th className='px-6 py-3'>Basic Salary</th>
          <th className='px-6 py-3'>Allowance</th>
          <th className='px-6 py-3'>Deduction</th>
          <th className='px-6 py-3'>Net Salary</th>
-         <th className='px-6 py-3'>Pay Date</th>
         </tr>
        </thead>
        <tbody>
-        {filteredSalaries.map((salary) => (
-         <tr key={salary._id} className='bg-white border-b '>
-          <td className='px-6 py-3'>{sno++}</td>
-          <td className='px-6 py-3'>{salary.sal_emp_id.emp_id}</td>
-          <td className='px-6 py-3'>{salary.basic_salary}</td>
-          <td className='px-6 py-3'>{salary.allowances}</td>
-          <td className='px-6 py-3'>{salary.deductions}</td>
-          <td className='px-6 py-3'>{salary.net_salary}</td>
-          <td className='px-6 py-3'>
-           {new Date(salary.pay_date).toLocaleDateString()}
-          </td>
-         </tr>
-        ))}
+        {filteredSalaries
+         .sort((a, b) =>
+          sortOrder === 'asc'
+           ? new Date(a.pay_date) - new Date(b.pay_date)
+           : new Date(b.pay_date) - new Date(a.pay_date)
+         )
+         .map((salary) => (
+          <tr key={salary._id} className='bg-white border-b '>
+           <td className='px-6 py-3'>{sno++}</td>
+           <td className='px-6 py-3'>
+            {new Date(salary.pay_date).toLocaleDateString()}
+           </td>
+           <td className='px-6 py-3'>{salary.basic_salary}</td>
+           <td className='px-6 py-3'>{salary.allowances}</td>
+           <td className='px-6 py-3'>{salary.deductions}</td>
+           <td className='px-6 py-3'>{salary.net_salary}</td>
+          </tr>
+         ))}
        </tbody>
       </table>
      ) : (
