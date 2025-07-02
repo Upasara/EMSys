@@ -33,6 +33,7 @@ const AddLeave = () => {
         type='date'
         name='start_date'
         className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
+        required
        />
       </div>
      </div>
