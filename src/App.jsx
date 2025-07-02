@@ -14,6 +14,8 @@ import ViewEmployee from './components/employee/ViewEmployee.jsx';
 import EditEmployee from './components/employee/EditEmployee.jsx';
 import AddSalary from './components/salary/AddSalary.jsx';
 import ViewSalary from './components/salary/ViewSalary.jsx';
+import EmployeeSummaryCard from './components/EmployeeDashboard/EmployeeSummaryCard.jsx';
+import LeaveList from './components/leave/LeaveList.jsx';
 
 function App() {
  return (
@@ -83,7 +85,27 @@ function App() {
     {/*End of Admin Dashboard route */}
 
     {/*Private routes for Employee Dashboard */}
-    <Route path='/employee-dashboard' element={<EmployeeDashboard />}></Route>
+    <Route
+     path='/employee-dashboard'
+     element={
+      <PrivateRoutes>
+       <RoleBaseRoutes requiredRole={['admin', 'employee']}>
+        <EmployeeDashboard />
+       </RoleBaseRoutes>
+      </PrivateRoutes>
+     }
+    >
+     <Route index element={<EmployeeSummaryCard />}></Route>
+
+     {/* employee profile route */}
+     <Route
+      path='/employee-dashboard/profile/:id'
+      element={<ViewEmployee />}
+     ></Route>
+
+     {/* employee profile route */}
+     <Route path='/employee-dashboard/leaves' element={<LeaveList />}></Route>
+    </Route>
    </Routes>
   </BrowserRouter>
  );

@@ -77,6 +77,7 @@ const ViewSalary = () => {
          <th className='px-6 py-3'>Pay Date</th>
          <th className='px-6 py-3'>Basic Salary</th>
          <th className='px-6 py-3'>Allowance</th>
+         <th className='px-6 py-3'>Travelling</th>
          <th className='px-6 py-3'>Deduction</th>
          <th className='px-6 py-3'>Net Salary</th>
         </tr>
@@ -96,6 +97,7 @@ const ViewSalary = () => {
            </td>
            <td className='px-6 py-3'>{salary.basic_salary}</td>
            <td className='px-6 py-3'>{salary.allowances}</td>
+           <th className='px-6 py-3'>{salary.travelling}</th>
            <td className='px-6 py-3'>{salary.deductions}</td>
            <td className='px-6 py-3'>{salary.net_salary}</td>
           </tr>

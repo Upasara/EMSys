@@ -41,9 +41,10 @@ const AddSalary = () => {
    //net salary calculation
    const basicSalary = parseInt(updatedData.basic_salary) || 0;
    const allowances = parseInt(updatedData.allowances) || 0;
+   const travelling = parseInt(updatedData.travelling) || 0; // Assuming travelling is also part of the salary calculation
    const deductions = parseInt(updatedData.deductions) || 0;
 
-   updatedData.net_salary = basicSalary + allowances - deductions;
+   updatedData.net_salary = basicSalary + allowances + travelling - deductions;
    return updatedData;
   });
  };
@@ -80,7 +81,8 @@ const AddSalary = () => {
    );
 
    if (response.data.success) {
-    navigate('/admin-dashboard/employees');
+    // navigate('/admin-dashboard/employees');
+    window.location.reload();
    } else {
     console.log(response);
    }
@@ -164,6 +166,19 @@ const AddSalary = () => {
          />
         </div>
 
+        {/* travelling */}
+        <div>
+         <label className='block text-primaryText'>Travelling</label>
+         <input
+          type='number'
+          name='travelling'
+          onChange={handleChange}
+          value={salary.travelling || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          required
+         />
+        </div>
+
         {/* deduction */}
         <div>
          <label className='block text-primaryText'>Deductions</label>
@@ -210,7 +225,11 @@ const AddSalary = () => {
          Add Salary
         </button>
         <Link
-         to='/admin-dashboard/salary/add'
+         to='#'
+         onClick={(e) => {
+          e.preventDefault();
+          window.location.reload();
+         }}
          className='bg-red-700 py-1.5 w-1/2 text-center rounded-md text-white hover:bg-red-600 transition'
         >
          Cancel

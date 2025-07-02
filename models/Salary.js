@@ -5,6 +5,7 @@ const salarySchema = new Schema({
     sal_emp_id : {type : Schema.Types.ObjectId, ref : "Employee", required : true},
     basic_salary : {type : Number, required : true},
     allowances : {type : Number},
+    travelling : {type : Number},
     deductions : {type : Number},
     net_salary : {type : Number, required : true},
     pay_date : {type : Date, required : true},
