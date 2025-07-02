@@ -16,6 +16,7 @@ import AddSalary from './components/salary/AddSalary.jsx';
 import ViewSalary from './components/salary/ViewSalary.jsx';
 import EmployeeSummaryCard from './components/EmployeeDashboard/EmployeeSummaryCard.jsx';
 import LeaveList from './components/leave/LeaveList.jsx';
+import AddLeave from './components/leave/AddLeave.jsx';
 
 function App() {
  return (
@@ -103,8 +104,11 @@ function App() {
       element={<ViewEmployee />}
      ></Route>
 
-     {/* employee profile route */}
+     {/* employee leave route */}
      <Route path='/employee-dashboard/leaves' element={<LeaveList />}></Route>
+
+     {/* employee leave route */}
+     <Route path='/employee-dashboard/add-leave' element={<AddLeave />}></Route>
     </Route>
    </Routes>
   </BrowserRouter>
