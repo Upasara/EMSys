@@ -32,10 +32,38 @@ const AddLeave = () => {
        <input
         type='date'
         name='start_date'
+        onChange={handleChange}
         className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
         required
        />
       </div>
+
+      {/* to date */}
+      <div>
+       <label className='block text-sm font-medium text-gray-700'>
+        To Date
+       </label>
+       <input
+        type='date'
+        name='end_date'
+        onChange={handleChange}
+        className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
+        required
+       />
+      </div>
+     </div>
+     {/* description */}
+     <div>
+      <label className='block text-sm font-medium text-gray-700'>
+       Description
+      </label>
+      <textarea
+       type='date'
+       name='description'
+       onChange={handleChange}
+       className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
+       rows='2'
+      ></textarea>
      </div>
     </div>
    </form>

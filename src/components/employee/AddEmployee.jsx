@@ -316,59 +316,6 @@ const AddEmployee = () => {
        />
       </div>
 
-      {/* basic salary */}
-      <div>
-       <label className='block text-primaryText'>Basic Salary</label>
-       <input
-        type='number'
-        name='emp_salary'
-        placeholder='Rs. 0'
-        onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-        required
-       />
-      </div>
-
-      {/* allowance */}
-      <div>
-       <label className='block text-primaryText'>Allowance</label>
-       <input
-        type='number'
-        name='emp_allowance'
-        placeholder='Rs.0'
-        onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-       />
-      </div>
-
-      {/* password */}
-      <div>
-       <label className='block text-primaryText'>Password</label>
-       <input
-        type='password'
-        name='password'
-        onChange={handleChange}
-        placeholder='  ****************** '
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-        required
-       />
-      </div>
-
-      {/* role */}
-      <div>
-       <label className='block text-primaryText'>Role</label>
-       <select
-        name='role'
-        onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
-        required
-       >
-        <option value=''>select a role</option>
-        <option value='admin'>ADMIN</option>
-        <option value='employee'>EMPLOYEE</option>
-       </select>
-      </div>
-
       {/* image upload */}
       <div>
        <label className='block text-primaryText'>Image</label>
@@ -422,6 +369,86 @@ const AddEmployee = () => {
         onChange={handleChange}
         className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
         rows='2'
+       />
+      </div>
+
+      {/* password */}
+      <div>
+       <label className='block text-primaryText'>Password</label>
+       <input
+        type='password'
+        name='password'
+        onChange={handleChange}
+        placeholder='  ****************** '
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
+
+      {/* role */}
+      <div>
+       <label className='block text-primaryText'>Role</label>
+       <select
+        name='role'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
+        required
+       >
+        <option value=''>select a role</option>
+        <option value='admin'>ADMIN</option>
+        <option value='employee'>EMPLOYEE</option>
+       </select>
+      </div>
+     </div>
+
+     {/*------------------------------------------------------------------------------------------------------ */}
+     <div className=' grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mt-4 p-6 shadow-xl rounded-2xl'>
+      {/* basic salary */}
+      <div>
+       <label className='block text-primaryText'>Basic Salary</label>
+       <input
+        type='number'
+        name='emp_salary'
+        placeholder='Rs. 0'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        required
+       />
+      </div>
+
+      {/* allowance */}
+      <div>
+       <label className='block text-primaryText'>Traveling Allowance</label>
+       <input
+        type='number'
+        name='emp_allowance'
+        placeholder='Rs. 0'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+       />
+      </div>
+
+      {/* staff loan */}
+      <div>
+       <label className='block text-primaryText'>Staff Loan</label>
+       <input
+        type='number'
+        name='staff_loan'
+        placeholder='Rs. 0'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+       />
+      </div>
+
+      {/* stamp duty */}
+      <div>
+       <label className='block text-primaryText'>Stamp Duty</label>
+       <input
+        type='number'
+        name='stamp_duty'
+        placeholder='Rs. 0'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
        />
       </div>
      </div>

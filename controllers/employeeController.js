@@ -37,6 +37,8 @@ const addEmployee = async (req, res) => {
       emp_medical,
       emp_salary,
       emp_allowance = 0, //default value for allowance
+      staff_loan = 0, //default value for staff_loan
+      stamp_duty = 0, //default value for stamp duty
       name,
       email,
       password,
@@ -79,6 +81,8 @@ const addEmployee = async (req, res) => {
       emp_medical,
       emp_salary,
       emp_allowance,
+      staff_loan,
+      stamp_duty,
     });
 
     // save user and employee to database
@@ -155,6 +159,8 @@ const updateEmployee = async (req, res) => {
       emp_medical,
       emp_salary,
       emp_allowance = 0, //default value for allowance
+      staff_loan = 0,
+      stamp_duty = 0, //default value for stamp duty
       name,
       email,
       role,
@@ -202,6 +208,8 @@ const updateEmployee = async (req, res) => {
         emp_Sdate,
         emp_salary,
         emp_allowance,
+        staff_loan,
+        stamp_duty
       }
     );
 

@@ -117,14 +117,7 @@ const ViewEmployee = () => {
           {new Date(employee.emp_Sdate).toLocaleDateString()}
          </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Basic Salary : </p>
-         <p className='font-medium'>{employee.emp_salary}</p>
-        </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Allowance : </p>
-         <p className='font-medium'>{employee.emp_allowance}</p>
-        </div>
+
         <div className='flex space-x-3 mb-5'>
          <p className='text-lg font-bold'>Emergency Name : </p>
          <p className='font-medium'>{employee.emp_Ename}</p>
@@ -136,6 +129,23 @@ const ViewEmployee = () => {
         <div className='flex space-x-3 mb-5'>
          <p className='text-lg font-bold'>Medical History : </p>
          <p className='font-medium'>{employee.emp_medical}</p>
+        </div>
+        <hr />
+        <div className='flex space-x-3 mb-5'>
+         <p className='text-lg font-bold'>Basic Salary : </p>
+         <p className='font-medium'>{employee.emp_salary}</p>
+        </div>
+        <div className='flex space-x-3 mb-5'>
+         <p className='text-lg font-bold'>Traveling Allowance : </p>
+         <p className='font-medium'>{employee.emp_allowance}</p>
+        </div>
+        <div className='flex space-x-3 mb-5'>
+         <p className='text-lg font-bold'>Staff Loan : </p>
+         <p className='font-medium'>{employee.staff_loan}</p>
+        </div>
+        <div className='flex space-x-3 mb-5'>
+         <p className='text-lg font-bold'>Stamp Duty : </p>
+         <p className='font-medium'>{employee.stamp_duty}</p>
         </div>
        </div>
       </div>

@@ -10,7 +10,15 @@ const addSalary = async (req, res) => {
         basic_salary,
         allowances,
         travelling,
+        over_time,
+        other_allowances,
+        epf8,
+        staff_loan,
+        stamp_duty,
+        festival_advance,
         deductions,
+        gross_salary,
+        total_deductions,
         net_salary,
         pay_date,
     }
@@ -22,7 +30,16 @@ const newSalary = new Salary({
     basic_salary,
     allowances,
     travelling,
+    over_time,
+    other_allowances,
+    epf8,
+    staff_loan,
+    stamp_duty,
+    festival_advance,
+
     deductions,
+    gross_salary,
+    total_deductions,
     net_salary ,// : totalSalary,
     pay_date
 })

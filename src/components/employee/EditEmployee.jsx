@@ -24,6 +24,8 @@ const EditEmployee = () => {
   emp_medical: '',
   emp_salary: 0,
   emp_allowance: 0, // default value for allowance
+  staff_loan: 0,
+  stamp_duty: 0,
   name: '',
   email: '',
   role: '',
@@ -372,29 +374,6 @@ const EditEmployee = () => {
           required
          />
         </div>
-        {/* salary */}
-        <div>
-         <label className='block text-primaryText'>Salary</label>
-         <input
-          type='number'
-          name='emp_salary'
-          onChange={handleChange}
-          value={employee.emp_salary || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-          required
-         />
-        </div>
-        {/* allowance */}
-        <div>
-         <label className='block text-primaryText'>Allowance</label>
-         <input
-          type='number'
-          name='emp_allowance'
-          onChange={handleChange}
-          value={employee.emp_allowance || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-         />
-        </div>
         {/* role */}
         <div>
          <label className='block text-primaryText'>Role</label>
@@ -454,6 +433,52 @@ const EditEmployee = () => {
           value={employee.emp_medical || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
           rows='2'
+         />
+        </div>
+
+        {/* salary */}
+        <div>
+         <label className='block text-primaryText'>Salary</label>
+         <input
+          type='number'
+          name='emp_salary'
+          onChange={handleChange}
+          value={employee.emp_salary || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          required
+         />
+        </div>
+        {/* allowance */}
+        <div>
+         <label className='block text-primaryText'>Traveling Allowance</label>
+         <input
+          type='number'
+          name='emp_allowance'
+          onChange={handleChange}
+          value={employee.emp_allowance || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+         />
+        </div>
+        {/* staff loan */}
+        <div>
+         <label className='block text-primaryText'>Staff Loan</label>
+         <input
+          type='number'
+          name='staff_loan'
+          onChange={handleChange}
+          value={employee.staff_loan || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+         />
+        </div>
+        {/* stamp duty */}
+        <div>
+         <label className='block text-primaryText'>Stamp Duty</label>
+         <input
+          type='number'
+          name='stamp_duty'
+          onChange={handleChange}
+          value={employee.stamp_duty || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
          />
         </div>
        </div>

@@ -21,6 +21,8 @@ const employeeSchema = new Schema({
     emp_medical : {type : String},
     emp_salary : { type: Number, required: true },
     emp_allowance : { type: Number, default: 0 },
+    staff_loan : { type: Number, default: 0 },
+    stamp_duty : { type: Number, default: 0 },
     createdAt : {type : Date, default: Date.now},
     updatedAt : {type : Date, default: Date.now}
 
