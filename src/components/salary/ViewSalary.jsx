@@ -70,19 +70,20 @@ const ViewSalary = () => {
       </button>
      </div>
      {filteredSalaries.length > 0 ? (
-      <table className='w-full text-sm text-gray-500'>
+      <table className='w-full text-sm text-gray-500 text-center'>
        <thead className='text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200'>
         <tr>
          <th className='px-6 py-3'>SNO</th>
          <th className='px-6 py-3'>Pay Date</th>
          <th className='px-6 py-3'>Basic Salary</th>
          <th className='px-6 py-3'>Allowance</th>
-         <th className='px-6 py-3'>Travelling</th>
-         <th className='px-6 py-3'>Deduction</th>
+         <th className='px-6 py-3'>Gross Salary</th>
+         <th className='px-6 py-3'>Total Deduction</th>
          <th className='px-6 py-3'>Net Salary</th>
+         <th className='px-6 py-3'></th>
         </tr>
        </thead>
-       <tbody>
+       <tbody className='font-medium'>
         {filteredSalaries
          .sort((a, b) =>
           sortOrder === 'asc'
@@ -97,9 +98,17 @@ const ViewSalary = () => {
            </td>
            <td className='px-6 py-3'>{salary.basic_salary}</td>
            <td className='px-6 py-3'>{salary.allowances}</td>
-           <th className='px-6 py-3'>{salary.travelling}</th>
-           <td className='px-6 py-3'>{salary.deductions}</td>
+           <th className='px-6 py-3'>{salary.gross_salary}</th>
+           <td className='px-6 py-3'>{salary.total_deductions}</td>
            <td className='px-6 py-3'>{salary.net_salary}</td>
+           <td className='px-6 py-3'>
+            <Link
+             to={`/admin-dashboard/salary/view/${salary._id}`}
+             className='bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-500 transition'
+            >
+             View
+            </Link>
+           </td>
           </tr>
          ))}
        </tbody>

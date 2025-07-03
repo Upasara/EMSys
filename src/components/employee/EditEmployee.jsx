@@ -18,6 +18,7 @@ const EditEmployee = () => {
   emp_Mstatus: '',
   emp_designation: '',
   emp_dep: '',
+  emp_company: '',
   emp_Sdate: '',
   emp_Enumber: '',
   emp_Ename: '',
@@ -260,6 +261,26 @@ const EditEmployee = () => {
           ))}
          </select>
         </div>
+        {/* company */}
+        <div>
+         <label className='block text-primaryText'>Company</label>
+         <select
+          name='emp_company'
+          onChange={handleChange}
+          value={employee.emp_company || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
+          required
+         >
+          <option value=''>Select the Company</option>
+          <option value='P E Mathew & Company'>P E Mathew & Company</option>
+          <option value='PEMCO Accountants Pvt Ltd'>
+           PEMCO Accountants Pvt Ltd
+          </option>
+          <option value='Business Managemant Services Ltd'>
+           Business Management Services Ltd
+          </option>
+         </select>
+        </div>
         {/* national ID */}
         <div>
          <label className='block text-primaryText'>National ID</label>
@@ -341,9 +362,9 @@ const EditEmployee = () => {
           required
          >
           <option value=''>Select Gender</option>
-          <option value='male'>Male</option>
-          <option value='female'>Female</option>
-          <option value='other'>Other</option>
+          <option value='Male'>Male</option>
+          <option value='Female'>Female</option>
+          <option value='Other'>Other</option>
          </select>
         </div>
         {/* marital status */}
@@ -357,8 +378,8 @@ const EditEmployee = () => {
           required
          >
           <option value=''>Select Marital Status</option>
-          <option value='single'>Single</option>
-          <option value='married'>Married</option>
+          <option value='Single'>Single</option>
+          <option value='Married'>Married</option>
          </select>
         </div>
         {/* start date */}

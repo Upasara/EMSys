@@ -17,6 +17,7 @@ import ViewSalary from './components/salary/ViewSalary.jsx';
 import EmployeeSummaryCard from './components/EmployeeDashboard/EmployeeSummaryCard.jsx';
 import LeaveList from './components/leave/LeaveList.jsx';
 import AddLeave from './components/leave/AddLeave.jsx';
+import PaymentSlip from './components/salary/PaymentSlip.jsx';
 
 function App() {
  return (
@@ -82,6 +83,12 @@ function App() {
 
      {/* Add salary route */}
      <Route path='/admin-dashboard/salary/add' element={<AddSalary />}></Route>
+
+     {/* view salary route */}
+     <Route
+      path='/admin-dashboard/salary/view/:id'
+      element={<PaymentSlip />}
+     ></Route>
     </Route>
     {/*End of Admin Dashboard route */}
 

@@ -86,6 +86,10 @@ const ViewEmployee = () => {
          <p className='font-medium'>{employee.emp_dep?.dep_name}</p>
         </div>
         <div className='flex space-x-3 mb-5'>
+         <p className='text-lg font-bold'>Company : </p>
+         <p className='font-medium'>{employee.emp_company}</p>
+        </div>
+        <div className='flex space-x-3 mb-5'>
          <p className='text-lg font-bold'>National ID : </p>
          <p className='font-medium'>{employee.emp_Nid}</p>
         </div>
