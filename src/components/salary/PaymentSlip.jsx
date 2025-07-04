@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toWords } from 'number-to-words';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
@@ -31,8 +32,15 @@ const PaymentSlip = () => {
   fetchSalaryDetails();
  }, []);
 
+ const capitalizeWords = (str) => {
+  return str
+   .split(' ') // Split the string into an array of words
+   .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize the first letter of each word
+   .join(' '); // Join the words back into a single string
+ };
+
  return (
-  <div className='p-10 mt-10 bg-white rounded-lg max-w-4xl mx-auto shadow-lg'>
+  <div className='payslip-content p-10 mt-10 bg-white rounded-lg max-w-4xl mx-auto shadow-lg'>
    <div className='mt-5 mb-5 text-center'>
     <h2 className='text-lg'>Paymentslip</h2>
     <h2 className='text-xl'>{salaryDetails.sal_emp_id?.emp_company}</h2>
@@ -42,7 +50,7 @@ const PaymentSlip = () => {
      Colombo 01
     </h2>
    </div>
-   <div className='grid grid-cols-2 gap-4 mt-5'>
+   <div className='grid grid-cols-2  mt-10'>
     <div>Employee Name : {salaryDetails.sal_emp_id?.emp_Fname}</div>
     <div>Designation : {salaryDetails.sal_emp_id?.emp_designation}</div>
     <div>Department : {salaryDetails.sal_emp_id?.emp_dep.dep_des}</div>
@@ -55,6 +63,8 @@ const PaymentSlip = () => {
       : 'N/A'}
     </div>
    </div>
+
+   {/* earnings table starts here */}
    <div className='mt-5'>
     <table className='w-full  border-2 bg-blue-300 rounded-2xl'>
      <thead className='font-semibold'>
@@ -91,6 +101,8 @@ const PaymentSlip = () => {
      </tbody>
     </table>
    </div>
+
+   {/* deduction table starts here */}
    <div className='mt-5'>
     <table className='w-full  border-2 '>
      <thead className='font-semibold'>
@@ -124,8 +136,39 @@ const PaymentSlip = () => {
        <td className='text-left'>Total Deductions</td>
        <td className='text-right'>{salaryDetails.total_deductions}</td>
       </tr>
+      <tr>
+       <td className='text-right'>Net Salary</td>
+       <td className='text-right'>{salaryDetails.net_salary}.00</td>
+      </tr>
      </tbody>
     </table>
+   </div>
+
+   {/* salary in words */}
+   <div className='text-center mt-5'>
+    <p>{salaryDetails.net_salary || 'N/A'}</p>
+    <p>
+     {typeof salaryDetails.net_salary === 'number'
+      ? `${capitalizeWords(toWords(salaryDetails.net_salary))} Rupees`
+      : 'Net Salary not available'}
+    </p>
+   </div>
+
+   {/* signature section */}
+   <div className='grid grid-cols-2 mt-16 '>
+    <div className='flex flex-col items-center justify-center'>
+     <hr className='w-3/4' />
+     <br />
+     HR Manager Signature
+    </div>
+    <div className='flex flex-col items-center justify-center '>
+     <hr className='w-3/4' />
+     <br />
+     Employee Signature
+    </div>
+   </div>
+   <div className='text-center text-sm mt-16 text-gray-500 font-sans tracking-wider'>
+    This is a system generated payslip
    </div>
   </div>
  );
