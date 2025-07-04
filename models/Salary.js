@@ -3,6 +3,7 @@ import { Schema } from "mongoose";
 
 const salarySchema = new Schema({
     sal_emp_id : {type : Schema.Types.ObjectId, ref : "Employee", required : true},
+    emp_dep : {type :Schema.Types.ObjectId, ref : "Department"},
     basic_salary : {type : Number, required : true},
     allowances : {type : Number},
     travelling : {type : Number},

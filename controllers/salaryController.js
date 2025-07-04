@@ -1,3 +1,4 @@
+import path from "path";
 import Salary from "../models/Salary.js"
 
 
@@ -65,4 +66,14 @@ const getSalary = async (req,res) =>{
     }
 } 
 
-export{addSalary, getSalary}
+const getSalaryDetails = async (req, res) => {
+    try{
+        const {id} = req.params
+        const salaryDetails = await Salary.findById(id).populate({path: 'sal_emp_id',  populate: {path: 'emp_dep', select: 'dep_des' }})
+        return res.status(200).json({success: true, salaryDetails})
+    }catch(error){
+        console.error('Error fetching salary details:', error);
+        return res.status(500).json({success : false, error : "Salary details get server error"})
+    }
+}
+export{addSalary, getSalary, getSalaryDetails}
