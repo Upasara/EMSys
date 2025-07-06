@@ -102,7 +102,7 @@ const addEmployee = async (req, res) => {
     console.log(error.message);
     return res
       .status(500)
-      .json({ success: false, error: 'Employee adding error...' });
+      .json({ success: false, error: 'Employee ID exist...' });
   }
 };
 

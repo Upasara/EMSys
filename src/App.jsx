@@ -18,6 +18,7 @@ import EmployeeSummaryCard from './components/EmployeeDashboard/EmployeeSummaryC
 import LeaveList from './components/leave/LeaveList.jsx';
 import AddLeave from './components/leave/AddLeave.jsx';
 import PaymentSlip from './components/salary/PaymentSlip.jsx';
+import PrintableView from './components/salary/PrintableView.jsx'
 
 function App() {
  return (
@@ -91,6 +92,11 @@ function App() {
      ></Route>
     </Route>
     {/*End of Admin Dashboard route */}
+
+     <Route
+      path='/salary/view/:id'
+      element={<PrintableView />}
+     ></Route>
 
     {/*Private routes for Employee Dashboard */}
     <Route
