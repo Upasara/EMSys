@@ -40,143 +40,191 @@ const PaymentSlip = () => {
  };
 
  return (
-  <div className='payslip-content p-10 mt-10 bg-white rounded-lg max-w-4xl mx-auto shadow-lg'>
-   <div className='mt-5 mb-5 text-center'>
-    <h2 className='text-lg'>Paymentslip</h2>
-    <h2 className='text-xl'>{salaryDetails.sal_emp_id?.emp_company}</h2>
-    <h2 className='text-sm'>
-     94, York Street,
-     <br />
-     Colombo 01
-    </h2>
+  <div className='bg-gray-100 '>
+   <div className='justify-end items-end '>
+    <button>
+     <Link
+      to='/admin-dashboard/employees'
+      className='bg-red-700 py-1 px-3 text-center rounded-md text-white hover:bg-red-600 transition'
+     >
+      Back
+     </Link>
+    </button>
    </div>
-   <div className='grid grid-cols-2  mt-10'>
-    <div>Employee Name : {salaryDetails.sal_emp_id?.emp_Fname}</div>
-    <div>Designation : {salaryDetails.sal_emp_id?.emp_designation}</div>
-    <div>Department : {salaryDetails.sal_emp_id?.emp_dep.dep_des}</div>
-    <div>
-     Pay Period : {''}
-     {salaryDetails.pay_date
-      ? `${new Date(salaryDetails.pay_date).toLocaleDateString('default', {
-         month: 'long',
-        })} ${new Date(salaryDetails.pay_date).getFullYear()}`
-      : 'N/A'}
+
+   <div className='payslip-content p-10 mt-10 bg-white rounded-lg max-w-4xl mx-auto shadow-lg font-serif'>
+    <div className=' grid grid-cols-2 font-serif tracking-wider'>
+     <div>
+      <h2 className='text-2xl font-semibold'>Salary Slip</h2>
+     </div>
+     <div className='text-right'>
+      <h2 className='text-lg font-medium'>
+       {salaryDetails.sal_emp_id?.emp_company}
+      </h2>
+      <h2 className='text-sm'>94, York Street, Colombo 01</h2>
+     </div>
     </div>
-   </div>
-
-   {/* earnings table starts here */}
-   <div className='mt-5'>
-    <table className='w-full  border border-black '>
-     <thead className='font-semibold '>
-      <tr className='border-2 border-black'>
-       <th className='text-left pl-2'>Earnings</th>
-       <th className='text-right pr-2'>Amount (Rs.)</th>
-      </tr>
-     </thead>
-     <tbody>
-      <tr className='border-b border-black'>
-       <td className='text-left pl-2'>Basic Salary</td>
-       <td className='text-right pr-2'>{salaryDetails.basic_salary}</td>
-      </tr>
-      <tr className='border-b border-black'>
-       <td className='text-left pl-2'>Traveling Allowance</td>
-       <td className='text-right pr-2'>{salaryDetails.allowances}</td>
-      </tr>
-      <tr className='border-b border-black'>
-       <td className='text-left pl-2'>Traveling Reimbursment</td>
-       <td className='text-right pr-2'>{salaryDetails.travelling}</td>
-      </tr>
-      <tr className='border-b border-black'>
-       <td className='text-left pl-2'>Overtime</td>
-       <td className='text-right pr-2'>{salaryDetails.over_time}</td>
-      </tr>
-      <tr className='border-b border-black'>
-       <td className='text-left pl-2' >Other Allowances</td>
-       <td className='text-right pr-2'>{salaryDetails.other_allowances}</td>
-      </tr>
-      <tr className='border-b border-black'>
-       <td className='text-left pl-2'>Gross Salary</td>
-       <td className='text-right pr-2'>{salaryDetails.gross_salary}</td>
-      </tr>
-     </tbody>
-    </table>
-   </div>
-
-   {/* deduction table starts here */}
-   <div className='mt-5'>
-    <table className='w-full  border border-black '>
-     <thead className='font-semibold'>
-      <tr   className='border-2 border-black'>
-       <th className='text-left pl-2'>Deductions</th>
-       <th className='text-right pr-2'>Amount (Rs.)</th>
-      </tr>
-     </thead>
-     <tbody>
-      <tr className='border-b border-black'>
-       <td className='text-left pl-2'>EPF</td>
-       <td className='text-right pr-2'>{salaryDetails.epf8}</td>
-      </tr>
-      <tr className='border-b border-black'>
-       <td className='text-left pl-2'>Staff Loan</td>
-       <td className='text-right pr-2'>{salaryDetails.staff_loan}</td>
-      </tr>
-      <tr className='border-b border-black'>
-       <td className='text-left pl-2'>Festival Advance</td>
-       <td className='text-right pr-2'>{salaryDetails.festival_advance}</td>
-      </tr>
-      <tr   className='border-b border-black'>
-       <td className='text-left pl-2'>Other Allowances</td>
-       <td className='text-right pr-2'>{salaryDetails.deductions}</td>
-      </tr>
-      <tr className='border-b border-black'>
-       <td className='text-left pl-2'>Stamp Duty</td>
-       <td className='text-right pr-2'>{salaryDetails.stamp_duty}</td>
-      </tr>
-      <tr className='border-b border-black'>
-       <td className='text-left pl-2'>Total Deductions</td>
-       <td className='text-right pr-2'>{salaryDetails.total_deductions}</td>
-      </tr>
-      <tr className='border-2 border-black'>
-       <td className='text-right pl-2'>Net Salary</td>
-       <td className='text-right pr-2'>{salaryDetails.net_salary}.00</td>
-      </tr>
-     </tbody>
-    </table>
-   </div>
-
-   {/* salary in words */}
-   <div className='text-center mt-5'>
-    <p>{salaryDetails.net_salary || 'N/A'}</p>
-    <p>
-     {typeof salaryDetails.net_salary === 'number'
-      ? `${capitalizeWords(toWords(salaryDetails.net_salary))} Rupees`
-      : 'Net Salary not available'}
-    </p>
-   </div>
-
-   {/* signature section */}
-   <div className='grid grid-cols-2 mt-16 '>
-    <div className='flex flex-col items-center justify-center'>
-     <hr className='w-3/4' />
-     <br />
-     HR Manager Signature
+    <div className='grid grid-cols-2  mt-10 font-light '>
+     <div className='mr-4'>
+      Employee Name :{' '}
+      <span className='font-sans font-medium'>
+       {' '}
+       {salaryDetails.sal_emp_id?.emp_Fname}
+      </span>
+     </div>
+     <div>
+      Designation :{' '}
+      <span className='font-sans font-medium'>
+       {salaryDetails.sal_emp_id?.emp_designation}
+      </span>
+     </div>
+     <div className='mr-4'>
+      Department :{' '}
+      <span className='font-sans font-medium'>
+       {salaryDetails.sal_emp_id?.emp_dep.dep_des}
+      </span>
+     </div>
+     <div>
+      Pay Period :{' '}
+      <span className='font-sans font-medium'>
+       {salaryDetails.pay_date
+        ? `${new Date(salaryDetails.pay_date).toLocaleDateString('default', {
+           month: 'long',
+          })} ${new Date(salaryDetails.pay_date).getFullYear()}`
+        : 'N/A'}
+      </span>
+     </div>
     </div>
-    <div className='flex flex-col items-center justify-center '>
-     <hr className='w-3/4' />
-     <br />
-     Employee Signature
+
+    {/* earnings table starts here */}
+    <div className='mt-5'>
+     <table className='w-full  border-2 border-black  '>
+      <thead className='font-semibold '>
+       <tr className='border-2 border-black bg-gray-200'>
+        <th className='text-left pl-2'>Earnings</th>
+        <th className='text-right pr-2'>Amount (Rs.)</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>Basic Salary</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.basic_salary}
+        </td>
+       </tr>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>Traveling Allowance</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.allowances}
+        </td>
+       </tr>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>Traveling Reimbursment</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.travelling}
+        </td>
+       </tr>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>Overtime</td>
+        <td className='text-right pr-2 font-mono'>{salaryDetails.over_time}</td>
+       </tr>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>Other</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.other_allowances}
+        </td>
+       </tr>
+       <tr className='border-b border-t-2 border-black font-semibold bg-gray-100'>
+        <td className='text-left pl-2'>Gross Salary</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.gross_salary}
+        </td>
+       </tr>
+      </tbody>
+     </table>
     </div>
-   </div>
-   <div>
-    <Link
-                to={`/salary/view/${salaryDetails._id}`}
-                className='bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-500 transition'
-               >
-                View
-               </Link>
-               </div>
-   <div className='text-center text-sm mt-16 text-gray-500 font-sans tracking-wider'>
-    This is a system generated payslip
+
+    {/* deduction table starts here */}
+    <div className='mt-5'>
+     <table className='w-full  border-2 border-black '>
+      <thead className='font-semibold'>
+       <tr className='border-2 border-black bg-gray-200'>
+        <th className='text-left pl-2'>Deductions</th>
+        <th className='text-right pr-2'>Amount (Rs.)</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>EPF</td>
+        <td className='text-right pr-2 font-mono'>{salaryDetails.epf8}</td>
+       </tr>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>Staff Loan</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.staff_loan}
+        </td>
+       </tr>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>Festival Advance</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.festival_advance}
+        </td>
+       </tr>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>Other</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.deductions}
+        </td>
+       </tr>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>Stamp Duty</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.stamp_duty}
+        </td>
+       </tr>
+       <tr className='border-b border-t-2 border-black font-semibold bg-gray-100'>
+        <td className='text-left pl-2'>Total Deductions</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.total_deductions}
+        </td>
+       </tr>
+       <tr className='border-2 border-black font-bold bg-gray-200'>
+        <td className='text-right pl-2'>Net Salary</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.net_salary}.00
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+
+    {/* salary in words */}
+    <div className='text-center mt-10 text-xl'>
+     <p className='font-mono'>{salaryDetails.net_salary || 'N/A'}</p>
+     <p className='font-serif'>
+      {typeof salaryDetails.net_salary === 'number'
+       ? `${capitalizeWords(toWords(salaryDetails.net_salary))} Rupees`
+       : 'Net Salary not available'}
+     </p>
+    </div>
+
+    {/* signature section */}
+    <div className='grid grid-cols-2 mt-16 '>
+     <div className='flex flex-col items-center justify-center'>
+      <hr className='w-3/4 h-0.5 bg-gray-400' />
+      <br />
+      HR Manager Signature
+     </div>
+     <div className='flex flex-col items-center justify-center '>
+      <hr className='w-3/4  h-0.5 bg-gray-400' />
+      <br />
+      Employee Signature
+     </div>
+    </div>
+
+    <div className='text-center text-sm mt-10 text-gray-500 font-sans tracking-wider'>
+     This is a system generated payslip
+    </div>
    </div>
   </div>
  );
