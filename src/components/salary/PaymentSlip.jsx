@@ -80,6 +80,13 @@ const PaymentSlip = () => {
        {salaryDetails.sal_emp_id?.emp_Fname}
       </span>
      </div>
+     <div className='mr-4'>
+      Employee Number :{' '}
+      <span className='font-sans font-medium'>
+       {' '}
+       {salaryDetails.sal_emp_id?.emp_id}
+      </span>
+     </div>
      <div>
       Designation :{' '}
       <span className='font-sans font-medium'>
@@ -223,11 +230,7 @@ const PaymentSlip = () => {
       <br />
       HR Manager Signature
      </div>
-     <div className='flex flex-col items-center justify-center '>
-      <hr className='w-3/4  h-0.5 bg-gray-400' />
-      <br />
-      Employee Signature
-     </div>
+     <div className='flex flex-col items-center justify-center '></div>
     </div>
 
     <div className='text-center text-sm mt-10 text-gray-500 font-sans tracking-wider'>
