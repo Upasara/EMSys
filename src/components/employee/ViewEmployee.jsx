@@ -130,11 +130,11 @@ const ViewEmployee = () => {
          <p className='text-lg font-bold'>Emergency Number : </p>
          <p className='font-medium'>0{employee.emp_Enumber}</p>
         </div>
-        <div className='flex space-x-3 mb-5'>
+        <div className='flex space-x-3 mb-2'>
          <p className='text-lg font-bold'>Medical History : </p>
          <p className='font-medium'>{employee.emp_medical}</p>
         </div>
-        <hr />
+        <div className='w-full h-0.5 bg-black mb-2'></div>
         <div className='flex space-x-3 mb-5'>
          <p className='text-lg font-bold'>Basic Salary : </p>
          <p className='font-medium'>{employee.emp_salary}</p>
