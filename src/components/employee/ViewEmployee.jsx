@@ -151,6 +151,19 @@ const ViewEmployee = () => {
          <p className='text-lg font-bold'>Stamp Duty : </p>
          <p className='font-medium'>{employee.stamp_duty}</p>
         </div>
+        <div className='w-full h-0.5 bg-black mb-2'></div>
+        <div className='flex space-x-3 mb-5'>
+         <p className='text-lg font-bold'>Bank Name : </p>
+         <p className='font-medium'>{employee.bank_name}</p>
+        </div>
+        <div className='flex space-x-3 mb-5'>
+         <p className='text-lg font-bold'>Bank Branch : </p>
+         <p className='font-medium'>{employee.bank_branch}</p>
+        </div>
+        <div className='flex space-x-3 mb-5'>
+         <p className='text-lg font-bold'>Account Number : </p>
+         <p className='font-medium'>{employee.account_number}</p>
+        </div>
        </div>
       </div>
      </div>

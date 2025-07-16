@@ -420,9 +420,11 @@ const AddEmployee = () => {
        </select>
       </div>
      </div>
+     <div className='w-full h-0.5 bg-gray-300 mb-2 mt-5'></div>
 
-     {/*------------------------------------------------------------------------------------------------------ */}
-     <div className=' grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mt-4 p-6 shadow-xl rounded-2xl'>
+     {/*------------------------------------salary------------------------------------------------------------------ */}
+     <p className='mt-2 mb-5 text-gray-500 text-sm'>Salary details</p>
+     <div className=' grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4  p-6 pt-0 rounded-2xl'>
       {/* basic salary */}
       <div>
        <label className='block text-primaryText'>Basic Salary</label>
@@ -472,6 +474,44 @@ const AddEmployee = () => {
        />
       </div>
      </div>
+     {/*------------------------------------bank details------------------------------------------------------------------ */}
+     <div className='w-full h-0.5 bg-gray-300 mb-2 mt-5'></div>
+     <p className='mt-2 mb-5 text-gray-500 text-sm'>Bank details</p>
+     <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
+      {/* bank name */}
+      <div>
+       <label className='block text-primaryText'>Bank Name</label>
+       <input
+        type='text'
+        name='bank_name'
+        placeholder='eg : Bank of Ceylon'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+       />
+      </div>
+      {/* branch name */}
+      <div>
+       <label className='block text-primaryText'>Branch</label>
+       <input
+        type='text'
+        name='bank_branch'
+        placeholder='eg : Colombo Fort'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+       />
+      </div>
+      {/* account number */}
+      <div>
+       <label className='block text-primaryText'>Account Number</label>
+       <input
+        type='number'
+        name='account_number'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+       />
+      </div>
+     </div>
+
      <div className='flex justify-between items-center mt-5 gap-3'>
       <button
        type='submit'

@@ -456,7 +456,12 @@ const EditEmployee = () => {
           rows='2'
          />
         </div>
+       </div>
+       <div className='w-full h-0.5 bg-gray-300 mb-2 mt-5'></div>
 
+       {/*------------------------------------salary------------------------------------------------------------------ */}
+       <p className='mt-2 mb-5 text-gray-500 text-sm'>Salary details</p>
+       <div className=' grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4  p-6 pt-0 rounded-2xl'>
         {/* salary */}
         <div>
          <label className='block text-primaryText'>Salary</label>
@@ -497,6 +502,34 @@ const EditEmployee = () => {
          <input
           type='number'
           name='stamp_duty'
+          onChange={handleChange}
+          value={employee.stamp_duty || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+         />
+        </div>
+       </div>
+       <div className='w-full h-0.5 bg-gray-300 mb-2 mt-5'></div>
+
+       {/*------------------------------------bank details------------------------------------------------------------------ */}
+       <p className='mt-2 mb-5 text-gray-500 text-sm'>Bank details</p>
+       <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
+        {/* bank name */}
+        <div>
+         <label className='block text-primaryText'>Bank Name</label>
+         <input
+          type='text'
+          name='bank_name'
+          onChange={handleChange}
+          value={employee.stamp_duty || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+         />
+        </div>
+        {/* branch name */}
+        <div>
+         <label className='block text-primaryText'>Bank Branch</label>
+         <input
+          type='text'
+          name='bank'
           onChange={handleChange}
           value={employee.stamp_duty || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'

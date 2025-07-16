@@ -40,6 +40,9 @@ const addEmployee = async (req, res) => {
       emp_allowance = 0, //default value for allowance
       staff_loan = 0, //default value for staff_loan
       stamp_duty = 0, //default value for stamp duty
+      bank_name = '', //default value for bank name
+      account_number = '', //default value for bank account
+      bank_branch = '', //default value for bank branch
       name,
       email,
       password,
@@ -85,6 +88,9 @@ const addEmployee = async (req, res) => {
       emp_allowance,
       staff_loan,
       stamp_duty,
+      bank_name,
+      bank_branch,
+      account_number
     });
 
     // save user and employee to database
