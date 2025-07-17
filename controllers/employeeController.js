@@ -170,6 +170,9 @@ const updateEmployee = async (req, res) => {
       emp_allowance = 0, //default value for allowance
       staff_loan = 0,
       stamp_duty = 0, //default value for stamp duty
+      bank_name,
+      bank_branch,
+      account_number,
       name,
       email,
       role,
@@ -219,7 +222,10 @@ const updateEmployee = async (req, res) => {
         emp_salary,
         emp_allowance,
         staff_loan,
-        stamp_duty
+        stamp_duty,
+        bank_name,
+        bank_branch,
+        account_number
       }
     );
 

@@ -27,6 +27,9 @@ const EditEmployee = () => {
   emp_allowance: 0, // default value for allowance
   staff_loan: 0,
   stamp_duty: 0,
+  bank_name: '',
+  bank_branch: '',
+  account_number: '',
   name: '',
   email: '',
   role: '',
@@ -520,7 +523,7 @@ const EditEmployee = () => {
           type='text'
           name='bank_name'
           onChange={handleChange}
-          value={employee.stamp_duty || ''}
+          value={employee.bank_name || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
          />
         </div>
@@ -529,9 +532,20 @@ const EditEmployee = () => {
          <label className='block text-primaryText'>Bank Branch</label>
          <input
           type='text'
-          name='bank'
+          name='bank_branch'
           onChange={handleChange}
-          value={employee.stamp_duty || ''}
+          value={employee.bank_branch || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+         />
+        </div>
+        {/* account number */}
+        <div>
+         <label className='block text-primaryText'>Account Number</label>
+         <input
+          type='number'
+          name='account_number'
+          onChange={handleChange}
+          value={employee.account_number || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
          />
         </div>
