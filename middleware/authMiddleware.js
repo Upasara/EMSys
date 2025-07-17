@@ -23,7 +23,7 @@ const verifyUser = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    return res.status(500).json({ success: false, error: 'Server Error' });
+    return res.status(500).json({ success: false, error: 'Server Error'+error.message });
   }
 };
 

@@ -20,9 +20,15 @@ const AddLeave = () => {
  const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-   const response = await axios.post('http://localhost:5000/api/leave/add', {
-    Headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-   });
+   const response = await axios.post(
+    'http://localhost:5000/api/leave/add',
+    leave,
+    {
+     headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+     },
+    }
+   );
    if (response.data.success) {
     navigate('/employee-dashboard/leaves');
    }
@@ -94,6 +100,7 @@ const AddLeave = () => {
        onChange={handleChange}
        className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
        rows='2'
+       required
       ></textarea>
      </div>
     </div>
@@ -102,7 +109,7 @@ const AddLeave = () => {
       type='submit'
       className='w-1/2 bg-green-700 py-1.5 rounded-md hover:bg-green-600 text-white transition'
      >
-      Register Employee
+      Submit Leave
      </button>
      <Link
       to='/employee-dashboard/leaves'
