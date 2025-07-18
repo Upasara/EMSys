@@ -59,6 +59,7 @@ const LeaveList = () => {
       <th className='px-6 py-3'>Type</th>
       <th className='px-6 py-3'>From</th>
       <th className='px-6 py-3'>To</th>
+      <th className='px-6 py-3'>Days</th>
       <th className='px-6 py-3'>Description</th>
       <th className='px-6 py-3'>Status</th>
      </tr>
@@ -72,9 +73,10 @@ const LeaveList = () => {
         {new Date(leave.start_date).toLocaleDateString()}
        </td>
        <td className='px-6 py-3'>
-        {new Date(leave.end_date).toLocaleDateString()}
+        {leave.end_date ? new Date(leave.end_date).toLocaleDateString() : 'N/A'}
        </td>
-       <th className='px-6 py-3 font-medium'>{leave.description}</th>
+       <td className='px-6 py-3'>{leave.days}</td>
+       <td className='px-6 py-3'>{leave.description}</td>
        <td className='px-6 py-3'>{leave.status}</td>
       </tr>
      ))}

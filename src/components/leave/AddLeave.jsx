@@ -11,10 +11,33 @@ const AddLeave = () => {
  const [leave, setLeave] = useState({
   userId: user._id,
  });
+ // This state will hold the leave duration selection
+ const [leaveDuration, setLeaveDuration] = useState('');
+
+ const [numberOfDays, setNumberOfDays] = useState(0);
 
  const handleChange = (e) => {
   const { name, value } = e.target;
   setLeave((prevState) => ({ ...prevState, [name]: value }));
+
+  if (leaveDuration == 'one' && name == 'start_date') {
+   setNumberOfDays(1);
+  }
+
+  if (
+   leaveDuration == 'multiple' &&
+   (name == 'start_date' || name == 'end_date')
+  ) {
+   const start =
+    name == 'start_date' ? new Date(value) : new Date(leave.start_date);
+   const end = name == 'end_date' ? new Date(value) : new Date(leave.end_date);
+
+   if (start && end) {
+    const difference = (end - start) / (1000 * 60 * 60 * 24) + 1;
+    const days = Math.max(1, difference); // Ensure at least 1 day
+    setNumberOfDays(days);
+   }
+  }
  };
 
  const handleSubmit = async (e) => {
@@ -22,7 +45,7 @@ const AddLeave = () => {
   try {
    const response = await axios.post(
     'http://localhost:5000/api/leave/add',
-    leave,
+    { ...leave, days: numberOfDays },
     {
      headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -60,35 +83,106 @@ const AddLeave = () => {
        <option value='Annual Leave'>Annual Leave </option>
       </select>
      </div>
-     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-      {/* from date */}
-      <div>
-       <label className='block text-sm font-medium text-gray-700'>
-        From Date
+     {/* leave duration radio button */}
+     <div className='mt-4'>
+      <label className='block text-sm font-medium text-gray-700 mb-2'>
+       Leave Duration
+      </label>
+      <div className='flex space-x-4'>
+       <label className='inline-flex items-center'>
+        <input
+         type='radio'
+         name='leaveDuration'
+         value='one'
+         checked={leaveDuration === 'one'}
+         onChange={() => setLeaveDuration('one')}
+         className='form-radio text-primaryDark'
+         required
+        />
+        <span className='ml-2'>One Day</span>
        </label>
-       <input
-        type='date'
-        name='start_date'
-        onChange={handleChange}
-        className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
-        required
-       />
-      </div>
-
-      {/* to date */}
-      <div>
-       <label className='block text-sm font-medium text-gray-700'>
-        To Date
+       <label className='inline-flex items-center'>
+        <input
+         type='radio'
+         name='leaveDuration'
+         value='multiple'
+         checked={leaveDuration === 'multiple'}
+         onChange={() => setLeaveDuration('multiple')}
+         className='form-radio text-primaryDark'
+        />
+        <span className='ml-2'>More Than One Day</span>
        </label>
-       <input
-        type='date'
-        name='end_date'
-        onChange={handleChange}
-        className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
-        required
-       />
       </div>
      </div>
+
+     {/* date range according to the radio */}
+
+     {leaveDuration === 'one' && (
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+       <div>
+        <label className='block text-sm font-medium text-gray-700'>Date</label>
+        <input
+         type='date'
+         name='start_date'
+         onChange={handleChange}
+         className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
+         required
+        />
+       </div>
+       <div>
+        <label className='block text-sm font-medium text-gray-700'>Days</label>
+        <input
+         type='number'
+         name='days'
+         value={numberOfDays}
+         onChange={handleChange}
+         disabled
+         className='mt-1 p-2 block w-full border border-gray-300 rounded-md bg-gray-100'
+        />
+       </div>
+      </div>
+     )}
+     {/* ----------------------------------------- */}
+     {leaveDuration === 'multiple' && (
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+       <div>
+        <label className='block text-sm font-medium text-gray-700'>
+         From Date
+        </label>
+        <input
+         type='date'
+         name='start_date'
+         onChange={handleChange}
+         className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
+         required
+        />
+       </div>
+       <div>
+        <label className='block text-sm font-medium text-gray-700'>
+         To Date
+        </label>
+        <input
+         type='date'
+         name='end_date'
+         onChange={handleChange}
+         className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
+         required
+        />
+       </div>
+       <div>
+        <label className='block text-sm font-medium text-gray-700'>Days</label>
+        <input
+         type='number'
+         name='days'
+         value={numberOfDays}
+         onChange={handleChange}
+         disabled
+         className='mt-1 p-2 block w-full border border-gray-300 rounded-md bg-gray-100'
+        />
+       </div>
+      </div>
+     )}
+
      {/* description */}
      <div>
       <label className='block text-sm font-medium text-gray-700'>
