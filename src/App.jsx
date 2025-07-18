@@ -18,7 +18,8 @@ import EmployeeSummaryCard from './components/EmployeeDashboard/EmployeeSummaryC
 import LeaveList from './components/leave/LeaveList.jsx';
 import AddLeave from './components/leave/AddLeave.jsx';
 import PaymentSlip from './components/salary/PaymentSlip.jsx';
-import PrintableView from './components/salary/PrintableView.jsx'
+import PrintableView from './components/salary/PrintableView.jsx';
+import Settings from './components/EmployeeDashboard/Settings.jsx';
 
 function App() {
  return (
@@ -93,10 +94,7 @@ function App() {
     </Route>
     {/*End of Admin Dashboard route */}
 
-     <Route
-      path='/salary/view/:id'
-      element={<PrintableView />}
-     ></Route>
+    <Route path='/salary/view/:id' element={<PrintableView />}></Route>
 
     {/*Private routes for Employee Dashboard */}
     <Route
@@ -122,6 +120,15 @@ function App() {
 
      {/* employee leave route */}
      <Route path='/employee-dashboard/add-leave' element={<AddLeave />}></Route>
+
+     {/* employee salary route */}
+     <Route
+      path='/employee-dashboard/salary/:id'
+      element={<ViewSalary />}
+     ></Route>
+
+     {/* employee settings route */}
+     <Route path='/employee-dashboard/setting' element={<Settings />}></Route>
     </Route>
    </Routes>
   </BrowserRouter>

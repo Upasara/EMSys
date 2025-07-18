@@ -1,5 +1,6 @@
 import path from "path";
 import Salary from "../models/Salary.js"
+import Employee from "../models/Employee.js"
 
 
 
@@ -56,10 +57,17 @@ return res.status(200).json({success : true})
 
 }
 
-const getSalary = async (req,res) =>{
+const   getSalary = async (req,res) =>{
     try{
         const {id} = req.params;
-        const salary = await Salary.find({sal_emp_id: id}).populate('sal_emp_id', 'emp_id');
+        
+        let salary
+        salary = await Salary.find({sal_emp_id: id}).populate('sal_emp_id', 'emp_id');
+        if(!salary || salary.length < 1){
+            const employee = await Employee.findOne({userId: id})
+            salary = await Salary.find({sal_emp_id: employee._id}).populate('sal_emp_id', 'emp_id');
+        }
+
         return res.status(200).json({success : true, salary})
     }catch(error){
         return res.status(500).json({success :false, error:"Salary get server error"})

@@ -49,7 +49,7 @@ const EmployeeSidebar = () => {
      <span>Leaves</span>
     </NavLink>
     <NavLink
-     to='/employee-dashboard/salary'
+     to={`/employee-dashboard/salary/${user._id}`}
      className={({ isActive }) =>
       `${
        isActive ? 'bg-primaryDark shadow-md ' : ' '
@@ -60,7 +60,7 @@ const EmployeeSidebar = () => {
      <span>Salary</span>
     </NavLink>
     <NavLink
-     to='/employee-dashboard/settings'
+     to='/employee-dashboard/setting'
      className={({ isActive }) =>
       `${
        isActive ? 'bg-primaryDark shadow-md ' : ' '

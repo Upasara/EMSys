@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { toWords } from 'number-to-words';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const PaymentSlip = () => {
  const { id } = useParams();
  const [salaryDetails, setSalaryDetails] = useState({});
+ const navigate = useNavigate();
 
  const fetchSalaryDetails = async () => {
   try {
@@ -39,6 +40,11 @@ const PaymentSlip = () => {
    .join(' '); // Join the words back into a single string
  };
 
+ //  back button navigation
+ const handleGoBack = () => {
+  navigate(-1);
+ };
+
  return (
   <div className='bg-gray-100'>
    <div className='w-full flex justify-end gap-2 px-10 pt-6 print:hidden'>
@@ -48,13 +54,11 @@ const PaymentSlip = () => {
     >
      Print
     </button>
-    <button>
-     <Link
-      to='/admin-dashboard/employees'
-      className='bg-red-700 py-1 px-3 text-center rounded-md text-white hover:bg-red-600 transition'
-     >
-      Back
-     </Link>
+    <button
+     onClick={handleGoBack}
+     className='bg-red-700 py-1 px-3 text-center rounded-md text-white hover:bg-red-600 transition'
+    >
+     Back
     </button>
    </div>
    <div className='p-10 pt-7 bg-white rounded-lg max-w-xl mx-auto shadow-lg font-serif print:shadow-none'>

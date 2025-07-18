@@ -9,4 +9,5 @@ router.post('/add', authMiddleware, addSalary)
 router.get('/:id', authMiddleware, getSalary)
 router.get('/details/:id', authMiddleware, getSalaryDetails )
 
+
 export default router

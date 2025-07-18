@@ -98,9 +98,9 @@ const ViewSalary = () => {
            </td>
            <td className='px-6 py-3'>{salary.basic_salary}</td>
            <td className='px-6 py-3'>{salary.allowances}</td>
-           <th className='px-6 py-3'>{salary.gross_salary}</th>
+           <th className='px-6 py-3 font-medium'>{salary.gross_salary}</th>
            <td className='px-6 py-3'>{salary.total_deductions}</td>
-           <td className='px-6 py-3'>{salary.net_salary}</td>
+           <td className='px-6 py-3 font-semibold'>{salary.net_salary}</td>
            <td className='px-6 py-3'>
             <Link
              to={`/admin-dashboard/salary/view/${salary._id}`}
