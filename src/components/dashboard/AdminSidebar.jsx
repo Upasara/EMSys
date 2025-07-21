@@ -47,8 +47,12 @@ const AdminSidebar = () => {
      <span>Department</span>
     </NavLink>
     <NavLink
-     to='/admin-dashboard'
-     className='flex items-center space-x-4  py-3 px-4 rounded-md'
+     to='/admin-dashboard/leaves'
+     className={({ isActive }) =>
+      `${
+       isActive ? 'bg-primaryDark shadow-md ' : ' '
+      }flex items-center space-x-4  py-3 px-4 rounded-md `
+     }
     >
      <MdDateRange />
      <span>Leave</span>

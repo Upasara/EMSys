@@ -103,7 +103,7 @@ const ViewSalary = () => {
            <td className='px-6 py-3 font-semibold'>{salary.net_salary}</td>
            <td className='px-6 py-3'>
             <Link
-             to={`/admin-dashboard/salary/view/${salary._id}`}
+             to={`/salary/view/${salary._id}`}
              className='bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-500 transition'
             >
              View

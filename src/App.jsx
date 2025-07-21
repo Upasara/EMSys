@@ -20,6 +20,7 @@ import AddLeave from './components/leave/AddLeave.jsx';
 import PaymentSlip from './components/salary/PaymentSlip.jsx';
 import PrintableView from './components/salary/PrintableView.jsx';
 import Settings from './components/EmployeeDashboard/Settings.jsx';
+import LeaveTable from './components/leave/LeaveTable.jsx';
 
 function App() {
  return (
@@ -91,6 +92,8 @@ function App() {
       path='/admin-dashboard/salary/view/:id'
       element={<PaymentSlip />}
      ></Route>
+     {/* view leave route */}
+     <Route path='/admin-dashboard/leaves' element={<LeaveTable />}></Route>
     </Route>
     {/*End of Admin Dashboard route */}
 
