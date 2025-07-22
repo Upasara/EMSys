@@ -1,5 +1,6 @@
 import Leave from "../models/Leave.js"
 import Employee from "../models/Employee.js"
+import path from "path"
 
 const addLeave = async (req, res) => {
 try{
@@ -35,4 +36,25 @@ return res.status(200).json({success:true, leaves})
 }
 }
 
-export {addLeave,getLeave}
+const getLeaves = async (req, res) => {
+    try{
+        const leaves = await Leave.find().populate({
+            path:"employeeId",
+            populate:  [
+                {
+                    path:"emp_dep",
+                    select : "dep_name"
+                },
+                {
+                    path: "userId",
+                    select: "name"
+                }
+            ]
+        })
+        return res.status(200).json({success:true, leaves})
+    }catch(error){
+        return res.status(500).json({success:false, error: "leaves could not be fetched"})
+    }
+}
+
+export {addLeave,getLeave,getLeaves}

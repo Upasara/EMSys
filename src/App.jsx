@@ -94,6 +94,7 @@ function App() {
      ></Route>
      {/* view leave route */}
      <Route path='/admin-dashboard/leaves' element={<LeaveTable />}></Route>
+     <Route path='/admin-dashboard/leaves/:id' element={<LeaveTable />}></Route>
     </Route>
     {/*End of Admin Dashboard route */}
 
