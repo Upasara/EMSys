@@ -2,9 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { columns, LeaveButton } from '../../utils/LeaveHelper';
 import DataTable from 'react-data-table-component';
+import { data } from 'react-router-dom';
 
 const LeaveTable = () => {
  const [leaves, setLeaves] = useState(null);
+ const [filteredLeaves, setFilteredLeaves] = useState(null);
 
  const fetchLeaves = async () => {
   try {
@@ -28,6 +30,7 @@ const LeaveTable = () => {
      actions: <LeaveButton Id={leave._id} />,
     }));
     setLeaves(data);
+    setFilteredLeaves(data);
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
@@ -39,9 +42,23 @@ const LeaveTable = () => {
   fetchLeaves();
  }, []);
 
+ //handles search bar
+ const handleSearch = (e) => {
+  const data = leaves.filter((leave) =>
+   leave.name.toLowerCase().includes(e.target.value.toLowerCase())
+  );
+  setFilteredLeaves(data);
+ };
+
+ //handles button click for filtering leaves
+ const handleButton = (status) => {
+  const data = leaves.filter((leave) => leave.status === status);
+  setFilteredLeaves(data);
+ };
+
  return (
   <>
-   {leaves ? (
+   {filteredLeaves ? (
     <div className='p-6'>
      <div className='text-center'>
       <h3 className='text-2xl font-bold'>Manage Leaves</h3>
@@ -51,21 +68,31 @@ const LeaveTable = () => {
        type='text'
        className='px-4 py-0.5 border'
        placeholder='Search by Name'
+       onChange={handleSearch}
       />
       <div className='space-x-3'>
-       <button className='px-2 py-1 bg-primaryDark text-white hover:bg-primaryLight rounded'>
+       <button
+        className='px-2 py-1 bg-primaryDark text-white hover:bg-primaryLight rounded'
+        onClick={() => handleButton('Pending')}
+       >
         Pending
        </button>
-       <button className='px-2 py-1 bg-primaryDark text-white hover:bg-primaryLight rounded'>
+       <button
+        className='px-2 py-1 bg-primaryDark text-white hover:bg-primaryLight rounded'
+        onClick={() => handleButton('Approved')}
+       >
         Approved
        </button>
-       <button className='px-2 py-1 bg-primaryDark text-white hover:bg-primaryLight rounded'>
+       <button
+        className='px-2 py-1 bg-primaryDark text-white hover:bg-primaryLight rounded'
+        onClick={() => handleButton('Rejected')}
+       >
         Rejected
        </button>
       </div>
      </div>
      <div className='mt-5'>
-      <DataTable columns={columns} data={leaves} pagination />
+      <DataTable columns={columns} data={filteredLeaves} pagination />
      </div>
     </div>
    ) : (

@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const LeaveDetails = () => {
  const { id } = useParams();
  const [leaveDetails, setLeaveDetails] = useState(null);
+
+ const navigate = useNavigate();
 
  useEffect(() => {
   const fetchLeaveDetails = async () => {
@@ -28,6 +30,28 @@ const LeaveDetails = () => {
   };
   fetchLeaveDetails();
  }, []);
+
+ const changeStatus = async (id, status) => {
+  try {
+   const response = await axios.put(
+    `http://localhost:5000/api/leave/${id}`,
+    { status },
+    {
+     headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+     },
+    }
+   );
+   if (response.data.success) {
+    navigate('/admin-dashboard/leaves');
+   }
+  } catch (error) {
+   if (error.response && !error.response.data.success) {
+    alert(error.response.data.error);
+   }
+  }
+ };
+
  return (
   <>
    {leaveDetails ? (
@@ -86,9 +110,19 @@ const LeaveDetails = () => {
          {leaveDetails.status === 'Pending' ? 'Action :' : 'Status :'}{' '}
         </p>
         {leaveDetails.status === 'Pending' ? (
-         <div>
-          <button>Approve</button>
-          <button>Reject</button>
+         <div className='flex space-x-3'>
+          <button
+           className='px-2 py-1  bg-green-600 text-white rounded-md hover:bg-green-700 transition'
+           onClick={() => changeStatus(leaveDetails._id, 'Approved')}
+          >
+           Approve
+          </button>
+          <button
+           className=' px-2 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 transition'
+           onClick={() => changeStatus(leaveDetails._id, 'Rejected')}
+          >
+           Reject
+          </button>
          </div>
         ) : (
          <p>{leaveDetails.status}</p>
