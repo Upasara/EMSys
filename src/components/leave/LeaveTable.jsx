@@ -13,7 +13,7 @@ const LeaveTable = () => {
      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
    });
-   console.log(response.data);
+
    if (response.data.success) {
     let sno = 1;
     const data = await response.data.leaves.map((leave) => ({

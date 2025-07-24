@@ -57,4 +57,26 @@ const getLeaves = async (req, res) => {
     }
 }
 
-export {addLeave,getLeave,getLeaves}
+const getLeaveDetails = async (req,res) => {
+try{
+    const {id} = req.params
+    const leaveDetails = await Leave.findById({_id: id}).populate({
+        path:"employeeId",
+        populate:[
+            {
+                path:"emp_dep",
+                select: "dep_name"
+            },
+            {
+                path:"userId",
+                select: "name profileImage"
+            }
+        ]
+    })
+    return res.status(200).json({success:true, leaveDetails})
+}catch(error){
+    return res.status(500).json({success:false, error : "Leave details could not be fetched"})
+}
+}
+
+export {addLeave,getLeave,getLeaves, getLeaveDetails}
