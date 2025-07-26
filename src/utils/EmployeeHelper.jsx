@@ -20,17 +20,20 @@ export const columns = [
   selector: (row) => row.name,
   sortable: true,
   responsive: true,
+  width: '200px',
  },
  {
   name: 'Department ',
   selector: (row) => row.dep_name,
   sortable: true,
   responsive: true,
+  width: '150px',
  },
  {
   name: 'Designation',
   selector: (row) => row.emp_designation,
   responsive: true,
+  width: '150px',
  },
  {
   name: 'Actions',
@@ -107,7 +110,8 @@ export const EmployeeButtons = ({ Id }) => {
    >
     Salary
    </button>
-   <button className='py-1 px-2  bg-red-700 text-white rounded'>Leave</button>
+   <button className='py-1 px-2  bg-red-700 text-white rounded'
+   onClick={() => navigate(`/admin-dashboard/employees/leaves/${Id}`)}>Leave</button>
   </div>
  );
 };

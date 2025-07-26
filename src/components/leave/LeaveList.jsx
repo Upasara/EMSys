@@ -1,26 +1,27 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/authContext';
+import { Link, useParams } from 'react-router-dom';  
 import axios from 'axios';
 import { useState } from 'react';
+import { useAuth } from '../../context/authContext';
 
 const LeaveList = () => {
- const { user } = useAuth();
-
- const [leaves, setLeaves] = useState([]);
-
+ const [leaves, setLeaves] = useState(null);
  let sno = 1;
+const {user} = useAuth();
+ const {id} = useParams();
+ 
 
  const fetchLeaves = async () => {
   try {
    const response = await axios.get(
-    `http://localhost:5000/api/leave/${user._id}`,
+    `http://localhost:5000/api/leave/${id}`,
     {
      headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
      },
     }
    );
+   console.log(response.data )
    if (response.data.success) {
     setLeaves(response.data.leaves);
    }
@@ -34,6 +35,10 @@ const LeaveList = () => {
  useEffect(() => {
   fetchLeaves();
  }, []);
+
+ if(!leaves){
+    return <div>Loading</div>
+ }
  return (
   <div className='p-6'>
    <div className='text-center'>
@@ -45,12 +50,14 @@ const LeaveList = () => {
      className='px-4 py-0.5 border'
      placeholder='Search by leave type'
     />
+    {user.role === "employee"&&
     <Link
      to='/employee-dashboard/add-leave'
      className='px-4 py-2 border-2 border-primaryDark rounded-md text-primaryText hover:text-white hover:bg-primaryDark'
     >
      Add New Leave
     </Link>
+}
    </div>
    <table className='w-full text-sm text-gray-500 text-center'>
     <thead className='text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200'>
