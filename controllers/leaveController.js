@@ -1,6 +1,5 @@
 import Leave from "../models/Leave.js"
 import Employee from "../models/Employee.js"
-import path from "path"
 
 const addLeave = async (req, res) => {
 try{
@@ -29,7 +28,7 @@ const getLeave = async (req,res) =>{
 try{
 const {id} = req.params
 let leaves = await Leave.find({employeeId: id})
-if(!leaves){
+if(!leaves || leaves.length === 0){
     const employee = await Employee.findOne({userId: id})
     leaves = await Leave.find({employeeId: employee._id})
 }

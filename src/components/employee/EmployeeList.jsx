@@ -24,7 +24,7 @@ const EmployeeList = () => {
       sno: sno++,
       name: emp.userId.name,
       emp_designation: emp.emp_designation,
-      dep_name: emp.emp_dep.dep_name,
+      dep_name: emp.emp_dep ? emp.emp_dep.dep_name : 'N/A',
       profileImage: (
        <img
         width={40}

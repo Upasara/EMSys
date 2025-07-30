@@ -68,7 +68,14 @@ const AdminSidebar = () => {
      <GiMoneyStack />
      <span>Salary</span>
     </NavLink>
-    <NavLink to='/admin-dashboard'>
+    <NavLink
+     to='/admin-dashboard/setting'
+     className={({ isActive }) =>
+      `${
+       isActive ? 'bg-primaryDark shadow-md ' : ' '
+      }flex items-center space-x-4  py-3 px-4 rounded-md `
+     }
+    >
      <LuSettings2 />
      <span>Settings</span>
     </NavLink>

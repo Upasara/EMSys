@@ -13,52 +13,51 @@ const DepartmentList = () => {
 
  const [filteredDepartments, setFilteredDepartments] = useState([]);
 
- const onDepartmentDelete = (id) => {
-  const data = departments.filter((dep) => dep._id !== id);
-  setDepartments(data);
+ const onDepartmentDelete = () => {
+  fetchDepartments();
  };
 
+ const fetchDepartments = async () => {
+  setDepLoading(true);
+
+  try {
+   const response = await axios.get('http://localhost:5000/api/department', {
+    /* get request includes n authorization header with a token retirieved from localstorage,
+    to ensure that only authenticated user can access the data.  */
+    headers: {
+     Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+   });
+   if (response.data.success) {
+    let sno = 1;
+    const data = await response.data.departments.map((dep) => ({
+     _id: dep._id,
+     sno: sno++,
+     dep_name: dep.dep_name,
+     dep_manager: dep.dep_manager,
+     dep_email: dep.dep_email,
+     dep_des: dep.dep_des,
+     actions: (
+      <DepartmentButtons
+       DepID={dep._id}
+       onDepartmentDelete={onDepartmentDelete}
+      />
+     ),
+    }));
+    setDepartments(data);
+    setFilteredDepartments(data);
+   }
+  } catch (error) {
+   if (error.response && !error.response.data.success) {
+    alert(error.response.data.error);
+   }
+  } finally {
+   setDepLoading(false);
+  }
+ };
  /* userEffect Hook - used to fecth department dta when the component is mounted. 
     this ensures the data is loaded only once whe the component is rendered */
  useEffect(() => {
-  const fetchDepartments = async () => {
-   setDepLoading(true);
-
-   try {
-    const response = await axios.get('http://localhost:5000/api/department', {
-     /* get request includes n authorization header with a token retirieved from localstorage,
-    to ensure that only authenticated user can access the data.  */
-     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-     },
-    });
-    if (response.data.success) {
-     let sno = 1;
-     const data = await response.data.departments.map((dep) => ({
-      _id: dep._id,
-      sno: sno++,
-      dep_name: dep.dep_name,
-      dep_manager: dep.dep_manager,
-      dep_email: dep.dep_email,
-      dep_des: dep.dep_des,
-      actions: (
-       <DepartmentButtons
-        DepID={dep._id}
-        onDepartmentDelete={onDepartmentDelete}
-       />
-      ),
-     }));
-     setDepartments(data);
-     setFilteredDepartments(data);
-    }
-   } catch (error) {
-    if (error.response && !error.response.data.success) {
-     alert(error.response.data.error);
-    }
-   } finally {
-    setDepLoading(false);
-   }
-  };
   fetchDepartments();
  }, []);
 

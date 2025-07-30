@@ -95,14 +95,17 @@ function App() {
      ></Route>
      {/* view leave route */}
      <Route path='/admin-dashboard/leaves' element={<LeaveTable />}></Route>
+     {/* leave details route */}
      <Route
       path='/admin-dashboard/leaves/:id'
       element={<LeaveDetails />}
      ></Route>
+     {/* employee leave route */}
      <Route
       path='/admin-dashboard/employees/leaves/:id'
       element={<LeaveList />}
      ></Route>
+     <Route path='/admin-dashboard/setting' element={<Settings />}></Route>
     </Route>
     {/*End of Admin Dashboard route */}
 
@@ -128,7 +131,10 @@ function App() {
      ></Route>
 
      {/* employee leave route */}
-     <Route path='/employee-dashboard/leaves' element={<LeaveList />}></Route>
+     <Route
+      path='/employee-dashboard/leaves/:id'
+      element={<LeaveList />}
+     ></Route>
 
      {/* employee leave route */}
      <Route path='/employee-dashboard/add-leave' element={<AddLeave />}></Route>

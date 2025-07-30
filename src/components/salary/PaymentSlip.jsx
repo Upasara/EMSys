@@ -100,7 +100,9 @@ const PaymentSlip = () => {
      <div className='mr-4'>
       Department :{' '}
       <span className='font-sans font-medium'>
-       {salaryDetails.sal_emp_id?.emp_dep.dep_des}
+       {salaryDetails.sal_emp_id?.emp_dep
+        ? salaryDetails.sal_emp_id.emp_dep.dep_des
+        : 'N/A'}
       </span>
      </div>
      <div>

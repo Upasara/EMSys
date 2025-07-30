@@ -83,7 +83,9 @@ const ViewEmployee = () => {
         </div>
         <div className='flex space-x-3 mb-5'>
          <p className='text-lg font-bold'>Department : </p>
-         <p className='font-medium'>{employee.emp_dep?.dep_name}</p>
+         <p className='font-medium'>
+          {employee.emp_dep?.dep_name ? employee.emp_dep?.dep_name : 'N/A'}
+         </p>
         </div>
         <div className='flex space-x-3 mb-5'>
          <p className='text-lg font-bold'>Company : </p>

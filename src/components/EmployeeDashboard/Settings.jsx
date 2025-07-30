@@ -35,7 +35,9 @@ const Settings = () => {
       },
      }
     );
-    if (response.data.success) {
+    if (response.data.success && user.role === 'admin') {
+     navigate('/admin-dashboard');
+    } else {
      navigate('/employee-dashboard');
     }
    } catch (error) {

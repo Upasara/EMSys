@@ -76,7 +76,9 @@ const LeaveDetails = () => {
        <div className='flex space-x-3 mb-5'>
         <p className='text-lg font-bold'>Department : </p>
         <p className='font-medium'>
-         {leaveDetails.employeeId.emp_dep.dep_name}
+         {leaveDetails.employeeId.emp_dep
+          ? leaveDetails.employeeId.emp_dep.dep_name
+          : 'N/A'}
         </p>
        </div>
        <div className='flex space-x-3 mb-5'>

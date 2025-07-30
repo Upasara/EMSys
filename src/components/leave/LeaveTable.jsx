@@ -23,7 +23,9 @@ const LeaveTable = () => {
      sno: sno++,
      employeeId: leave.employeeId.emp_id,
      name: leave.employeeId.userId.name,
-     dep_name: leave.employeeId.emp_dep.dep_name,
+     dep_name: leave.employeeId.emp_dep
+      ? leave.employeeId.emp_dep.dep_name
+      : 'N/A',
      leave_type: leave.leave_type,
      days: leave.days,
      status: leave.status,
