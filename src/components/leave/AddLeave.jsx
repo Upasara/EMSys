@@ -53,7 +53,7 @@ const AddLeave = () => {
     }
    );
    if (response.data.success) {
-    navigate('/employee-dashboard/leaves');
+    navigate(`/employee-dashboard/leaves/${user._id}`);
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
@@ -206,7 +206,7 @@ const AddLeave = () => {
       Submit Leave
      </button>
      <Link
-      to='/employee-dashboard/leaves'
+      to={`/employee-dashboard/leaves/${user._id}`}
       className='bg-red-700 py-1.5 w-1/2 text-center rounded-md text-white hover:bg-red-600 transition'
      >
       Cancel
