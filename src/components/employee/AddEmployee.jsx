@@ -473,6 +473,18 @@ const AddEmployee = () => {
         className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
        />
       </div>
+
+      {/* festival advance */}
+      <div>
+       <label className='block text-primaryText'>festival Advance</label>
+       <input
+        type='number'
+        name='festival_advance'
+        placeholder='Rs. 0'
+        onChange={handleChange}
+        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+       />
+      </div>
      </div>
      {/*------------------------------------bank details------------------------------------------------------------------ */}
      <div className='w-full h-0.5 bg-gray-300 mb-2 mt-5'></div>

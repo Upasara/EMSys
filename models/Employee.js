@@ -24,6 +24,7 @@ const employeeSchema = new Schema({
     emp_allowance : { type: Number, default: 0 },
     staff_loan : { type: Number, default: 0 },
     stamp_duty : { type: Number, default: 0 },
+    festival_advance : {type : Number, default: 0},
     bank_name:{type: String},
     bank_branch:{type: String},
     account_number : {type: Number},

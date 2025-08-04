@@ -12,6 +12,8 @@ const AddSalary = () => {
   travelling: 0,
   over_time: 0,
   other_allowances: 0,
+  no_pay_days: 0,
+  no_pay_amount: 0,
   epf8: 0,
   epf12: 0,
   etf3: 0,
@@ -19,6 +21,7 @@ const AddSalary = () => {
   stamp_duty: 0,
   festival_advance: 0,
   deductions: 0,
+  tax: 0,
   gross_salary: 0,
   total_deductions: 0,
   net_salary: 0,
@@ -48,28 +51,56 @@ const AddSalary = () => {
    const updatedData = { ...prevData, [name]: value };
 
    //gross salary calculation
-   const basicSalary = parseInt(updatedData.basic_salary) || 0;
-   const allowances = parseInt(updatedData.allowances) || 0;
-   const travelling = parseInt(updatedData.travelling) || 0;
-   const overTime = parseInt(updatedData.over_time) || 0;
-   const otherAllowances = parseInt(updatedData.other_allowances) || 0;
-
-   updatedData.gross_salary =
-    basicSalary + allowances + travelling + overTime + otherAllowances;
+   const basicSalary = parseFloat(updatedData.basic_salary) || 0;
+   const allowances = parseFloat(updatedData.allowances) || 0;
+   const travelling = parseFloat(updatedData.travelling) || 0;
+   const overTime = parseFloat(updatedData.over_time) || 0;
+   const otherAllowances = parseFloat(updatedData.other_allowances) || 0;
 
    // total deductions
-   const epf8 = parseInt(updatedData.epf8) || 0; // Assuming epf8 is already calculated
-   const deductions = parseInt(updatedData.deductions) || 0;
-   const staffLoan = parseInt(updatedData.staff_loan) || 0;
-   const stampDuty = parseInt(updatedData.stamp_duty) || 0;
-   const festivalAdvance = parseInt(updatedData.festival_advance) || 0;
+   const deductions = parseFloat(updatedData.deductions) || 0;
+   const staffLoan = parseFloat(updatedData.staff_loan) || 0;
+   const stampDuty = parseFloat(updatedData.stamp_duty) || 0;
+   const festivalAdvance = parseFloat(updatedData.festival_advance) || 0;
+   const noPayDays = parseFloat(updatedData.no_pay_days) || 0;
+   const tax = parseFloat(updatedData.tax) || 0;
 
-   updatedData.total_deductions =
-    epf8 + deductions + staffLoan + stampDuty + festivalAdvance;
+   let noPayAmount = 0;
+   let newBasicSalary = basicSalary;
 
-   updatedData.net_salary =
-    updatedData.gross_salary - updatedData.total_deductions;
-   return updatedData;
+   if (noPayDays > 0) {
+    noPayAmount = ((basicSalary + allowances) / 30) * noPayDays;
+    newBasicSalary = basicSalary - (basicSalary / 30) * noPayDays;
+   }
+
+   const epf8 = parseFloat((newBasicSalary * 0.08).toFixed(2));
+   const epf12 = parseFloat((newBasicSalary * 0.12).toFixed(2));
+   const etf3 = parseFloat((newBasicSalary * 0.03).toFixed(2));
+
+   // Calculate Gross Salary
+   const grossSalary =
+    basicSalary +
+    allowances +
+    travelling +
+    overTime +
+    otherAllowances -
+    noPayAmount;
+
+   const totalDeductions =
+    epf8 + deductions + staffLoan + stampDuty + festivalAdvance + tax;
+
+   const netSalary = grossSalary - totalDeductions;
+
+   return {
+    ...updatedData,
+    epf8,
+    epf12,
+    etf3,
+    gross_salary: grossSalary,
+    total_deductions: totalDeductions,
+    net_salary: netSalary,
+    no_pay_amount: noPayAmount,
+   };
   });
  };
 
@@ -82,10 +113,11 @@ const AddSalary = () => {
 
   if (selectedEmployee) {
    setSalary((prevData) => {
-    const basicSalary = parseInt(selectedEmployee.emp_salary || 0);
-    const allowances = parseInt(selectedEmployee.emp_allowance || 0);
-    const staffLoan = parseInt(selectedEmployee.staff_loan || 0);
-    const stampDuty = parseInt(selectedEmployee.stamp_duty || 0);
+    const basicSalary = parseFloat(selectedEmployee.emp_salary || 0);
+    const allowances = parseFloat(selectedEmployee.emp_allowance || 0);
+    const staffLoan = parseFloat(selectedEmployee.staff_loan || 0);
+    const stampDuty = parseFloat(selectedEmployee.stamp_duty || 0);
+    const festivalAdvance = parseFloat(selectedEmployee.festival_advance || 0);
     const epf8 = basicSalary * 0.08; // Assuming EPF 8% is calculated from basic salary
     const epf12 = basicSalary * 0.12; // Assuming EPF 12% is calculated from basic salary
     const etf3 = basicSalary * 0.03; // Assuming ETF 3% is calculated from basic salary
@@ -100,6 +132,7 @@ const AddSalary = () => {
      allowances: allowances,
      staff_loan: staffLoan,
      stamp_duty: stampDuty,
+     festival_advance: festivalAdvance,
      epf8: epf8,
      gross_salary: grossSalary,
      total_deductions: totalDeductions,
@@ -211,16 +244,28 @@ const AddSalary = () => {
          />
         </div>
 
-        {/* staff loan */}
-        <div>
-         <label className='block text-primaryText'>Staff Loan</label>
-         <input
-          type='number'
-          name='staff_loan'
-          onChange={handleChange}
-          value={salary.staff_loan || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
-         />
+        {/* no pay */}
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4  rounded-2xl '>
+         <div>
+          <label className='block text-primaryText'>No Pay Days</label>
+          <input
+           type='number'
+           name='no_pay_days'
+           onChange={handleChange}
+           value={salary.no_pay_days || ''}
+           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          />
+         </div>
+         <div>
+          <label className='block text-primaryText'>No Pay Amount</label>
+          <input
+           type='number'
+           name='no_pay_amount'
+           onChange={handleChange}
+           value={salary.no_pay_amount || ''}
+           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          />
+         </div>
         </div>
 
         {/* allowances */}
@@ -235,14 +280,14 @@ const AddSalary = () => {
          />
         </div>
 
-        {/* festival advance */}
+        {/* staff loan */}
         <div>
-         <label className='block text-primaryText'>Festival Advance</label>
+         <label className='block text-primaryText'>Staff Loan</label>
          <input
           type='number'
-          name='festival_advance'
+          name='staff_loan'
           onChange={handleChange}
-          value={salary.festival_advance || ''}
+          value={salary.staff_loan || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
          />
         </div>
@@ -261,14 +306,14 @@ const AddSalary = () => {
          />
         </div>
 
-        {/* deduction */}
+        {/* festival advance */}
         <div>
-         <label className='block text-primaryText'>Other Deductions</label>
+         <label className='block text-primaryText'>Festival Advance</label>
          <input
           type='number'
-          name='deductions'
+          name='festival_advance'
           onChange={handleChange}
-          value={salary.deductions || ''}
+          value={salary.festival_advance || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
          />
         </div>
@@ -285,14 +330,14 @@ const AddSalary = () => {
          />
         </div>
 
-        {/* EPF 8% */}
+        {/* deduction */}
         <div>
-         <label className='block text-primaryText'>EPF 8%</label>
+         <label className='block text-primaryText'>Other Deductions</label>
          <input
           type='number'
-          name='epf8'
+          name='deductions'
           onChange={handleChange}
-          value={salary.epf8 || ''}
+          value={salary.deductions || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
          />
         </div>
@@ -309,6 +354,21 @@ const AddSalary = () => {
          />
         </div>
 
+        {/* EPF 8% */}
+        <div>
+         <label className='block text-primaryText'>EPF 8%</label>
+         <input
+          type='number'
+          name='epf8'
+          onChange={handleChange}
+          value={salary.epf8 || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+         />
+        </div>
+
+        {/* empty */}
+        <div></div>
+
         {/* stamp duty */}
         <div>
          <label className='block text-primaryText'>Stamp Duty</label>
@@ -317,6 +377,33 @@ const AddSalary = () => {
           name='stamp_duty'
           onChange={handleChange}
           value={salary.stamp_duty || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+         />
+        </div>
+
+        {/* gross salary (EPF) */}
+        <div>
+         <label className='block text-primaryText font-medium'>
+          Gross Salary
+         </label>
+         <input
+          type='number'
+          name='gross_salary'
+          onChange={handleChange}
+          value={salary.gross_salary || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 font-medium'
+          disabled
+         />
+        </div>
+
+        {/* tax */}
+        <div>
+         <label className='block text-primaryText'>Tax</label>
+         <input
+          type='number'
+          name='tax'
+          onChange={handleChange}
+          value={salary.tax || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
          />
         </div>

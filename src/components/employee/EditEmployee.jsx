@@ -27,6 +27,7 @@ const EditEmployee = () => {
   emp_allowance: 0, // default value for allowance
   staff_loan: 0,
   stamp_duty: 0,
+  festival_advance: 0,
   bank_name: '',
   bank_branch: '',
   account_number: '',
@@ -507,6 +508,18 @@ const EditEmployee = () => {
           name='stamp_duty'
           onChange={handleChange}
           value={employee.stamp_duty || ''}
+          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+         />
+        </div>
+
+        {/* festival advance */}
+        <div>
+         <label className='block text-primaryText'>Festival Advance</label>
+         <input
+          type='number'
+          name='festival_advance'
+          onChange={handleChange}
+          value={employee.festival_advance || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
          />
         </div>

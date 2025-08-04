@@ -153,6 +153,10 @@ const ViewEmployee = () => {
          <p className='text-lg font-bold'>Stamp Duty : </p>
          <p className='font-medium'>{employee.stamp_duty}</p>
         </div>
+        <div className='flex space-x-3 mb-5'>
+         <p className='text-lg font-bold'>Festival Advance : </p>
+         <p className='font-medium'>{employee.festival_advance}</p>
+        </div>
         <div className='w-full h-0.5 bg-black mb-2'></div>
         <div className='flex space-x-3 mb-5'>
          <p className='text-lg font-bold'>Bank Name : </p>

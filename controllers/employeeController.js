@@ -40,6 +40,7 @@ const addEmployee = async (req, res) => {
       emp_allowance = 0, //default value for allowance
       staff_loan = 0, //default value for staff_loan
       stamp_duty = 0, //default value for stamp duty
+      festival_advance = 0,
       bank_name = '', //default value for bank name
       account_number = '', //default value for bank account
       bank_branch = '', //default value for bank branch
@@ -88,6 +89,7 @@ const addEmployee = async (req, res) => {
       emp_allowance,
       staff_loan,
       stamp_duty,
+      festival_advance,
       bank_name,
       bank_branch,
       account_number
@@ -170,6 +172,7 @@ const updateEmployee = async (req, res) => {
       emp_allowance = 0, //default value for allowance
       staff_loan = 0,
       stamp_duty = 0, //default value for stamp duty
+      festival_advance = 0,
       bank_name,
       bank_branch,
       account_number,
@@ -223,6 +226,7 @@ const updateEmployee = async (req, res) => {
         emp_allowance,
         staff_loan,
         stamp_duty,
+        festival_advance,
         bank_name,
         bank_branch,
         account_number
