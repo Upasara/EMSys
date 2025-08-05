@@ -61,7 +61,7 @@ const PaymentSlip = () => {
      Back
     </button>
    </div>
-   <div className='p-10 pt-7 bg-white rounded-lg max-w-xl mx-auto shadow-lg font-serif print:shadow-none'>
+   <div className='p-10 pb-5 pt-7 bg-white rounded-lg max-w-xl mx-auto shadow-lg font-serif print:shadow-none'>
     <div className=' grid grid-cols-2 font-serif tracking-wider'>
      <div>
       <h2 className='text-xl font-semibold'>Salary Slip</h2>
@@ -72,7 +72,7 @@ const PaymentSlip = () => {
       <span className='text-xs'>94, York Street, Colombo 01</span>
      </div>
     </div>
-    <div className='mt-6 text-sm'>
+    <div className='mt-4 text-sm'>
      Employee Name :{' '}
      <span className='font-sans font-medium'>
       {' '}
@@ -114,7 +114,7 @@ const PaymentSlip = () => {
     </div>
 
     {/* earnings table starts here */}
-    <div className='mt-5 pr-3 pl-3'>
+    <div className='mt-4 pr-3 pl-3'>
      <table className='w-full  border-2 border-black  '>
       <thead className='font-semibold text-sm'>
        <tr className='border-2 border-black bg-gray-200'>
@@ -152,6 +152,12 @@ const PaymentSlip = () => {
         </td>
        </tr>
        <tr className='border-b border-t-2 border-black font-semibold bg-gray-100'>
+        <td className='text-left pl-2'>Gross Salary (EPF)</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.gross_salary_epf}
+        </td>
+       </tr>
+       <tr className='border-b border-t-2 border-black font-semibold bg-gray-100'>
         <td className='text-left pl-2'>Gross Salary</td>
         <td className='text-right pr-2 font-mono'>
          {salaryDetails.gross_salary}
@@ -171,6 +177,12 @@ const PaymentSlip = () => {
        </tr>
       </thead>
       <tbody className='text-sm'>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>No Pay</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.no_pay_amount} ({salaryDetails.no_pay_days} days)
+        </td>
+       </tr>
        <tr className='border-b border-black'>
         <td className='text-left pl-2'>EPF</td>
         <td className='text-right pr-2 font-mono'>{salaryDetails.epf8}</td>
@@ -199,6 +211,10 @@ const PaymentSlip = () => {
          {salaryDetails.stamp_duty}
         </td>
        </tr>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>Tax</td>
+        <td className='text-right pr-2 font-mono'>{salaryDetails.tax}</td>
+       </tr>
        <tr className='border-b border-t-2 border-black font-semibold bg-gray-100'>
         <td className='text-left pl-2'>Total Deductions</td>
         <td className='text-right pr-2 font-mono'>
@@ -208,7 +224,7 @@ const PaymentSlip = () => {
        <tr className='border-2 border-black font-bold bg-gray-200 text-base'>
         <td className='text-right pl-2'>Net Salary</td>
         <td className='text-right pr-2 font-mono'>
-         {salaryDetails.net_salary}.00
+         {salaryDetails.net_salary}
         </td>
        </tr>
       </tbody>
@@ -216,7 +232,7 @@ const PaymentSlip = () => {
     </div>
 
     {/* salary in words */}
-    <div className='text-center mt-6 text-base'>
+    <div className='text-center mt-4 text-base'>
      <p className='font-mono'>{salaryDetails.net_salary || 'N/A'}</p>
      <p className='font-serif'>
       {typeof salaryDetails.net_salary === 'number'
@@ -226,7 +242,7 @@ const PaymentSlip = () => {
     </div>
 
     {/* signature section */}
-    <div className='grid grid-cols-2 mt-16 text-sm'>
+    <div className='grid grid-cols-2 mt-10 text-sm'>
      <div className='flex flex-col items-center gap-y-1'>
       <div className='w-3/4 border-t border-gray-400' />
 

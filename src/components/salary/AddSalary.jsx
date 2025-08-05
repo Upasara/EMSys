@@ -12,8 +12,6 @@ const AddSalary = () => {
   travelling: 0,
   over_time: 0,
   other_allowances: 0,
-  no_pay_days: 0,
-  no_pay_amount: 0,
   epf8: 0,
   epf12: 0,
   etf3: 0,
@@ -21,7 +19,10 @@ const AddSalary = () => {
   stamp_duty: 0,
   festival_advance: 0,
   deductions: 0,
+  no_pay_days: 0,
+  no_pay_amount: 0,
   tax: 0,
+  gross_salary_epf: 0,
   gross_salary: 0,
   total_deductions: 0,
   net_salary: 0,
@@ -77,6 +78,8 @@ const AddSalary = () => {
    const epf12 = parseFloat((newBasicSalary * 0.12).toFixed(2));
    const etf3 = parseFloat((newBasicSalary * 0.03).toFixed(2));
 
+   const gross_salary_epf = parseFloat(newBasicSalary).toFixed(2);
+
    // Calculate Gross Salary
    const grossSalary =
     basicSalary +
@@ -96,6 +99,7 @@ const AddSalary = () => {
     epf8,
     epf12,
     etf3,
+    gross_salary_epf: gross_salary_epf,
     gross_salary: grossSalary,
     total_deductions: totalDeductions,
     net_salary: netSalary,
@@ -384,13 +388,13 @@ const AddSalary = () => {
         {/* gross salary (EPF) */}
         <div>
          <label className='block text-primaryText font-medium'>
-          Gross Salary
+          Gross Salary (EPF)
          </label>
          <input
           type='number'
-          name='gross_salary'
+          name='gross_salary_epf'
           onChange={handleChange}
-          value={salary.gross_salary || ''}
+          value={salary.gross_salary_epf || ''}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 font-medium'
           disabled
          />

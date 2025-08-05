@@ -156,6 +156,12 @@ const PaymentSlip = () => {
         </td>
        </tr>
        <tr className='border-b border-t-2 border-black font-semibold bg-gray-100'>
+        <td className='text-left pl-2'>Gross Salary (EPF)</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.gross_salary_epf}
+        </td>
+       </tr>
+       <tr className='border-b border-t-2 border-black font-semibold bg-gray-100'>
         <td className='text-left pl-2'>Gross Salary</td>
         <td className='text-right pr-2 font-mono'>
          {salaryDetails.gross_salary}
@@ -175,6 +181,12 @@ const PaymentSlip = () => {
        </tr>
       </thead>
       <tbody>
+       <tr className='border-b border-black'>
+        <td className='text-left pl-2'>No Pay</td>
+        <td className='text-right pr-2 font-mono'>
+         {salaryDetails.no_pay_days} days {salaryDetails.no_pay_amount}
+        </td>
+       </tr>
        <tr className='border-b border-black'>
         <td className='text-left pl-2'>EPF</td>
         <td className='text-right pr-2 font-mono'>{salaryDetails.epf8}</td>
