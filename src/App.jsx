@@ -22,6 +22,7 @@ import PrintableView from './components/salary/PrintableView.jsx';
 import Settings from './components/EmployeeDashboard/Settings.jsx';
 import LeaveTable from './components/leave/LeaveTable.jsx';
 import LeaveDetails from './components/leave/LeaveDetails.jsx';
+import ExportSalary from './components/salary/ExportSalary.jsx';
 
 function App() {
  return (
@@ -87,6 +88,12 @@ function App() {
 
      {/* Add salary route */}
      <Route path='/admin-dashboard/salary/add' element={<AddSalary />}></Route>
+
+     {/* export salary route */}
+     <Route
+      path='/admin-dashboard/salary/export'
+      element={<ExportSalary />}
+     ></Route>
 
      {/* view salary route */}
      <Route

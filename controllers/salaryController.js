@@ -15,6 +15,8 @@ const addSalary = async (req, res) => {
         over_time,
         other_allowances,
         epf8,
+        epf12,
+        etf3,
         staff_loan,
         stamp_duty,
         festival_advance,
@@ -39,6 +41,8 @@ const newSalary = new Salary({
     over_time,
     other_allowances,
     epf8,
+    epf12,
+    etf3,
     staff_loan,
     stamp_duty,
     festival_advance,
@@ -91,4 +95,13 @@ const getSalaryDetails = async (req, res) => {
         return res.status(500).json({success : false, error : "Salary details get server error"})
     }
 }
-export{addSalary, getSalary, getSalaryDetails}
+
+const getSalaryExport = async (req, res) => {
+    try{
+
+    }catch(error){
+        console.error("Error fetching salary export", error)
+        return res.status(500).json({success : false, error : "Salary export get server error"})
+    }
+}
+export{addSalary, getSalary, getSalaryDetails, getSalaryExport}

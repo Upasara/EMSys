@@ -10,6 +10,8 @@ const salarySchema = new Schema({
     over_time : {type : Number},
     other_allowances : {type : Number},
     epf8 : {type : Number},
+    epf12: {type:Number},
+    etf3 : {type : Number},
     staff_loan : {type : Number},
     stamp_duty : {type : Number},
     festival_advance : {type : Number},

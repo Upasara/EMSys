@@ -179,7 +179,15 @@ const AddSalary = () => {
   <>
    {departments ? (
     <div className='bg-slate-100'>
-     <div className='max-w-4xl mx-auto bg-white shadow-lg rounded-md mt-10 p-8 '>
+     <div className='mr-10 mt-7 flex justify-end'>
+      <Link
+       to='/admin-dashboard/salary/export'
+       className='bg-green-700 text-white p-3 hover:bg-green-600 transition rounded-md '
+      >
+       Export Salary
+      </Link>
+     </div>
+     <div className='max-w-4xl mx-auto bg-white shadow-lg rounded-md mt-7 p-8 '>
       <h3 className='text-2xl text-blue-800 font-medium text-center mb-10 mt-5'>
        Add Salary
       </h3>
