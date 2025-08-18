@@ -1,4 +1,3 @@
-import path from "path";
 import Salary from "../models/Salary.js"
 import Employee from "../models/Employee.js"
 
@@ -96,12 +95,20 @@ const getSalaryDetails = async (req, res) => {
     }
 }
 
-const getSalaryExport = async (req, res) => {
-    try{
-
-    }catch(error){
-        console.error("Error fetching salary export", error)
-        return res.status(500).json({success : false, error : "Salary export get server error"})
+const getSalaryByMonth = async (req, res) => {
+try{
+    const {month} = req.body
+    
+    if(!month){
+        return res.status(400).json({success : false, error : "Please select a month"})
     }
+
+
+}catch(error){
+    console.error("Error fetching salary by month : ", error)
+    return res.status(500).json({success : false, error : "Salary by month server error"})
 }
-export{addSalary, getSalary, getSalaryDetails, getSalaryExport}
+}
+
+
+export{addSalary, getSalary, getSalaryDetails, getSalaryByMonth  }

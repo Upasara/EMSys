@@ -234,7 +234,7 @@ const AddSalary = () => {
         <div>
          <label className='block text-primaryText'>Pay Date</label>
          <input
-          type='date'
+          type='month'
           name='pay_date'
           onChange={handleChange}
           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'

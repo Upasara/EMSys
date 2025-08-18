@@ -23,7 +23,7 @@ const salarySchema = new Schema({
     gross_salary : {type : Number, required : true},
     total_deductions : {type : Number, required : true},
     net_salary : {type : Number, required : true},
-    pay_date : {type : Date, required : true},
+    pay_date : {type: Date , required : true},
     createdAt : {type : Date, default: Date.now},
     updatedAt : {type : Date, default: Date.now}
 })
