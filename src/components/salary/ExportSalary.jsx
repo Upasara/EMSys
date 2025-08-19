@@ -56,6 +56,29 @@ const ExportSalary = () => {
    'Bank Name': salExport.sal_emp_id.bank_name,
    'Bank Branch': salExport.sal_emp_id.bank_branch,
    'Account No.': salExport.sal_emp_id.account_number,
+   'Basic Salary': salExport.basic_salary,
+   'Tavelling Allowance': salExport.allowances,
+   'Tavelling Reimbursement': salExport.travelling,
+   'Over Time': salExport.over_time,
+   'Other Allowances': salExport.other_allowances,
+   'No Pay Days': salExport.no_pay_days,
+   'No Pay Amount': salExport.no_pay_amount,
+   'Staff Loan': salExport.staff_loan,
+   'Stamp Duty': salExport.stamp_duty,
+   'Festival Advance': salExport.festival_advance,
+   'Other Dections': salExport.deductions,
+   'Gross Salary (EPF)': salExport.gross_salary_epf,
+   'EPF 8%': salExport.epf8,
+   'EPF 12%': salExport.epf12,
+   'ETF 3%': salExport.etf3,
+   Tax: salExport.tax,
+   'Gross Salary': salExport.gross_salary,
+   'Total Deductions': salExport.total_deductions,
+   'Net Salary': salExport.net_salary,
+   'Pay Month': new Date(salExport.pay_date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+   }),
   }));
 
   //create a new workbook and worksheet
@@ -65,7 +88,32 @@ const ExportSalary = () => {
   //set column widths
   worksheet['!cols'] = [
    { wch: 15 }, // Employee ID
-   { wch: 20 }, // Name
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
+   { wch: 15 },
   ];
   XLSX.utils.book_append_sheet(workbook, worksheet, 'Salaries');
 

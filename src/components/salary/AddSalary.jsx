@@ -70,7 +70,9 @@ const AddSalary = () => {
    let newBasicSalary = basicSalary;
 
    if (noPayDays > 0) {
-    noPayAmount = ((basicSalary + allowances) / 30) * noPayDays;
+    noPayAmount = parseFloat(
+     ((basicSalary + allowances) / 30) * noPayDays
+    ).toFixed(2);
     newBasicSalary = basicSalary - (basicSalary / 30) * noPayDays;
    }
 
@@ -138,6 +140,7 @@ const AddSalary = () => {
      stamp_duty: stampDuty,
      festival_advance: festivalAdvance,
      epf8: epf8,
+     gross_salary_epf: grossSalary,
      gross_salary: grossSalary,
      total_deductions: totalDeductions,
      net_salary: grossSalary - totalDeductions,
