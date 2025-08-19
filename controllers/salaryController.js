@@ -1,5 +1,6 @@
 import Salary from "../models/Salary.js"
 import Employee from "../models/Employee.js"
+import path from "path";
 
 
 
@@ -103,6 +104,28 @@ try{
         return res.status(400).json({success : false, error : "Please select a month"})
     }
 
+    const startDate = new Date(`${month}-01T00:00:00.000Z`)
+    const endDate = new Date(startDate)
+    endDate.setMonth(endDate.getMonth() + 1)
+
+    const salaries = await Salary.find({
+        pay_date : {$gte: startDate, $lt: endDate},
+    }).populate({
+        path: "sal_emp_id",
+        populate: [
+            {
+                path: "emp_dep",
+                select: "dep_name"
+            },
+            {
+                path    : "userId",
+                select  : "name"
+            }
+
+        ]
+    })
+
+    return res.status(200).json({success : true, salaries})
 
 }catch(error){
     console.error("Error fetching salary by month : ", error)
