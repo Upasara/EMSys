@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import path from 'path';
 import Department from '../models/Department.js';
 import { Await } from 'react-router-dom';
+import { error } from 'console';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -119,7 +120,7 @@ const getEmployees = async (req, res) => {
     //{password:0} to not show password in response
     const employees = await Employee.find()
       .populate('userId', { password: 0 })
-      .populate('emp_dep');
+      .populate('emp_dep').sort({isActive: -1, createdAt: -1})//load active employees first and then by creating date
     return res.status(200).json({ success: true, employees });
   } catch (error) {
     return res
@@ -266,6 +267,39 @@ const getEmployeesByDepartmentId = async (req, res) => {
   }
 };
 
+const deactivateEmployee = async (req, res) => {
+  try{
+    const {id} = req.params
+
+    const employee = await Employee.findByIdAndUpdate(
+      id,
+      {isActive: false},
+      {new: true}
+    )
+
+    if(!employee){
+      return res.status(404).json({success: false, error: "Employee not found..."})
+    }
+
+    res.status(200).json({success: true, message: "Employee deactivated successfully..."})
+  }catch(error){
+    return res.status(500).json({success : false, error : "Employee deactivation error..."})
+  }
+}
+
+const activateEmployee = async (req, res) => {
+  try{
+    const {id} = req.params
+    const employee = await Employee.findByIdAndUpdate( id, {isActive : true}, {new : true} )
+    if(!employee){
+      return res.status(4040).json({success : false, error:  " Employee not found..."})
+    }
+    res.status(200).json({success : true, message : "Employee activated successfully..."})
+  }catch(error){
+    return res.status(500).json({success : false, error : "Employee activation error..."})
+  }
+}
+
 export {
   addEmployee,
   upload,
@@ -273,4 +307,6 @@ export {
   getEmployee,
   updateEmployee,
   getEmployeesByDepartmentId,
+  deactivateEmployee,
+  activateEmployee
 };

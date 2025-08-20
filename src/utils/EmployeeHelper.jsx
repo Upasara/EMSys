@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const columns = [
@@ -40,6 +41,15 @@ export const columns = [
   selector: (row) => row.actions,
   responsive: true,
   center: 'true',
+ },
+];
+
+export const conditionalRowStyles = [
+ {
+  when: (row) => !row.isActive, // Apply style when isActive is false
+  style: {
+   opacity: 0.5,
+  },
  },
 ];
 
@@ -88,30 +98,144 @@ export const getEmployees = async (id) => {
  return employees;
 };
 
+export const fetchActiveStatus = async (id) => {
+ let isActive = true; // default value
+ try {
+  const response = await axios.get(`http://localhost:5000/api/employee/${id}`, {
+   headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`, // get request includes n authorization header with a token retirieved from localstorage,
+   },
+  });
+  if (response.data.success) {
+   isActive = response.data.employee.isActive;
+   console.log(isActive); // return employee active status
+  }
+ } catch (error) {
+  if (error.response && !error.response.data.success) {
+   alert(error.response.data.error);
+  }
+ }
+ return isActive;
+};
+
 export const EmployeeButtons = ({ Id }) => {
  const navigate = useNavigate();
+ const [isActive, setIsActive] = useState(true);
+ const [isLoading, setIsLoading] = useState(false);
+
+ //  fetch employee active status from database
+ useEffect(() => {
+  const fetchEmployeeStatus = async () => {
+   try {
+    const response = await axios.get(
+     `http://localhost:5000/api/employee/${Id}`,
+     {
+      headers: {
+       Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+     }
+    );
+    if (response.data.success) {
+     setIsActive(response.data.employee.isActive);
+    }
+   } catch (error) {
+    alert('Error fetching employee status. Please try again.');
+   }
+  };
+  fetchEmployeeStatus();
+ }, [Id]);
+
+ const handleToggleStatus = async () => {
+  try {
+   setIsLoading(true);
+   const endpoint = isActive
+    ? `http://localhost:5000/api/employee/deactivate/${Id}`
+    : `http://localhost:5000/api/employee/activate/${Id}`;
+
+   const response = await axios.put(endpoint, null, {
+    headers: {
+     Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+   });
+   if (response.data.success) {
+    alert(
+     isActive
+      ? 'Employee deactivated successfully'
+      : 'Employee activated successfully'
+    );
+    setIsActive(!isActive);
+   }
+  } catch (error) {
+   console.error(
+    isActive ? 'Error deactivating employee:' : 'Error activating employee:',
+    error
+   );
+   alert(
+    isActive
+     ? 'Error deactivating employee. Please try again.'
+     : 'Error activating employee. Please try again.'
+   );
+  } finally {
+   setIsLoading(false);
+  }
+ };
+
  return (
-  <div className='flex gap-2'>
+  <div className='flex gap-2 items-center'>
+   {/* view button */}
    <button
-    className='py-1 px-2 bg-green-500 text-white rounded'
+    className='py-1 px-2 bg-green-500 text-white rounded '
     onClick={() => navigate(`/admin-dashboard/employees/${Id}`)}
+    disabled={!isActive || isLoading}
    >
     View
    </button>
+   {/* edit button */}
    <button
     className='py-1 px-2  bg-orange-500 text-white rounded'
     onClick={() => navigate(`/admin-dashboard/employees/edit/${Id}`)}
+    disabled={!isActive || isLoading}
    >
     Edit
    </button>
+   {/* salary button */}
    <button
     className='py-1 px-2  bg-red-700 text-white rounded'
     onClick={() => navigate(`/admin-dashboard/employee/salary/${Id}`)}
+    disabled={!isActive || isLoading}
    >
     Salary
    </button>
-   <button className='py-1 px-2  bg-red-700 text-white rounded'
-   onClick={() => navigate(`/admin-dashboard/employees/leaves/${Id}`)}>Leave</button>
+   {/* leave button */}
+   <button
+    className='py-1 px-2  bg-red-700 text-white rounded '
+    onClick={() => navigate(`/admin-dashboard/employees/leaves/${Id}`)}
+    disabled={!isActive || isLoading}
+   >
+    Leave
+   </button>
+   {/* toggle switch */}
+   <label className='flex items-center cursor-pointer'>
+    <div className='relative'>
+     <input
+      type='checkbox'
+      checked={isActive}
+      onChange={handleToggleStatus}
+      disabled={isLoading}
+      className='sr-only'
+     />
+     <div
+      className={`block w-10 h-6 rounded-full ${
+       isActive ? 'bg-green-500' : 'bg-gray-300'
+      }`}
+     ></div>
+     <div
+      className={`dot absolute left-1 top-1 w-4 h-4 rounded-full transition ${
+       isActive ? 'bg-white translate-x-4' : 'bg-gray-500'
+      }`}
+     ></div>
+    </div>
+   </label>
   </div>
  );
 };

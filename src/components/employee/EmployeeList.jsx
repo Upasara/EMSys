@@ -1,7 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { columns, EmployeeButtons } from '../../utils/EmployeeHelper';
+import {
+ columns,
+ conditionalRowStyles,
+ EmployeeButtons,
+} from '../../utils/EmployeeHelper';
 import DataTable from 'react-data-table-component';
 
 const EmployeeList = () => {
@@ -25,6 +29,7 @@ const EmployeeList = () => {
       name: emp.userId.name,
       emp_designation: emp.emp_designation,
       dep_name: emp.emp_dep ? emp.emp_dep.dep_name : 'N/A',
+      isActive: emp.isActive,
       profileImage: (
        <img
         width={40}
@@ -34,6 +39,9 @@ const EmployeeList = () => {
       ),
       actions: <EmployeeButtons Id={emp._id} />,
      }));
+     const sortedEmployees = response.data.employees.sort((a, b) => {
+      return b.isActive - a.isActive;
+     });
      setEmployees(data);
      setFilteredEmployee(data);
     }
@@ -79,7 +87,12 @@ const EmployeeList = () => {
       </Link>
      </div>
      <div className='mt-10'>
-      <DataTable columns={columns} data={fileredEmployee} pagination />
+      <DataTable
+       columns={columns}
+       data={fileredEmployee}
+       conditionalRowStyles={conditionalRowStyles}
+       pagination
+      />
      </div>
     </div>
    )}

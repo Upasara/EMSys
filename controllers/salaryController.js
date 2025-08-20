@@ -68,7 +68,7 @@ return res.status(200).json({success : true})
 
 }
 
-const   getSalary = async (req,res) =>{
+const getSalary = async (req,res) =>{
     try{
         const {id} = req.params;
         
