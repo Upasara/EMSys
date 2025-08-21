@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import LoginImage from '../assets/images/login.png';
-import Logo from '../assets/images/logo.png';
+import LoginImage from '/login.png';
+import Logo from '/logo.png';
 import axios from 'axios';
 import { useAuth } from '../context/authContext';
 import { useNavigate } from 'react-router-dom';
@@ -52,14 +52,15 @@ const Login = () => {
 
  return (
   <>
-   <div className='flex items-center justify-center h-screen bg-slate-100 w-full'>
-    <div className='bg-white form-container overflow-hidden flex shadow-lg border rounded-lg w-11/12 max-w-screen-xl justify-between'>
-     <div className=' form-section w-1/2 px-24 py-12'>
-      <div className='logo-wrap flex justify-left gap-x-1 items-center'>
+   <div className='flex items-center justify-center min-h-screen bg-slate-100 w-full'>
+    <div className='bg-white form-container overflow-hidden flex flex-col md:flex-row  shadow-lg border rounded-lg w-full max-w-screen-xl justify-between'>
+     {/* left section */}
+     <div className=' form-section w-full md:w-1/2 px-8 md:px-20 py-8 order-2 md:order-1'>
+      <div className='logo-wrap flex gap-x-1 items-center'>
        <img className='w-8' src={Logo} alt='' />
        <span className='text-sm text-secondaryDark'>P E Mathew & Company</span>
       </div>
-      <h1 className='text-3xl font-semibold mt-6  text-primaryDark text-center'>
+      <h1 className='text-3xl font-semibold mt-10  text-primaryDark text-center'>
        LOGIN
       </h1>
 
@@ -70,13 +71,13 @@ const Login = () => {
         <input
          type='email'
          placeholder='Enter your email ...'
-         className='w-full px-2 py-2 border rounded-full focus:outline-none focus:shadow-md text-primaryText'
+         className='w-full px-2 py-2 border rounded-full focus:outline-none focus:shadow-md text-primaryText duration-300'
          onChange={(e) => setEmail(e.target.value)}
          required
         />
        </div>
        {/*password input */}
-       <div className='relative flex justify-between items-center gap-2 mb-6 w-full px-2 py-2 border rounded-full focus-within:shadow-md '>
+       <div className='relative flex justify-between items-center gap-2 mb-6 w-full px-2 py-2 border rounded-full focus-within:shadow-md duration-300'>
         <input
          type={visible ? 'text' : 'password'}
          placeholder='Enter your password ...'
@@ -93,29 +94,32 @@ const Login = () => {
        </div>
        {/*remember me & forgot password*/}
        <div className='mb-5 flex items-end justify-end'>
-        <label className='inline-flex items-center'>
+        <label className='inline-flex items-center text-secondaryDark text-sm'>
          <input
           type='checkbox'
           className='form-checkbox'
           checked={rememberMe}
           onChange={(e) => setRememberMe(e.target.checked)}
          />
-         <span className='ml-2 text-secondaryDark text-sm '> Remember Me</span>
+         <span className='ml-2  '> Remember Me</span>
         </label>
        </div>
+
        {/*button*/}
        <div className='mt-10'>
         <button
          type='submit'
-         className='relative group flex justify-center items-center gap-2 w-full bg-primaryDark text-stone-200 tracking-wide 
-         hover:tracking-widest text-lg py-2 rounded-xl hover:shadow-lg hover:text-white duration-300 overflow-hidden'
+         className='relative group flex justify-center items-center gap-2 w-full 
+         bg-primaryDark text-stone-200 tracking-wide hover:tracking-wider 
+         text-lg py-2 rounded-xl hover:shadow-lg hover:text-white duration-300 overflow-hidden'
         >
          <div
-          className='h-[100px] w-20 bg-gradient-to-r from-white/10 via-white/50 to-white-10 absolute -left-28 -rotate-45 
-            blur-sm group-hover:left-[150%] duration-700 group-hover:delay-100'
+          className='h-[100px] w-20 bg-gradient-to-r from-white/10 via-white/50 
+          to-white-10 absolute -left-28 -rotate-45 blur-sm group-hover:left-[150%] 
+          duration-700 group-hover:delay-100'
          ></div>
          Login
-         <FaArrowRightToBracket className='group-hover:translate-x-0 duration-300' />
+         <FaArrowRightToBracket className='group-hover:translate-x-3 duration-300' />
         </button>
        </div>
       </form>
@@ -123,17 +127,17 @@ const Login = () => {
       {error && <p className='text-red-500 mt-4'>{error}</p>}
      </div>
      {/* Other session */}
-     <div className='logo-section w-1/2 bg-primaryDark '>
+     <div className='logo-section w-full md:w-1/2 bg-[url("/loginbg.jpg")] bg-cover order-1 md:order-2'>
       <div className='image-wrap'>
        <img
-        className='mt-5 size-80 mx-auto  hover:-translate-y-2 duration-300'
+        className='mt-5 size-52 md:size-80 mx-auto md:max-w-sm  hover:-translate-y-1 duration-300'
         src={LoginImage}
         alt=''
        />
       </div>
       <div className='bottom-wrap text-center text-white'>
-       <h3 className='text-3xl font-bold mb-3'>EMSys</h3>
-       <p className='mb-8 text-md'>
+       <h3 className='text-2xl md:text-3xl font-bold mb-3'>EMSys</h3>
+       <p className='mb-8 text-sm md:text-base'>
         P.E. Mathew & Company - Employee Management System
        </p>
       </div>
