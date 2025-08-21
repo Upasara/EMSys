@@ -184,7 +184,9 @@ export const EmployeeButtons = ({ Id }) => {
   <div className='flex gap-2 items-center'>
    {/* view button */}
    <button
-    className='py-1 px-2 bg-green-500 text-white rounded '
+    className={`py-1 px-2 bg-green-500 text-white rounded ${
+     !isActive || isLoading ? 'cursor-not-allowed' : ''
+    }`}
     onClick={() => navigate(`/admin-dashboard/employees/${Id}`)}
     disabled={!isActive || isLoading}
    >
@@ -192,7 +194,9 @@ export const EmployeeButtons = ({ Id }) => {
    </button>
    {/* edit button */}
    <button
-    className='py-1 px-2  bg-orange-500 text-white rounded'
+    className={`py-1 px-2 bg-orange-600 text-white rounded ${
+     !isActive || isLoading ? 'cursor-not-allowed' : ''
+    }`}
     onClick={() => navigate(`/admin-dashboard/employees/edit/${Id}`)}
     disabled={!isActive || isLoading}
    >
@@ -200,7 +204,9 @@ export const EmployeeButtons = ({ Id }) => {
    </button>
    {/* salary button */}
    <button
-    className='py-1 px-2  bg-red-700 text-white rounded'
+    className={`py-1 px-2 bg-blue-600 text-white rounded ${
+     !isActive || isLoading ? 'cursor-not-allowed' : ''
+    }`}
     onClick={() => navigate(`/admin-dashboard/employee/salary/${Id}`)}
     disabled={!isActive || isLoading}
    >
@@ -208,7 +214,9 @@ export const EmployeeButtons = ({ Id }) => {
    </button>
    {/* leave button */}
    <button
-    className='py-1 px-2  bg-red-700 text-white rounded '
+    className={`py-1 px-2 bg-red-600 text-white rounded ${
+     !isActive || isLoading ? 'cursor-not-allowed' : ''
+    }`}
     onClick={() => navigate(`/admin-dashboard/employees/leaves/${Id}`)}
     disabled={!isActive || isLoading}
    >
