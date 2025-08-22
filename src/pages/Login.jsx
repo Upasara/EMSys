@@ -7,14 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { FaArrowRightToBracket } from 'react-icons/fa6';
 import { FaRegEye } from 'react-icons/fa';
 import { FaRegEyeSlash } from 'react-icons/fa';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 //handle login form
 const Login = () => {
  const [email, setEmail] = useState('');
  const [password, setPassword] = useState('');
  const [rememberMe, setRememberMe] = useState(false);
- const [error, setError] = useState(null);
  const [visible, setVisible] = useState(false);
  const { login } = useAuth();
  const navigate = useNavigate();
@@ -28,6 +27,10 @@ const Login = () => {
     rememberMe,
    });
    if (response.data.success) {
+    toast.success('Login successful! Redirecting...', {
+     duration: 3000,
+     position: 'top-center',
+    });
     login(response.data.user);
 
     if (rememberMe) {
@@ -37,12 +40,15 @@ const Login = () => {
      localStorage.removeItem('token'); // Clear local storage if remember me is not checked
      sessionStorage.setItem('token', response.data.token);
     }
-
-    if (response.data.user.role === 'admin') {
-     navigate('/admin-dashboard');
-    } else {
-     navigate('/employee-dashboard');
-    }
+    setTimeout(() => {
+     if (response.data.user.role === 'admin') {
+      toast.success('Welcome Admin!');
+      navigate('/admin-dashboard');
+     } else {
+      toast.success('Welcome Employee!');
+      navigate('/employee-dashboard');
+     }
+    }, 2000);
    }
   } catch (error) {
    const eMessage =
