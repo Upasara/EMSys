@@ -201,11 +201,11 @@ const AddSalary = () => {
        <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
         {/* department */}
         <div>
-         <label className='block text-primaryText'>Department</label>
+         <label className='block text-primary-text'>Department</label>
          <select
           name='sal_dep'
           onChange={handleDepartment}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer bg-slate-100                               '
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 cursor-pointer bg-slate-100                               '
           required
          >
           <option value=''>Select department</option>
@@ -219,11 +219,11 @@ const AddSalary = () => {
 
         {/* employee */}
         <div>
-         <label className='block text-primaryText'>Employee</label>
+         <label className='block text-primary-text'>Employee</label>
          <select
           name='sal_emp_id'
           onChange={handleEmployeeChange}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer bg-slate-100'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 cursor-pointer bg-slate-100'
           required
          >
           <option value=''>Select Employee</option>
@@ -237,12 +237,12 @@ const AddSalary = () => {
 
         {/* pay date */}
         <div>
-         <label className='block text-primaryText'>Pay Date</label>
+         <label className='block text-primary-text'>Pay Date</label>
          <input
           type='month'
           name='pay_date'
           onChange={handleChange}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
           required
          />
         </div>
@@ -250,13 +250,13 @@ const AddSalary = () => {
        <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 p-10  rounded-2xl shadow-md mt-5'>
         {/* basic salary */}
         <div>
-         <label className='block text-primaryText'>Basic Salary</label>
+         <label className='block text-primary-text'>Basic Salary</label>
          <input
           type='number'
           name='basic_salary'
           onChange={handleChange}
           value={salary.basic_salary || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
           required
          />
         </div>
@@ -264,54 +264,54 @@ const AddSalary = () => {
         {/* no pay */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4  rounded-2xl '>
          <div>
-          <label className='block text-primaryText'>No Pay Days</label>
+          <label className='block text-primary-text'>No Pay Days</label>
           <input
            type='number'
            name='no_pay_days'
            onChange={handleChange}
            value={salary.no_pay_days || ''}
-           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+           className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
           />
          </div>
          <div>
-          <label className='block text-primaryText'>No Pay Amount</label>
+          <label className='block text-primary-text'>No Pay Amount</label>
           <input
            type='number'
            name='no_pay_amount'
            onChange={handleChange}
            value={salary.no_pay_amount || ''}
-           className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+           className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
           />
          </div>
         </div>
 
         {/* allowances */}
         <div>
-         <label className='block text-primaryText'>Traveling Allowances</label>
+         <label className='block text-primary-text'>Traveling Allowances</label>
          <input
           type='number'
           name='allowances'
           onChange={handleChange}
           value={salary.allowances || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
          />
         </div>
 
         {/* staff loan */}
         <div>
-         <label className='block text-primaryText'>Staff Loan</label>
+         <label className='block text-primary-text'>Staff Loan</label>
          <input
           type='number'
           name='staff_loan'
           onChange={handleChange}
           value={salary.staff_loan || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
          />
         </div>
 
         {/* travelling */}
         <div>
-         <label className='block text-primaryText'>
+         <label className='block text-primary-text'>
           Travelling Reimbursment
          </label>
          <input
@@ -319,67 +319,67 @@ const AddSalary = () => {
           name='travelling'
           onChange={handleChange}
           value={salary.travelling || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
          />
         </div>
 
         {/* festival advance */}
         <div>
-         <label className='block text-primaryText'>Festival Advance</label>
+         <label className='block text-primary-text'>Festival Advance</label>
          <input
           type='number'
           name='festival_advance'
           onChange={handleChange}
           value={salary.festival_advance || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
          />
         </div>
 
         {/* overtime */}
         <div>
-         <label className='block text-primaryText'>Overtime</label>
+         <label className='block text-primary-text'>Overtime</label>
          <input
           type='number'
           name='over_time'
           onChange={handleChange}
           value={salary.over_time || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
          />
         </div>
 
         {/* deduction */}
         <div>
-         <label className='block text-primaryText'>Other Deductions</label>
+         <label className='block text-primary-text'>Other Deductions</label>
          <input
           type='number'
           name='deductions'
           onChange={handleChange}
           value={salary.deductions || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
          />
         </div>
 
         {/* other allowances */}
         <div>
-         <label className='block text-primaryText'>Other Allowances</label>
+         <label className='block text-primary-text'>Other Allowances</label>
          <input
           type='number'
           name='other_allowances'
           onChange={handleChange}
           value={salary.other_allowances || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
          />
         </div>
 
         {/* EPF 8% */}
         <div>
-         <label className='block text-primaryText'>EPF 8%</label>
+         <label className='block text-primary-text'>EPF 8%</label>
          <input
           type='number'
           name='epf8'
           onChange={handleChange}
           value={salary.epf8 || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
          />
         </div>
 
@@ -388,19 +388,19 @@ const AddSalary = () => {
 
         {/* stamp duty */}
         <div>
-         <label className='block text-primaryText'>Stamp Duty</label>
+         <label className='block text-primary-text'>Stamp Duty</label>
          <input
           type='number'
           name='stamp_duty'
           onChange={handleChange}
           value={salary.stamp_duty || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
          />
         </div>
 
         {/* gross salary (EPF) */}
         <div>
-         <label className='block text-primaryText font-medium'>
+         <label className='block text-primary-text font-medium'>
           Gross Salary (EPF)
          </label>
          <input
@@ -408,26 +408,26 @@ const AddSalary = () => {
           name='gross_salary_epf'
           onChange={handleChange}
           value={salary.gross_salary_epf || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 font-medium'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 font-medium'
           disabled
          />
         </div>
 
         {/* tax */}
         <div>
-         <label className='block text-primaryText'>Tax</label>
+         <label className='block text-primary-text'>Tax</label>
          <input
           type='number'
           name='tax'
           onChange={handleChange}
           value={salary.tax || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
          />
         </div>
 
         {/* gross salary */}
         <div>
-         <label className='block text-primaryText font-medium'>
+         <label className='block text-primary-text font-medium'>
           Gross Salary
          </label>
          <input
@@ -435,14 +435,14 @@ const AddSalary = () => {
           name='gross_salary'
           onChange={handleChange}
           value={salary.gross_salary || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 font-medium'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 font-medium'
           disabled
          />
         </div>
 
         {/* total deduction */}
         <div>
-         <label className='block text-primaryText font-medium'>
+         <label className='block text-primary-text font-medium'>
           Total Deductions
          </label>
          <input
@@ -450,7 +450,7 @@ const AddSalary = () => {
           name='total_deductions'
           onChange={handleChange}
           value={salary.total_deductions || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 font-medium'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 font-medium'
           disabled
          />
         </div>
@@ -459,7 +459,7 @@ const AddSalary = () => {
        <div className='mt-8'>
         {/* net salary */}
         <div>
-         <label className='block text-primaryText text-xl font-medium'>
+         <label className='block text-primary-text text-xl font-medium'>
           Net Salary
          </label>
          <input
@@ -467,7 +467,7 @@ const AddSalary = () => {
           name='net_salary'
           onChange={handleChange}
           value={salary.net_salary || ''}
-          className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 font-semibold'
+          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 font-semibold'
           disabled
          />
         </div>

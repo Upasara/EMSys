@@ -23,140 +23,147 @@ import Settings from './components/EmployeeDashboard/Settings.jsx';
 import LeaveTable from './components/leave/LeaveTable.jsx';
 import LeaveDetails from './components/leave/LeaveDetails.jsx';
 import ExportSalary from './components/salary/ExportSalary.jsx';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
  return (
-  <BrowserRouter>
-   <Routes>
-    <Route path='/' element={<Navigate to='/admin-dashboard' />}></Route>
-    <Route path='/login' element={<Login />}></Route>
+  <>
+   <BrowserRouter>
+    <Routes>
+     <Route path='/' element={<Navigate to='/admin-dashboard' />}></Route>
+     <Route path='/login' element={<Login />}></Route>
 
-    {/*Private routes for Admin Dashboard */}
-    <Route
-     path='/admin-dashboard'
-     element={
-      <PrivateRoutes>
-       <RoleBaseRoutes requiredRole={['admin']}>
-        <Admin />
-       </RoleBaseRoutes>
-      </PrivateRoutes>
-     }
-    >
-     <Route index element={<AdminSummary />}></Route>
-     {/*Department list route */}
+     {/*Private routes for Admin Dashboard */}
      <Route
-      path='/admin-dashboard/departments'
-      element={<DepartmentList />}
-     ></Route>
-     {/*Add department route */}
-     <Route
-      path='/admin-dashboard/add-department'
-      element={<AddDepartment />}
-     ></Route>
-     {/*Edit department route */}
-     <Route
-      path='/admin-dashboard/department/:id'
-      element={<EditDepartment />}
-     ></Route>
+      path='/admin-dashboard'
+      element={
+       <PrivateRoutes>
+        <RoleBaseRoutes requiredRole={['admin']}>
+         <Admin />
+        </RoleBaseRoutes>
+       </PrivateRoutes>
+      }
+     >
+      <Route index element={<AdminSummary />}></Route>
+      {/*Department list route */}
+      <Route
+       path='/admin-dashboard/departments'
+       element={<DepartmentList />}
+      ></Route>
+      {/*Add department route */}
+      <Route
+       path='/admin-dashboard/add-department'
+       element={<AddDepartment />}
+      ></Route>
+      {/*Edit department route */}
+      <Route
+       path='/admin-dashboard/department/:id'
+       element={<EditDepartment />}
+      ></Route>
 
-     {/*Employee List route */}
-     <Route
-      path='/admin-dashboard/employees'
-      element={<EmployeeList />}
-     ></Route>
-     {/*Employee List route */}
-     <Route
-      path='/admin-dashboard/add-employee'
-      element={<AddEmployee />}
-     ></Route>
-     {/* View Employee route */}
-     <Route
-      path='/admin-dashboard/employees/:id'
-      element={<ViewEmployee />}
-     ></Route>
-     {/* Edit Employee route */}
-     <Route
-      path='/admin-dashboard/employees/edit/:id'
-      element={<EditEmployee />}
-     ></Route>
+      {/*Employee List route */}
+      <Route
+       path='/admin-dashboard/employees'
+       element={<EmployeeList />}
+      ></Route>
+      {/*Employee List route */}
+      <Route
+       path='/admin-dashboard/add-employee'
+       element={<AddEmployee />}
+      ></Route>
+      {/* View Employee route */}
+      <Route
+       path='/admin-dashboard/employees/:id'
+       element={<ViewEmployee />}
+      ></Route>
+      {/* Edit Employee route */}
+      <Route
+       path='/admin-dashboard/employees/edit/:id'
+       element={<EditEmployee />}
+      ></Route>
 
-     {/* Employee salary route */}
+      {/* Employee salary route */}
+      <Route
+       path='/admin-dashboard/employee/salary/:id'
+       element={<ViewSalary />}
+      ></Route>
+
+      {/* Add salary route */}
+      <Route path='/admin-dashboard/salary/add' element={<AddSalary />}></Route>
+
+      {/* export salary route */}
+      <Route
+       path='/admin-dashboard/salary/export'
+       element={<ExportSalary />}
+      ></Route>
+
+      {/* view salary route */}
+      <Route
+       path='/admin-dashboard/salary/view/:id'
+       element={<PaymentSlip />}
+      ></Route>
+      {/* view leave route */}
+      <Route path='/admin-dashboard/leaves' element={<LeaveTable />}></Route>
+      {/* leave details route */}
+      <Route
+       path='/admin-dashboard/leaves/:id'
+       element={<LeaveDetails />}
+      ></Route>
+      {/* employee leave route */}
+      <Route
+       path='/admin-dashboard/employees/leaves/:id'
+       element={<LeaveList />}
+      ></Route>
+      <Route path='/admin-dashboard/setting' element={<Settings />}></Route>
+     </Route>
+     {/*End of Admin Dashboard route */}
+
+     <Route path='/salary/view/:id' element={<PrintableView />}></Route>
+
+     {/*Private routes for Employee Dashboard */}
      <Route
-      path='/admin-dashboard/employee/salary/:id'
-      element={<ViewSalary />}
-     ></Route>
+      path='/employee-dashboard'
+      element={
+       <PrivateRoutes>
+        <RoleBaseRoutes requiredRole={['admin', 'employee']}>
+         <EmployeeDashboard />
+        </RoleBaseRoutes>
+       </PrivateRoutes>
+      }
+     >
+      <Route index element={<EmployeeSummaryCard />}></Route>
 
-     {/* Add salary route */}
-     <Route path='/admin-dashboard/salary/add' element={<AddSalary />}></Route>
+      {/* employee profile route */}
+      <Route
+       path='/employee-dashboard/profile/:id'
+       element={<ViewEmployee />}
+      ></Route>
 
-     {/* export salary route */}
-     <Route
-      path='/admin-dashboard/salary/export'
-      element={<ExportSalary />}
-     ></Route>
+      {/* employee leave route */}
+      <Route
+       path='/employee-dashboard/leaves/:id'
+       element={<LeaveList />}
+      ></Route>
 
-     {/* view salary route */}
-     <Route
-      path='/admin-dashboard/salary/view/:id'
-      element={<PaymentSlip />}
-     ></Route>
-     {/* view leave route */}
-     <Route path='/admin-dashboard/leaves' element={<LeaveTable />}></Route>
-     {/* leave details route */}
-     <Route
-      path='/admin-dashboard/leaves/:id'
-      element={<LeaveDetails />}
-     ></Route>
-     {/* employee leave route */}
-     <Route
-      path='/admin-dashboard/employees/leaves/:id'
-      element={<LeaveList />}
-     ></Route>
-     <Route path='/admin-dashboard/setting' element={<Settings />}></Route>
-    </Route>
-    {/*End of Admin Dashboard route */}
+      {/* employee leave route */}
+      <Route
+       path='/employee-dashboard/add-leave'
+       element={<AddLeave />}
+      ></Route>
 
-    <Route path='/salary/view/:id' element={<PrintableView />}></Route>
+      {/* employee salary route */}
+      <Route
+       path='/employee-dashboard/salary/:id'
+       element={<ViewSalary />}
+      ></Route>
 
-    {/*Private routes for Employee Dashboard */}
-    <Route
-     path='/employee-dashboard'
-     element={
-      <PrivateRoutes>
-       <RoleBaseRoutes requiredRole={['admin', 'employee']}>
-        <EmployeeDashboard />
-       </RoleBaseRoutes>
-      </PrivateRoutes>
-     }
-    >
-     <Route index element={<EmployeeSummaryCard />}></Route>
-
-     {/* employee profile route */}
-     <Route
-      path='/employee-dashboard/profile/:id'
-      element={<ViewEmployee />}
-     ></Route>
-
-     {/* employee leave route */}
-     <Route
-      path='/employee-dashboard/leaves/:id'
-      element={<LeaveList />}
-     ></Route>
-
-     {/* employee leave route */}
-     <Route path='/employee-dashboard/add-leave' element={<AddLeave />}></Route>
-
-     {/* employee salary route */}
-     <Route
-      path='/employee-dashboard/salary/:id'
-      element={<ViewSalary />}
-     ></Route>
-
-     {/* employee settings route */}
-     <Route path='/employee-dashboard/setting' element={<Settings />}></Route>
-    </Route>
-   </Routes>
-  </BrowserRouter>
+      {/* employee settings route */}
+      <Route path='/employee-dashboard/setting' element={<Settings />}></Route>
+     </Route>
+    </Routes>
+   </BrowserRouter>
+   <Toaster position='bottom-center' reverseOrder={false} />
+  </>
  );
 }
 

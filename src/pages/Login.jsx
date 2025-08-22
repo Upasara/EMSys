@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaArrowRightToBracket } from 'react-icons/fa6';
 import { FaRegEye } from 'react-icons/fa';
 import { FaRegEyeSlash } from 'react-icons/fa';
+import toast, { Toaster } from 'react-hot-toast';
 
 //handle login form
 const Login = () => {
@@ -44,25 +45,26 @@ const Login = () => {
     }
    }
   } catch (error) {
-   if (error.response && !error.response.data.success) {
-    setError(error.response.data.error);
-   } else {
-    setError('Server Error');
-   }
+   const eMessage =
+    error.response && !error.response.data.success
+     ? error.response.data.error
+     : 'Server Error';
+
+   toast.error(eMessage);
   }
  };
 
  return (
   <>
    <div className='flex items-center justify-center min-h-screen bg-slate-100 w-full'>
-    <div className='bg-white form-container overflow-hidden flex flex-col md:flex-row  shadow-lg border rounded-lg w-full max-w-screen-xl justify-between'>
+    <div className='bg-white form-container overflow-hidden flex flex-col md:flex-row  shadow-lg border rounded-lg w-full max-w-(--breakpoint-xl) justify-between'>
      {/* left section */}
      <div className=' form-section w-full md:w-1/2 px-8 md:px-20 py-8 order-2 md:order-1'>
       <div className='logo-wrap flex gap-x-1 items-center'>
        <img className='w-8' src={Logo} alt='' />
-       <span className='text-sm text-secondaryDark'>P E Mathew & Company</span>
+       <span className='text-sm text-secondary-dark'>P E Mathew & Company</span>
       </div>
-      <h1 className='text-3xl font-semibold mt-10  text-primaryDark text-center'>
+      <h1 className='text-3xl font-semibold mt-10  text-primary-dark text-center'>
        LOGIN
       </h1>
 
@@ -73,7 +75,7 @@ const Login = () => {
         <input
          type='email'
          placeholder='Enter your email ...'
-         className='w-full px-2 py-2 border rounded-full focus:outline-none focus:shadow-md text-primaryText duration-300'
+         className='w-full px-2 py-2 border rounded-full focus:outline-hidden focus:shadow-md text-primary-text duration-300'
          onChange={(e) => setEmail(e.target.value)}
          required
         />
@@ -83,20 +85,20 @@ const Login = () => {
         <input
          type={visible ? 'text' : 'password'}
          placeholder='Enter your password ...'
-         className=' focus:outline-none flex-1 bg-transparent text-primaryText'
+         className=' focus:outline-hidden flex-1 bg-transparent text-primary-text'
          onChange={(e) => setPassword(e.target.value)}
          required
         />
         <div
          onClick={() => setVisible(!visible)}
-         className='cursor-pointer text-lg mr-2 text-primaryText hover:text-primaryDark duration-300'
+         className='cursor-pointer text-lg mr-2 text-primary-text hover:text-primary-dark duration-300'
         >
          {visible ? <FaRegEye /> : <FaRegEyeSlash />}
         </div>
        </div>
        {/*remember me & forgot password*/}
        <div className='mb-5 flex items-end justify-end'>
-        <label className='inline-flex items-center text-secondaryDark text-sm'>
+        <label className='inline-flex items-center text-secondary-dark text-sm'>
          <input
           type='checkbox'
           className='form-checkbox'
@@ -112,12 +114,12 @@ const Login = () => {
         <button
          type='submit'
          className='relative group flex justify-center items-center gap-2 w-full 
-         bg-primaryDark text-stone-200 tracking-wide hover:tracking-wider 
+         bg-primary-dark text-stone-200 tracking-wide hover:tracking-wider 
          text-lg py-2 rounded-xl hover:shadow-lg hover:text-white duration-300 overflow-hidden'
         >
          <div
-          className='h-[100px] w-20 bg-gradient-to-r from-white/10 via-white/50 
-          to-white-10 absolute -left-28 -rotate-45 blur-sm group-hover:left-[150%] 
+          className='h-[100px] w-20 bg-linear-to-r from-white/10 via-white/50 
+          to-white-10 absolute -left-28 -rotate-45 blur-xs group-hover:left-[150%] 
           duration-700 group-hover:delay-100'
          ></div>
          Login
@@ -125,8 +127,6 @@ const Login = () => {
         </button>
        </div>
       </form>
-      {/*error message*/}
-      {error && <p className='text-red-500 mt-4'>{error}</p>}
      </div>
      {/* Other session */}
      <div className='logo-section w-full md:w-1/2 bg-[url("/loginbg.jpg")] bg-cover order-1 md:order-2'>

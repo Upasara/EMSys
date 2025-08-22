@@ -43,22 +43,22 @@ const AdminSummary = () => {
      icon={<FaUsers />}
      text='Total Employees'
      number={13}
-     iconColor='text-primaryDark'
-     textColor='text-primaryText'
+     iconColor='text-primary-dark'
+     textColor='text-primary-text'
     />
     <SummaryCard
      icon={<FaBuilding />}
      text='Total Departments'
      number={5}
-     iconColor='text-primaryDark'
-     textColor='text-primaryText'
+     iconColor='text-primary-dark'
+     textColor='text-primary-text'
     />
     <SummaryCard
      icon={<FaMoneyBill1Wave />}
      text='Monthly Salary'
      number='Rs. 60,000'
-     iconColor='text-primaryDark'
-     textColor='text-primaryText'
+     iconColor='text-primary-dark'
+     textColor='text-primary-text'
     />
    </div>
 
@@ -70,29 +70,29 @@ const AdminSummary = () => {
       icon={<MdEditCalendar />}
       text='Applied Leaves'
       number={2}
-      iconColor='text-primaryDark'
-      textColor='text-secondaryDark'
+      iconColor='text-primary-dark'
+      textColor='text-secondary-dark'
      />
      <SummaryCard
       icon={<FaRegCalendarCheck />}
       text='Approved Leaves'
       number={12}
-      iconColor='text-primaryDark'
-      textColor='text-secondaryDark'
+      iconColor='text-primary-dark'
+      textColor='text-secondary-dark'
      />
      <SummaryCard
       icon={<LuCalendarClock />}
       text='Pending Leaves'
       number={6}
-      iconColor='text-primaryDark'
-      textColor='text-secondaryDark'
+      iconColor='text-primary-dark'
+      textColor='text-secondary-dark'
      />
      <SummaryCard
       icon={<FaRegCalendarXmark />}
       text='Rejected Leaves'
       number={1}
-      iconColor='text-primaryDark'
-      textColor='text-secondaryDark'
+      iconColor='text-primary-dark'
+      textColor='text-secondary-dark'
      />
     </div>
    </div>

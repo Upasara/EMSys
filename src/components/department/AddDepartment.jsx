@@ -51,43 +51,43 @@ const AddDepartment = () => {
    </h3>
    <form onSubmit={handleSubmit}>
     <div className='mt-5'>
-     <label htmlFor='dep_name' className='text-primaryText'>
+     <label htmlFor='dep_name' className='text-primary-text'>
       Department Name
      </label>
      <input
       type='text'
       name='dep_name'
       onChange={handleChange}
-      className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none text-gray-600'
+      className='mt-1 w-full p-2 border border-primary-light rounded-md outline-hidden text-gray-600'
       required
      />
     </div>
     <div className='mt-3'>
-     <label htmlFor='dep_manager' className='text-primaryText'>
+     <label htmlFor='dep_manager' className='text-primary-text'>
       Department Manager
      </label>
      <input
       type='text'
       name='dep_manager'
       onChange={handleChange}
-      className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none text-gray-600'
+      className='mt-1 w-full p-2 border border-primary-light rounded-md outline-hidden text-gray-600'
       required
      />
     </div>
     <div className='mt-3'>
-     <label htmlFor='dep_email' className='text-primaryText'>
+     <label htmlFor='dep_email' className='text-primary-text'>
       Department Email
      </label>
      <input
       type='email'
       name='dep_email'
       onChange={handleChange}
-      className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none text-gray-600'
+      className='mt-1 w-full p-2 border border-primary-light rounded-md outline-hidden text-gray-600'
       required
      />
     </div>
     <div className='mt-3'>
-     <label htmlFor='dep_des' className='block text-primaryText'>
+     <label htmlFor='dep_des' className='block text-primary-text'>
       Description
      </label>
      <textarea
@@ -95,7 +95,7 @@ const AddDepartment = () => {
       type='text'
       name='dep_des'
       onChange={handleChange}
-      className='mt-1 block p-2 w-full border border-primaryLight rounded-md outline-none text-gray-600'
+      className='mt-1 block p-2 w-full border border-primary-light rounded-md outline-hidden text-gray-600'
      />
     </div>
     <div className='flex justify-between items-center mt-5 gap-3'>

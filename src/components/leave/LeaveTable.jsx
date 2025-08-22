@@ -76,19 +76,19 @@ const LeaveTable = () => {
       />
       <div className='space-x-3'>
        <button
-        className='px-2 py-1 bg-primaryDark text-white hover:bg-primaryLight rounded'
+        className='px-2 py-1 bg-primary-dark text-white hover:bg-primary-light rounded-sm'
         onClick={() => handleButton('Pending')}
        >
         Pending
        </button>
        <button
-        className='px-2 py-1 bg-primaryDark text-white hover:bg-primaryLight rounded'
+        className='px-2 py-1 bg-primary-dark text-white hover:bg-primary-light rounded-sm'
         onClick={() => handleButton('Approved')}
        >
         Approved
        </button>
        <button
-        className='px-2 py-1 bg-primaryDark text-white hover:bg-primaryLight rounded'
+        className='px-2 py-1 bg-primary-dark text-white hover:bg-primary-light rounded-sm'
         onClick={() => handleButton('Rejected')}
        >
         Rejected

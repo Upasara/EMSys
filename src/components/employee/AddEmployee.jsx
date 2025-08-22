@@ -123,13 +123,13 @@ const AddEmployee = () => {
      <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
       {/* full name */}
       <div>
-       <label className='block text-primaryText'>Full Name</label>
+       <label className='block text-primary-text'>Full Name</label>
        <textarea
         type='text'
         name='emp_Fname'
         onChange={handleChange}
         placeholder='eg : Pathiranage Don Dinesh Kumara'
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         rows='2'
         required
        />
@@ -137,12 +137,12 @@ const AddEmployee = () => {
 
       {/* address */}
       <div>
-       <label className='block text-primaryText'>Permanent Address</label>
+       <label className='block text-primary-text'>Permanent Address</label>
        <textarea
         type='text'
         name='emp_address'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         rows='2'
         required
        />
@@ -150,48 +150,48 @@ const AddEmployee = () => {
 
       {/* name with initials*/}
       <div>
-       <label className='block text-primaryText'>Name with Initials</label>
+       <label className='block text-primary-text'>Name with Initials</label>
        <input
         type='text'
         name='name'
         onChange={handleChange}
         placeholder='eg : P D Dinesh Kumara'
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
       </div>
 
       {/* employee ID */}
       <div>
-       <label className='block text-primaryText'>Employee ID</label>
+       <label className='block text-primary-text'>Employee ID</label>
        <input
         type='text'
         name='emp_id'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
       </div>
 
       {/* designation */}
       <div>
-       <label className='block text-primaryText'>Designation</label>
+       <label className='block text-primary-text'>Designation</label>
        <input
         type='text'
         name='emp_designation'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
       </div>
 
       {/* department */}
       <div>
-       <label className='block text-primaryText'>Department</label>
+       <label className='block text-primary-text'>Department</label>
        <select
         name='emp_dep'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 cursor-pointer'
         required
        >
         <option value=''>Select department</option>
@@ -206,11 +206,11 @@ const AddEmployee = () => {
 
       {/* department */}
       <div>
-       <label className='block text-primaryText'>Company</label>
+       <label className='block text-primary-text'>Company</label>
        <select
         name='emp_company'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 cursor-pointer'
         required
        >
         <option value=''>Select the Company</option>
@@ -226,37 +226,37 @@ const AddEmployee = () => {
 
       {/* national ID */}
       <div>
-       <label className='block text-primaryText'>National ID</label>
+       <label className='block text-primary-text'>National ID</label>
        <input
         type='text'
         name='emp_Nid'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
       </div>
 
       {/* DOB */}
       <div>
-       <label className='block text-primaryText'>Date of Birth</label>
+       <label className='block text-primary-text'>Date of Birth</label>
        <input
         type='date'
         name='emp_dob'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
       </div>
 
       {/* phone number 1 */}
       <div>
-       <label className='block text-primaryText'>Phone Number</label>
+       <label className='block text-primary-text'>Phone Number</label>
        <input
         type='number'
         name='emp_number1'
         onChange={handleChange}
         placeholder='eg : 0112123456'
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
        />
        {errors.emp_number1 && (
         <p className='text-red-500 text-sm mt-1'>{errors.emp_number1}</p>
@@ -265,13 +265,13 @@ const AddEmployee = () => {
 
       {/* phone number 2*/}
       <div>
-       <label className='block text-primaryText'>Mobile Number</label>
+       <label className='block text-primary-text'>Mobile Number</label>
        <input
         type='number'
         name='emp_number2'
         onChange={handleChange}
         placeholder='eg : 0711234567'
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
        {errors.emp_number2 && (
@@ -281,12 +281,12 @@ const AddEmployee = () => {
 
       {/* email */}
       <div>
-       <label className='block text-primaryText'>E-mail</label>
+       <label className='block text-primary-text'>E-mail</label>
        <input
         type='email'
         name='email'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
        {errors.email && (
@@ -296,11 +296,11 @@ const AddEmployee = () => {
 
       {/* gender */}
       <div>
-       <label className='block text-primaryText'>Gender</label>
+       <label className='block text-primary-text'>Gender</label>
        <select
         name='emp_gender'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 cursor-pointer'
         required
        >
         <option value=''>Select Gender</option>
@@ -312,11 +312,11 @@ const AddEmployee = () => {
 
       {/* marital status */}
       <div>
-       <label className='block text-primaryText'>Marital Status</label>
+       <label className='block text-primary-text'>Marital Status</label>
        <select
         name='emp_Mstatus'
         onChange={handleChange}
-        className=' mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
+        className=' mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 cursor-pointer'
         required
        >
         <option value=''>Select Marital Status</option>
@@ -327,45 +327,45 @@ const AddEmployee = () => {
 
       {/* start date */}
       <div>
-       <label className='block text-primaryText'>Start Date</label>
+       <label className='block text-primary-text'>Start Date</label>
        <input
         type='date'
         name='emp_Sdate'
         placeholder='date of joining'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
       </div>
 
       {/* image upload */}
       <div>
-       <label className='block text-primaryText'>Image</label>
+       <label className='block text-primary-text'>Image</label>
        <input
         type='file'
         name='image'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 cursor-pointer'
         accept='image/*'
        />
       </div>
 
       {/* emergency contact name */}
       <div>
-       <label className='block text-primaryText'>Emergency Contact Name</label>
+       <label className='block text-primary-text'>Emergency Contact Name</label>
        <input
         type='text'
         name='emp_Ename'
         placeholder='Name of the emergency contact person'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
       </div>
 
       {/* emergency contact number*/}
       <div>
-       <label className='block text-primaryText'>
+       <label className='block text-primary-text'>
         Emergency Contact Number
        </label>
        <input
@@ -373,7 +373,7 @@ const AddEmployee = () => {
         name='emp_Enumber'
         placeholder='Number of the emergency contact person'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
        {errors.emp_Enumber && (
@@ -383,37 +383,37 @@ const AddEmployee = () => {
 
       {/* medical history */}
       <div>
-       <label className='block text-primaryText'>Medical History</label>
+       <label className='block text-primary-text'>Medical History</label>
        <textarea
         type='text'
         name='emp_medical'
         placeholder='Any medical conditions or allergies?'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         rows='2'
        />
       </div>
 
       {/* password */}
       <div>
-       <label className='block text-primaryText'>Password</label>
+       <label className='block text-primary-text'>Password</label>
        <input
         type='password'
         name='password'
         onChange={handleChange}
         placeholder='  ****************** '
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
       </div>
 
       {/* role */}
       <div>
-       <label className='block text-primaryText'>Role</label>
+       <label className='block text-primary-text'>Role</label>
        <select
         name='role'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600 cursor-pointer'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 cursor-pointer'
         required
        >
         <option value=''>select a role</option>
@@ -429,62 +429,62 @@ const AddEmployee = () => {
      <div className=' grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4  p-6 pt-0 rounded-2xl'>
       {/* basic salary */}
       <div>
-       <label className='block text-primaryText'>Basic Salary</label>
+       <label className='block text-primary-text'>Basic Salary</label>
        <input
         type='number'
         name='emp_salary'
         placeholder='Rs. 0'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
         required
        />
       </div>
 
       {/* allowance */}
       <div>
-       <label className='block text-primaryText'>Traveling Allowance</label>
+       <label className='block text-primary-text'>Traveling Allowance</label>
        <input
         type='number'
         name='emp_allowance'
         placeholder='Rs. 0'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
        />
       </div>
 
       {/* staff loan */}
       <div>
-       <label className='block text-primaryText'>Staff Loan</label>
+       <label className='block text-primary-text'>Staff Loan</label>
        <input
         type='number'
         name='staff_loan'
         placeholder='Rs. 0'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
        />
       </div>
 
       {/* stamp duty */}
       <div>
-       <label className='block text-primaryText'>Stamp Duty</label>
+       <label className='block text-primary-text'>Stamp Duty</label>
        <input
         type='number'
         name='stamp_duty'
         placeholder='Rs. 0'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
        />
       </div>
 
       {/* festival advance */}
       <div>
-       <label className='block text-primaryText'>festival Advance</label>
+       <label className='block text-primary-text'>festival Advance</label>
        <input
         type='number'
         name='festival_advance'
         placeholder='Rs. 0'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
        />
       </div>
      </div>
@@ -494,34 +494,34 @@ const AddEmployee = () => {
      <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
       {/* bank name */}
       <div>
-       <label className='block text-primaryText'>Bank Name</label>
+       <label className='block text-primary-text'>Bank Name</label>
        <input
         type='text'
         name='bank_name'
         placeholder='eg : Bank of Ceylon'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
        />
       </div>
       {/* branch name */}
       <div>
-       <label className='block text-primaryText'>Branch</label>
+       <label className='block text-primary-text'>Branch</label>
        <input
         type='text'
         name='bank_branch'
         placeholder='eg : Colombo Fort'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
        />
       </div>
       {/* account number */}
       <div>
-       <label className='block text-primaryText'>Account Number</label>
+       <label className='block text-primary-text'>Account Number</label>
        <input
         type='number'
         name='account_number'
         onChange={handleChange}
-        className='mt-1 w-full p-1 border border-primaryLight rounded-md outline-none text-gray-600'
+        className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
        />
       </div>
      </div>

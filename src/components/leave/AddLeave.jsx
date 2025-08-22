@@ -98,7 +98,7 @@ const AddLeave = () => {
          value='one'
          checked={leaveDuration === 'one'}
          onChange={() => setLeaveDuration('one')}
-         className='form-radio text-primaryDark'
+         className='form-radio text-primary-dark'
          required
         />
         <span className='ml-2'>One Day</span>
@@ -110,7 +110,7 @@ const AddLeave = () => {
          value='multiple'
          checked={leaveDuration === 'multiple'}
          onChange={() => setLeaveDuration('multiple')}
-         className='form-radio text-primaryDark'
+         className='form-radio text-primary-dark'
         />
         <span className='ml-2'>More Than One Day</span>
        </label>

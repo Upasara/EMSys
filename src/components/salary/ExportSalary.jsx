@@ -133,7 +133,7 @@ const ExportSalary = () => {
       placeholder='select a month'
       value={month}
       onChange={handleMonthChange}
-      className='py-1.5 px-1 rounded-lg border border-primaryLight focus:outline-none focus:border-primaryDark focus:border-2 transition  '
+      className='py-1.5 px-1 rounded-lg border border-primary-light focus:outline-hidden focus:border-primary-dark focus:border-2 transition  '
      />
 
      <button
@@ -181,7 +181,7 @@ const ExportSalary = () => {
      </table>
      <button
       onClick={handleExportToExcel}
-      className='py-1.5 px-2 bg-primaryLight hover:bg-primaryDark transition text-white rounded-md '
+      className='py-1.5 px-2 bg-primary-light hover:bg-primary-dark transition text-white rounded-md '
      >
       Export to Excel
      </button>

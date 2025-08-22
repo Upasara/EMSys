@@ -9,16 +9,16 @@ import { useAuth } from '../../context/authContext';
 const EmployeeSidebar = () => {
  const { user } = useAuth();
  return (
-  <div className='bg-secondaryDark text-white h-screen fixed left-0 top-0 bottom-0 space-y-10 w-64 shadow-'>
-   <div className='bg-primaryDark  h-12 flex items-center justify-center'>
-    <h2 className='text-2xl text-primaryGold text-center font-bold'>EMSys</h2>
+  <div className='bg-secondary-dark text-white h-screen fixed left-0 top-0 bottom-0 space-y-10 w-64 shadow-'>
+   <div className='bg-primary-dark  h-12 flex items-center justify-center'>
+    <h2 className='text-2xl text-primary-gold text-center font-bold'>EMSys</h2>
    </div>
    <div className='px-4'>
     <NavLink
      to='/employee-dashboard'
      className={({ isActive }) =>
       `${
-       isActive ? 'bg-primaryDark shadow-md ' : ' '
+       isActive ? 'bg-primary-dark shadow-md ' : ' '
       }flex items-center space-x-4 py-3  px-4 rounded-md`
      }
      end
@@ -30,7 +30,7 @@ const EmployeeSidebar = () => {
      to={`/employee-dashboard/profile/${user._id}`}
      className={({ isActive }) =>
       `${
-       isActive ? 'bg-primaryDark shadow-md ' : ' '
+       isActive ? 'bg-primary-dark shadow-md ' : ' '
       }flex items-center space-x-4 py-3  px-4 rounded-md`
      }
     >
@@ -41,7 +41,7 @@ const EmployeeSidebar = () => {
      to={`/employee-dashboard/leaves/${user._id}`}
      className={({ isActive }) =>
       `${
-       isActive ? 'bg-primaryDark shadow-md ' : ' '
+       isActive ? 'bg-primary-dark shadow-md ' : ' '
       }flex items-center space-x-4 py-3  px-4 rounded-md`
      }
     >
@@ -52,7 +52,7 @@ const EmployeeSidebar = () => {
      to={`/employee-dashboard/salary/${user._id}`}
      className={({ isActive }) =>
       `${
-       isActive ? 'bg-primaryDark shadow-md ' : ' '
+       isActive ? 'bg-primary-dark shadow-md ' : ' '
       }flex items-center space-x-4  py-3 px-4 rounded-md `
      }
     >
@@ -63,7 +63,7 @@ const EmployeeSidebar = () => {
      to='/employee-dashboard/setting'
      className={({ isActive }) =>
       `${
-       isActive ? 'bg-primaryDark shadow-md ' : ' '
+       isActive ? 'bg-primary-dark shadow-md ' : ' '
       }flex items-center space-x-4 py-3  px-4 rounded-md`
      }
     >

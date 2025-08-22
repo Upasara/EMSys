@@ -71,13 +71,13 @@ export const DepartmentButtons = ({ DepID, onDepartmentDelete }) => {
  return (
   <div className='flex gap-2'>
    <button
-    className='py-1 px-2 bg-orange-500 text-white rounded'
+    className='py-1 px-2 bg-orange-500 text-white rounded-sm'
     onClick={() => navigate(`/admin-dashboard/department/${DepID}`)}
    >
     Edit
    </button>
    <button
-    className='py-1 px-2  bg-red-700 text-white rounded'
+    className='py-1 px-2  bg-red-700 text-white rounded-sm'
     onClick={() => handleDelete(DepID)}
    >
     Remove

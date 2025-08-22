@@ -59,7 +59,7 @@ const LeaveList = () => {
       {user.role === 'employee' && (
        <Link
         to='/employee-dashboard/add-leave'
-        className='px-4 py-2 border-2 border-primaryDark rounded-md text-primaryText hover:text-white hover:bg-primaryDark'
+        className='px-4 py-2 border-2 border-primary-dark rounded-md text-primary-text hover:text-white hover:bg-primary-dark'
        >
         Add New Leave
        </Link>

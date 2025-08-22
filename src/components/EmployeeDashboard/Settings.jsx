@@ -94,7 +94,7 @@ const Settings = () => {
     <div className='mt-6'>
      <button
       type='submit'
-      className='w-full border-2 border-primaryDark hover:bg-primaryDark transition rounded-md  text-primaryDark hover:text-white py-1 font-semibold'
+      className='w-full border-2 border-primary-dark hover:bg-primary-dark transition rounded-md  text-primary-dark hover:text-white py-1 font-semibold'
      >
       Change Password
      </button>

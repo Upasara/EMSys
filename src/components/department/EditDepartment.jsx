@@ -85,7 +85,7 @@ const EditDepartment = () => {
      {/* Form start */}
      <form onSubmit={handleSubmit}>
       <div className='mt-5'>
-       <label htmlFor='dep_name' className='text-primaryText'>
+       <label htmlFor='dep_name' className='text-primary-text'>
         Department Name
        </label>
        <input
@@ -93,12 +93,12 @@ const EditDepartment = () => {
         name='dep_name'
         onChange={handleChange}
         value={department.dep_name}
-        className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none'
+        className='mt-1 w-full p-2 border border-primary-light rounded-md outline-hidden'
         required
        />
       </div>
       <div className='mt-3'>
-       <label htmlFor='dep_manager' className='text-primaryText'>
+       <label htmlFor='dep_manager' className='text-primary-text'>
         Department Manager
        </label>
        <input
@@ -106,12 +106,12 @@ const EditDepartment = () => {
         name='dep_manager'
         onChange={handleChange}
         value={department.dep_manager}
-        className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none'
+        className='mt-1 w-full p-2 border border-primary-light rounded-md outline-hidden'
         required
        />
       </div>
       <div className='mt-3'>
-       <label htmlFor='dep_email' className='text-primaryText'>
+       <label htmlFor='dep_email' className='text-primary-text'>
         Department Email
        </label>
        <input
@@ -119,12 +119,12 @@ const EditDepartment = () => {
         name='dep_email'
         onChange={handleChange}
         value={department.dep_email}
-        className='mt-1 w-full p-2 border border-primaryLight rounded-md outline-none'
+        className='mt-1 w-full p-2 border border-primary-light rounded-md outline-hidden'
         required
        />
       </div>
       <div className='mt-3'>
-       <label htmlFor='dep_des' className='block text-primaryText'>
+       <label htmlFor='dep_des' className='block text-primary-text'>
         Description
        </label>
        <textarea
@@ -133,13 +133,13 @@ const EditDepartment = () => {
         name='dep_des'
         onChange={handleChange}
         value={department.dep_des}
-        className='mt-1 block p-2 w-full border border-primaryLight rounded-md outline-none'
+        className='mt-1 block p-2 w-full border border-primary-light rounded-md outline-hidden'
        />
       </div>
       <div className='flex justify-between items-center mt-5 gap-3'>
        <button
         type='submit'
-        className='w-1/2 bg-orange-500 py-1.5 rounded-md hover:bg-primaryLight text-white'
+        className='w-1/2 bg-orange-500 py-1.5 rounded-md hover:bg-primary-light text-white'
        >
         Edit Department
        </button>

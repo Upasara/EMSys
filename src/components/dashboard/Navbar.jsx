@@ -4,7 +4,7 @@ import { useAuth } from '../../context/authContext';
 const Navbar = () => {
  const { user, logout } = useAuth();
  return (
-  <div className='px-2 flex items-center justify-between h-12 bg-primaryDark text-white'>
+  <div className='px-2 flex items-center justify-between h-12 bg-primary-dark text-white'>
    <p>
     Welcome <b>{user.name}</b>
    </p>

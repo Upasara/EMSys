@@ -7,77 +7,79 @@ import { NavLink } from 'react-router-dom';
 
 const AdminSidebar = () => {
  return (
-  <div className='bg-secondaryDark text-white h-screen fixed left-0 top-0 bottom-0 space-y-10 w-64 shadow-md'>
-   <div className='bg-primaryDark  h-12 flex items-center justify-center'>
-    <h2 className='text-2xl text-primaryGold text-center font-bold '>EMSys</h2>
+  <div className='bg-secondary-dark text-white h-screen fixed left-0 top-0 bottom-0 space-y-10 w-64 shadow-lg'>
+   <div className='bg-primary-dark  h-12 flex items-center justify-center'>
+    <h2 className='text-3xl text-primary-gold text-center font-bold text-shadow-lg  '>
+     EMSys
+    </h2>
    </div>
-   <div className='px-4'>
+   <div className='px-4 text-lg focus'>
     <NavLink
      to='/admin-dashboard'
      className={({ isActive }) =>
       `${
-       isActive ? 'bg-primaryDark shadow-md ' : ' '
-      }flex items-center space-x-4 py-3  px-4 rounded-md duration-300`
+       isActive ? 'bg-primary-dark shadow-lg ' : ' '
+      }relative group flex items-center space-x-2 py-2  px-4 rounded-md duration-300 mb-2`
      }
      end
     >
-     <MdDashboard />
-     <span>Dashboard</span>
+     <MdDashboard className='group-focus:-translate-x-1 duration-300' />
+     <span className='group-focus:tracking-wide duration-300'>Dashboard</span>
     </NavLink>
     <NavLink
      to='/admin-dashboard/employees'
      className={({ isActive }) =>
       `${
-       isActive ? 'bg-primaryDark shadow-md ' : ' '
-      }flex items-center space-x-4 py-3  px-4 rounded-md`
+       isActive ? 'bg-primary-dark shadow-lg ' : ' '
+      }relative group flex items-center space-x-2 py-2  px-4 rounded-md duration-300 mb-2`
      }
     >
-     <FaUserTie />
-     <span>Employee</span>
+     <FaUserTie className='group-focus:-translate-x-1 duration-300' />
+     <span className='group-focus:tracking-wide duration-300'>Employee</span>
     </NavLink>
     <NavLink
      to='/admin-dashboard/departments'
      className={({ isActive }) =>
       `${
-       isActive ? 'bg-primaryDark shadow-md ' : ' '
-      }flex items-center space-x-4  py-3 px-4 rounded-md `
+       isActive ? 'bg-primary-dark shadow-lg ' : ' '
+      }relative group flex items-center space-x-2 py-2  px-4 rounded-md duration-300 mb-2`
      }
     >
-     <FaBuilding />
-     <span>Department</span>
+     <FaBuilding className='group-focus:-translate-x-1 duration-300' />
+     <span className='group-focus:tracking-wide duration-300'>Department</span>
     </NavLink>
     <NavLink
      to='/admin-dashboard/leaves'
      className={({ isActive }) =>
       `${
-       isActive ? 'bg-primaryDark shadow-md ' : ' '
-      }flex items-center space-x-4  py-3 px-4 rounded-md `
+       isActive ? 'bg-primary-dark shadow-lg ' : ' '
+      }relative group flex items-center space-x-2 py-2  px-4 rounded-md duration-300 mb-2`
      }
     >
-     <MdDateRange />
-     <span>Leave</span>
+     <MdDateRange className='group-focus:-translate-x-1 duration-300' />
+     <span className='group-focus:tracking-wide duration-300'>Leave</span>
     </NavLink>
     <NavLink
      to='/admin-dashboard/salary/add'
      className={({ isActive }) =>
       `${
-       isActive ? 'bg-primaryDark shadow-md ' : ' '
-      }flex items-center space-x-4  py-3 px-4 rounded-md `
+       isActive ? 'bg-primary-dark shadow-lg ' : ' '
+      }relative group flex items-center space-x-2 py-2  px-4 rounded-md duration-300 mb-2`
      }
     >
-     <GiMoneyStack />
-     <span>Salary</span>
+     <GiMoneyStack className='group-focus:-translate-x-1 duration-300' />
+     <span className='group-focus:tracking-wide duration-300'>Salary</span>
     </NavLink>
     <NavLink
      to='/admin-dashboard/setting'
      className={({ isActive }) =>
       `${
-       isActive ? 'bg-primaryDark shadow-md ' : ' '
-      }flex items-center space-x-4  py-3 px-4 rounded-md `
+       isActive ? 'bg-primary-dark shadow-lg ' : ' '
+      }relative group flex items-center space-x-2 py-2  px-4 rounded-md duration-300 mb-2`
      }
     >
-     <LuSettings2 />
-     <span>Settings</span>
+     <LuSettings2 className='group-focus:-translate-x-1 duration-300' />
+     <span className='group-focus:tracking-wide duration-300'>Settings</span>
     </NavLink>
    </div>
   </div>
