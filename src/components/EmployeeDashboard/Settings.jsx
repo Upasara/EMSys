@@ -26,12 +26,14 @@ const Settings = () => {
    setError('Passwords do not match');
   } else {
    try {
+    const token =
+     localStorage.getItem('token') || sessionStorage.getItem('token');
     const response = await axios.put(
      'http://localhost:5000/api/setting/change-password',
      setting,
      {
       headers: {
-       Authorization: `Bearer ${localStorage.getItem('token')}`,
+       Authorization: `Bearer ${token}`,
       },
      }
     );

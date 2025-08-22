@@ -12,7 +12,7 @@ const authContext = ({ children }) => {
    try {
     const token =
      localStorage.getItem('token') || sessionStorage.getItem('token');
-    if (token) {
+    if (token && token.includes('.') && token.trim() !== '') {
      const response = await axios.get('http://localhost:5000/api/auth/verify', {
       headers: {
        Authorization: `Bearer ${token}`,

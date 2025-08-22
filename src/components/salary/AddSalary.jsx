@@ -155,12 +155,14 @@ const AddSalary = () => {
   e.preventDefault();
 
   try {
+   const token =
+    localStorage.getItem('token') || sessionStorage.getItem('token');
    const response = await axios.post(
     `http://localhost:5000/api/salary/add`,
     salary,
     {
      headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${token}`,
      },
     }
    );

@@ -11,11 +11,13 @@ const LeaveDetails = () => {
  useEffect(() => {
   const fetchLeaveDetails = async () => {
    try {
+    const token =
+     localStorage.getItem('token') || sessionStorage.getItem('token');
     const response = await axios.get(
      `http://localhost:5000/api/leave/detail/${id}`,
      {
       headers: {
-       Authorization: `Bearer ${localStorage.getItem('token')}`,
+       Authorization: `Bearer ${token}`,
       },
      }
     );
@@ -33,12 +35,14 @@ const LeaveDetails = () => {
 
  const changeStatus = async (id, status) => {
   try {
+   const token =
+    localStorage.getItem('token') || sessionStorage.getItem('token');
    const response = await axios.put(
     `http://localhost:5000/api/leave/${id}`,
     { status },
     {
      headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${token}`,
      },
     }
    );

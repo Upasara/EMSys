@@ -12,11 +12,13 @@ const AdminSummary = () => {
  useEffect(() => {
   const fetchSummary = async () => {
    try {
+    const token =
+     localStorage.getItem('token') || sessionStorage.getItem('token');
     const summary = await axios.get(
      'http://localhost:5000/api/dashboard/summary',
      {
       headers: {
-       Authorization: `Bearer ${localStorage.getItem('token')}`,
+       Authorization: `Bearer ${token}`,
       },
      }
     );

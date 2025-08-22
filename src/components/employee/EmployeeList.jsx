@@ -18,8 +18,10 @@ const EmployeeList = () => {
   const fetchEmployees = async () => {
    setEmpLoading(true);
    try {
+    const token =
+     localStorage.getItem('token') || sessionStorage.getItem('token');
     const response = await axios.get('http://localhost:5000/api/employee', {
-     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+     headers: { Authorization: `Bearer ${token}` },
     });
     if (response.data.success) {
      let sno = 1;

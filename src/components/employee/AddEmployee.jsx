@@ -88,12 +88,14 @@ const AddEmployee = () => {
   });
 
   try {
+   const token =
+    localStorage.getItem('token') || sessionStorage.getItem('token');
    const response = await axios.post(
     'http://localhost:5000/api/employee/add',
     formDataObj,
     {
      headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'multipart/form-data', // Set the content type for file upload
      },
     }

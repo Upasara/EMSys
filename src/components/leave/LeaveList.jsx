@@ -14,9 +14,11 @@ const LeaveList = () => {
  const fetchLeaves = async () => {
   setLeaveLoading(true);
   try {
+   const token =
+    localStorage.getItem('token') || sessionStorage.getItem('token');
    const response = await axios.get(`http://localhost:5000/api/leave/${id}`, {
     headers: {
-     Authorization: `Bearer ${localStorage.getItem('token')}`,
+     Authorization: `Bearer ${token}`,
     },
    });
    console.log(response.data);

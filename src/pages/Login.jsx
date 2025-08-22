@@ -30,8 +30,10 @@ const Login = () => {
     login(response.data.user);
 
     if (rememberMe) {
+     sessionStorage.removeItem('token'); // Clear session storage if remember me is checked
      localStorage.setItem('token', response.data.token);
     } else {
+     localStorage.removeItem('token'); // Clear local storage if remember me is not checked
      sessionStorage.setItem('token', response.data.token);
     }
 

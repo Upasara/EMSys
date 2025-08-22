@@ -56,11 +56,13 @@ export const conditionalRowStyles = [
 export const fetchDepartments = async () => {
  let departments;
  try {
+  const token =
+   localStorage.getItem('token') || sessionStorage.getItem('token');
   const response = await axios.get('http://localhost:5000/api/department', {
    /* get request includes n authorization header with a token retirieved from localstorage,
     to ensure that only authenticated user can access the data.  */
    headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`,
+    Authorization: `Bearer ${token}`,
    },
   });
   if (response.data.success) {
@@ -78,11 +80,13 @@ export const fetchDepartments = async () => {
 export const getEmployees = async (id) => {
  let employees;
  try {
+  const token =
+   localStorage.getItem('token') || sessionStorage.getItem('token');
   const response = await axios.get(
    `http://localhost:5000/api/employee/department/${id}`,
    {
     headers: {
-     Authorization: `Bearer ${localStorage.getItem('token')}`,
+     Authorization: `Bearer ${token}`,
     },
    }
   );
@@ -101,9 +105,11 @@ export const getEmployees = async (id) => {
 export const fetchActiveStatus = async (id) => {
  let isActive = true; // default value
  try {
+  const token =
+   localStorage.getItem('token') || sessionStorage.getItem('token');
   const response = await axios.get(`http://localhost:5000/api/employee/${id}`, {
    headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`, // get request includes n authorization header with a token retirieved from localstorage,
+    Authorization: `Bearer ${token}`, // get request includes n authorization header with a token retirieved from localstorage,
    },
   });
   if (response.data.success) {
@@ -127,11 +133,13 @@ export const EmployeeButtons = ({ Id }) => {
  useEffect(() => {
   const fetchEmployeeStatus = async () => {
    try {
+    const token =
+     localStorage.getItem('token') || sessionStorage.getItem('token');
     const response = await axios.get(
      `http://localhost:5000/api/employee/${Id}`,
      {
       headers: {
-       Authorization: `Bearer ${localStorage.getItem('token')}`,
+       Authorization: `Bearer ${token}`,
       },
      }
     );
@@ -148,13 +156,15 @@ export const EmployeeButtons = ({ Id }) => {
  const handleToggleStatus = async () => {
   try {
    setIsLoading(true);
+   const token =
+    localStorage.getItem('token') || sessionStorage.getItem('token');
    const endpoint = isActive
     ? `http://localhost:5000/api/employee/deactivate/${Id}`
     : `http://localhost:5000/api/employee/activate/${Id}`;
 
    const response = await axios.put(endpoint, null, {
     headers: {
-     Authorization: `Bearer ${localStorage.getItem('token')}`,
+     Authorization: `Bearer ${token}`,
     },
    });
    if (response.data.success) {

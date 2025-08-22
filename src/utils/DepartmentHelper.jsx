@@ -45,13 +45,15 @@ export const DepartmentButtons = ({ DepID, onDepartmentDelete }) => {
   const confirm = window.confirm('Do you want to delete this department?');
   if (confirm) {
    try {
+    const token =
+     localStorage.getItem('token') || sessionStorage.getItem('token');
     const response = await axios.delete(
      `http://localhost:5000/api/department/${id}`,
      {
       /* get request includes n authorization header with a token retirieved from localstorage,
                   to ensure that only authenticated user can access the data.  */
       headers: {
-       Authorization: `Bearer ${localStorage.getItem('token')}`,
+       Authorization: `Bearer ${token}`,
       },
      }
     );

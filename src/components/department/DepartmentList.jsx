@@ -21,11 +21,13 @@ const DepartmentList = () => {
   setDepLoading(true);
 
   try {
+   const token =
+    localStorage.getItem('token') || sessionStorage.getItem('token');
    const response = await axios.get('http://localhost:5000/api/department', {
     /* get request includes n authorization header with a token retirieved from localstorage,
     to ensure that only authenticated user can access the data.  */
     headers: {
-     Authorization: `Bearer ${localStorage.getItem('token')}`,
+     Authorization: `Bearer ${token}`,
     },
    });
    if (response.data.success) {

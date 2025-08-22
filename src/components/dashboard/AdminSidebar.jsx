@@ -7,9 +7,9 @@ import { NavLink } from 'react-router-dom';
 
 const AdminSidebar = () => {
  return (
-  <div className='bg-secondaryDark text-white h-screen fixed left-0 top-0 bottom-0 space-y-10 w-64 shadow-'>
+  <div className='bg-secondaryDark text-white h-screen fixed left-0 top-0 bottom-0 space-y-10 w-64 shadow-md'>
    <div className='bg-primaryDark  h-12 flex items-center justify-center'>
-    <h2 className='text-2xl text-primaryGold text-center font-bold'>EMSys</h2>
+    <h2 className='text-2xl text-primaryGold text-center font-bold '>EMSys</h2>
    </div>
    <div className='px-4'>
     <NavLink
@@ -17,7 +17,7 @@ const AdminSidebar = () => {
      className={({ isActive }) =>
       `${
        isActive ? 'bg-primaryDark shadow-md ' : ' '
-      }flex items-center space-x-4 py-3  px-4 rounded-md`
+      }flex items-center space-x-4 py-3  px-4 rounded-md duration-300`
      }
      end
     >
