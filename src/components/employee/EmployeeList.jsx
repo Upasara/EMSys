@@ -7,6 +7,7 @@ import {
  EmployeeButtons,
 } from '../../utils/EmployeeHelper';
 import DataTable from 'react-data-table-component';
+import { ThreeCircles } from 'react-loader-spinner';
 
 const EmployeeList = () => {
  const [employees, setEmployees] = useState([]);

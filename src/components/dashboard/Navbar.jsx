@@ -1,19 +1,15 @@
 import React from 'react';
 import { useAuth } from '../../context/authContext';
+import { FaCircleUser } from 'react-icons/fa6';
 
 const Navbar = () => {
  const { user, logout } = useAuth();
  return (
-  <div className='px-2 flex items-center justify-between h-12 bg-primary-dark text-white'>
+  <div className='px-2 flex items-center justify-end h-12 bg-primary-dark text-white shadow-lg gap-2'>
+   <FaCircleUser className='text-lg' />
    <p>
     Welcome <b>{user.name}</b>
    </p>
-   <button
-    onClick={logout}
-    className='bg-red-800 px-4 py-1 rounded-md hover:bg-red-700 transition'
-   >
-    Logout
-   </button>
   </div>
  );
 };

@@ -5,12 +5,15 @@ import { FaMoneyBill1Wave, FaRegCalendarXmark } from 'react-icons/fa6';
 import { MdEditCalendar } from 'react-icons/md';
 import { LuCalendarClock } from 'react-icons/lu';
 import axios from 'axios';
+import { ThreeCircles } from 'react-loader-spinner';
 
 const AdminSummary = () => {
  const [summary, setSummary] = useState(null);
+ const [loading, setLoading] = useState(false);
 
  useEffect(() => {
   const fetchSummary = async () => {
+   setLoading(true);
    try {
     const token =
      localStorage.getItem('token') || sessionStorage.getItem('token');
@@ -25,78 +28,102 @@ const AdminSummary = () => {
     setSummary(summary);
    } catch (error) {
     console.log(error);
+    setLoading(false);
    }
   };
  }, []);
 
  if (!summary) {
-  return <div>Loading...</div>;
- }
-
- return (
-  <div className='p-6'>
-   <h3 className='text-2xl font-bold text-blue-800'>Dashboard</h3>
-
-   {/*upper cards in dashboard */}
-   <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-10'>
-    <SummaryCard
-     icon={<FaUsers />}
-     text='Total Employees'
-     number={13}
-     iconColor='text-primary-dark'
-     textColor='text-primary-text'
-    />
-    <SummaryCard
-     icon={<FaBuilding />}
-     text='Total Departments'
-     number={5}
-     iconColor='text-primary-dark'
-     textColor='text-primary-text'
-    />
-    <SummaryCard
-     icon={<FaMoneyBill1Wave />}
-     text='Monthly Salary'
-     number='Rs. 60,000'
-     iconColor='text-primary-dark'
-     textColor='text-primary-text'
-    />
-   </div>
-
-   {/*lower cards in dashboard */}
-   <div className='mt-12'>
-    <h4 className=' text-2xl font-bold'>Leave Details</h4>
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
-     <SummaryCard
-      icon={<MdEditCalendar />}
-      text='Applied Leaves'
-      number={2}
-      iconColor='text-primary-dark'
-      textColor='text-secondary-dark'
-     />
-     <SummaryCard
-      icon={<FaRegCalendarCheck />}
-      text='Approved Leaves'
-      number={12}
-      iconColor='text-primary-dark'
-      textColor='text-secondary-dark'
-     />
-     <SummaryCard
-      icon={<LuCalendarClock />}
-      text='Pending Leaves'
-      number={6}
-      iconColor='text-primary-dark'
-      textColor='text-secondary-dark'
-     />
-     <SummaryCard
-      icon={<FaRegCalendarXmark />}
-      text='Rejected Leaves'
-      number={1}
-      iconColor='text-primary-dark'
-      textColor='text-secondary-dark'
+  return (
+   <div className='flex items-center justify-center bg-black/15 z-50 min-h-screen '>
+    <div className='animate-pulse'>
+     <ThreeCircles
+      height='50' // Sets the height to 100 pixels
+      width='50' // Sets the width to 100 pixels
+      color='#4fa94d' // Example color
+      outerCircleColor='#b98807'
+      middleCircleColor='#b98807'
+      innerCircleColor='#b98807'
+      ariaLabel='three-circles-loading'
+      wrapperStyle={{}}
+      wrapperClass=''
+      visible={true}
      />
     </div>
    </div>
-  </div>
+  );
+ }
+
+ return (
+  <>
+   {loading ? (
+    <div>Loading...</div>
+   ) : (
+    <div className='p-6 '>
+     <h3 className='text-2xl font-bold text-blue-800'>Dashboard</h3>
+
+     {/*upper cards in dashboard */}
+     <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-10'>
+      <SummaryCard
+       icon={<FaUsers />}
+       text='Total Employees'
+       number={13}
+       iconColor='text-primary-dark'
+       textColor='text-primary-text'
+      />
+      <SummaryCard
+       icon={<FaBuilding />}
+       text='Total Departments'
+       number={5}
+       iconColor='text-primary-dark'
+       textColor='text-primary-text'
+      />
+      <SummaryCard
+       icon={<FaMoneyBill1Wave />}
+       text='Monthly Salary'
+       number='Rs. 60,000'
+       iconColor='text-primary-dark'
+       textColor='text-primary-text'
+      />
+     </div>
+
+     {/*lower cards in dashboard */}
+     <div className='mt-12'>
+      <h4 className=' text-2xl font-bold'>Leave Details</h4>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
+       <SummaryCard
+        icon={<MdEditCalendar />}
+        text='Applied Leaves'
+        number={2}
+        iconColor='text-primary-dark'
+        textColor='text-secondary-dark'
+       />
+       <SummaryCard
+        icon={<FaRegCalendarCheck />}
+        text='Approved Leaves'
+        number={12}
+        iconColor='text-primary-dark'
+        textColor='text-secondary-dark'
+       />
+       <SummaryCard
+        icon={<LuCalendarClock />}
+        text='Pending Leaves'
+        number={6}
+        iconColor='text-primary-dark'
+        textColor='text-secondary-dark'
+       />
+       <SummaryCard
+        icon={<FaRegCalendarXmark />}
+        text='Rejected Leaves'
+        number={1}
+        iconColor='text-primary-dark'
+        textColor='text-secondary-dark'
+       />
+      </div>
+     </div>
+    </div>
+   )}
+  </>
  );
 };
 
