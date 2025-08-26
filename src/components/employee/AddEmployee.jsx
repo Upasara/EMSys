@@ -114,7 +114,7 @@ const AddEmployee = () => {
  };
 
  return (
-  <div className='bg-slate-100'>
+  <div className='bg-slate-100 bg-[url(/loginBg8.png)]'>
    <div className='max-w-4xl mx-auto bg-white shadow-md rounded-md mt-10 p-8'>
     <h3 className='text-2xl text-blue-800 font-medium text-center mb-10 mt-5'>
      Employee Register Form

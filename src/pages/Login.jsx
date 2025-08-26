@@ -69,15 +69,15 @@ const Login = () => {
  };
 
  return (
-  <div className='flex items-center justify-center min-h-screen bg-slate-100 w-full'>
+  <div className='flex items-center justify-center min-h-screen bg-slate-100 bg-[url(/loginBg8.png)] bg-cover w-full'>
    {loading && ( // Loading Spinner
     <div className='fixed inset-0 flex flex-col items-center justify-center bg-black/80 z-50 gap-3'>
      <img src={Logo} alt='' className='w-24 a animate-pulse' />
 
      <ThreeCircles
-      height='50' // Sets the height to 100 pixels
-      width='50' // Sets the width to 100 pixels
-      color='#4fa94d' // Example color
+      height='50'
+      width='50'
+      color='#4fa94d'
       outerCircleColor='#b98807'
       middleCircleColor='#b98807'
       innerCircleColor='#b98807'

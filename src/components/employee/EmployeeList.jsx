@@ -8,6 +8,7 @@ import {
 } from '../../utils/EmployeeHelper';
 import DataTable from 'react-data-table-component';
 import { ThreeCircles } from 'react-loader-spinner';
+import { IoIosSearch } from 'react-icons/io';
 
 const EmployeeList = () => {
  const [employees, setEmployees] = useState([]);
@@ -69,17 +70,36 @@ const EmployeeList = () => {
  return (
   <>
    {empLoading ? (
-    <div>Loading...</div>
+    //loading spinner
+    <div className='flex items-center justify-center bg-black/15 z-50 min-h-screen '>
+     <div className='animate-pulse'>
+      <ThreeCircles
+       height='50'
+       width='50'
+       color='#4fa94d'
+       outerCircleColor='#b98807'
+       middleCircleColor='#b98807'
+       innerCircleColor='#b98807'
+       ariaLabel='three-circles-loading'
+       wrapperStyle={{}}
+       wrapperClass=''
+       visible={true}
+      />
+     </div>
+    </div>
    ) : (
-    <div className='p-5'>
+    <div className='p-5 bg-[url(/loginBg8.png)] min-h-screen'>
      <div className='text-center'>
-      <h3 className='text-2xl font-bold text-blue-800'>Manage Employees</h3>
+      <h3 className='text-2xl font-semibold text-blue-800 text-shadow-2xs '>
+       Manage Employees
+      </h3>
      </div>
      <div className='flex justify-between items-center'>
+      {/* search bar */}
       <input
        type='text'
-       placeholder='Search Department'
-       className='px-4 py-0.5 border rounded-md'
+       placeholder='Search Department  🔍'
+       className='px-4 py-0.5  rounded-md outline-gray- focus:outline-primary-dark focus:outline-1 focus:bg-white duration-300 '
        onChange={handleFilter}
       />
       <Link
