@@ -6,40 +6,39 @@ export const columns = [
  {
   name: 'S no',
   selector: (row) => row.sno,
-  responsive: true,
-  sortable: true,
+
   width: '80px',
  },
  {
   name: 'Image',
   selector: (row) => row.profileImage,
-  response: true,
+
   width: '80px',
  },
  {
   name: 'Name',
   selector: (row) => row.name,
   sortable: true,
-  responsive: true,
+
   width: '200px',
  },
  {
   name: 'Department ',
   selector: (row) => row.dep_name,
   sortable: true,
-  responsive: true,
+
   width: '150px',
  },
  {
   name: 'Designation',
   selector: (row) => row.emp_designation,
-  responsive: true,
+
   width: '150px',
  },
  {
   name: 'Actions',
   selector: (row) => row.actions,
-  responsive: true,
+
   center: 'true',
  },
 ];

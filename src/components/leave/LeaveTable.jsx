@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { columns, LeaveButton } from '../../utils/LeaveHelper';
 import DataTable from 'react-data-table-component';
-import { data } from 'react-router-dom';
 
 const LeaveTable = () => {
  const [leaves, setLeaves] = useState(null);

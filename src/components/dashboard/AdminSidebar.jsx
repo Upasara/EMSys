@@ -10,7 +10,7 @@ import { CgLogOut } from 'react-icons/cg';
 const AdminSidebar = () => {
  const { logout } = useAuth();
  return (
-  <div className='bg-secondary-dark  text-white h-screen fixed left-0 top-0 bottom-0 space-y-10 w-64 shadow-lg'>
+  <div className='bg-secondary-dark  text-white h-screen fixed left-0 top-0 bottom-0 space-y-10 w-64 '>
    <div className='bg-primary-dark  h-12 flex items-center justify-center'>
     <h2 className='text-3xl text-primary-gold text-center font-bold text-shadow-lg  '>
      EMSys
@@ -85,7 +85,7 @@ const AdminSidebar = () => {
      <span className='group-focus:tracking-wide duration-300'>Settings</span>
     </NavLink>
    </div>
-   <div className='px-4 text-lg w-full absolute bottom-8'>
+   <div className='px-4 text-base w-full absolute bottom-8'>
     <button
      onClick={logout}
      className='relative group flex justify-center items-center gap-1 px-8 py-2 rounded-md w-full cursor-pointer bg-red-800 text-white font-medium tracking-wide hover:shadow-lg hover:bg-red-700  duration-300'

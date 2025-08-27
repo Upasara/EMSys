@@ -145,7 +145,7 @@ const Login = () => {
        <button
         type='submit'
         className='relative group flex justify-center items-center gap-2 w-full 
-         bg-primary-dark text-stone-200 tracking-wide hover:tracking-wider 
+         bg-primary-dark/80 text-stone-200  tracking-wide hover:tracking-wider 
          text-lg py-2 rounded-xl hover:shadow-lg hover:text-white duration-300 overflow-hidden'
        >
         <div
@@ -169,7 +169,9 @@ const Login = () => {
       />
      </div>
      <div className='bottom-wrap text-center text-white'>
-      <h3 className='text-2xl md:text-3xl font-bold mb-3'>EMSys</h3>
+      <h3 className='text-2xl md:text-3xl font-bold mb-3 text-shadow-sm'>
+       EMSys
+      </h3>
       <p className='mb-8 text-sm md:text-base'>
        P.E. Mathew & Company - Employee Management System
       </p>

@@ -99,22 +99,24 @@ const EmployeeList = () => {
       <input
        type='text'
        placeholder='Search Department  🔍'
-       className='px-4 py-0.5  rounded-md outline-gray- focus:outline-primary-dark focus:outline-1 focus:bg-white duration-300 '
+       className='px-4 py-0.5  rounded-md border-2 focus:outline-primary-dark focus:outline-1 focus:bg-white duration-300 '
        onChange={handleFilter}
       />
       <Link
        to='/admin-dashboard/add-employee'
-       className='px-4 py-2 border-2 border-primary-dark rounded-md text-primary-text hover:text-white hover:bg-primary-dark'
+       className='px-4 py-2 border-2 border-primary-light rounded-md text-primary-text hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light transition duration-300  '
       >
        Add New Employee
       </Link>
      </div>
-     <div className='mt-10'>
+     <div className='mt-10 shadow-lg overflow-x-auto'>
       <DataTable
        columns={columns}
        data={fileredEmployee}
        conditionalRowStyles={conditionalRowStyles}
        pagination
+       highlightOnHover
+       responsive
       />
      </div>
     </div>
