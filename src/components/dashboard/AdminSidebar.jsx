@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaBuilding, FaUserTie } from 'react-icons/fa';
 import { GiMoneyStack } from 'react-icons/gi';
 import { LuSettings2 } from 'react-icons/lu';
@@ -7,19 +7,34 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { CgLogOut } from 'react-icons/cg';
 import { TiThMenu } from 'react-icons/ti';
+import { RiCloseFill } from 'react-icons/ri';
 
 const AdminSidebar = () => {
  const { logout } = useAuth();
+ const [isOpen, setIsOpen] = useState(false);
 
  return (
-  <div className='flex'>
-   <div className='w-20 md:w-24 lg:w-64 bg-secondary-dark transition-all duration-300 '>
+  <div className='h-screen'>
+   <div
+    className={`lg:w-64 bg-secondary-dark transition-all duration-300 ease-in-out ${
+     isOpen ? 'w-64' : 'w-24'
+    } `}
+   >
     {/* sidebar header */}
-    <div className='bg-primary-dark h-12  flex justify-center items-center px-4 '>
-     <h2 className='hidden md:hidden lg:block text-3xl text-primary-gold  font-bold text-shadow-lg  '>
+    <div className='bg-primary-dark h-12  flex justify-between items-center pl-8 px-4 '>
+     <h2
+      className={` lg:block text-3xl text-primary-gold  font-bold text-shadow-lg duration-300 ${
+       isOpen ? 'opacity-100' : 'opacity-0 overflow-hidden'
+      } `}
+     >
       EMSys
      </h2>
-     <TiThMenu className='block md:block lg:hidden text-2xl text-primary-gold' />
+     <button
+      className='block md:block lg:hidden text-2xl text-primary-gold cursor-pointer'
+      onClick={() => setIsOpen(!isOpen)}
+     >
+      {isOpen ? <RiCloseFill /> : <TiThMenu />}
+     </button>
     </div>
     {/* sidebar content */}
     <div className='px-4 pt-4 text-white'>
@@ -34,7 +49,13 @@ const AdminSidebar = () => {
       end
      >
       <MdDashboard className='group-focus:-translate-x-1 duration-300 text-2xl' />
-      <span className='ml-2 hidden md:hidden lg:block text-lg'>Dashboard</span>
+      <span
+       className={`ml-2   lg:block text-lg transition-all duration-300 ease-in-out ${
+        isOpen ? 'opacity-100' : 'opacity-0 '
+       } overflow-hidden `}
+      >
+       Dashboard
+      </span>
      </NavLink>
      {/* employee link */}
      <NavLink
@@ -46,7 +67,11 @@ const AdminSidebar = () => {
       }
      >
       <FaUserTie className='group-focus:-translate-x-1 duration-300 text-2xl' />
-      <div className='ml-2 hidden md:hidden lg:block'>Employee</div>
+      <div
+       className={`ml-2   lg:block text-lg ${isOpen ? 'block' : 'hidden'} `}
+      >
+       Employee
+      </div>
      </NavLink>
      {/* department link */}
      <NavLink
@@ -58,7 +83,11 @@ const AdminSidebar = () => {
       }
      >
       <FaBuilding className='group-focus:-translate-x-1 duration-300 text-2xl' />
-      <div className='ml-2 hidden md:hidden lg:block'>Department</div>
+      <div
+       className={`ml-2   lg:block text-lg ${isOpen ? 'block' : 'hidden'} `}
+      >
+       Department
+      </div>
      </NavLink>
      {/* leave link */}
      <NavLink
@@ -70,7 +99,11 @@ const AdminSidebar = () => {
       }
      >
       <MdDateRange className='group-focus:-translate-x-1 duration-300 text-2xl' />
-      <div className='ml-2 hidden md:hidden lg:block'>Leave</div>
+      <div
+       className={`ml-2   lg:block text-lg ${isOpen ? 'block' : 'hidden'} `}
+      >
+       Leave
+      </div>
      </NavLink>
      {/* salary link */}
      <NavLink
@@ -82,7 +115,11 @@ const AdminSidebar = () => {
       }
      >
       <GiMoneyStack className='group-focus:-translate-x-1 duration-300 text-2xl ' />
-      <div className='ml-2 hidden md:hidden lg:block'>Salary</div>
+      <div
+       className={`ml-2   lg:block text-lg ${isOpen ? 'block' : 'hidden'} `}
+      >
+       Salary
+      </div>
      </NavLink>
      {/* settings link */}
      <NavLink
@@ -94,7 +131,11 @@ const AdminSidebar = () => {
       }
      >
       <LuSettings2 className='group-focus:-translate-x-1 duration-300 text-2xl' />
-      <div className='ml-2 hidden md:hidden lg:block'>Settings</div>
+      <div
+       className={`ml-2   lg:block text-lg ${isOpen ? 'block' : 'hidden'} `}
+      >
+       Settings
+      </div>
      </NavLink>
      {/* logout button */}
 
@@ -103,7 +144,11 @@ const AdminSidebar = () => {
       className='relative group flex   items-center space-x-2 px-4 py-2 rounded-md   bg-red-800 text-white font-medium tracking-wide hover:shadow-lg hover:bg-red-700  duration-300'
      >
       <CgLogOut className='group-hover:-translate-x-1.5 duration-300 text-2xl' />
-      <div className='ml-2 hidden md:hidden lg:block'>Logout</div>
+      <div
+       className={`ml-2   lg:block text-lg ${isOpen ? 'block' : 'hidden'} `}
+      >
+       Logout
+      </div>
      </NavLink>
     </div>
     {/* logout button */}

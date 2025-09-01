@@ -71,7 +71,7 @@ const EmployeeList = () => {
   <>
    {empLoading ? (
     //loading spinner
-    <div className='flex items-center justify-center bg-black/15 z-50 min-h-screen '>
+    <div className='flex items-center justify-center bg-black/15 z-50  '>
      <div className='animate-pulse'>
       <ThreeCircles
        height='50'
@@ -88,7 +88,7 @@ const EmployeeList = () => {
      </div>
     </div>
    ) : (
-    <div className='p-5 bg-[url(/loginBg8.png)] min-h-screen'>
+    <div className='p-5 bg-[url(/loginBg8.png)] bg-cover min-h-screen'>
      <div className='text-center'>
       <h3 className='text-2xl font-semibold text-blue-800 text-shadow-2xs '>
        Manage Employees
