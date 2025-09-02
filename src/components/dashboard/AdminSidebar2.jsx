@@ -10,6 +10,7 @@ import { PiBuildingsFill } from 'react-icons/pi';
 import { MdCalendarMonth } from 'react-icons/md';
 import { GiMoneyStack } from 'react-icons/gi';
 import { LuSettings2 } from 'react-icons/lu';
+import { CgLogOut } from 'react-icons/cg';
 
 const AdminSidebar2 = () => {
  const { logout } = useAuth();
@@ -72,12 +73,6 @@ const AdminSidebar2 = () => {
   return () => window.removeEventListener('resize', handleResize);
  }, []);
 
- const handleNavClick = () => {
-  if (isMobile) {
-   setOpen(false);
-  }
- };
-
  return (
   <div className='flex'>
    {/* overlay for mobile */}
@@ -97,7 +92,7 @@ const AdminSidebar2 = () => {
     </div>
    )}
    <div
-    className={`bg-secondary-dark min-h-screen fixed lg:relative z-50 ${
+    className={`bg-secondary-dark  sticky top-0 left-0 h-screen z-50 ${
      open ? 'w-64' : 'w-20 '
     } duration-500`}
    >
@@ -141,7 +136,11 @@ const AdminSidebar2 = () => {
        }
        end={menu.end}
       >
-       <div className='group-focus:translate-x-1 duration-300'>
+       <div
+        className={`${
+         !open && 'pl-1'
+        } group-focus:-translate-x-1 duration-300 `}
+       >
         {React.createElement(menu.icon, { size: '24' })}
        </div>
        <h2
@@ -162,6 +161,37 @@ const AdminSidebar2 = () => {
        </h2>
       </NavLink>
      ))}
+     {/* logout button */}
+     <div className=' text-white text-lg w-full flex flex-col duration-300 mt-14'>
+      <button
+       onClick={logout}
+       className='group flex items-center justify-center gap-2.5 py-1.5 px-2 font-medium rounded-md bg-red-700 hover:bg-red-800 hover:shadow-lg duration-300'
+      >
+       <div
+        className={`${
+         !open && 'pl-3'
+        } group-focus:translate-x-1 duration-300 group-hover:-translate-x-1`}
+       >
+        {React.createElement(CgLogOut, { size: '24' })}
+       </div>
+       <h2
+        style={{ transitionDelay: '600ms' }}
+        className={`whitespace-pre duration-500  ${
+         !open && 'opacity-0 translate-x-28 overflow-x-hidden'
+        }`}
+       >
+        Logout
+       </h2>
+       <h2
+        className={`${
+         open && 'hidden'
+        } absolute left-48 bg-white font-semibold text-sm whitespace-pre text-secondary-dark rounded-md drop-shadow-lg px-0 py-0 w-0 
+        group-hover:px-1.5 group-hover:py-1 group-hover:left-24 group-hover:duration-300 overflow-hidden group-hover:w-fit`}
+       >
+        Logout
+       </h2>
+      </button>
+     </div>
     </div>
    </div>
   </div>

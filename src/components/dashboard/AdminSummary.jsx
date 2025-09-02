@@ -35,7 +35,7 @@ const AdminSummary = () => {
 
  if (!summary) {
   return (
-   <div className='flex items-center justify-center bg-black/15 z-50 min-h-screen '>
+   <div className='flex items-center justify-center bg-black/15 z-50 h-screen '>
     <div className='animate-pulse'>
      <ThreeCircles
       height='50' // Sets the height to 100 pixels

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAuth } from '../context/authContext';
-import AdminSidebar from '../components/dashboard/AdminSidebar';
 import Navbar from '../components/dashboard/Navbar';
 import { Outlet } from 'react-router-dom';
 import AdminSidebar2 from '../components/dashboard/AdminSidebar2';

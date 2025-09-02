@@ -88,7 +88,7 @@ const EmployeeList = () => {
      </div>
     </div>
    ) : (
-    <div className='p-5 bg-[url(/loginBg8.png)] bg-cover min-h-screen'>
+    <div className='p-5 bg-[url(/loginBg8.png)] bg-cover'>
      <div className='text-center'>
       <h3 className='text-2xl font-semibold text-blue-800 text-shadow-2xs '>
        Manage Employees
