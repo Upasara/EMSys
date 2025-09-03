@@ -10,7 +10,7 @@ const Admin = () => {
  return (
   <div className='flex'>
    <AdminSidebar2 />
-   <div className='flex-1 bg-gray-100 min-h-screen'>
+   <div className='flex-1 bg-gray-100 bg-[url(/loginBg8.png)] overflow-y-auto min-h-screen'>
     <Navbar />
     <Outlet />
    </div>

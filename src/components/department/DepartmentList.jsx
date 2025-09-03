@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
 import { columns, DepartmentButtons } from '../../utils/DepartmentHelper';
 import axios from 'axios';
+import { ThreeCircles } from 'react-loader-spinner';
 
 const DepartmentList = () => {
  /*holds ist of department data fetched from the database */
@@ -74,28 +75,51 @@ const DepartmentList = () => {
   //laoding message is displayed while the data is being fetched
   <>
    {depLoading ? (
-    <div>Loading...</div>
+    <div className='flex items-center justify-center bg-black/15 z-50  h-screen'>
+     <div className='animate-pulse'>
+      <ThreeCircles
+       height='50'
+       width='50'
+       color='#4fa94d'
+       outerCircleColor='#b98807'
+       middleCircleColor='#b98807'
+       innerCircleColor='#b98807'
+       ariaLabel='three-circles-loading'
+       wrapperStyle={{}}
+       wrapperClass=''
+       visible={true}
+      />
+     </div>
+    </div>
    ) : (
     <div className='p-5'>
      <div className='text-center'>
-      <h3 className='text-2xl font-bold text-blue-800'>Manage Departments</h3>
+      <h3 className='text-2xl font-semibold text-blue-800 text-shadow-2xs'>
+       Manage Departments
+      </h3>
      </div>
      <div className='flex justify-between items-center'>
       <input
        type='text'
-       placeholder='Search Department'
-       className='px-4 py-0.5 border rounded-md'
+       placeholder='Search Department  🔍'
+       className='px-4 py-0.5  rounded-md border-2 focus:outline-primary-dark focus:outline-1 focus:bg-white duration-300              '
        onChange={filterDepartments}
       />
       <Link
        to='/admin-dashboard/add-department'
-       className='px-4 py-2 border-2 border-primary-dark rounded-md text-primary-text hover:text-white hover:bg-primary-dark'
+       className='px-4 py-2 border-2 border-primary-light rounded-md text-primary-text hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light transition duration-300 '
       >
        Add New Department
       </Link>
      </div>
-     <div className='mt-5'>
-      <DataTable columns={columns} data={filteredDepartments} pagination />
+     <div className='mt-10 shadow-lg overflow-x-auto'>
+      <DataTable
+       columns={columns}
+       data={filteredDepartments}
+       pagination
+       highlightOnHover
+       responsive
+      />
      </div>
     </div>
    )}

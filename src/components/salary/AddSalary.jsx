@@ -183,7 +183,7 @@ const AddSalary = () => {
  return (
   <>
    {departments ? (
-    <div className='bg-slate-100'>
+    <div className=''>
      <div className='mr-10 mt-7 flex justify-end'>
       <Link
        to='/admin-dashboard/salary/export'

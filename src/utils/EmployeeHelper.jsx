@@ -6,39 +6,42 @@ export const columns = [
  {
   name: 'S no',
   selector: (row) => row.sno,
-
+  wrap: true,
   width: '80px',
+  center: 'true',
  },
  {
   name: 'Image',
   selector: (row) => row.profileImage,
-
+  wrap: true,
   width: '80px',
  },
  {
   name: 'Name',
   selector: (row) => row.name,
   sortable: true,
-
+  wrap: true,
   width: '200px',
+  center: 'true',
  },
  {
-  name: 'Department ',
+  name: 'Department',
   selector: (row) => row.dep_name,
   sortable: true,
-
+  wrap: true,
   width: '150px',
+  center: 'true',
  },
  {
   name: 'Designation',
   selector: (row) => row.emp_designation,
-
+  wrap: true,
   width: '150px',
+  center: 'true',
  },
  {
   name: 'Actions',
   selector: (row) => row.actions,
-
   center: 'true',
  },
 ];
@@ -51,6 +54,26 @@ export const conditionalRowStyles = [
   },
  },
 ];
+
+export const customTableStyles = {
+ headCells: {
+  style: {
+   fontSize: '15px',
+   fontWeight: 'bold',
+   backgroundColor: '#dee2e6',
+  },
+ },
+ cells: {
+  style: {
+   fontSize: '14px',
+  },
+ },
+ pagination: {
+  style: {
+   backgroundColor: '#dee2e6',
+  },
+ },
+};
 
 export const fetchDepartments = async () => {
  let departments;

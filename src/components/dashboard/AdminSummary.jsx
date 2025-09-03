@@ -57,7 +57,22 @@ const AdminSummary = () => {
  return (
   <>
    {loading ? (
-    <div>Loading...</div>
+    <div className='flex items-center justify-center bg-black/15 z-50 h-screen '>
+     <div className='animate-pulse'>
+      <ThreeCircles
+       height='50'
+       width='50'
+       color='#4fa94d'
+       outerCircleColor='#b98807'
+       middleCircleColor='#b98807'
+       innerCircleColor='#b98807'
+       ariaLabel='three-circles-loading'
+       wrapperStyle={{}}
+       wrapperClass=''
+       visible={true}
+      />
+     </div>
+    </div>
    ) : (
     <div className='p-6 '>
      <h3 className='text-2xl font-bold text-blue-800'>Dashboard</h3>

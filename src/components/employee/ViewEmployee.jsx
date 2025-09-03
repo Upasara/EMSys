@@ -42,7 +42,7 @@ const ViewEmployee = () => {
    {empLoading ? (
     <div>Loading...</div>
    ) : (
-    <div className='bg-slate-100'>
+    <div className=''>
      <div className='max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md'>
       <h3 className='text-2xl font-bold text-blue-800 text-center mb-10'>
        Employee Details

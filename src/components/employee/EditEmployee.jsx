@@ -168,7 +168,7 @@ const EditEmployee = () => {
  return (
   <>
    {departments && employee ? (
-    <div className='bg-slate-100'>
+    <div className=''>
      <div className='max-w-4xl mx-auto bg-white shadow-md rounded-md mt-10 p-8'>
       <h3 className='text-2xl text-blue-800 font-medium text-center mb-10 mt-5'>
        Edit Employee

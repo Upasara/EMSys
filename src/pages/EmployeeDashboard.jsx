@@ -1,13 +1,13 @@
 import React from 'react';
-import EmployeeSidebar from '../components/EmployeeDashboard/EmployeeSidebar';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/dashboard/Navbar';
+import EmployeeSidebar2 from '../components/EmployeeDashboard/EmployeeSidebar2';
 
 const EmployeeDashboard = () => {
  return (
   <div className='flex'>
-   <EmployeeSidebar />
-   <div className='flex-1 ml-64 bg-gray-100 h-screen'>
+   <EmployeeSidebar2 />
+   <div className='flex-1  bg-gray-100 bg-[url(/loginBg8.png)] h-screen overflow-y-auto'>
     <Navbar />
     <Outlet />
    </div>

@@ -5,50 +5,43 @@ import { RiMenuFold2Fill } from 'react-icons/ri';
 import { RiMenuUnfold2Fill } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 import { MdOutlineDashboard } from 'react-icons/md';
-import { FaUserGroup } from 'react-icons/fa6';
-import { PiBuildingsFill } from 'react-icons/pi';
 import { MdCalendarMonth } from 'react-icons/md';
 import { GiMoneyStack } from 'react-icons/gi';
 import { LuSettings2 } from 'react-icons/lu';
 import { CgLogOut } from 'react-icons/cg';
+import { FaUserLarge } from 'react-icons/fa6';
 
-const AdminSidebar2 = () => {
- const { logout } = useAuth();
+const EmployeeSidebar2 = () => {
+ const { logout, user } = useAuth();
 
  const menus = [
   {
    name: 'Dashboard',
-   link: '/admin-dashboard',
+   link: '/employee-dashboard',
    icon: MdOutlineDashboard,
    end: true,
   },
   {
-   name: 'Employees',
-   link: '/admin-dashboard/employees',
-   icon: FaUserGroup,
-   end: false,
-  },
-  {
-   name: 'Departments',
-   link: '/admin-dashboard/departments',
-   icon: PiBuildingsFill,
+   name: 'My Profile',
+   link: `/employee-dashboard/profile/${user._id}`,
+   icon: FaUserLarge,
    end: false,
   },
   {
    name: 'Leaves',
-   link: '/admin-dashboard/leaves',
+   link: `/employee-dashboard/leaves/${user._id}`,
    icon: MdCalendarMonth,
    end: false,
   },
   {
    name: 'Salary',
-   link: '/admin-dashboard/salary/add',
+   link: `/employee-dashboard/salary/${user._id}`,
    icon: GiMoneyStack,
    end: false,
   },
   {
    name: 'Settings',
-   link: '/admin-dashboard/setting',
+   link: '/employee-dashboard/setting',
    icon: LuSettings2,
    end: true,
   },
@@ -93,8 +86,8 @@ const AdminSidebar2 = () => {
     </div>
    )}
    <div
-    className={`bg-secondary-dark fixed  top-0 left-0 h-screen z-50 transform ${
-     open ? 'w-64 translate-x-0' : 'w-20 -translate-x-full '
+    className={`bg-secondary-dark fixed top-0 left-0 h-screen z-50 transform ${
+     open ? 'w-64 translate-x-0' : 'w-20  -translate-x-full'
     } md:sticky lg:sticky lg:translate-x-0 md:translate-x-0 duration-500 ease-in-out`}
    >
     {/* header */}
@@ -203,4 +196,4 @@ const AdminSidebar2 = () => {
  );
 };
 
-export default AdminSidebar2;
+export default EmployeeSidebar2;
