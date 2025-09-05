@@ -4,8 +4,6 @@ import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import path from 'path';
 import Department from '../models/Department.js';
-import { Await } from 'react-router-dom';
-import { error } from 'console';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -55,7 +53,7 @@ const addEmployee = async (req, res) => {
     if (user) {
       return res
         .status(400)
-        .json({ success: false, error: 'user already exist' });
+        .json({ success: false, error: 'Email already in use !' });
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
@@ -106,12 +104,11 @@ const addEmployee = async (req, res) => {
 
     return res
       .status(200)
-      .json({ success: true, message: 'Employee data created...' });
+      .json({ success: true, message: 'Employee data created . ' });
   } catch (error) {
-    console.log(error.message);
     return res
       .status(500)
-      .json({ success: false, error: 'Employee ID exist...' });
+      .json({ success: false,error: 'Employee ID already in use !' });
   }
 };
 
@@ -125,7 +122,7 @@ const getEmployees = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: 'Employee fetching error...' });
+      .json({ success: false, error: 'Employee fetching error !' });
   }
 };
 

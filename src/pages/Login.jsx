@@ -42,13 +42,17 @@ const Login = () => {
 
     setTimeout(() => {
      if (response.data.user.role === 'admin') {
-      toast.success('Welcome Admin!', {
+      toast.success('Welcome Admin !', {
        position: 'top-center',
+       icon: '🛡️',
+       
       });
       navigate('/admin-dashboard');
      } else {
-      toast.success('Welcome Employee!', {
+      toast.success('Welcome Employee !', {
        position: 'top-center',
+       icon: '🧑‍🔧',
+       
       });
       navigate('/employee-dashboard');
      }
@@ -64,6 +68,7 @@ const Login = () => {
 
    toast.error(eMessage, {
     duration: 4000,
+   
    });
   }
  };

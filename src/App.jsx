@@ -162,7 +162,10 @@ function App() {
      </Route>
     </Routes>
    </BrowserRouter>
-   <Toaster position='bottom-center' reverseOrder={false} />
+   <Toaster position='top-right' reverseOrder={false} toastOptions={{
+    success:{ style: {background : '#15803d', color: 'white'}, iconTheme : {primary: 'white', secondary: '#15803d'}},
+    error: {style: {background : '#b91c1c',color: 'white'}, iconTheme: {primary: 'white', secondary: '#b91c1c'}}
+   }}/>
   </>
  );
 }

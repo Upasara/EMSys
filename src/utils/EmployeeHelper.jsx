@@ -60,7 +60,6 @@ export const customTableStyles = {
   style: {
    fontSize: '15px',
    fontWeight: 'bold',
-   backgroundColor: '#dee2e6',
   },
  },
  cells: {
@@ -68,11 +67,7 @@ export const customTableStyles = {
    fontSize: '14px',
   },
  },
- pagination: {
-  style: {
-   backgroundColor: '#dee2e6',
-  },
- },
+ 
 };
 
 export const fetchDepartments = async () => {

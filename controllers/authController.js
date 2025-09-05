@@ -10,23 +10,23 @@ try{
     const {email, password, rememberMe} = req.body
     const user = await User.findOne({email})
     if(!user){
-       return res.status(404).json({success:false, error: 'User not found'})
+       return res.status(404).json({success:false, error: 'User not found !'})
     }    
 
     const isMatch = await bcrypt.compare(password, user.password)
     if(!isMatch){
-       return res.status(404).json({success:false,  error: 'Password is incorrect'})
+       return res.status(404).json({success:false,  error: 'Password is incorrect !'})
     }
 
     //if the user is an employee, fetch their active status
     if(user.role === 'employee'){
         const employee = await Employee.findOne({userId: user._id}) // query by userId
         if(!employee){
-            return res.status(404).json({success:false, error: 'Employee not found'})
+            return res.status(404).json({success:false, error: 'Employee not found !'})
         }
 
         if(!employee.isActive){
-            return res.status(403).json({success:false, error: 'Employee is not active'})
+            return res.status(403).json({success:false, error: 'Employee is not active ! Please contact admin.'})
         }
     }
 
