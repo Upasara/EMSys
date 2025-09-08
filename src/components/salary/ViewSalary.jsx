@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useParams } from 'react-router-dom';
 
 const ViewSalary = () => {
@@ -27,7 +28,7 @@ const ViewSalary = () => {
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
-    alert(error.message);
+    toast.error(error.response.data.error);
    }
   }
  };
@@ -49,31 +50,41 @@ const ViewSalary = () => {
  return (
   <>
    {filteredSalaries === null ? (
-    <div>Loading...</div>
-   ) : (
-    <div className='overflow-x-auto p-5'>
-     <div className='text-center'>
-      <h2 className='text-2xl font-bold'>Salary History</h2>
+    //loading spinner
+    <div className='flex items-center justify-center bg-black/15 z-50  h-screen'>
+     <div className='animate-pulse'>
+      <ThreeCircles
+       height='50'
+       width='50'
+       color='#4fa94d'
+       outerCircleColor='#b98807'
+       middleCircleColor='#b98807'
+       innerCircleColor='#b98807'
+       ariaLabel='three-circles-loading'
+       wrapperStyle={{}}
+       wrapperClass=''
+       visible={true}
+      />
      </div>
-     <div className='flex justify-end my-3 gap-1'>
+    </div>
+   ) : (
+    <div className='p-5'>
+     <div className='text-center'>
+      <h2 className='text-2xl font-semibold text-blue-800 text-shadow-2xs'>
+       Salary History
+      </h2>
+     </div>
+     <div className='flex justify-end mt-5 '>
       <button
        onClick={toggleSortOrder}
-       className='bg-green-700 text-white px-3 py-1 rounded-md'
+       className='py-1.5 px-2 rounded-md  font-semibold bg-green-700  text-white hover:shadow-lg  hover:text-shadow-sm duration-300'
       >
        Sort by Pay Date ({sortOrder === 'asc' ? 'New - Old' : 'Old - New'})
       </button>
-      <button>
-       <Link
-        to='/admin-dashboard/employees'
-        className='bg-red-700 py-1 px-3 text-center rounded-md text-white hover:bg-red-600 transition'
-       >
-        Back
-       </Link>
-      </button>
      </div>
      {filteredSalaries.length > 0 ? (
-      <table className='w-full text-sm text-gray-500 text-center'>
-       <thead className='text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200'>
+      <table className='w-full  text-center'>
+       <thead className='text-[15px] text-gray-700 uppercase bg-gray-50 border border-gray-200'>
         <tr>
          <th className='px-6 py-3'>SNO</th>
          <th className='px-6 py-3'>Pay Date</th>
@@ -85,7 +96,7 @@ const ViewSalary = () => {
          <th className='px-6 py-3'></th>
         </tr>
        </thead>
-       <tbody className='font-medium'>
+       <tbody className='font-medium text-[14px'>
         {filteredSalaries
          .sort((a, b) =>
           sortOrder === 'asc'
@@ -116,7 +127,7 @@ const ViewSalary = () => {
        </tbody>
       </table>
      ) : (
-      <div>No Records</div>
+      <div className='bg-white p-5 mt-10 shadow-md rounded-lg'>No Records</div>
      )}
     </div>
    )}

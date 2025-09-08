@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { BiSolidEditAlt } from 'react-icons/bi';
+import { MdDeleteOutline } from 'react-icons/md';
 
 {
  /* declare columns for the table */
@@ -35,6 +37,19 @@ export const columns = [
  },
 ];
 
+export const customTableStyles = {
+ headCells: {
+  style: {
+   fontSize: '15px',
+   fontWeight: 'bold',
+  },
+ },
+ cells: {
+  style: {
+   fontSize: '14px',
+  },
+ },
+};
 {
  /*Buttons on the Department List table declaration */
 }
@@ -74,13 +89,13 @@ export const DepartmentButtons = ({ DepID, onDepartmentDelete }) => {
     className='py-1 px-2 bg-orange-500 text-white rounded-sm'
     onClick={() => navigate(`/admin-dashboard/department/${DepID}`)}
    >
-    Edit
+    <BiSolidEditAlt size={20} />
    </button>
    <button
     className='py-1 px-2  bg-red-700 text-white rounded-sm'
     onClick={() => handleDelete(DepID)}
    >
-    Remove
+    <MdDeleteOutline size={20} />
    </button>
   </div>
  );

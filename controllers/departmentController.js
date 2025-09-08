@@ -7,7 +7,7 @@ const getDepartments = async(req, res)=> {
     return res.status(200).json({success : true, departments})
 
   }catch(error){
-    return res.status(500).json({success : false, error : "Get department server error"})
+    return res.status(500).json({success : false, error : "Get department server error !"})
   }
 }
 
@@ -37,7 +37,7 @@ const getDepartment = async (req, res) =>{
   const department = await Department.findById({_id: id})
   return res.status(200).json({success : true, department})
  }catch(error){
-  return res.status(500).json({success : false, error : "Edit department server error"})
+  return res.status(500).json({success : false, error : "Edit department server error !"})
  }
 }
 
@@ -53,7 +53,7 @@ const updateDepartment = async (req, res) =>{
     })
     return res.status(200).json({success : true, updateDep})
   }catch(error){
-    return res.status(500).json({success : false, error : "Edit department server error"})
+    return res.status(500).json({success : false, error : "Edit department server error !"})
   }
 }
 
@@ -63,7 +63,7 @@ const deleteDepartment = async (req, res)=>{
     const deleteDep = await Department.findByIdAndDelete({_id: id})
     return res.status(200).json({success : true, deleteDep})
   }catch(error){
-    return res.status(500).json({success : false, error : "Delete department server error"})
+    return res.status(500).json({success : false, error : "Delete department server error !"})
   }
 }
 

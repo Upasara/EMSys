@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BiSolidEditAlt } from 'react-icons/bi';
+import { GiMoneyStack } from 'react-icons/gi';
+import { MdDateRange } from 'react-icons/md';
+import { MdMenu } from 'react-icons/md';
+import toast from 'react-hot-toast';
 
 export const columns = [
  {
@@ -60,6 +65,7 @@ export const customTableStyles = {
   style: {
    fontSize: '15px',
    fontWeight: 'bold',
+   fontColor: '#FFFFFF',
   },
  },
  cells: {
@@ -67,7 +73,6 @@ export const customTableStyles = {
    fontSize: '14px',
   },
  },
- 
 };
 
 export const fetchDepartments = async () => {
@@ -87,7 +92,7 @@ export const fetchDepartments = async () => {
   }
  } catch (error) {
   if (error.response && !error.response.data.success) {
-   alert(error.response.data.error);
+   toast.error(error.response.data.error);
   }
  }
  return departments;
@@ -113,7 +118,7 @@ export const getEmployees = async (id) => {
   }
  } catch (error) {
   if (error.response && !error.response.data.success) {
-   alert(error.response.data.error);
+   toast.error(error.response.data.error);
   }
  }
  return employees;
@@ -135,7 +140,7 @@ export const fetchActiveStatus = async (id) => {
   }
  } catch (error) {
   if (error.response && !error.response.data.success) {
-   alert(error.response.data.error);
+   toast.error(error.response.data.error);
   }
  }
  return isActive;
@@ -164,7 +169,7 @@ export const EmployeeButtons = ({ Id }) => {
      setIsActive(response.data.employee.isActive);
     }
    } catch (error) {
-    alert('Error fetching employee status. Please try again.');
+    toast.error('Error fetching employee status !');
    }
   };
   fetchEmployeeStatus();
@@ -185,7 +190,7 @@ export const EmployeeButtons = ({ Id }) => {
     },
    });
    if (response.data.success) {
-    alert(
+    toast.success(
      isActive
       ? 'Employee deactivated successfully'
       : 'Employee activated successfully'
@@ -199,8 +204,8 @@ export const EmployeeButtons = ({ Id }) => {
    );
    alert(
     isActive
-     ? 'Error deactivating employee. Please try again.'
-     : 'Error activating employee. Please try again.'
+     ? 'Error deactivating employee. Please try again !'
+     : 'Error activating employee. Please try again !'
    );
   } finally {
    setIsLoading(false);
@@ -211,43 +216,71 @@ export const EmployeeButtons = ({ Id }) => {
   <div className='flex gap-2 items-center'>
    {/* view button */}
    <button
-    className={`py-1 px-2 bg-green-500 text-white rounded ${
+    className={`group py-1 px-2 bg-emerald-600 text-white rounded cursor-pointer  ${
      !isActive || isLoading ? 'cursor-not-allowed' : ''
     }`}
     onClick={() => navigate(`/admin-dashboard/employees/${Id}`)}
     disabled={!isActive || isLoading}
    >
-    View
+    <MdMenu
+     size={20}
+     className={`${
+      isActive
+       ? 'group-hover:-translate-y-0.5 duration-300'
+       : 'cursor-not-allowed'
+     }`}
+    />
    </button>
    {/* edit button */}
    <button
-    className={`py-1 px-2 bg-orange-600 text-white rounded ${
+    className={`group py-1 px-2 bg-amber-600 text-white rounded cursor-pointer ${
      !isActive || isLoading ? 'cursor-not-allowed' : ''
     }`}
     onClick={() => navigate(`/admin-dashboard/employees/edit/${Id}`)}
     disabled={!isActive || isLoading}
    >
-    Edit
+    <BiSolidEditAlt
+     size={20}
+     className={`${
+      isActive
+       ? 'group-hover:-translate-y-0.5 duration-300'
+       : 'cursor-not-allowed'
+     }`}
+    />
    </button>
    {/* salary button */}
    <button
-    className={`py-1 px-2 bg-blue-600 text-white rounded ${
+    className={`group py-1 px-2 bg-blue-700 text-white rounded cursor-pointer ${
      !isActive || isLoading ? 'cursor-not-allowed' : ''
     }`}
     onClick={() => navigate(`/admin-dashboard/employee/salary/${Id}`)}
     disabled={!isActive || isLoading}
    >
-    Salary
+    <GiMoneyStack
+     size={20}
+     className={`${
+      isActive
+       ? 'group-hover:-translate-y-0.5 duration-300'
+       : 'cursor-not-allowed'
+     }`}
+    />
    </button>
    {/* leave button */}
    <button
-    className={`py-1 px-2 bg-red-600 text-white rounded ${
+    className={`group py-1 px-2 bg-red-600 text-white rounded cursor-pointer ${
      !isActive || isLoading ? 'cursor-not-allowed' : ''
     }`}
     onClick={() => navigate(`/admin-dashboard/employees/leaves/${Id}`)}
     disabled={!isActive || isLoading}
    >
-    Leave
+    <MdDateRange
+     size={20}
+     className={`${
+      isActive
+       ? 'group-hover:-translate-y-0.5 duration-300'
+       : 'cursor-not-allowed'
+     }`}
+    />
    </button>
    {/* toggle switch */}
    <label className='flex items-center cursor-pointer'>
@@ -265,7 +298,7 @@ export const EmployeeButtons = ({ Id }) => {
       }`}
      ></div>
      <div
-      className={`dot absolute left-1 top-1 w-4 h-4 rounded-full transition ${
+      className={`dot absolute left-1 top-1 w-4 h-4 rounded-full transition duration-500 ${
        isActive ? 'bg-white translate-x-4' : 'bg-gray-500'
       }`}
      ></div>

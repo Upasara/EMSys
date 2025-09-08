@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
-import { columns, DepartmentButtons } from '../../utils/DepartmentHelper';
+import {
+ columns,
+ customTableStyles,
+ DepartmentButtons,
+} from '../../utils/DepartmentHelper';
 import axios from 'axios';
 import { ThreeCircles } from 'react-loader-spinner';
 
@@ -98,7 +102,7 @@ const DepartmentList = () => {
        Manage Departments
       </h3>
      </div>
-     <div className='flex justify-between items-center'>
+     <div className='flex justify-between items-center gap-4 mt-5'>
       <input
        type='text'
        placeholder='Search Department  🔍'
@@ -107,15 +111,17 @@ const DepartmentList = () => {
       />
       <Link
        to='/admin-dashboard/add-department'
-       className='px-4 py-2 border-2 border-primary-light rounded-md text-primary-text hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light transition duration-300 '
+       className='px-4 py-1 md:py-2 lg:py-2 border-2 border-primary-light rounded-md text-primary-text hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light transition duration-300 text-center  '
       >
-       Add New Department
+       <span className='hidden md:block lg:block'>Add Department</span>
+       <span className='block md:hidden lg:hidden'>Add</span>
       </Link>
      </div>
      <div className='mt-10 shadow-lg overflow-x-auto'>
       <DataTable
        columns={columns}
        data={filteredDepartments}
+       customStyles={customTableStyles}
        pagination
        highlightOnHover
        responsive

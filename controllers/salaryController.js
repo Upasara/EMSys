@@ -81,7 +81,7 @@ const getSalary = async (req,res) =>{
 
         return res.status(200).json({success : true, salary})
     }catch(error){
-        return res.status(500).json({success :false, error:"Salary get server error"})
+        return res.status(500).json({success :false, error:"No salary record !"})
     }
 } 
 

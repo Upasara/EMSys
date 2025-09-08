@@ -1,5 +1,5 @@
 import axios from 'axios';
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
  columns,
@@ -110,7 +110,7 @@ const EmployeeList = () => {
        <span className='block md:hidden lg:hidden'>Add</span>
       </Link>
      </div>
-     <div className='mt-10 shadow-lg overflow-x-auto text-primary-text'>
+     <div className='mt-10 shadow-md overflow-x-auto text-primary-text rounded-lg'>
       <DataTable
        columns={columns}
        data={fileredEmployee}

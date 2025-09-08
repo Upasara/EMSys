@@ -3,7 +3,6 @@ import Employee from '../models/Employee.js';
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import path from 'path';
-import Department from '../models/Department.js';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -104,7 +103,7 @@ const addEmployee = async (req, res) => {
 
     return res
       .status(200)
-      .json({ success: true, message: 'Employee data created . ' });
+      .json({ success: true, message: 'Employee data created' });
   } catch (error) {
     return res
       .status(500)
@@ -142,7 +141,7 @@ const getEmployee = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: 'Employee fetching error...' });
+      .json({ success: false, error: 'Employee fetching error !' });
   }
 };
 
@@ -183,14 +182,14 @@ const updateEmployee = async (req, res) => {
     if (!employee) {
       return res
         .status(404)
-        .json({ success: false, error: 'Employee not found...' });
+        .json({ success: false, error: 'Employee not found !' });
     }
 
     const user = await User.findById({ _id: employee.userId });
     if (!user) {
       return res
         .status(404)
-        .json({ success: false, error: 'User not found...' });
+        .json({ success: false, error: 'User not found !' });
     }
 
     const updateUser = await User.findByIdAndUpdate(
@@ -234,16 +233,16 @@ const updateEmployee = async (req, res) => {
     if (!updateEmployee || !updateUser) {
       return res
         .status(404)
-        .json({ success: false, error: 'Employee or User not found...' });
+        .json({ success: false, error: 'Employee or User not found !' });
     }
 
     return res
       .status(200)
-      .json({ success: true, message: 'Employee updated successfully...' });
+      .json({ success: true, message: 'Employee updated successfully' });
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: 'Employee updating error...' });
+      .json({ success: false, error: 'Employee updating error !' });
   }
 };
 
@@ -259,7 +258,7 @@ const getEmployeesByDepartmentId = async (req, res) => {
       .status(500)
       .json({
         success: false,
-        error: 'EmployeeByDepartmentId fetching error...',
+        error: 'EmployeeByDepartmentId fetching error !',
       });
   }
 };
@@ -275,12 +274,12 @@ const deactivateEmployee = async (req, res) => {
     )
 
     if(!employee){
-      return res.status(404).json({success: false, error: "Employee not found..."})
+      return res.status(404).json({success: false, error: "Employee not found !"})
     }
 
-    res.status(200).json({success: true, message: "Employee deactivated successfully..."})
+    res.status(200).json({success: true, message: "Employee deactivated successfully"})
   }catch(error){
-    return res.status(500).json({success : false, error : "Employee deactivation error..."})
+    return res.status(500).json({success : false, error : "Employee deactivation error !"})
   }
 }
 
@@ -289,11 +288,11 @@ const activateEmployee = async (req, res) => {
     const {id} = req.params
     const employee = await Employee.findByIdAndUpdate( id, {isActive : true}, {new : true} )
     if(!employee){
-      return res.status(4040).json({success : false, error:  " Employee not found..."})
+      return res.status(4040).json({success : false, error:  " Employee not found !"})
     }
-    res.status(200).json({success : true, message : "Employee activated successfully..."})
+    res.status(200).json({success : true, message : "Employee activated successfully"})
   }catch(error){
-    return res.status(500).json({success : false, error : "Employee activation error..."})
+    return res.status(500).json({success : false, error : "Employee activation error !"})
   }
 }
 

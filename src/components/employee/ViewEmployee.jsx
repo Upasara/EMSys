@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { ThreeCircles } from 'react-loader-spinner';
 import { useParams } from 'react-router-dom';
 
 const ViewEmployee = () => {
@@ -28,7 +30,7 @@ const ViewEmployee = () => {
     }
    } catch (error) {
     if (error.response && !error.response.data.success) {
-     alert(error.response.data.error);
+     toast.error(error.response.data.error);
     }
    } finally {
     setEmpLoading(false);
@@ -40,137 +42,251 @@ const ViewEmployee = () => {
  return (
   <>
    {empLoading ? (
-    <div>Loading...</div>
+    //loading spinner
+    <div className='flex flex-wrap items-center justify-center bg-black/15 z-50  h-screen'>
+     <div className='animate-pulse'>
+      <ThreeCircles
+       height='50'
+       width='50'
+       color='#4fa94d'
+       outerCircleColor='#b98807'
+       middleCircleColor='#b98807'
+       innerCircleColor='#b98807'
+       ariaLabel='three-circles-loading'
+       wrapperStyle={{}}
+       wrapperClass=''
+       visible={true}
+      />
+     </div>
+    </div>
    ) : (
-    <div className=''>
-     <div className='max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md'>
-      <h3 className='text-2xl font-bold text-blue-800 text-center mb-10'>
+    <div className='px-4 py-8'>
+     <div className='max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg'>
+      <h3 className='text-2xl font-semibold text-blue-800 text-center mb-10 text-shadow-2xs'>
        Employee Details
       </h3>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-       <div>
+       <div className='flex flex-wrap justify-center items-start '>
         <img
          src={
           employee.userId?.profileImage
            ? `http://localhost:5000/${employee.userId?.profileImage}`
            : '/3.avif'
          }
-         className='rounded-full border w-72'
+         className='rounded-full border w-72 hover:-translate-y-2 duration-300 shadow-md'
         />
        </div>
        <div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Full Name : </p>
-         <p className='font-medium'>{employee.emp_Fname}</p>
+        <div className='block space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Full Name :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_Fname}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Name with Initials : </p>
-         <p className='font-medium'>{employee.userId?.name}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Name with Initials :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.userId?.name}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Permanant Address : </p>
-         <p className='font-medium'>{employee.emp_address}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Permanant Address :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_address}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>E-mail : </p>
-         <p className='font-medium'>{employee.userId?.email}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          E-mail :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.userId?.email}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Employee ID : </p>
-         <p className='font-medium'>{employee.emp_id}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Employee ID :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_id}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Designation : </p>
-         <p className='font-medium'>{employee.emp_designation}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Designation :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_designation}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Department : </p>
-         <p className='font-medium'>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Department :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
           {employee.emp_dep?.dep_name ? employee.emp_dep?.dep_name : 'N/A'}
          </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Company : </p>
-         <p className='font-medium'>{employee.emp_company}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Company :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_company}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>National ID : </p>
-         <p className='font-medium'>{employee.emp_Nid}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          National ID :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_Nid}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Date of Birth : </p>
-         <p className='font-medium'>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Date of Birth :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
           {new Date(employee.emp_dob).toLocaleDateString()}
          </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Phone Number : </p>
-         <p className='font-medium'>0{employee.emp_number1}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Phone Number :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          0{employee.emp_number1}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Mobile Number : </p>
-         <p className='font-medium'>0{employee.emp_number2}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Mobile Number :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          0{employee.emp_number2}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Gender : </p>
-         <p className='font-medium'>{employee.emp_gender}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Gender :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_gender}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Marital Status : </p>
-         <p className='font-medium'>{employee.emp_Mstatus}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Marital Status :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_Mstatus}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Start Date : </p>
-         <p className='font-medium'>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Start Date :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
           {new Date(employee.emp_Sdate).toLocaleDateString()}
          </p>
         </div>
 
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Emergency Name : </p>
-         <p className='font-medium'>{employee.emp_Ename}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Emergency Name :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_Ename}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Emergency Number : </p>
-         <p className='font-medium'>0{employee.emp_Enumber}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Emergency Number :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          0{employee.emp_Enumber}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-2'>
-         <p className='text-lg font-bold'>Medical History : </p>
-         <p className='font-medium'>{employee.emp_medical}</p>
+        <div className='flex flex-wrap space-x-3 mb-2'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Medical History :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_medical}
+         </p>
         </div>
-        <div className='w-full h-0.5 bg-black mb-2'></div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Basic Salary : </p>
-         <p className='font-medium'>{employee.emp_salary}</p>
+        <div className='w-full h-0.5 bg-gray-400 mb-5 mt-5'></div>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Basic Salary :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_salary}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Traveling Allowance : </p>
-         <p className='font-medium'>{employee.emp_allowance}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Traveling Allowance :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.emp_allowance}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Staff Loan : </p>
-         <p className='font-medium'>{employee.staff_loan}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Staff Loan :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.staff_loan}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Stamp Duty : </p>
-         <p className='font-medium'>{employee.stamp_duty}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Stamp Duty :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.stamp_duty}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Festival Advance : </p>
-         <p className='font-medium'>{employee.festival_advance}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Festival Advance :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.festival_advance}
+         </p>
         </div>
-        <div className='w-full h-0.5 bg-black mb-2'></div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Bank Name : </p>
-         <p className='font-medium'>{employee.bank_name}</p>
+        <div className='w-full h-0.5 bg-gray-400 mb-5 mt-5'></div>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Bank Name :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.bank_name}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Bank Branch : </p>
-         <p className='font-medium'>{employee.bank_branch}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Bank Branch :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.bank_branch}
+         </p>
         </div>
-        <div className='flex space-x-3 mb-5'>
-         <p className='text-lg font-bold'>Account Number : </p>
-         <p className='font-medium'>{employee.account_number}</p>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono text-lg font-semibold'>
+          Account Number :{' '}
+         </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.account_number}
+         </p>
         </div>
        </div>
       </div>
