@@ -12,22 +12,26 @@ export const columns = [
   selector: (row) => row.sno,
   responsive: true,
   width: '80px',
+  center: 'true',
  },
  {
-  name: 'Department Name',
+  name: 'Name',
   selector: (row) => row.dep_name,
   sortable: true,
   responsive: true,
+  center: 'true',
  },
  {
-  name: 'Department Manager',
+  name: 'Manager',
   selector: (row) => row.dep_manager,
   responsive: true,
+  center: 'true',
  },
  {
-  name: 'Department Email',
+  name: 'Email',
   selector: (row) => row.dep_email,
   responsive: true,
+  center: 'true',
  },
  {
   name: 'Actions',
@@ -86,16 +90,22 @@ export const DepartmentButtons = ({ DepID, onDepartmentDelete }) => {
  return (
   <div className='flex gap-2'>
    <button
-    className='py-1 px-2 bg-orange-500 text-white rounded-sm'
+    className='group py-1 px-2 bg-amber-600 text-white rounded cursor-pointer duration-300'
     onClick={() => navigate(`/admin-dashboard/department/${DepID}`)}
    >
-    <BiSolidEditAlt size={20} />
+    <BiSolidEditAlt
+     size={20}
+     className='group-hover:-translate-y-0.5 duration-300'
+    />
    </button>
    <button
-    className='py-1 px-2  bg-red-700 text-white rounded-sm'
+    className='group py-1 px-2  bg-red-600 text-white rounded cursor-pointer duration-300'
     onClick={() => handleDelete(DepID)}
    >
-    <MdDeleteOutline size={20} />
+    <MdDeleteOutline
+     size={20}
+     className='group-hover:-translate-y-0.5 duration-300s'
+    />
    </button>
   </div>
  );

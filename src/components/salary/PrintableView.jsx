@@ -48,8 +48,8 @@ const PaymentSlip = () => {
  };
 
  return (
-  <div className='bg-gray-100'>
-   <div className='w-full flex justify-end gap-2 px-10 pt-6 print:hidden'>
+  <div className='bg-[url(/loginBg8.png)] p-4'>
+   <div className='w-full flex justify-end gap-2 pb-2 print:hidden'>
     <button
      onClick={() => window.print()}
      className='bg-blue-700 py-1 px-4 rounded-md text-white hover:bg-blue-600 transition'
@@ -63,7 +63,7 @@ const PaymentSlip = () => {
      Back
     </button>
    </div>
-   <div className='p-10 pb-5 pt-7 bg-white rounded-lg max-w-xl mx-auto shadow-lg font-serif print:shadow-none'>
+   <div className='p-5 md:p-10 md:pb-5 md:pt-7 bg-white rounded-lg max-w-xl mx-auto shadow-lg font-serif print:shadow-none'>
     <div className=' grid grid-cols-2 font-serif tracking-wider'>
      <div>
       <h2 className='text-xl font-semibold'>Salary Slip</h2>
@@ -81,7 +81,7 @@ const PaymentSlip = () => {
       {salaryDetails.sal_emp_id?.emp_Fname}
      </span>
     </div>
-    <div className='grid grid-cols-2 font-light text-sm '>
+    <div className='grid md:grid-cols-2 font-light text-sm '>
      <div className='mr-4'>
       Employee Number :{' '}
       <span className='font-sans font-medium'>

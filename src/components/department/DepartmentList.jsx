@@ -117,7 +117,7 @@ const DepartmentList = () => {
        <span className='block md:hidden lg:hidden'>Add</span>
       </Link>
      </div>
-     <div className='mt-10 shadow-lg overflow-x-auto'>
+     <div className='mt-10 shadow-md overflow-x-auto text-primary-text rounded-lg'>
       <DataTable
        columns={columns}
        data={filteredDepartments}

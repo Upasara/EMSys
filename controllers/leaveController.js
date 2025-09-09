@@ -34,7 +34,7 @@ if(!leaves || leaves.length === 0){
 }
 return res.status(200).json({success:true, leaves})
 }catch(error){
-    return res.status(500).json({success:false, error: "leave could not be fetched..."})
+    return res.status(500).json({success:false, error: "No leave record !"})
 }
 }
 

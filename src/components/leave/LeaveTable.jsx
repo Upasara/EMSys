@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { columns, LeaveButton } from '../../utils/LeaveHelper';
 import DataTable from 'react-data-table-component';
+import { BsClockFill } from 'react-icons/bs';
+import { FaCheck } from 'react-icons/fa';
+import { CgClose } from 'react-icons/cg';
 
 const LeaveTable = () => {
  const [leaves, setLeaves] = useState(null);
@@ -62,35 +65,46 @@ const LeaveTable = () => {
  return (
   <>
    {filteredLeaves ? (
-    <div className='p-6'>
+    <div className='p-5'>
      <div className='text-center'>
-      <h3 className='text-2xl font-bold'>Manage Leaves</h3>
+      <h3 className='text-2xl font-semibold text-blue-800 text-shadow-2xs '>
+       Manage Leaves
+      </h3>
      </div>
-     <div className='flex justify-between items-center'>
+     <div className='block md:flex lg:flex  justify-between items-center gap-4 mt-5 space-y-2'>
       <input
        type='text'
-       className='px-4 py-0.5 border'
-       placeholder='Search by Name'
+       className='px-4 py-0.5  rounded-md border-2 focus:outline-primary-dark focus:outline-1 focus:bg-white duration-300'
+       placeholder='Search by name  🔍'
        onChange={handleSearch}
       />
-      <div className='space-x-3'>
+      <div className='flex items-center gap-3 '>
        <button
-        className='px-2 py-1 bg-primary-dark text-white hover:bg-primary-light rounded-sm'
+        className='group px-2 py-1  border-2 border-primary-light rounded-md text-primary-dark hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light  transition-all duration-300 text-center'
         onClick={() => handleButton('Pending')}
        >
-        Pending
+        <div className='flex items-center gap-1 '>
+         <BsClockFill className='group-hover:-translate-x-0.5 duration-300' />
+         Pending
+        </div>
        </button>
        <button
-        className='px-2 py-1 bg-primary-dark text-white hover:bg-primary-light rounded-sm'
+        className=' group px-2 py-1 border-2 border-green-700 rounded-md text-green-700 hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-green-700  transition-all duration-300 text-center'
         onClick={() => handleButton('Approved')}
        >
-        Approved
+        <div className='flex items-center gap-1 '>
+         <FaCheck className='group-hover:-translate-x-0.5 duration-300' />
+         Approved
+        </div>
        </button>
        <button
-        className='px-2 py-1 bg-primary-dark text-white hover:bg-primary-light rounded-sm'
+        className='group px-2 py-1 border-2 border-red-700 rounded-md text-red-700 hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-red-700  transition-all duration-300 text-center'
         onClick={() => handleButton('Rejected')}
        >
-        Rejected
+        <div className='flex items-center gap-1 '>
+         <CgClose className='group-hover:-translate-x-0.5 duration-300' />
+         Rejected
+        </div>
        </button>
       </div>
      </div>

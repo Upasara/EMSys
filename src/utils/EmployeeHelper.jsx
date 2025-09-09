@@ -216,7 +216,7 @@ export const EmployeeButtons = ({ Id }) => {
   <div className='flex gap-2 items-center'>
    {/* view button */}
    <button
-    className={`group py-1 px-2 bg-emerald-600 text-white rounded cursor-pointer  ${
+    className={`group py-1 px-2 bg-emerald-600 text-white rounded cursor-pointer ${
      !isActive || isLoading ? 'cursor-not-allowed' : ''
     }`}
     onClick={() => navigate(`/admin-dashboard/employees/${Id}`)}

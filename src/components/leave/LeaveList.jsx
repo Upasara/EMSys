@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 import { useAuth } from '../../context/authContext';
+import toast from 'react-hot-toast';
+import { ThreeCircles } from 'react-loader-spinner';
 
 const LeaveList = () => {
  const [leaves, setLeaves] = useState(null);
@@ -27,7 +29,7 @@ const LeaveList = () => {
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
-    alert(error.message);
+    toast.error(error.response.data.error);
    }
   } finally {
    setLeaveLoading(false);
@@ -38,65 +40,87 @@ const LeaveList = () => {
   fetchLeaves();
  }, []);
 
- if (!leaves) {
-  return <div>No Records</div>;
- }
  return (
   <>
    {leaveLoading ? (
-    <div>Loading ...</div>
+    //loading spinner
+    <div className='flex items-center justify-center bg-black/15 z-50  h-screen'>
+     <div className='animate-pulse'>
+      <ThreeCircles
+       height='50'
+       width='50'
+       color='#4fa94d'
+       outerCircleColor='#b98807'
+       middleCircleColor='#b98807'
+       innerCircleColor='#b98807'
+       ariaLabel='three-circles-loading'
+       wrapperStyle={{}}
+       wrapperClass=''
+       visible={true}
+      />
+     </div>
+    </div>
    ) : (
-    <div className='p-6'>
+    <div className='p-5'>
      <div className='text-center'>
-      <h2 className='text-2xl font-bold'>Manage Leaves</h2>
+      <h2 className='text-2xl font-semibold text-blue-800 text-shadow-2xs '>
+       Manage Leaves
+      </h2>
      </div>
      <div className='flex justify-between items-center'>
       <input
        type='text'
-       className='px-4 py-0.5 border'
-       placeholder='Search by leave type'
+       className='px-4 py-0.5  rounded-md border-2 focus:outline-primary-dark focus:outline-1 focus:bg-white duration-300'
+       placeholder='Search by leave type  🔍'
       />
       {user.role === 'employee' && (
        <Link
         to='/employee-dashboard/add-leave'
-        className='px-4 py-2 border-2 border-primary-dark rounded-md text-primary-text hover:text-white hover:bg-primary-dark'
+        className='px-4 py-1 md:py-2 lg:py-2 border-2 border-primary-light rounded-md text-primary-text hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light transition duration-300 text-center '
        >
-        Add New Leave
+        <span className='hidden md:block lg:block'>Add Leave</span>
+        <span className='block md:hidden lg:hidden'>Add</span>
        </Link>
       )}
      </div>
-     <table className='w-full text-sm text-gray-500 text-center'>
-      <thead className='text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200'>
-       <tr>
-        <th className='px-6 py-3'>SNO</th>
-        <th className='px-6 py-3'>Type</th>
-        <th className='px-6 py-3'>From</th>
-        <th className='px-6 py-3'>To</th>
-        <th className='px-6 py-3'>Days</th>
-        <th className='px-6 py-3'>Description</th>
-        <th className='px-6 py-3'>Status</th>
-       </tr>
-      </thead>
-      <tbody className='font-medium'>
-       {leaves.map((leave) => (
-        <tr key={leave._id} className='bg-white border-b '>
-         <td className='px-6 py-3'>{sno++}</td>
-         <td className='px-6 py-3'>{leave.leave_type}</td>
-         <td className='px-6 py-3'>
-          {new Date(leave.start_date).toLocaleDateString()}
-         </td>
-         <td className='px-6 py-3'>
-          {leave.end_date
-           ? new Date(leave.end_date).toLocaleDateString()
-           : 'N/A'}
-         </td>
-         <td className='px-6 py-3'>{leave.days}</td>
-         <td className='px-6 py-3'>{leave.description}</td>
-         <td className='px-6 py-3'>{leave.status}</td>
-        </tr>
-       ))}
-      </tbody>
-     </table>
+     {leaves ? (
+      <div className='overflow-x-auto mt-8 shadow-md rounded-lg'>
+       <table className='w-full text-center'>
+        <thead className='text-[15px] text-primary-text  uppercase bg-white border border-gray-200'>
+         <tr>
+          <th className='px-6 py-3'>SNO</th>
+          <th className='px-6 py-3'>Type</th>
+          <th className='px-6 py-3'>From</th>
+          <th className='px-6 py-3'>To</th>
+          <th className='px-6 py-3'>Days</th>
+          <th className='px-6 py-3'>Description</th>
+          <th className='px-6 py-3'>Status</th>
+         </tr>
+        </thead>
+        <tbody className='font-medium text-[14px] text-primary-text'>
+         {leaves.map((leave) => (
+          <tr key={leave._id} className='bg-white border-b '>
+           <td className='px-6 py-3'>{sno++}</td>
+           <td className='px-6 py-3'>{leave.leave_type}</td>
+           <td className='px-6 py-3'>
+            {new Date(leave.start_date).toLocaleDateString()}
+           </td>
+           <td className='px-6 py-3'>
+            {leave.end_date
+             ? new Date(leave.end_date).toLocaleDateString()
+             : 'N/A'}
+           </td>
+           <td className='px-6 py-3'>{leave.days}</td>
+           <td className='px-6 py-3'>{leave.description}</td>
+           <td className='px-6 py-3'>{leave.status}</td>
+          </tr>
+         ))}
+        </tbody>
+       </table>
+      </div>
+     ) : (
+      <div className='bg-white p-5 mt-10 shadow-md rounded-lg'>No Records</div>
+     )}
     </div>
    )}
   </>

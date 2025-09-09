@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useParams } from 'react-router-dom';
+import { FaSort } from 'react-icons/fa';
+import { MdMenu } from 'react-icons/md';
 
 const ViewSalary = () => {
  const [salaries, setSalaries] = useState([]);
@@ -79,53 +81,63 @@ const ViewSalary = () => {
        onClick={toggleSortOrder}
        className='py-1.5 px-2 rounded-md  font-semibold bg-green-700  text-white hover:shadow-lg  hover:text-shadow-sm duration-300'
       >
-       Sort by Pay Date ({sortOrder === 'asc' ? 'New - Old' : 'Old - New'})
+       <span className='hidden md:inline-block lg:inline-block'>
+        Sort by Pay Date ({sortOrder === 'asc' ? 'New - Old' : 'Old - New'})
+       </span>
+       <span className='flex items-center gap-1 md:hidden lg:hidden'>
+        <FaSort /> {sortOrder === 'asc' ? 'New - Old' : 'Old - New'}
+       </span>
       </button>
      </div>
      {filteredSalaries.length > 0 ? (
-      <table className='w-full  text-center'>
-       <thead className='text-[15px] text-gray-700 uppercase bg-gray-50 border border-gray-200'>
-        <tr>
-         <th className='px-6 py-3'>SNO</th>
-         <th className='px-6 py-3'>Pay Date</th>
-         <th className='px-6 py-3'>Basic Salary</th>
-         <th className='px-6 py-3'>Allowance</th>
-         <th className='px-6 py-3'>Gross Salary</th>
-         <th className='px-6 py-3'>Total Deduction</th>
-         <th className='px-6 py-3'>Net Salary</th>
-         <th className='px-6 py-3'></th>
-        </tr>
-       </thead>
-       <tbody className='font-medium text-[14px'>
-        {filteredSalaries
-         .sort((a, b) =>
-          sortOrder === 'asc'
-           ? new Date(a.pay_date) - new Date(b.pay_date)
-           : new Date(b.pay_date) - new Date(a.pay_date)
-         )
-         .map((salary) => (
-          <tr key={salary._id} className='bg-white border-b '>
-           <td className='px-6 py-3'>{sno++}</td>
-           <td className='px-6 py-3'>
-            {new Date(salary.pay_date).toLocaleDateString()}
-           </td>
-           <td className='px-6 py-3'>{salary.basic_salary}</td>
-           <td className='px-6 py-3'>{salary.allowances}</td>
-           <th className='px-6 py-3 font-medium'>{salary.gross_salary}</th>
-           <td className='px-6 py-3'>{salary.total_deductions}</td>
-           <td className='px-6 py-3 font-semibold'>{salary.net_salary}</td>
-           <td className='px-6 py-3'>
-            <Link
-             to={`/salary/view/${salary._id}`}
-             className='bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-500 transition'
-            >
-             View
-            </Link>
-           </td>
-          </tr>
-         ))}
-       </tbody>
-      </table>
+      <div className='overflow-x-auto mt-8 shadow-md rounded-lg'>
+       <table className='w-full  text-center '>
+        <thead className='text-[15px] text-primary-text uppercase bg-white border border-gray-200'>
+         <tr>
+          <th className='px-6 py-3'>SNO</th>
+          <th className='px-6 py-3'>Pay Date</th>
+          <th className='px-6 py-3'>Basic Salary</th>
+          <th className='px-6 py-3'>Allowance</th>
+          <th className='px-6 py-3'>Gross Salary</th>
+          <th className='px-6 py-3'>Total Deduction</th>
+          <th className='px-6 py-3'>Net Salary</th>
+          <th className='px-6 py-3'></th>
+         </tr>
+        </thead>
+        <tbody className='font-medium text-[14px] text-primary-text'>
+         {filteredSalaries
+          .sort((a, b) =>
+           sortOrder === 'asc'
+            ? new Date(a.pay_date) - new Date(b.pay_date)
+            : new Date(b.pay_date) - new Date(a.pay_date)
+          )
+          .map((salary) => (
+           <tr key={salary._id} className='bg-white border-b '>
+            <td className='px-6 py-3'>{sno++}</td>
+            <td className='px-6 py-3'>
+             {new Date(salary.pay_date).toLocaleDateString()}
+            </td>
+            <td className='px-6 py-3'>{salary.basic_salary}</td>
+            <td className='px-6 py-3'>{salary.allowances}</td>
+            <th className='px-6 py-3 font-medium'>{salary.gross_salary}</th>
+            <td className='px-6 py-3'>{salary.total_deductions}</td>
+            <td className='px-6 py-3 font-semibold'>{salary.net_salary}</td>
+            <td className='px-6 py-3'>
+             <Link
+              to={`/salary/view/${salary._id}`}
+              className='bg-emerald-600 flex items-center justify-center rounded-md px-1.5 py-1 text-white group hover:shadow-md duration-300'
+             >
+              <MdMenu
+               size={20}
+               className='group-hover:-translate-y-0.5 duration-300'
+              />
+             </Link>
+            </td>
+           </tr>
+          ))}
+        </tbody>
+       </table>
+      </div>
      ) : (
       <div className='bg-white p-5 mt-10 shadow-md rounded-lg'>No Records</div>
      )}
