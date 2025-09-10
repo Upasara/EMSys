@@ -62,7 +62,7 @@ await newSalary.save();
 return res.status(200).json({success : true})
 
  }catch(error){
-    return res.status(500).json({success : false, error : "Salary could not be added..."})
+    return res.status(500).json({success : false, error : "Salary could not be added !"})
  }
 
 
@@ -92,7 +92,7 @@ const getSalaryDetails = async (req, res) => {
         return res.status(200).json({success: true, salaryDetails})
     }catch(error){
         console.error('Error fetching salary details:', error);
-        return res.status(500).json({success : false, error : "Salary details get server error"})
+        return res.status(500).json({success : false, error : "Salary details could not be fetched !"})
     }
 }
 
@@ -129,7 +129,7 @@ try{
 
 }catch(error){
     console.error("Error fetching salary by month : ", error)
-    return res.status(500).json({success : false, error : "Salary by month server error"})
+    return res.status(500).json({success : false, error : "Salary by month could not be fetched !"})
 }
 }
 

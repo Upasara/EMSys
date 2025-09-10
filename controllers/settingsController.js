@@ -7,12 +7,12 @@ const changePassword = async (req, res) => {
         
         const user = await User.findById({_id : userId})
         if(!user){
-            return res.status(404).json({success :false, error : "User not found"})
+            return res.status(404).json({success :false, error : "User not found !"})
         }
 
         const isMatch = await bcrypt.compare(old_password, user.password)
         if(!isMatch){
-            return  res.status(404).json({success : false, error :" Old password is incorrect"}) 
+            return  res.status(404).json({success : false, error :" Old password is incorrect !"}) 
         }
 
         const hashPassword = await bcrypt.hash(new_password, 10)
@@ -20,7 +20,7 @@ const changePassword = async (req, res) => {
 
         return res.status(200).json({success : true , message : "Password changed successfully", user : newUser})
     }catch(error){
-        return res.status(500).json({success:false, error : "setting error"})
+        return res.status(500).json({success:false, error : "Password could not be updated !"})
     }
 }
 

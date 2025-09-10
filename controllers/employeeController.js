@@ -121,7 +121,7 @@ const getEmployees = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: 'Employee fetching error !' });
+      .json({ success: false, error: 'Employee could not be fetched !' });
   }
 };
 
@@ -141,7 +141,7 @@ const getEmployee = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: 'Employee fetching error !' });
+      .json({ success: false, error: 'Employee could not be fetched !' });
   }
 };
 
@@ -242,7 +242,7 @@ const updateEmployee = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: 'Employee updating error !' });
+      .json({ success: false, error: 'Employee could not be updated !' });
   }
 };
 
@@ -258,7 +258,7 @@ const getEmployeesByDepartmentId = async (req, res) => {
       .status(500)
       .json({
         success: false,
-        error: 'EmployeeByDepartmentId fetching error !',
+        error: 'EmployeeByDepartmentId could not be fetched !',
       });
   }
 };
@@ -279,7 +279,7 @@ const deactivateEmployee = async (req, res) => {
 
     res.status(200).json({success: true, message: "Employee deactivated successfully"})
   }catch(error){
-    return res.status(500).json({success : false, error : "Employee deactivation error !"})
+    return res.status(500).json({success : false, error : "Employee could not be deactivated !"})
   }
 }
 
@@ -292,7 +292,7 @@ const activateEmployee = async (req, res) => {
     }
     res.status(200).json({success : true, message : "Employee activated successfully"})
   }catch(error){
-    return res.status(500).json({success : false, error : "Employee activation error !"})
+    return res.status(500).json({success : false, error : "Employee could not be activated !"})
   }
 }
 

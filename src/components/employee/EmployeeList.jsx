@@ -104,7 +104,7 @@ const EmployeeList = () => {
       />
       <Link
        to='/admin-dashboard/add-employee'
-       className='px-4 py-1 md:py-2 lg:py-2 border-2 border-primary-light rounded-md text-primary-text hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light  transition-all duration-300 text-center '
+       className='px-4 py-1 md:py-2 lg:py-2 font-medium border-2 border-primary-light rounded-md text-primary-text hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light  transition-all duration-300 text-center '
       >
        <span className='hidden md:block lg:block'>Add Employee</span>
        <span className='block md:hidden lg:hidden'>Add</span>

@@ -20,7 +20,7 @@ return res.status(200).json({success:true})
 
 }catch(error){
 console.log(error.message)
-return res.status(500).json({success:false, error:"leave add server error"})
+return res.status(500).json({success:false, error:"Leave could not be added !"})
 }  
 }
 
@@ -55,7 +55,7 @@ const getLeaves = async (req, res) => {
         })
         return res.status(200).json({success:true, leaves})
     }catch(error){
-        return res.status(500).json({success:false, error: "leaves could not be fetched"})
+        return res.status(500).json({success:false, error: "Leaves could not be fetched !"})
     }
 }
 
@@ -77,7 +77,7 @@ try{
     })
     return res.status(200).json({success:true, leaveDetails})
 }catch(error){
-    return res.status(500).json({success:false, error : "Leave details could not be fetched"})
+    return res.status(500).json({success:false, error : "Leave details could not be fetched !"})
 }
 }
 
@@ -86,11 +86,11 @@ const updateLeave = async (req, res) => {
         const {id} = req.params
         const leave = await Leave.findByIdAndUpdate({_id: id}, {status: req.body.status})
         if(!leave){
-            return res.status(404).json({success:false, error: "Leave not found"})
+            return res.status(404).json({success:false, error: "Leave not found !"})
         }
         return res.status(200).json({success:true})
     }catch(error){
-        return res.status(500).json({success:false, error : "Status could not be updated"})
+        return res.status(500).json({success:false, error : "Leave could not be updated !"})
     }
 }
 

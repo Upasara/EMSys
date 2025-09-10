@@ -5,38 +5,56 @@ export const columns = [
   name: 'SNO',
   selector: (row) => row.sno,
   width: '70px',
+  center: 'true',
  },
  {
   name: 'Emp ID',
   selector: (row) => row.employeeId,
-  width: '120px',
+  center: 'true',
  },
  {
   name: 'Name',
   selector: (row) => row.name,
-  width: '120px',
+  center: 'true',
  },
  {
   name: 'Department',
   selector: (row) => row.dep_name,
-  width: '140px',
+  center: 'true',
  },
  {
   name: 'Leave Type',
   selector: (row) => row.leave_type,
-  width: '140px',
+  center: 'true',
  },
 
- { name: 'Days', selector: (row) => row.days, width: '120px' },
+ { name: 'Days', selector: (row) => row.days, center: 'true' },
  {
   name: 'Status',
   selector: (row) => row.status,
+  center: 'true',
  },
  {
   name: 'Action',
   selector: (row) => row.actions,
+  center: 'true',
  },
 ];
+
+export const customTableStyles = {
+ headCells: {
+  style: {
+   fontSize: '15px',
+   fontWeight: 'bold',
+   fontColor: '#FFFFFF',
+  },
+ },
+ cells: {
+  style: {
+   fontSize: '14px',
+  },
+ },
+};
 
 export const LeaveButton = ({ Id }) => {
  const navigate = useNavigate();

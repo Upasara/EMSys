@@ -1,14 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { columns, LeaveButton } from '../../utils/LeaveHelper';
+import {
+ columns,
+ customTableStyles,
+ LeaveButton,
+} from '../../utils/LeaveHelper';
 import DataTable from 'react-data-table-component';
 import { BsClockFill } from 'react-icons/bs';
 import { FaCheck } from 'react-icons/fa';
 import { CgClose } from 'react-icons/cg';
+import toast from 'react-hot-toast';
 
 const LeaveTable = () => {
  const [leaves, setLeaves] = useState(null);
  const [filteredLeaves, setFilteredLeaves] = useState(null);
+ const [isActive, setIsActive] = useState(null);
 
  const fetchLeaves = async () => {
   try {
@@ -40,7 +46,7 @@ const LeaveTable = () => {
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
-    alert(error.response.data.error);
+    toast.error(error.response.data.error);
    }
   }
  };
@@ -58,6 +64,7 @@ const LeaveTable = () => {
 
  //handles button click for filtering leaves
  const handleButton = (status) => {
+  setIsActive(status);
   const data = leaves.filter((leave) => leave.status === status);
   setFilteredLeaves(data);
  };
@@ -80,7 +87,11 @@ const LeaveTable = () => {
       />
       <div className='flex items-center gap-3 '>
        <button
-        className='group px-2 py-1  border-2 border-primary-light rounded-md text-primary-dark hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light  transition-all duration-300 text-center'
+        className={`group px-2 py-1 font-medium border-2 rounded-md  border-primary-light transition-all duration-300 text-center ${
+         isActive === 'Pending'
+          ? 'bg-primary-light  text-white shadow-md text-shadow-sm'
+          : ' text-primary-dark hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light'
+        }`}
         onClick={() => handleButton('Pending')}
        >
         <div className='flex items-center gap-1 '>
@@ -89,7 +100,11 @@ const LeaveTable = () => {
         </div>
        </button>
        <button
-        className=' group px-2 py-1 border-2 border-green-700 rounded-md text-green-700 hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-green-700  transition-all duration-300 text-center'
+        className={`group px-2 py-1 font-medium border-2 rounded-md  border-green-700 transition-all duration-300 text-center ${
+         isActive === 'Approved'
+          ? 'bg-green-700  text-white shadow-md text-shadow-sm'
+          : ' text-green-700 hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-green-700'
+        }`}
         onClick={() => handleButton('Approved')}
        >
         <div className='flex items-center gap-1 '>
@@ -98,7 +113,11 @@ const LeaveTable = () => {
         </div>
        </button>
        <button
-        className='group px-2 py-1 border-2 border-red-700 rounded-md text-red-700 hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-red-700  transition-all duration-300 text-center'
+        className={`group px-2 py-1 font-medium border-2 rounded-md  border-red-700 transition-all duration-300 text-center ${
+         isActive === 'Rejected'
+          ? 'bg-red-700 text-white shadow-md text-shadow-sm'
+          : ' text-red-700 hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-red-700'
+        }`}
         onClick={() => handleButton('Rejected')}
        >
         <div className='flex items-center gap-1 '>
@@ -108,8 +127,16 @@ const LeaveTable = () => {
        </button>
       </div>
      </div>
-     <div className='mt-5'>
-      <DataTable columns={columns} data={filteredLeaves} pagination />
+     <div className='mt-10 shadow-md overflow-x-auto text-primary-text rounded-lg'>
+      <DataTable
+       columns={columns}
+       data={filteredLeaves}
+       customStyles={customTableStyles}
+       pagination
+       responsive
+       fixedHeader
+       highlightOnHover
+      />
      </div>
     </div>
    ) : (

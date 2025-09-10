@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchDepartments, getEmployees } from '../../utils/EmployeeHelper';
+
+import { TiExport } from 'react-icons/ti';
 import axios from 'axios';
+import toast from 'react-hot-toast';
+import { ThreeCircles } from 'react-loader-spinner';
 
 const AddSalary = () => {
  const navigate = useNavigate();
@@ -175,7 +179,7 @@ const AddSalary = () => {
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
-    alert(error.response.data.error);
+    toast.error(error.response.data.error);
    }
   }
  };
@@ -183,29 +187,37 @@ const AddSalary = () => {
  return (
   <>
    {departments ? (
-    <div className=''>
-     <div className='mr-10 mt-7 flex justify-end'>
+    <div className='p-5'>
+     <div className='flex justify-end'>
       <Link
        to='/admin-dashboard/salary/export'
-       className='bg-green-700 text-white p-3 hover:bg-green-600 transition rounded-md '
+       className='group py-1 px-2 border-2 border-green-700 text-green-700 hover:bg-green-700 hover:shadow-md hover:text-white transition-all duration-300 rounded-md '
       >
-       Export Salary
+       <div className='flex items-center gap-1 font-semibold'>
+        Export to Excel
+        <TiExport
+         className='group-hover:translate-x-1 duration-300'
+         size={20}
+        />
+       </div>
       </Link>
      </div>
-     <div className='max-w-4xl mx-auto bg-white shadow-lg rounded-md mt-7 p-8 '>
-      <h3 className='text-2xl text-blue-800 font-medium text-center mb-10 mt-5'>
+     <div className='max-w-4xl mx-auto bg-white shadow-lg rounded-md mt-5 p-8 '>
+      <h3 className='text-2xl text-blue-800  text-center mb-10  text-shadow-2xs font-semibold'>
        Add Salary
       </h3>
 
       <form onSubmit={handleSubmit}>
-       <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4'>
+       <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6'>
         {/* department */}
         <div>
-         <label className='block text-primary-text'>Department</label>
+         <label className='block text-gray-600 font-mono text-lg'>
+          Department
+         </label>
          <select
           name='sal_dep'
           onChange={handleDepartment}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 cursor-pointer bg-slate-100                               '
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300                               '
           required
          >
           <option value=''>Select department</option>
@@ -219,11 +231,13 @@ const AddSalary = () => {
 
         {/* employee */}
         <div>
-         <label className='block text-primary-text'>Employee</label>
+         <label className='block text-gray-600 font-mono text-lg'>
+          Employee
+         </label>
          <select
           name='sal_emp_id'
           onChange={handleEmployeeChange}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 cursor-pointer bg-slate-100'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
           required
          >
           <option value=''>Select Employee</option>
@@ -237,26 +251,31 @@ const AddSalary = () => {
 
         {/* pay date */}
         <div>
-         <label className='block text-primary-text'>Pay Date</label>
+         <label className='block text-gray-600 font-mono text-lg'>
+          Pay Date
+         </label>
          <input
           type='month'
           name='pay_date'
           onChange={handleChange}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
           required
          />
         </div>
        </div>
-       <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 p-10  rounded-2xl shadow-md mt-5'>
+       <div className='w-full h-0.5 bg-gray-400 mb-2 mt-10'></div>
+       <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 p-5  rounded-2xl  mt-5'>
         {/* basic salary */}
         <div>
-         <label className='block text-primary-text'>Basic Salary</label>
+         <label className='block text-gray-600 font-mono text-lg'>
+          Basic Salary
+         </label>
          <input
           type='number'
           name='basic_salary'
           onChange={handleChange}
           value={salary.basic_salary || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
           required
          />
         </div>
@@ -264,54 +283,62 @@ const AddSalary = () => {
         {/* no pay */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4  rounded-2xl '>
          <div>
-          <label className='block text-primary-text'>No Pay Days</label>
+          <label className='block text-gray-600 font-mono text-lg'>
+           No Pay Days
+          </label>
           <input
            type='number'
            name='no_pay_days'
            onChange={handleChange}
            value={salary.no_pay_days || ''}
-           className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+           className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
           />
          </div>
          <div>
-          <label className='block text-primary-text'>No Pay Amount</label>
+          <label className='block text-gray-600 font-mono text-lg'>
+           No Pay Amount
+          </label>
           <input
            type='number'
            name='no_pay_amount'
            onChange={handleChange}
            value={salary.no_pay_amount || ''}
-           className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+           className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
           />
          </div>
         </div>
 
         {/* allowances */}
         <div>
-         <label className='block text-primary-text'>Traveling Allowances</label>
+         <label className='block text-gray-600 font-mono text-lg'>
+          Traveling Allowances
+         </label>
          <input
           type='number'
           name='allowances'
           onChange={handleChange}
           value={salary.allowances || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
         {/* staff loan */}
         <div>
-         <label className='block text-primary-text'>Staff Loan</label>
+         <label className='block text-gray-600 font-mono text-lg'>
+          Staff Loan
+         </label>
          <input
           type='number'
           name='staff_loan'
           onChange={handleChange}
           value={salary.staff_loan || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
         {/* travelling */}
         <div>
-         <label className='block text-primary-text'>
+         <label className='block text-gray-600 font-mono text-lg'>
           Travelling Reimbursment
          </label>
          <input
@@ -319,67 +346,75 @@ const AddSalary = () => {
           name='travelling'
           onChange={handleChange}
           value={salary.travelling || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
         {/* festival advance */}
         <div>
-         <label className='block text-primary-text'>Festival Advance</label>
+         <label className='block text-gray-600 font-mono text-lg'>
+          Festival Advance
+         </label>
          <input
           type='number'
           name='festival_advance'
           onChange={handleChange}
           value={salary.festival_advance || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
         {/* overtime */}
         <div>
-         <label className='block text-primary-text'>Overtime</label>
+         <label className='block text-gray-600 font-mono text-lg'>
+          Overtime
+         </label>
          <input
           type='number'
           name='over_time'
           onChange={handleChange}
           value={salary.over_time || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
         {/* deduction */}
         <div>
-         <label className='block text-primary-text'>Other Deductions</label>
+         <label className='block text-gray-600 font-mono text-lg'>
+          Other Deductions
+         </label>
          <input
           type='number'
           name='deductions'
           onChange={handleChange}
           value={salary.deductions || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
         {/* other allowances */}
         <div>
-         <label className='block text-primary-text'>Other Allowances</label>
+         <label className='block text-gray-600 font-mono text-lg'>
+          Other Allowances
+         </label>
          <input
           type='number'
           name='other_allowances'
           onChange={handleChange}
           value={salary.other_allowances || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
         {/* EPF 8% */}
         <div>
-         <label className='block text-primary-text'>EPF 8%</label>
+         <label className='block text-gray-600 font-mono text-lg'>EPF 8%</label>
          <input
           type='number'
           name='epf8'
           onChange={handleChange}
           value={salary.epf8 || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
@@ -388,19 +423,21 @@ const AddSalary = () => {
 
         {/* stamp duty */}
         <div>
-         <label className='block text-primary-text'>Stamp Duty</label>
+         <label className='block text-gray-600 font-mono text-lg'>
+          Stamp Duty
+         </label>
          <input
           type='number'
           name='stamp_duty'
           onChange={handleChange}
           value={salary.stamp_duty || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
         {/* gross salary (EPF) */}
         <div>
-         <label className='block text-primary-text font-medium'>
+         <label className='block text-gray-600 font-mono text-lg font-medium'>
           Gross Salary (EPF)
          </label>
          <input
@@ -408,26 +445,26 @@ const AddSalary = () => {
           name='gross_salary_epf'
           onChange={handleChange}
           value={salary.gross_salary_epf || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 font-medium'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-medium'
           disabled
          />
         </div>
 
         {/* tax */}
         <div>
-         <label className='block text-primary-text'>Tax</label>
+         <label className='block text-gray-600 font-mono text-lg'>Tax</label>
          <input
           type='number'
           name='tax'
           onChange={handleChange}
           value={salary.tax || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
         {/* gross salary */}
         <div>
-         <label className='block text-primary-text font-medium'>
+         <label className='block text-gray-600 font-mono text-lg font-semibold'>
           Gross Salary
          </label>
          <input
@@ -435,14 +472,14 @@ const AddSalary = () => {
           name='gross_salary'
           onChange={handleChange}
           value={salary.gross_salary || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 font-medium'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-medium'
           disabled
          />
         </div>
 
         {/* total deduction */}
         <div>
-         <label className='block text-primary-text font-medium'>
+         <label className='block text-gray-600 font-mono text-lg font-semibold'>
           Total Deductions
          </label>
          <input
@@ -450,16 +487,16 @@ const AddSalary = () => {
           name='total_deductions'
           onChange={handleChange}
           value={salary.total_deductions || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 font-medium'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-medium'
           disabled
          />
         </div>
        </div>
-
+       <div className='w-full h-0.5 bg-gray-400 mb-2 mt-5'></div>
        <div className='mt-8'>
         {/* net salary */}
         <div>
-         <label className='block text-primary-text text-xl font-medium'>
+         <label className='block text-gray-600 font-mono  text-xl font-semibold'>
           Net Salary
          </label>
          <input
@@ -467,7 +504,7 @@ const AddSalary = () => {
           name='net_salary'
           onChange={handleChange}
           value={salary.net_salary || ''}
-          className='mt-1 w-full p-1 border border-primary-light rounded-md outline-hidden text-gray-600 font-semibold'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-semibold'
           disabled
          />
         </div>
@@ -475,7 +512,7 @@ const AddSalary = () => {
        <div className='flex justify-between items-center mt-8 gap-3'>
         <button
          type='submit'
-         className='w-1/2 bg-green-700 py-1.5 rounded-md hover:bg-green-600 text-white transition'
+         className='w-1/2 py-1.5 rounded-md  font-semibold bg-green-700 text-lg text-white hover:shadow-lg hover:tracking-wider hover:text-shadow-sm duration-300'
         >
          Add Salary
         </button>
@@ -485,7 +522,7 @@ const AddSalary = () => {
           e.preventDefault();
           window.location.reload();
          }}
-         className='bg-red-700 py-1.5 w-1/2 text-center rounded-md text-white hover:bg-red-600 transition'
+         className='py-1.5 w-1/2 text-center rounded-md font-semibold  bg-red-700 text-lg hover:tracking-wider text-white hover:shadow-lg hover:text-shadow-sm  duration-300'
         >
          Cancel
         </Link>
@@ -498,7 +535,23 @@ const AddSalary = () => {
      </div>
     </div>
    ) : (
-    <div>Loading...</div>
+    //loading spinner
+    <div className='flex items-center justify-center bg-black/15 z-50  h-screen'>
+     <div className='animate-pulse'>
+      <ThreeCircles
+       height='50'
+       width='50'
+       color='#4fa94d'
+       outerCircleColor='#b98807'
+       middleCircleColor='#b98807'
+       innerCircleColor='#b98807'
+       ariaLabel='three-circles-loading'
+       wrapperStyle={{}}
+       wrapperClass=''
+       visible={true}
+      />
+     </div>
+    </div>
    )}
   </>
  );
