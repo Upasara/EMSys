@@ -131,9 +131,7 @@ const AddEmployee = () => {
        <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6'>
         {/* full name */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Full Name *
-         </label>
+         <label className='block text-gray-600 font-mono'>Full Name *</label>
          <textarea
           type='text'
           name='emp_Fname'
@@ -146,7 +144,7 @@ const AddEmployee = () => {
 
         {/* address */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Permanent Address *
          </label>
          <textarea
@@ -161,7 +159,7 @@ const AddEmployee = () => {
 
         {/* name with initials*/}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Name with Initials *
          </label>
          <input
@@ -175,9 +173,7 @@ const AddEmployee = () => {
 
         {/* employee ID */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Employee ID *
-         </label>
+         <label className='block text-gray-600 font-mono'>Employee ID *</label>
          <input
           type='text'
           name='emp_id'
@@ -189,9 +185,7 @@ const AddEmployee = () => {
 
         {/* designation */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Designation *
-         </label>
+         <label className='block text-gray-600 font-mono'>Designation *</label>
          <input
           type='text'
           name='emp_designation'
@@ -203,9 +197,7 @@ const AddEmployee = () => {
 
         {/* department */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Department *
-         </label>
+         <label className='block text-gray-600 font-mono'>Department *</label>
          <select
           name='emp_dep'
           onChange={handleChange}
@@ -224,9 +216,7 @@ const AddEmployee = () => {
 
         {/* company */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Company *
-         </label>
+         <label className='block text-gray-600 font-mono'>Company *</label>
          <select
           name='emp_company'
           onChange={handleChange}
@@ -246,9 +236,7 @@ const AddEmployee = () => {
 
         {/* national ID */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          National ID *
-         </label>
+         <label className='block text-gray-600 font-mono'>National ID *</label>
          <input
           type='text'
           name='emp_Nid'
@@ -260,7 +248,7 @@ const AddEmployee = () => {
 
         {/* DOB */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Date of Birth *
          </label>
          <input
@@ -274,9 +262,7 @@ const AddEmployee = () => {
 
         {/* phone number 1 */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Phone Number *
-         </label>
+         <label className='block text-gray-600 font-mono'>Phone Number *</label>
          <input
           type='number'
           name='emp_number1'
@@ -291,9 +277,7 @@ const AddEmployee = () => {
 
         {/* phone number 2*/}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Phone Number
-         </label>
+         <label className='block text-gray-600 font-mono'>Phone Number</label>
          <input
           type='number'
           name='emp_number2'
@@ -307,9 +291,7 @@ const AddEmployee = () => {
 
         {/* email */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          E-mail *
-         </label>
+         <label className='block text-gray-600 font-mono'>E-mail *</label>
          <input
           type='email'
           name='email'
@@ -324,9 +306,7 @@ const AddEmployee = () => {
 
         {/* gender */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Gender *
-         </label>
+         <label className='block text-gray-600 font-mono'>Gender *</label>
          <select
           name='emp_gender'
           onChange={handleChange}
@@ -342,7 +322,7 @@ const AddEmployee = () => {
 
         {/* marital status */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Marital Status *
          </label>
          <select
@@ -359,9 +339,7 @@ const AddEmployee = () => {
 
         {/* start date */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Start Date *
-         </label>
+         <label className='block text-gray-600 font-mono'>Start Date *</label>
          <input
           type='date'
           name='emp_Sdate'
@@ -373,7 +351,7 @@ const AddEmployee = () => {
 
         {/* image upload */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>Image</label>
+         <label className='block text-gray-600 font-mono'>Image</label>
          <input
           type='file'
           name='image'
@@ -385,7 +363,7 @@ const AddEmployee = () => {
 
         {/* emergency contact name */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Emergency Contact Name *
          </label>
          <input
@@ -399,7 +377,7 @@ const AddEmployee = () => {
 
         {/* emergency contact number*/}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Emergency Contact Number *
          </label>
          <input
@@ -416,7 +394,7 @@ const AddEmployee = () => {
 
         {/* medical history */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Medical History
          </label>
          <textarea
@@ -430,9 +408,7 @@ const AddEmployee = () => {
 
         {/* password */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Password *
-         </label>
+         <label className='block text-gray-600 font-mono'>Password *</label>
          <div className='relative flex justify-between items-center gap-2'>
           <input
            type={visible ? 'text' : 'password'}
@@ -452,7 +428,7 @@ const AddEmployee = () => {
 
         {/* role */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>Role *</label>
+         <label className='block text-gray-600 font-mono'>Role *</label>
          <select
           name='role'
           onChange={handleChange}
@@ -472,9 +448,7 @@ const AddEmployee = () => {
        <div className=' grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6  p-6 pt-0 rounded-2xl'>
         {/* basic salary */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Basic Salary *
-         </label>
+         <label className='block text-gray-600 font-mono'>Basic Salary *</label>
          <input
           type='number'
           name='emp_salary'
@@ -486,7 +460,7 @@ const AddEmployee = () => {
 
         {/* allowance */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Traveling Allowance
          </label>
          <input
@@ -499,9 +473,7 @@ const AddEmployee = () => {
 
         {/* staff loan */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Staff Loan
-         </label>
+         <label className='block text-gray-600 font-mono'>Staff Loan</label>
          <input
           type='number'
           name='staff_loan'
@@ -512,9 +484,7 @@ const AddEmployee = () => {
 
         {/* stamp duty */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Stamp Duty
-         </label>
+         <label className='block text-gray-600 font-mono'>Stamp Duty</label>
          <input
           type='number'
           name='stamp_duty'
@@ -525,7 +495,7 @@ const AddEmployee = () => {
 
         {/* festival advance */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           festival Advance
          </label>
          <input
@@ -542,9 +512,7 @@ const AddEmployee = () => {
        <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6'>
         {/* bank name */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Bank Name
-         </label>
+         <label className='block text-gray-600 font-mono'>Bank Name</label>
          <input
           type='text'
           name='bank_name'
@@ -554,7 +522,7 @@ const AddEmployee = () => {
         </div>
         {/* branch name */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>Branch</label>
+         <label className='block text-gray-600 font-mono'>Branch</label>
          <input
           type='text'
           name='bank_branch'
@@ -564,9 +532,7 @@ const AddEmployee = () => {
         </div>
         {/* account number */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Account Number
-         </label>
+         <label className='block text-gray-600 font-mono'>Account Number</label>
          <input
           type='number'
           name='account_number'
@@ -579,21 +545,24 @@ const AddEmployee = () => {
        <div className='flex justify-between items-center mt-10 gap-3 '>
         <button
          type='submit'
-         className='w-1/2  py-1.5 rounded-md  font-semibold bg-green-700 text-lg text-white hover:shadow-lg hover:tracking-wider hover:text-shadow-sm duration-300 '
+         className='w-1/2  py-1.5 rounded-md  font-semibold bg-green-700 
+          text-white hover:shadow-lg hover:tracking-wider hover:text-shadow-sm duration-300 '
         >
          Register Employee
         </button>
         <Link
          to='/admin-dashboard/employees'
-         className=' py-1.5 w-1/2 text-center rounded-md font-semibold  bg-red-700 text-lg hover:tracking-wider text-white hover:shadow-lg hover:text-shadow-sm  duration-300'
+         className=' py-1.5 w-1/2 text-center rounded-md font-semibold  bg-red-700 
+          hover:tracking-wider text-white hover:shadow-lg hover:text-shadow-sm  duration-300'
         >
          Cancel
         </Link>
        </div>
       </form>
      </div>
-    </div> //loading spinner
+    </div>
    ) : (
+    //loading spinner
     <div className='flex flex-wrap items-center justify-center bg-black/15 z-50  h-screen'>
      <div className='animate-pulse'>
       <ThreeCircles

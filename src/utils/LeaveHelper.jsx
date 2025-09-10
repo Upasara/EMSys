@@ -1,3 +1,4 @@
+import { MdMenu } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
 export const columns = [
@@ -33,6 +34,18 @@ export const columns = [
   name: 'Status',
   selector: (row) => row.status,
   center: 'true',
+  sortable: true,
+  cell: (row) => {
+   let colorClass = '';
+   if (row.status === 'Approved') {
+    colorClass = 'bg-green-100 text-green-800';
+   } else if (row.status === 'Rejected') {
+    colorClass = 'bg-red-100 text-red-800';
+   } else if (row.status === 'Pending') {
+    colorClass = 'bg-yellow-100 text-yellow-800';
+   }
+   return <span className={colorClass}>{row.status}</span>;
+  },
  },
  {
   name: 'Action',
@@ -65,10 +78,10 @@ export const LeaveButton = ({ Id }) => {
 
  return (
   <button
-   className='px-4 py-1 bg-primary-dark rounded-sm text-white hover:bg-primary-light'
+   className='group py-1 px-2 bg-emerald-600 text-white rounded cursor-pointer'
    onClick={() => handleView(Id)}
   >
-   View
+   <MdMenu size={20} className={'group-hover:-translate-y-0.5 duration-300'} />
   </button>
  );
 };

@@ -125,6 +125,7 @@ const DepartmentList = () => {
        pagination
        highlightOnHover
        responsive
+       fixedHeader
       />
      </div>
     </div>

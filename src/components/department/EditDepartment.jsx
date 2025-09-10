@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import toast from 'react-hot-toast';
+import { ThreeCircles } from 'react-loader-spinner';
 
 const EditDepartment = () => {
  const { id } = useParams();
@@ -31,7 +33,7 @@ const EditDepartment = () => {
     }
    } catch (error) {
     if (error.response && !error.response.data.success) {
-     alert(error.response.data.error);
+     toast.error(error.response.data.error);
     }
    } finally {
     setDepLoading(false);
@@ -62,13 +64,14 @@ const EditDepartment = () => {
    );
 
    if (response.data.success) {
+    toast.success('Department updated successfully');
     navigate('/admin-dashboard/departments');
    } else {
     console.log(response);
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
-    alert(error.response.data.error);
+    toast.error(error.response.data.error);
    }
   }
  };
@@ -76,81 +79,106 @@ const EditDepartment = () => {
  return (
   <>
    {depLoading ? (
-    <div>Loading...</div>
+    //loading spinner
+    <div className='flex flex-wrap items-center justify-center bg-black/15 z-50  h-screen'>
+     <div className='animate-pulse'>
+      <ThreeCircles
+       height='50'
+       width='50'
+       color='#4fa94d'
+       outerCircleColor='#b98807'
+       middleCircleColor='#b98807'
+       innerCircleColor='#b98807'
+       ariaLabel='three-circles-loading'
+       wrapperStyle={{}}
+       wrapperClass=''
+       visible={true}
+      />
+     </div>
+    </div>
    ) : (
-    <div className='max-w-lg mx-auto bg-white mt-10 p-8 rounded-md '>
-     <h3 className='text-2xl text-center text-blue-800 font-medium'>
-      Edit Department
-     </h3>
-     {/* Form start */}
-     <form onSubmit={handleSubmit}>
-      <div className='mt-5'>
-       <label htmlFor='dep_name' className='text-primary-text'>
-        Department Name
-       </label>
-       <input
-        type='text'
-        name='dep_name'
-        onChange={handleChange}
-        value={department.dep_name}
-        className='mt-1 w-full p-2 border border-primary-light rounded-md outline-hidden'
-        required
-       />
-      </div>
-      <div className='mt-3'>
-       <label htmlFor='dep_manager' className='text-primary-text'>
-        Department Manager
-       </label>
-       <input
-        type='text'
-        name='dep_manager'
-        onChange={handleChange}
-        value={department.dep_manager}
-        className='mt-1 w-full p-2 border border-primary-light rounded-md outline-hidden'
-        required
-       />
-      </div>
-      <div className='mt-3'>
-       <label htmlFor='dep_email' className='text-primary-text'>
-        Department Email
-       </label>
-       <input
-        type='email'
-        name='dep_email'
-        onChange={handleChange}
-        value={department.dep_email}
-        className='mt-1 w-full p-2 border border-primary-light rounded-md outline-hidden'
-        required
-       />
-      </div>
-      <div className='mt-3'>
-       <label htmlFor='dep_des' className='block text-primary-text'>
-        Description
-       </label>
-       <textarea
-        rows='4'
-        type='text'
-        name='dep_des'
-        onChange={handleChange}
-        value={department.dep_des}
-        className='mt-1 block p-2 w-full border border-primary-light rounded-md outline-hidden'
-       />
-      </div>
-      <div className='flex justify-between items-center mt-5 gap-3'>
-       <button
-        type='submit'
-        className='w-1/2 bg-orange-500 py-1.5 rounded-md hover:bg-primary-light text-white'
-       >
-        Edit Department
-       </button>
-       <Link
-        to='/admin-dashboard/departments'
-        className='bg-red-700 py-1.5 w-1/2 text-center rounded-md text-white hover:bg-red-600'
-       >
-        Cancel
-       </Link>
-      </div>
-     </form>
+    <div className='px-4 py-8'>
+     <div className='max-w-lg mx-auto bg-white p-8 rounded-md '>
+      <h3 className='text-2xl text-blue-800  text-center mb-10  text-shadow-2xs font-semibold'>
+       Edit Department
+      </h3>
+      {/* Form start */}
+      <form onSubmit={handleSubmit}>
+       <div className='mt-5'>
+        <label htmlFor='dep_name' className='block text-gray-600 font-mono'>
+         Department Name
+        </label>
+        <input
+         type='text'
+         name='dep_name'
+         onChange={handleChange}
+         value={department.dep_name}
+         className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold 
+         outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+         required
+        />
+       </div>
+       <div className='mt-5'>
+        <label htmlFor='dep_manager' className='block text-gray-600 font-mono'>
+         Department Manager
+        </label>
+        <input
+         type='text'
+         name='dep_manager'
+         onChange={handleChange}
+         value={department.dep_manager}
+         className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold 
+         outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+         required
+        />
+       </div>
+       <div className='mt-5'>
+        <label htmlFor='dep_email' className='block text-gray-600 font-mono'>
+         Department Email
+        </label>
+        <input
+         type='email'
+         name='dep_email'
+         onChange={handleChange}
+         value={department.dep_email}
+         className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold 
+         outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+         required
+        />
+       </div>
+       <div className='mt-5'>
+        <label htmlFor='dep_des' className='block  text-gray-600 font-mono'>
+         Description
+        </label>
+        <textarea
+         rows='4'
+         type='text'
+         name='dep_des'
+         onChange={handleChange}
+         value={department.dep_des}
+         className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold 
+         outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+        />
+       </div>
+       <div className='flex justify-between items-center mt-5 gap-3'>
+        <button
+         type='submit'
+         className='w-1/2  py-1.5 rounded-md  font-semibold bg-amber-600 
+             text-white hover:shadow-lg hover:tracking-wider hover:text-shadow-sm duration-300'
+        >
+         <span className='hidden md:block lg:block'>Edit Department</span>
+         <span className='block md:hidden lg:hidden'>Edit</span>
+        </button>
+        <Link
+         to='/admin-dashboard/departments'
+         className='py-1.5 w-1/2 text-center rounded-md font-semibold  bg-red-700 
+               hover:tracking-wider text-white hover:shadow-lg hover:text-shadow-sm  duration-300'
+        >
+         Cancel
+        </Link>
+       </div>
+      </form>
+     </div>
     </div>
    )}
   </>

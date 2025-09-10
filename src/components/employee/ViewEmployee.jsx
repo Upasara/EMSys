@@ -78,15 +78,13 @@ const ViewEmployee = () => {
        </div>
        <div>
         <div className='block space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          Full Name :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>Full Name : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.emp_Fname}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Name with Initials :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -94,7 +92,7 @@ const ViewEmployee = () => {
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Permanant Address :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -102,55 +100,43 @@ const ViewEmployee = () => {
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          E-mail :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>E-mail : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.userId?.email}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          Employee ID :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>Employee ID : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.emp_id}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          Designation :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>Designation : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.emp_designation}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          Department :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>Department : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.emp_dep?.dep_name ? employee.emp_dep?.dep_name : 'N/A'}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          Company :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>Company : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.emp_company}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          National ID :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>National ID : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.emp_Nid}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Date of Birth :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -158,7 +144,7 @@ const ViewEmployee = () => {
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Phone Number :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -166,7 +152,7 @@ const ViewEmployee = () => {
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Mobile Number :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -174,15 +160,13 @@ const ViewEmployee = () => {
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          Gender :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>Gender : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.emp_gender}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Marital Status :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -190,16 +174,14 @@ const ViewEmployee = () => {
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          Start Date :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>Start Date : </p>
          <p className='font-bold text-primary-text font-sans '>
           {new Date(employee.emp_Sdate).toLocaleDateString()}
          </p>
         </div>
 
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Emergency Name :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -207,7 +189,7 @@ const ViewEmployee = () => {
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Emergency Number :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -215,7 +197,7 @@ const ViewEmployee = () => {
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-2'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Medical History :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -224,7 +206,7 @@ const ViewEmployee = () => {
         </div>
         <div className='w-full h-0.5 bg-gray-400 mb-5 mt-5'></div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Basic Salary :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -232,7 +214,7 @@ const ViewEmployee = () => {
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Traveling Allowance :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -240,23 +222,19 @@ const ViewEmployee = () => {
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          Staff Loan :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>Staff Loan : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.staff_loan}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          Stamp Duty :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>Stamp Duty : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.stamp_duty}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Festival Advance :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
@@ -265,23 +243,19 @@ const ViewEmployee = () => {
         </div>
         <div className='w-full h-0.5 bg-gray-400 mb-5 mt-5'></div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          Bank Name :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>Bank Name : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.bank_name}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
-          Bank Branch :{' '}
-         </p>
+         <p className='text-gray-600 font-mono font-semibold'>Bank Branch : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.bank_branch}
          </p>
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
-         <p className='text-gray-600 font-mono text-lg font-semibold'>
+         <p className='text-gray-600 font-mono font-semibold'>
           Account Number :{' '}
          </p>
          <p className='font-bold text-primary-text font-sans '>
