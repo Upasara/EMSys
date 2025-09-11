@@ -8,6 +8,7 @@ import {
 } from '../../utils/DepartmentHelper';
 import axios from 'axios';
 import { ThreeCircles } from 'react-loader-spinner';
+import toast from 'react-hot-toast';
 
 const DepartmentList = () => {
  /*holds ist of department data fetched from the database */
@@ -56,7 +57,7 @@ const DepartmentList = () => {
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
-    alert(error.response.data.error);
+    toast.error(error.response.data.error);
    }
   } finally {
    setDepLoading(false);
@@ -111,7 +112,7 @@ const DepartmentList = () => {
       />
       <Link
        to='/admin-dashboard/add-department'
-       className='px-4 py-1 md:py-2 lg:py-2 font-medium border-2 border-primary-light rounded-md text-primary-text hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light transition duration-300 text-center  '
+       className='px-2 py-1 font-medium border-2 border-primary-light rounded-md text-primary-text hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light transition duration-300 text-center  '
       >
        <span className='hidden md:block lg:block'>Add Department</span>
        <span className='block md:hidden lg:hidden'>Add</span>

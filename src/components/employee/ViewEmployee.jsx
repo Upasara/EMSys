@@ -73,11 +73,11 @@ const ViewEmployee = () => {
            ? `http://localhost:5000/${employee.userId?.profileImage}`
            : '/3.avif'
          }
-         className='rounded-full border w-72 hover:-translate-y-2 duration-300 shadow-md'
+         className='rounded-full border w-48 md:w-72 lg:w-72 hover:-translate-y-2 duration-300 shadow-md'
         />
        </div>
        <div>
-        <div className='block space-x-3 mb-5'>
+        <div className='flex flex-wrap space-x-3 mb-5'>
          <p className='text-gray-600 font-mono font-semibold'>Full Name : </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.emp_Fname}
@@ -85,7 +85,7 @@ const ViewEmployee = () => {
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
          <p className='text-gray-600 font-mono font-semibold'>
-          Name with Initials :{' '}
+          Name with Initials :
          </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.userId?.name}
@@ -93,7 +93,7 @@ const ViewEmployee = () => {
         </div>
         <div className='flex flex-wrap space-x-3 mb-5'>
          <p className='text-gray-600 font-mono font-semibold'>
-          Permanant Address :{' '}
+          Permanant Address :
          </p>
          <p className='font-bold text-primary-text font-sans '>
           {employee.emp_address}

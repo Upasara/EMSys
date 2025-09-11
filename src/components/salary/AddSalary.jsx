@@ -211,9 +211,7 @@ const AddSalary = () => {
        <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6'>
         {/* department */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Department
-         </label>
+         <label className='block text-gray-600 font-mono'>Department</label>
          <select
           name='sal_dep'
           onChange={handleDepartment}
@@ -231,9 +229,7 @@ const AddSalary = () => {
 
         {/* employee */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Employee
-         </label>
+         <label className='block text-gray-600 font-mono'>Employee</label>
          <select
           name='sal_emp_id'
           onChange={handleEmployeeChange}
@@ -251,9 +247,7 @@ const AddSalary = () => {
 
         {/* pay date */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Pay Date
-         </label>
+         <label className='block text-gray-600 font-mono'>Pay Date</label>
          <input
           type='month'
           name='pay_date'
@@ -267,9 +261,7 @@ const AddSalary = () => {
        <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 p-5  rounded-2xl  mt-5'>
         {/* basic salary */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Basic Salary
-         </label>
+         <label className='block text-gray-600 font-mono'>Basic Salary</label>
          <input
           type='number'
           name='basic_salary'
@@ -283,9 +275,7 @@ const AddSalary = () => {
         {/* no pay */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4  rounded-2xl '>
          <div>
-          <label className='block text-gray-600 font-mono text-lg'>
-           No Pay Days
-          </label>
+          <label className='block text-gray-600 font-mono'>No Pay Days</label>
           <input
            type='number'
            name='no_pay_days'
@@ -295,9 +285,7 @@ const AddSalary = () => {
           />
          </div>
          <div>
-          <label className='block text-gray-600 font-mono text-lg'>
-           No Pay Amount
-          </label>
+          <label className='block text-gray-600 font-mono'>No Pay Amount</label>
           <input
            type='number'
            name='no_pay_amount'
@@ -310,7 +298,7 @@ const AddSalary = () => {
 
         {/* allowances */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Traveling Allowances
          </label>
          <input
@@ -324,9 +312,7 @@ const AddSalary = () => {
 
         {/* staff loan */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Staff Loan
-         </label>
+         <label className='block text-gray-600 font-mono'>Staff Loan</label>
          <input
           type='number'
           name='staff_loan'
@@ -338,7 +324,7 @@ const AddSalary = () => {
 
         {/* travelling */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Travelling Reimbursment
          </label>
          <input
@@ -352,7 +338,7 @@ const AddSalary = () => {
 
         {/* festival advance */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Festival Advance
          </label>
          <input
@@ -366,9 +352,7 @@ const AddSalary = () => {
 
         {/* overtime */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Overtime
-         </label>
+         <label className='block text-gray-600 font-mono'>Overtime</label>
          <input
           type='number'
           name='over_time'
@@ -380,7 +364,7 @@ const AddSalary = () => {
 
         {/* deduction */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Other Deductions
          </label>
          <input
@@ -394,7 +378,7 @@ const AddSalary = () => {
 
         {/* other allowances */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
+         <label className='block text-gray-600 font-mono'>
           Other Allowances
          </label>
          <input
@@ -408,7 +392,7 @@ const AddSalary = () => {
 
         {/* EPF 8% */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>EPF 8%</label>
+         <label className='block text-gray-600 font-mono'>EPF 8%</label>
          <input
           type='number'
           name='epf8'
@@ -423,9 +407,7 @@ const AddSalary = () => {
 
         {/* stamp duty */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>
-          Stamp Duty
-         </label>
+         <label className='block text-gray-600 font-mono'>Stamp Duty</label>
          <input
           type='number'
           name='stamp_duty'
@@ -437,7 +419,7 @@ const AddSalary = () => {
 
         {/* gross salary (EPF) */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg font-medium'>
+         <label className='block text-gray-600 font-mono font-medium'>
           Gross Salary (EPF)
          </label>
          <input
@@ -452,7 +434,7 @@ const AddSalary = () => {
 
         {/* tax */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg'>Tax</label>
+         <label className='block text-gray-600 font-mono'>Tax</label>
          <input
           type='number'
           name='tax'
@@ -464,7 +446,7 @@ const AddSalary = () => {
 
         {/* gross salary */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg font-semibold'>
+         <label className='block text-gray-600 font-mono font-semibold'>
           Gross Salary
          </label>
          <input
@@ -479,7 +461,7 @@ const AddSalary = () => {
 
         {/* total deduction */}
         <div>
-         <label className='block text-gray-600 font-mono text-lg font-semibold'>
+         <label className='block text-gray-600 font-mono font-semibold'>
           Total Deductions
          </label>
          <input

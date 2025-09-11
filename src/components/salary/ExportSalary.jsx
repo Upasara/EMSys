@@ -36,9 +36,7 @@ const ExportSalary = () => {
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
-    toast(error.response.data.error, {
-     style: { background: '#94a3b8', color: 'white' },
-     iconTheme: { primary: 'white', secondary: '#94a3b8' },
+    toast.error(error.response.data.error, {
      icon: '⚠️',
     });
    }

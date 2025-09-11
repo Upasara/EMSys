@@ -113,7 +113,6 @@ export const getEmployees = async (id) => {
    }
   );
   if (response.data.success) {
-   console.log(response.data);
    employees = response.data.employees;
   }
  } catch (error) {
@@ -198,11 +197,11 @@ export const EmployeeButtons = ({ Id }) => {
     setIsActive(!isActive);
    }
   } catch (error) {
-   console.error(
+   toast.error(
     isActive ? 'Error deactivating employee:' : 'Error activating employee:',
     error
    );
-   alert(
+   toast.error(
     isActive
      ? 'Error deactivating employee. Please try again !'
      : 'Error activating employee. Please try again !'
