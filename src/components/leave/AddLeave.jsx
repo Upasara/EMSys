@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const AddLeave = () => {
  const { user } = useAuth();
@@ -55,166 +56,177 @@ const AddLeave = () => {
     }
    );
    if (response.data.success) {
+    toast.success('Leave Request Submitted Successfully');
     navigate(`/employee-dashboard/leaves/${user._id}`);
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
-    alert(error.response.data.error);
+    toast.error(error.response.data.error);
    }
   }
  };
 
  return (
-  <div className='max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md'>
-   <h2 className='text-2xl font-bold mb-6'>Request for a Leave</h2>
-   <form onSubmit={handleSubmit}>
-    <div className='flex flex-col space-y-4'>
-     <div>
-      <label htmlFor='' className='block text-sm font-medium text-gray-700'>
-       Leave Type
-      </label>
-      <select
-       name='leave_type'
-       onChange={handleChange}
-       className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
-       required
+  <div className='p-5'>
+   <div className='max-w-4xl mx-auto mt-0 md:mt-10  bg-white p-8 rounded-md shadow-md'>
+    <h2 className='text-2xl text-blue-800  text-center mb-5  text-shadow-2xs font-semibold'>
+     Request for a Leave
+    </h2>
+    <form onSubmit={handleSubmit}>
+     <div className='flex flex-col space-y-4'>
+      <div>
+       <label htmlFor='' className='block text-gray-600 font-mono'>
+        Leave Type
+       </label>
+       <select
+        name='leave_type'
+        onChange={handleChange}
+        className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold 
+        outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md   font-sans  duration-300'
+        required
+       >
+        <option value=''>Select Leave Type</option>
+        <option value='Sick Leave'>Sick Leave</option>
+        <option value='Casual Leave'>Casual Leave</option>
+        <option value='Annual Leave'>Annual Leave </option>
+       </select>
+      </div>
+      {/* leave duration radio button */}
+      <div className='mt-4'>
+       <label className='block text-gray-600 font-mono mb-2'>
+        Leave Duration
+       </label>
+       <div className='flex space-x-4'>
+        <label className='inline-flex items-center'>
+         <input
+          type='radio'
+          name='leaveDuration'
+          value='one'
+          checked={leaveDuration === 'one'}
+          onChange={() => setLeaveDuration('one')}
+          className='form-radio text-primary-dark'
+          required
+         />
+         <span className='ml-2 font-semibold text-primary-text font-sans '>
+          One Day
+         </span>
+        </label>
+        <label className='inline-flex items-center'>
+         <input
+          type='radio'
+          name='leaveDuration'
+          value='multiple'
+          checked={leaveDuration === 'multiple'}
+          onChange={() => setLeaveDuration('multiple')}
+          className='form-radio text-primary-dark'
+         />
+         <span className='ml-2 font-semibold text-primary-text font-sans'>
+          More Than One Day
+         </span>
+        </label>
+       </div>
+      </div>
+
+      {/* date range according to the radio */}
+
+      {leaveDuration === 'one' && (
+       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+        <div>
+         <label className='block text-gray-600 font-mono'>Date</label>
+         <input
+          type='date'
+          name='start_date'
+          onChange={handleChange}
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md 
+          font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md   font-sans  duration-300'
+          required
+         />
+        </div>
+        <div>
+         <label className='block text-gray-600 font-mono'>Days</label>
+         <input
+          type='number'
+          name='days'
+          value={numberOfDays}
+          onChange={handleChange}
+          disabled
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold 
+          outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md   font-sans  duration-300'
+         />
+        </div>
+       </div>
+      )}
+      {/* ----------------------------------------- */}
+      {leaveDuration === 'multiple' && (
+       <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+        <div>
+         <label className='block text-gray-600 font-mono'>From Date</label>
+         <input
+          type='date'
+          name='start_date'
+          onChange={handleChange}
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold 
+          outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md   font-sans  duration-300'
+          required
+         />
+        </div>
+        <div>
+         <label className='block text-gray-600 font-mono'>To Date</label>
+         <input
+          type='date'
+          name='end_date'
+          onChange={handleChange}
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold 
+          outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md   font-sans  duration-300'
+          required
+         />
+        </div>
+        <div>
+         <label className='block text-gray-600 font-mono'>Days</label>
+         <input
+          type='number'
+          name='days'
+          value={numberOfDays}
+          onChange={handleChange}
+          disabled
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold 
+          outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md   font-sans  duration-300'
+         />
+        </div>
+       </div>
+      )}
+
+      {/* description */}
+      <div>
+       <label className='block text-gray-600 font-mono'>Description</label>
+       <textarea
+        type='date'
+        name='description'
+        onChange={handleChange}
+        className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold 
+        outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md   font-sans  duration-300'
+        rows='2'
+       ></textarea>
+      </div>
+     </div>
+     <div className='flex justify-between items-center mt-5 gap-3'>
+      <button
+       type='submit'
+       className='w-1/2 py-1.5 rounded-md  font-semibold bg-green-700 
+          text-white hover:shadow-lg hover:tracking-wider hover:text-shadow-sm duration-300'
       >
-       <option value=''>Select Leave Type</option>
-       <option value='Sick Leave'>Sick Leave</option>
-       <option value='Casual Leave'>Casual Leave</option>
-       <option value='Annual Leave'>Annual Leave </option>
-      </select>
+       Submit Leave
+      </button>
+      <Link
+       to={`/employee-dashboard/leaves/${user._id}`}
+       className='py-1.5 w-1/2 text-center rounded-md font-semibold  bg-red-700 
+          hover:tracking-wider text-white hover:shadow-lg hover:text-shadow-sm  duration-300'
+      >
+       Cancel
+      </Link>
      </div>
-     {/* leave duration radio button */}
-     <div className='mt-4'>
-      <label className='block text-sm font-medium text-gray-700 mb-2'>
-       Leave Duration
-      </label>
-      <div className='flex space-x-4'>
-       <label className='inline-flex items-center'>
-        <input
-         type='radio'
-         name='leaveDuration'
-         value='one'
-         checked={leaveDuration === 'one'}
-         onChange={() => setLeaveDuration('one')}
-         className='form-radio text-primary-dark'
-         required
-        />
-        <span className='ml-2'>One Day</span>
-       </label>
-       <label className='inline-flex items-center'>
-        <input
-         type='radio'
-         name='leaveDuration'
-         value='multiple'
-         checked={leaveDuration === 'multiple'}
-         onChange={() => setLeaveDuration('multiple')}
-         className='form-radio text-primary-dark'
-        />
-        <span className='ml-2'>More Than One Day</span>
-       </label>
-      </div>
-     </div>
-
-     {/* date range according to the radio */}
-
-     {leaveDuration === 'one' && (
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-       <div>
-        <label className='block text-sm font-medium text-gray-700'>Date</label>
-        <input
-         type='date'
-         name='start_date'
-         onChange={handleChange}
-         className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
-         required
-        />
-       </div>
-       <div>
-        <label className='block text-sm font-medium text-gray-700'>Days</label>
-        <input
-         type='number'
-         name='days'
-         value={numberOfDays}
-         onChange={handleChange}
-         disabled
-         className='mt-1 p-2 block w-full border border-gray-300 rounded-md bg-gray-100'
-        />
-       </div>
-      </div>
-     )}
-     {/* ----------------------------------------- */}
-     {leaveDuration === 'multiple' && (
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-       <div>
-        <label className='block text-sm font-medium text-gray-700'>
-         From Date
-        </label>
-        <input
-         type='date'
-         name='start_date'
-         onChange={handleChange}
-         className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
-         required
-        />
-       </div>
-       <div>
-        <label className='block text-sm font-medium text-gray-700'>
-         To Date
-        </label>
-        <input
-         type='date'
-         name='end_date'
-         onChange={handleChange}
-         className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
-         required
-        />
-       </div>
-       <div>
-        <label className='block text-sm font-medium text-gray-700'>Days</label>
-        <input
-         type='number'
-         name='days'
-         value={numberOfDays}
-         onChange={handleChange}
-         disabled
-         className='mt-1 p-2 block w-full border border-gray-300 rounded-md bg-gray-100'
-        />
-       </div>
-      </div>
-     )}
-
-     {/* description */}
-     <div>
-      <label className='block text-sm font-medium text-gray-700'>
-       Description
-      </label>
-      <textarea
-       type='date'
-       name='description'
-       onChange={handleChange}
-       className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
-       rows='2'
-       required
-      ></textarea>
-     </div>
-    </div>
-    <div className='flex justify-between items-center mt-5 gap-3'>
-     <button
-      type='submit'
-      className='w-1/2 bg-green-700 py-1.5 rounded-md hover:bg-green-600 text-white transition'
-     >
-      Submit Leave
-     </button>
-     <Link
-      to={`/employee-dashboard/leaves/${user._id}`}
-      className='bg-red-700 py-1.5 w-1/2 text-center rounded-md text-white hover:bg-red-600 transition'
-     >
-      Cancel
-     </Link>
-    </div>
-   </form>
+    </form>
+   </div>
   </div>
  );
 };

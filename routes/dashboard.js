@@ -4,6 +4,6 @@ import { getSummary } from '../controllers/dashboardController.js'
 
 const router = express.Router()
 
-router.get("/summary", authMiddleware,getSummary)
+router.get("/summary", authMiddleware , getSummary)
 
 export default router

@@ -6,9 +6,10 @@ import { MdEditCalendar } from 'react-icons/md';
 import { LuCalendarClock } from 'react-icons/lu';
 import axios from 'axios';
 import { ThreeCircles } from 'react-loader-spinner';
+import toast from 'react-hot-toast';
 
 const AdminSummary = () => {
- const [summary, setSummary] = useState(null);
+ const [summary, setSummary] = useState([]);
  const [loading, setLoading] = useState(false);
 
  useEffect(() => {
@@ -25,34 +26,39 @@ const AdminSummary = () => {
       },
      }
     );
-    setSummary(summary);
+    console.log(summary.data);
+    setSummary(summary.data);
    } catch (error) {
-    console.log(error);
+    if (error.response) {
+     toast.error(error.response.data.error);
+    }
+    console.log(error.message);
     setLoading(false);
    }
   };
+  fetchSummary();
  }, []);
 
- if (!summary) {
-  return (
-   <div className='flex items-center justify-center bg-black/15 z-50 h-screen '>
-    <div className='animate-pulse'>
-     <ThreeCircles
-      height='50' // Sets the height to 100 pixels
-      width='50' // Sets the width to 100 pixels
-      color='#4fa94d' // Example color
-      outerCircleColor='#b98807'
-      middleCircleColor='#b98807'
-      innerCircleColor='#b98807'
-      ariaLabel='three-circles-loading'
-      wrapperStyle={{}}
-      wrapperClass=''
-      visible={true}
-     />
-    </div>
-   </div>
-  );
- }
+ //  if (!summary) {
+ //   return (
+ //    <div className='flex items-center justify-center bg-black/15 z-50 h-screen '>
+ //     <div className='animate-pulse'>
+ //      <ThreeCircles
+ //       height='50' // Sets the height to 100 pixels
+ //       width='50' // Sets the width to 100 pixels
+ //       color='#4fa94d' // Example color
+ //       outerCircleColor='#b98807'
+ //       middleCircleColor='#b98807'
+ //       innerCircleColor='#b98807'
+ //       ariaLabel='three-circles-loading'
+ //       wrapperStyle={{}}
+ //       wrapperClass=''
+ //       visible={true}
+ //      />
+ //     </div>
+ //    </div>
+ //   );
+ //  }
 
  return (
   <>
@@ -82,7 +88,7 @@ const AdminSummary = () => {
       <SummaryCard
        icon={<FaUsers />}
        text='Total Employees'
-       number={13}
+       number={summary.employeeCount}
        iconColor='text-primary-dark'
        textColor='text-primary-text'
       />

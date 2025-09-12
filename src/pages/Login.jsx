@@ -45,14 +45,12 @@ const Login = () => {
       toast.success('Welcome Admin !', {
        position: 'top-center',
        icon: '🛡️',
-       
       });
       navigate('/admin-dashboard');
      } else {
       toast.success('Welcome Employee !', {
        position: 'top-center',
        icon: '🧑‍🔧',
-       
       });
       navigate('/employee-dashboard');
      }
@@ -68,13 +66,12 @@ const Login = () => {
 
    toast.error(eMessage, {
     duration: 4000,
-   
    });
   }
  };
 
  return (
-  <div className='flex items-center justify-center min-h-screen bg-slate-100 bg-[url(/loginBg8.png)] bg-cover w-full'>
+  <div className='p-4 flex items-center justify-center min-h-screen bg-slate-100 bg-[url(/loginBg8.png)] bg-cover w-full'>
    {loading && ( // Loading Spinner
     <div className='fixed inset-0 flex flex-col items-center justify-center bg-black/80 z-50 gap-3'>
      <img src={Logo} alt='' className='w-24 a animate-pulse' />
@@ -93,21 +90,21 @@ const Login = () => {
      />
     </div>
    )}
-   <div className='bg-white form-container overflow-hidden flex flex-col md:flex-row  shadow-lg border rounded-lg w-full max-w-(--breakpoint-xl) justify-between'>
+   <div className='bg-white form-container overflow-hidden flex flex-col md:flex-row  shadow-lg border rounded-lg  w-full max-w-(--breakpoint-xl) justify-between'>
     {/* left section */}
     <div className=' form-section w-full md:w-1/2 px-8 md:px-20 py-8 order-2 md:order-1'>
-     <div className='logo-wrap flex gap-x-1 items-center'>
-      <img className='w-8' src={Logo} alt='' />
-      <span className='text-sm text-secondary-dark'>P E Mathew & Company</span>
+     <div className='logo-wrap hidden md:flex gap-x-1 items-center '>
+      <img className='w-6 md:w-8' src={Logo} alt='' />
+      <span className='text-sm  text-secondary-dark'>P E Mathew & Company</span>
      </div>
-     <h1 className='text-3xl font-semibold mt-10  text-primary-dark text-center'>
+     <h1 className='text-2xl md:text-3xl font-semibold mt-0 md:mt-10  text-primary-dark text-center'>
       LOGIN
      </h1>
 
      {/* form content*/}
      <form onSubmit={handleSubmit}>
       {/*Email input */}
-      <div className='mb-6 mt-10'>
+      <div className='mb-6 mt-5 md:mt-10'>
        <input
         type='email'
         placeholder='Enter your email ...'
@@ -117,7 +114,7 @@ const Login = () => {
        />
       </div>
       {/*password input */}
-      <div className='relative flex justify-between items-center gap-2 mb-6 w-full px-2 py-2 border rounded-full focus-within:shadow-md duration-300'>
+      <div className='relative flex justify-between items-center gap-2 mb-3 md:mb-6 w-full px-2 py-2 border rounded-full focus-within:shadow-md duration-300'>
        <input
         type={visible ? 'text' : 'password'}
         placeholder='Enter your password ...'
@@ -133,7 +130,7 @@ const Login = () => {
        </div>
       </div>
       {/*remember me & forgot password*/}
-      <div className='mb-5 flex items-end justify-end'>
+      <div className=' flex items-end justify-end'>
        <label className='inline-flex items-center text-secondary-dark text-sm'>
         <input
          type='checkbox'
@@ -146,7 +143,7 @@ const Login = () => {
       </div>
 
       {/*button*/}
-      <div className='mt-10'>
+      <div className='mt-6 md:mt-10'>
        <button
         type='submit'
         className='relative group flex justify-center items-center gap-2 w-full 
@@ -168,7 +165,7 @@ const Login = () => {
     <div className='logo-section w-full md:w-1/2 bg-[url("/loginbg.jpg")] bg-cover order-1 md:order-2'>
      <div className='image-wrap'>
       <img
-       className='mt-5 size-52 md:size-80 mx-auto md:max-w-sm  hover:-translate-y-1 duration-300'
+       className='mt-5 size-40 md:size-80 mx-auto md:max-w-sm  hover:-translate-y-1 duration-300'
        src={LoginImage}
        alt=''
       />

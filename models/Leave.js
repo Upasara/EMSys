@@ -7,7 +7,7 @@ const leaveSchema = new Schema({
     start_date : {type:Date, required:true},
     end_date : {type:Date, default: null},
     days : {type:Number, required:true},
-    description : {type:String, required:true},
+    description : {type:String, default: ""},
     status: {type:String, enum: ["Pending", "Approved", "Rejected"], default: "Pending"},
     appliedAt : {type:Date, default: Date.now},
     updatedAt : {type:Date, default: Date.now}

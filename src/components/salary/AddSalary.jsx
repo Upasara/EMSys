@@ -172,8 +172,7 @@ const AddSalary = () => {
    );
 
    if (response.data.success) {
-    // navigate('/admin-dashboard/employees');
-    window.location.reload();
+    toast.success('Salary Added Successfully');
    } else {
     console.log(response);
    }

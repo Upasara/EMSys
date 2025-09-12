@@ -111,7 +111,9 @@ const LeaveList = () => {
              : 'N/A'}
            </td>
            <td className='px-6 py-3'>{leave.days}</td>
-           <td className='px-6 py-3'>{leave.description}</td>
+           <td className='px-6 py-3'>
+            {leave.description ? leave.description : 'N/A'}
+           </td>
            <td className='px-6 py-3'>{leave.status}</td>
           </tr>
          ))}

@@ -1,12 +1,30 @@
 import Employee from '../models/Employee.js';
-import Emloyee from '../models/Employee.js';
+import Department from '../models/Department.js'
+import Leave from '../models/Leave.js'
 
 const getSummary = async (req,res) => {
     try{
-        const Count = await Employee.countDocuments()
-        const activeCount = await Emloyee.countDocuments({isActive:true})
-        const inactiveCOunt = await Employee.countDocuments({isActive:false})
-        return res.status(200).json({success : true, Count, activeCount, inactiveCOunt})
+        const employeeCount = await Employee.countDocuments()
+        // const activeCount = await Employee.countDocuments({isActive:true})
+        // const inactiveCOunt = await Employee.countDocuments({isActive:false})
+        const departmentCount = await Department.countDocuments()
+
+        const employeeAppliedForLeave = await Leave.distinct('employeeId')
+        const leaveStatus = await Leave.aggregate([
+            {$group: {
+                _id: "$status",
+                count: {$sum: 1}
+            }}
+        ])
+        const leaveSummary = {
+            appliedFor: employeeAppliedForLeave.length,
+            approved: leaveStatus.find(item => item._id === 'Approved')?.count || 0,
+            rejected: leaveStatus.find(item => item._id === 'Rejected')?.count || 0,
+            pending: leaveStatus.find(item => item._id === 'Pending')?.count || 0
+
+        }
+
+        return res.status(200).json({success : true, employeeCount, activeCount, inactiveCOunt, departmentCount, leaveSummary})
     }catch(error){
         return res.status(500).json({success: false, error: "Dashboard server error"})
     }
