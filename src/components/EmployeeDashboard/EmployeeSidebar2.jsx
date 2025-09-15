@@ -86,7 +86,7 @@ const EmployeeSidebar2 = () => {
     </div>
    )}
    <div
-    className={`bg-secondary-dark fixed top-0 left-0 h-screen z-50 transform ${
+    className={`bg-secondary-dark/90 md:bg-secondary-dark/80 lg:bg-secondary-dark/80 fixed top-0 left-0 h-screen z-50 transform ${
      open ? 'w-64 translate-x-0' : 'w-20  -translate-x-full'
     } md:sticky lg:sticky lg:translate-x-0 md:translate-x-0 duration-500 ease-in-out`}
    >

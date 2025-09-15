@@ -20,7 +20,7 @@ app.use('/api/employee', employeeRouter)
 app.use('/api/salary', salaryRouter)
 app.use('/api/leave', leaveRouter)
 app.use('/api/setting', settingsRouter)
-app.use('api/dashboard', dashboardRouter)
+app.use('/api/dashboard', dashboardRouter)
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);

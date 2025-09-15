@@ -201,7 +201,7 @@ const AddSalary = () => {
        </div>
       </Link>
      </div>
-     <div className='max-w-4xl mx-auto bg-white shadow-lg rounded-md mt-5 p-8 '>
+     <div className='max-w-4xl mx-auto bg-white/70 shadow-lg rounded-md mt-5 p-8 '>
       <h3 className='text-2xl text-blue-800  text-center mb-10  text-shadow-2xs font-semibold'>
        Add Salary
       </h3>
@@ -214,7 +214,7 @@ const AddSalary = () => {
          <select
           name='sal_dep'
           onChange={handleDepartment}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300                               '
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300                               '
           required
          >
           <option value=''>Select department</option>
@@ -232,7 +232,7 @@ const AddSalary = () => {
          <select
           name='sal_emp_id'
           onChange={handleEmployeeChange}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
           required
          >
           <option value=''>Select Employee</option>
@@ -251,7 +251,7 @@ const AddSalary = () => {
           type='month'
           name='pay_date'
           onChange={handleChange}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
           required
          />
         </div>
@@ -266,7 +266,7 @@ const AddSalary = () => {
           name='basic_salary'
           onChange={handleChange}
           value={salary.basic_salary || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
           required
          />
         </div>
@@ -280,7 +280,7 @@ const AddSalary = () => {
            name='no_pay_days'
            onChange={handleChange}
            value={salary.no_pay_days || ''}
-           className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+           className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
           />
          </div>
          <div>
@@ -290,7 +290,7 @@ const AddSalary = () => {
            name='no_pay_amount'
            onChange={handleChange}
            value={salary.no_pay_amount || ''}
-           className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+           className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
           />
          </div>
         </div>
@@ -305,7 +305,7 @@ const AddSalary = () => {
           name='allowances'
           onChange={handleChange}
           value={salary.allowances || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
@@ -317,7 +317,7 @@ const AddSalary = () => {
           name='staff_loan'
           onChange={handleChange}
           value={salary.staff_loan || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
@@ -331,7 +331,7 @@ const AddSalary = () => {
           name='travelling'
           onChange={handleChange}
           value={salary.travelling || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
@@ -345,7 +345,7 @@ const AddSalary = () => {
           name='festival_advance'
           onChange={handleChange}
           value={salary.festival_advance || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
@@ -357,7 +357,7 @@ const AddSalary = () => {
           name='over_time'
           onChange={handleChange}
           value={salary.over_time || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
@@ -371,7 +371,7 @@ const AddSalary = () => {
           name='deductions'
           onChange={handleChange}
           value={salary.deductions || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
@@ -385,7 +385,7 @@ const AddSalary = () => {
           name='other_allowances'
           onChange={handleChange}
           value={salary.other_allowances || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
@@ -397,7 +397,7 @@ const AddSalary = () => {
           name='epf8'
           onChange={handleChange}
           value={salary.epf8 || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
@@ -412,7 +412,7 @@ const AddSalary = () => {
           name='stamp_duty'
           onChange={handleChange}
           value={salary.stamp_duty || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
@@ -426,7 +426,7 @@ const AddSalary = () => {
           name='gross_salary_epf'
           onChange={handleChange}
           value={salary.gross_salary_epf || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-medium'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-medium'
           disabled
          />
         </div>
@@ -439,7 +439,7 @@ const AddSalary = () => {
           name='tax'
           onChange={handleChange}
           value={salary.tax || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300'
          />
         </div>
 
@@ -453,7 +453,7 @@ const AddSalary = () => {
           name='gross_salary'
           onChange={handleChange}
           value={salary.gross_salary || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-medium'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-medium'
           disabled
          />
         </div>
@@ -468,7 +468,7 @@ const AddSalary = () => {
           name='total_deductions'
           onChange={handleChange}
           value={salary.total_deductions || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-medium'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-medium'
           disabled
          />
         </div>
@@ -485,7 +485,7 @@ const AddSalary = () => {
           name='net_salary'
           onChange={handleChange}
           value={salary.net_salary || ''}
-          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-semibold'
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:bg-white focus:border focus:border-primary-dark focus:shadow-md font-sans  duration-300 font-semibold'
           disabled
          />
         </div>

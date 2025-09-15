@@ -1,9 +1,9 @@
-import express from 'express'
+import expres from 'express'
 import authMiddleware from '../middleware/authMiddleware.js'
 import { getSummary } from '../controllers/dashboardController.js'
 
-const router = express.Router()
+const router = expres.Router()
 
-router.get("/summary", authMiddleware , getSummary)
+router.get('/summary', authMiddleware, getSummary )
 
 export default router

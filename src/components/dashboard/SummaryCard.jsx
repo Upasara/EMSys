@@ -2,16 +2,12 @@ import React from 'react';
 
 const SummaryCard = ({ icon, text, number, iconColor, textColor }) => {
  return (
-  <div className='rounded-md flex bg-white shadow-md border border-primary-light '>
-   <div
-    className={`text-3xl flex justify-center items-center px-3 ${iconColor}`}
-   >
-    {icon}
+  <div className=' border rounded-md py-1.5 px-3 bg-white '>
+   <div className='justify-between items-center flex'>
+    <span className={`text-2xl font-semibold font-mono`}>{number}</span>
+    <span className={`text-2xl ${iconColor}`}>{icon}</span>
    </div>
-   <div className={`pl-4 py-1 ${textColor}`}>
-    <p className='text-md'>{text}</p>
-    <p className='text-lg font-semibold'>{number}</p>
-   </div>
+   <div className={` text-sm mt-1 ${textColor}`}>{text}</div>
   </div>
  );
 };

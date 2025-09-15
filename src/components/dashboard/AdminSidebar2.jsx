@@ -93,7 +93,7 @@ const AdminSidebar2 = () => {
     </div>
    )}
    <div
-    className={`bg-secondary-dark fixed  top-0 left-0 h-screen z-50 transform ${
+    className={`bg-secondary-dark/90 md:bg-secondary-dark/80 lg:bg-secondary-dark/80 fixed  top-0 left-0 h-screen z-50 transform ${
      open ? 'w-64 translate-x-0' : 'w-20 -translate-x-full '
     } md:sticky lg:sticky lg:translate-x-0 md:translate-x-0 duration-500 ease-in-out`}
    >
@@ -106,7 +106,7 @@ const AdminSidebar2 = () => {
         : 'w-0 opacity-0 -translate-x-10'
       }`}
      >
-      <h2 className='whitespace-nowrap text-primary-gold text-3xl text-shadow-md font-bold'>
+      <h2 className='whitespace-nowrap cursor-default text-primary-gold text-3xl text-shadow-md font-bold'>
        EMSys
       </h2>
      </div>
@@ -164,7 +164,7 @@ const AdminSidebar2 = () => {
       </NavLink>
      ))}
      {/* logout button */}
-     <div className=' text-white text-lg w-full flex flex-col duration-300 mt-14'>
+     <div className=' text-white text-base w-full flex flex-col duration-300 mt-36'>
       <button
        onClick={() => {
         logout();
