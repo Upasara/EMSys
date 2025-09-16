@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { Link, useParams } from 'react-router-dom';
 import { FaSort } from 'react-icons/fa';
 import { MdMenu } from 'react-icons/md';
+import { useAuth } from '../../context/authContext';
 
 const ViewSalary = () => {
  const [salaries, setSalaries] = useState([]);
@@ -14,15 +15,20 @@ const ViewSalary = () => {
  const { id } = useParams();
  let sno = 1;
 
+ const { user } = useAuth();
+
  const fetchSalaries = async () => {
   try {
    const token =
     localStorage.getItem('token') || sessionStorage.getItem('token');
-   const response = await axios.get(`http://localhost:5000/api/salary/${id}`, {
-    headers: {
-     Authorization: `Bearer ${token}`,
-    },
-   });
+   const response = await axios.get(
+    `http://localhost:5000/api/salary/${id}/${user.role}`,
+    {
+     headers: {
+      Authorization: `Bearer ${token}`,
+     },
+    }
+   );
 
    if (response.data.success) {
     setSalaries(response.data.salary);

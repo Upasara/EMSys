@@ -6,6 +6,7 @@ import { GiMoneyStack } from 'react-icons/gi';
 import { MdDateRange } from 'react-icons/md';
 import { MdMenu } from 'react-icons/md';
 import toast from 'react-hot-toast';
+import { useAuth } from '../context/authContext';
 
 export const columns = [
  {
@@ -149,6 +150,7 @@ export const EmployeeButtons = ({ Id }) => {
  const navigate = useNavigate();
  const [isActive, setIsActive] = useState(true);
  const [isLoading, setIsLoading] = useState(false);
+ const { user } = useAuth();
 
  //  fetch employee active status from database
  useEffect(() => {

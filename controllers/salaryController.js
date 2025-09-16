@@ -70,11 +70,12 @@ return res.status(200).json({success : true})
 
 const getSalary = async (req,res) =>{
     try{
-        const {id} = req.params;
-        
+        const {id, role} = req.params;
+        console.log(role)
         let salary
-        salary = await Salary.find({sal_emp_id: id}).populate('sal_emp_id', 'emp_id');
-        if(!salary || salary.length < 1){
+        if(role === "admin"){
+            salary = await Salary.find({sal_emp_id: id}).populate('sal_emp_id', 'emp_id');
+        }else{
             const employee = await Employee.findOne({userId: id})
             salary = await Salary.find({sal_emp_id: employee._id}).populate('sal_emp_id', 'emp_id');
         }

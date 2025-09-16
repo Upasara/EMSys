@@ -6,7 +6,7 @@ import { addSalary, getSalary, getSalaryByMonth, getSalaryDetails,  } from '../c
 const router = express.Router(2)
 
 router.post('/add', authMiddleware, addSalary)
-router.get('/:id', authMiddleware, getSalary)
+router.get('/:id/:role', authMiddleware, getSalary)
 router.get('/details/:id', authMiddleware, getSalaryDetails )
 router.post('/month', authMiddleware, getSalaryByMonth)
 

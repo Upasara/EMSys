@@ -38,11 +38,11 @@ export const columns = [
   cell: (row) => {
    let colorClass = '';
    if (row.status === 'Approved') {
-    colorClass = 'bg-green-100 text-green-800';
+    colorClass = 'bg-green-100 text-green-800 px-1 rounded-md';
    } else if (row.status === 'Rejected') {
-    colorClass = 'bg-red-100 text-red-800';
+    colorClass = 'bg-red-100 text-red-800 px-1 rounded-md';
    } else if (row.status === 'Pending') {
-    colorClass = 'bg-yellow-100 text-yellow-800';
+    colorClass = 'bg-yellow-100 text-yellow-700 px-1 rounded-md';
    }
    return <span className={colorClass}>{row.status}</span>;
   },

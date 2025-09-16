@@ -18,11 +18,14 @@ const LeaveList = () => {
   try {
    const token =
     localStorage.getItem('token') || sessionStorage.getItem('token');
-   const response = await axios.get(`http://localhost:5000/api/leave/${id}`, {
-    headers: {
-     Authorization: `Bearer ${token}`,
-    },
-   });
+   const response = await axios.get(
+    `http://localhost:5000/api/leave/${id}/${user.role}`,
+    {
+     headers: {
+      Authorization: `Bearer ${token}`,
+     },
+    }
+   );
    console.log(response.data);
    if (response.data.success) {
     setLeaves(response.data.leaves);
@@ -85,8 +88,8 @@ const LeaveList = () => {
      </div>
      {leaves ? (
       <div className='overflow-x-auto mt-5 shadow-md rounded-lg'>
-       <table className='w-full text-center'>
-        <thead className='text-[15px] text-primary-text  uppercase bg-white border border-gray-200'>
+       <table className='w-full text-center '>
+        <thead className='text-[15px] text-primary-text   bg-white border border-gray-200'>
          <tr>
           <th className='px-6 py-3'>SNO</th>
           <th className='px-6 py-3'>Type</th>
@@ -114,7 +117,19 @@ const LeaveList = () => {
            <td className='px-6 py-3'>
             {leave.description ? leave.description : 'N/A'}
            </td>
-           <td className='px-6 py-3'>{leave.status}</td>
+           <td className='px-6 py-3'>
+            <span
+             className={`${
+              leave.status === 'Approved'
+               ? 'px-1 bg-green-100 text-green-800 rounded-md'
+               : leave.status === 'Rejected'
+               ? 'px-1 bg-red-100 text-red-800 rounded-md'
+               : 'px-1 bg-yellow-100 text-yellow-800 rounded-md'
+             }`}
+            >
+             {leave.status}
+            </span>
+           </td>
           </tr>
          ))}
         </tbody>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { CgClose } from 'react-icons/cg';
 import { FaCheck } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -28,7 +29,7 @@ const LeaveDetails = () => {
     }
    } catch (error) {
     if (error.response && !error.response.data.success) {
-     alert(error.response.data.error);
+     toast.error(error.response.data.error);
     }
    }
   };
