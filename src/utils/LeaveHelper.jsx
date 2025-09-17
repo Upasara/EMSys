@@ -5,8 +5,9 @@ export const columns = [
  {
   name: 'SNO',
   selector: (row) => row.sno,
-  width: '70px',
+  width: '100px',
   center: 'true',
+  sortable: true,
  },
  {
   name: 'Emp ID',
@@ -17,6 +18,7 @@ export const columns = [
   name: 'Name',
   selector: (row) => row.name,
   center: 'true',
+  sortable: true,
  },
  {
   name: 'Department',

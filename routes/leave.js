@@ -5,8 +5,8 @@ import { addLeave, getLeave, getLeaveDetails, getLeaves, updateLeave } from "../
 const router = express.Router()
 
 router.post('/add', authMiddleware, addLeave)
-router.get('/:id/:role', authMiddleware, getLeave)
 router.get("/detail/:id",authMiddleware, getLeaveDetails)
+router.get('/:id/:role', authMiddleware, getLeave)
 router.get("/", authMiddleware, getLeaves )
 router.put('/:id', authMiddleware, updateLeave)
 

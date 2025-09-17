@@ -201,7 +201,7 @@ const AddSalary = () => {
        </div>
       </Link>
      </div>
-     <div className='max-w-4xl mx-auto bg-white/70 shadow-lg rounded-md mt-5 p-8 '>
+     <div className='max-w-4xl mx-auto bg-white shadow-lg rounded-xl mt-5 p-8 '>
       <h3 className='text-2xl text-blue-800  text-center mb-10  text-shadow-2xs font-semibold'>
        Add Salary
       </h3>

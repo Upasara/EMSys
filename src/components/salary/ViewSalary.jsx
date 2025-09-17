@@ -10,7 +10,7 @@ const ViewSalary = () => {
  const [salaries, setSalaries] = useState([]);
  const [filteredSalaries, setFilteredSalaries] = useState([]);
 
- const [sortOrder, setSortOrder] = useState('asc'); // State to manage sort order
+ const [sortOrder, setSortOrder] = useState('desc'); // State to manage sort order
 
  const { id } = useParams();
  let sno = 1;
@@ -98,7 +98,7 @@ const ViewSalary = () => {
      {filteredSalaries.length > 0 ? (
       <div className='overflow-x-auto mt-8 shadow-md rounded-lg'>
        <table className='w-full  text-center '>
-        <thead className='text-[15px] text-primary-text uppercase bg-white border border-gray-200'>
+        <thead className='text-[15px] text-primary-text  bg-white border border-gray-200'>
          <tr>
           <th className='px-6 py-3'>SNO</th>
           <th className='px-6 py-3'>Pay Date</th>
@@ -127,7 +127,9 @@ const ViewSalary = () => {
             <td className='px-6 py-3'>{salary.allowances}</td>
             <th className='px-6 py-3 font-medium'>{salary.gross_salary}</th>
             <td className='px-6 py-3'>{salary.total_deductions}</td>
-            <td className='px-6 py-3 font-semibold'>{salary.net_salary}</td>
+            <td className='px-6 py-3 font-bold text-[16px]'>
+             {salary.net_salary}
+            </td>
             <td className='px-6 py-3'>
              <Link
               to={`/salary/view/${salary._id}`}

@@ -5,8 +5,7 @@ import axios from 'axios';
 import { useAuth } from '../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowRightToBracket } from 'react-icons/fa6';
-import { FaRegEye } from 'react-icons/fa';
-import { FaRegEyeSlash } from 'react-icons/fa';
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import { ThreeCircles } from 'react-loader-spinner';
 
@@ -90,9 +89,12 @@ const Login = () => {
      />
     </div>
    )}
-   <div className='bg-white form-container overflow-hidden flex flex-col md:flex-row  shadow-lg border rounded-lg  w-full max-w-(--breakpoint-xl) justify-between'>
+   <div
+    className=' form-container overflow-hidden flex flex-col md:flex-row  shadow-lg  rounded-xl  w-full max-w-(--breakpoint-xl) justify-between 
+   bg-white/20 backdrop-blur-[2px]  border border-white/10  before:rounded-2xl before:border before:border-white/20'
+   >
     {/* left section */}
-    <div className=' form-section w-full md:w-1/2 px-8 md:px-20 py-8 order-2 md:order-1'>
+    <div className=' form-section w-full md:w-1/2 px-8 md:px-20 py-8 order-2 md:order-1  '>
      <div className='logo-wrap hidden md:flex gap-x-1 items-center '>
       <img className='w-6 md:w-8' src={Logo} alt='' />
       <span className='text-sm  text-secondary-dark'>P E Mathew & Company</span>
@@ -108,17 +110,17 @@ const Login = () => {
        <input
         type='email'
         placeholder='Enter your email ...'
-        className='w-full px-2 py-2 border rounded-full focus:outline-hidden focus:shadow-md text-primary-text duration-300'
+        className='w-full px-2 py-2 border rounded-full focus:outline-hidden focus:shadow-md text-primary-text duration-300 focus:bg-white'
         onChange={(e) => setEmail(e.target.value)}
         required
        />
       </div>
       {/*password input */}
-      <div className='relative flex justify-between items-center gap-2 mb-3 md:mb-6 w-full px-2 py-2 border rounded-full focus-within:shadow-md duration-300'>
+      <div className='relative flex justify-between items-center gap-2 mb-3 md:mb-6 w-full px-2 py-2 border rounded-full focus-within:shadow-md duration-300 focus-within:bg-white'>
        <input
         type={visible ? 'text' : 'password'}
         placeholder='Enter your password ...'
-        className=' focus:outline-hidden flex-1 bg-transparent text-primary-text'
+        className=' focus:outline-hidden flex-1 bg-transparent text-primary-text '
         onChange={(e) => setPassword(e.target.value)}
         required
        />
@@ -162,10 +164,10 @@ const Login = () => {
      </form>
     </div>
     {/* Other session */}
-    <div className='logo-section w-full md:w-1/2 bg-[url("/loginbg.jpg")] bg-cover order-1 md:order-2'>
+    <div className='logo-section w-full md:w-1/2 bg-[url("/loginbg.jpg")] bg-cover order-1 md:order-2 '>
      <div className='image-wrap'>
       <img
-       className='mt-5 size-40 md:size-80 mx-auto md:max-w-sm  hover:-translate-y-1 duration-300'
+       className='mt-5 size-40 md:size-80 mx-auto md:max-w-sm  hover:-translate-y-1 duration-300 '
        src={LoginImage}
        alt=''
       />

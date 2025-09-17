@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toWords } from 'number-to-words';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
 
 const PaymentSlip = () => {
  const { id } = useParams();
@@ -48,7 +49,7 @@ const PaymentSlip = () => {
  };
 
  return (
-  <div className='bg-[url(/loginBg8.png)] p-4'>
+  <div className='bg-[url(/loginBg8.png)] bg-slate-100 p-4'>
    <div className='w-full flex justify-end gap-2 pb-2 print:hidden'>
     <button
      onClick={() => window.print()}

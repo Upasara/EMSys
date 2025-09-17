@@ -26,9 +26,11 @@ const LeaveList = () => {
      },
     }
    );
-   console.log(response.data);
    if (response.data.success) {
-    setLeaves(response.data.leaves);
+    const sortedLeaves = response.data.leaves.sort(
+     (a, b) => new Date(b.appliedAt) - new Date(a.appliedAt)
+    );
+    setLeaves(sortedLeaves);
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {

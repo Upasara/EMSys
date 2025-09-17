@@ -71,7 +71,7 @@ return res.status(200).json({success : true})
 const getSalary = async (req,res) =>{
     try{
         const {id, role} = req.params;
-        console.log(role)
+        
         let salary
         if(role === "admin"){
             salary = await Salary.find({sal_emp_id: id}).populate('sal_emp_id', 'emp_id');

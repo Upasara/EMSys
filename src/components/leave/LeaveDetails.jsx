@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { CgClose } from 'react-icons/cg';
 import { FaCheck } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
 
 const LeaveDetails = () => {
  const { id } = useParams();
@@ -62,7 +63,7 @@ const LeaveDetails = () => {
  return (
   <>
    {leaveDetails ? (
-    <div className='max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md'>
+    <div className='max-w-3xl mx-auto mt-10 bg-white p-8 rounded-xl shadow-md'>
      <h2 className='text-2xl font-bold mb-8 text-center'>Leave Details</h2>
      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
       <div className='flex justify-center items-start '>
