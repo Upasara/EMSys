@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { BiSolidEditAlt } from 'react-icons/bi';
-import { MdDeleteOutline } from 'react-icons/md';
+import { MdDeleteOutline, MdOutlineModeEdit } from 'react-icons/md';
 import toast from 'react-hot-toast';
 
 {
@@ -108,21 +107,21 @@ export const DepartmentButtons = ({ DepID, onDepartmentDelete }) => {
  return (
   <div className='flex gap-2'>
    <button
-    className='group py-1 px-2 bg-amber-600 text-white rounded cursor-pointer duration-300'
+    className='group py-1 px-2 border-2 border-amber-600 rounded-lg cursor-pointer duration-300'
     onClick={() => navigate(`/admin-dashboard/department/${DepID}`)}
    >
-    <BiSolidEditAlt
+    <MdOutlineModeEdit
      size={20}
-     className='group-hover:-translate-y-0.5 duration-300'
+     className='group-hover:-translate-y-0.5 duration-300  text-amber-600'
     />
    </button>
    <button
-    className='group py-1 px-2  bg-red-600 text-white rounded cursor-pointer duration-300'
+    className='group py-1 px-2 border-2 border-red-700 rounded-lg cursor-pointer duration-300'
     onClick={() => handleDelete(DepID)}
    >
     <MdDeleteOutline
      size={20}
-     className='group-hover:-translate-y-0.5 duration-300'
+     className='group-hover:-translate-y-0.5 duration-300 text-red-700'
     />
    </button>
   </div>

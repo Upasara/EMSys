@@ -1,13 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import { ThreeCircles } from 'react-loader-spinner';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
 
 const ViewEmployee = () => {
  const { id } = useParams();
  const [employee, setEmployee] = useState([]);
  const [empLoading, setEmpLoading] = useState(false);
+ const { user } = useAuth();
 
  useEffect(() => {
   const fetchEmployee = async () => {
@@ -61,7 +64,19 @@ const ViewEmployee = () => {
     </div>
    ) : (
     <div className='px-4 py-8'>
-     <div className='max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg'>
+     <div
+      className={` ${
+       user.role === 'employee' ? 'hidden' : 'mb-2 hidden md:block lg:block'
+      }`}
+     >
+      <Link
+       to='/admin-dashboard/employees'
+       className='group inline-flex p-3 rounded-full bg-white/60 backdrop-blur-[1px] shadow-sm hover:shadow-lg duration-300 animate-slideRight'
+      >
+       <IoMdArrowRoundBack className='text-primary-dark text-2xl group-hover:-translate-x-0.5 duration-300' />
+      </Link>
+     </div>
+     <div className='max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg animate-slideUp'>
       <h3 className='text-2xl font-semibold text-blue-800 text-center mb-10 text-shadow-2xs'>
        Employee Details
       </h3>

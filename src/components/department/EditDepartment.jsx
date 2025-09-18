@@ -98,7 +98,7 @@ const EditDepartment = () => {
     </div>
    ) : (
     <div className='px-4 py-8'>
-     <div className='max-w-lg mx-auto bg-white p-8 rounded-md '>
+     <div className='max-w-lg mx-auto bg-white p-8 rounded-md animate-slideUp'>
       <h3 className='text-2xl text-blue-800  text-center mb-10  text-shadow-2xs font-semibold'>
        Edit Department
       </h3>

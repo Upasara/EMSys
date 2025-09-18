@@ -4,6 +4,9 @@ import toast from 'react-hot-toast';
 import * as XLSX from 'xlsx';
 import { IoSearch } from 'react-icons/io5';
 import { RiFileExcel2Fill } from 'react-icons/ri';
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import { Link } from 'react-router-dom';
+
 const ExportSalary = () => {
  const [month, setMonth] = useState('');
  const [salaries, setSalaries] = useState([]);
@@ -127,8 +130,17 @@ const ExportSalary = () => {
 
  return (
   <div className='p-5'>
+   {/* back button */}
+   <div className='mb-2 hidden md:block lg:block'>
+    <Link
+     to='/admin-dashboard/salary/add'
+     className='group inline-flex p-3 rounded-full bg-white/60 backdrop-blur-[1px] shadow-sm hover:shadow-lg duration-300 animate-slideRight'
+    >
+     <IoMdArrowRoundBack className='text-primary-dark text-2xl group-hover:-translate-x-0.5 duration-300' />
+    </Link>
+   </div>
    <div className=' flex justify-center items-center '>
-    <form className='flex gap-4' onSubmit={handleSubmit}>
+    <form className='flex gap-4 animate-slideDown' onSubmit={handleSubmit}>
      <input
       type='month'
       name='month'
@@ -152,7 +164,7 @@ const ExportSalary = () => {
 
    {/* show filtered salary */}
    {salaries.length > 0 && (
-    <div className=''>
+    <div className='animate-slideUp'>
      <div className=' overflow-x-auto mt-8 shadow-md rounded-lg  bg-white '>
       <table className='w-full border-collapse border border-gray-300 text-center text-primary-text'>
        <thead className='bg-gray-200 text-[15px] '>

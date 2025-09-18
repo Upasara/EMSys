@@ -1,4 +1,4 @@
-import { MdMenu } from 'react-icons/md';
+import { HiMenu } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 
 export const columns = [
@@ -80,10 +80,13 @@ export const LeaveButton = ({ Id }) => {
 
  return (
   <button
-   className='group py-1 px-2 bg-emerald-600 text-white rounded cursor-pointer'
+   className='group py-1 px-2 border-2 border-emerald-700 rounded-lg cursor-pointer'
    onClick={() => handleView(Id)}
   >
-   <MdMenu size={20} className={'group-hover:-translate-y-0.5 duration-300'} />
+   <HiMenu
+    size={20}
+    className={'group-hover:-translate-y-0.5 duration-300 text-emerald-700'}
+   />
   </button>
  );
 };

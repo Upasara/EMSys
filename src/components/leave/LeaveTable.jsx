@@ -81,11 +81,12 @@ const LeaveTable = () => {
      <div className='block md:flex lg:flex  justify-between items-center gap-4 mt-5 space-y-2'>
       <input
        type='text'
-       className='px-4 py-0.5  rounded-md border-2 focus:outline-primary-dark focus:outline-1 focus:bg-white duration-300'
+       className='px-4 py-0.5  rounded-md border-2 focus:outline-primary-dark focus:outline-1 focus:bg-white 
+       duration-300 animate-slideRight'
        placeholder='Search by name  🔍'
        onChange={handleSearch}
       />
-      <div className='flex items-center gap-3 '>
+      <div className='flex items-center gap-3 animate-slideLeft'>
        <button
         className={`group px-2 py-1 font-medium border-2 rounded-md  border-primary-light transition-all duration-300 text-center ${
          isActive === 'Pending'
@@ -127,7 +128,7 @@ const LeaveTable = () => {
        </button>
       </div>
      </div>
-     <div className='mt-10 shadow-md overflow-x-auto text-primary-text rounded-lg'>
+     <div className='mt-10 shadow-md overflow-x-auto text-primary-text rounded-lg animate-slideUp'>
       <DataTable
        columns={columns}
        data={filteredLeaves}
@@ -140,7 +141,23 @@ const LeaveTable = () => {
      </div>
     </div>
    ) : (
-    <div>Loading...</div>
+    //loading spinner
+    <div className='flex flex-wrap items-center justify-center bg-black/15 z-50  h-screen'>
+     <div className='animate-pulse'>
+      <ThreeCircles
+       height='50'
+       width='50'
+       color='#4fa94d'
+       outerCircleColor='#b98807'
+       middleCircleColor='#b98807'
+       innerCircleColor='#b98807'
+       ariaLabel='three-circles-loading'
+       wrapperStyle={{}}
+       wrapperClass=''
+       visible={true}
+      />
+     </div>
+    </div>
    )}
   </>
  );

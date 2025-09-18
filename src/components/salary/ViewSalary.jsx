@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useParams } from 'react-router-dom';
 import { FaSort } from 'react-icons/fa';
-import { MdMenu } from 'react-icons/md';
 import { useAuth } from '../../context/authContext';
+import { HiMenu } from 'react-icons/hi';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 const ViewSalary = () => {
  const [salaries, setSalaries] = useState([]);
@@ -77,26 +78,38 @@ const ViewSalary = () => {
     </div>
    ) : (
     <div className='p-5'>
+     {/* back button */}
+     <div className='mb-2 hidden md:block lg:block'>
+      <Link
+       to='/admin-dashboard/employees'
+       className={`${
+        user.role === 'admin'
+         ? 'group inline-flex p-3 rounded-full bg-white/60 backdrop-blur-[1px] shadow-sm hover:shadow-lg duration-300 animate-slideRight'
+         : 'hidden'
+       }`}
+      >
+       <IoMdArrowRoundBack className='text-primary-dark text-2xl group-hover:-translate-x-0.5 duration-300' />
+      </Link>
+     </div>
      <div className='text-center'>
       <h2 className='text-2xl font-semibold text-blue-800 text-shadow-2xs'>
        Salary History
       </h2>
      </div>
-     <div className='flex justify-end mt-5 '>
+     <div className='flex justify-end '>
       <button
        onClick={toggleSortOrder}
-       className='py-1.5 px-2 rounded-md  font-semibold bg-green-700  text-white hover:shadow-lg  hover:text-shadow-sm duration-300'
+       className='group py-1.5 px-2 rounded-md  font-medium text-green-700 border-2 border-green-700  hover:text-white hover:bg-green-700 hover:shadow-lg
+         hover:text-shadow-sm duration-300 animate-slideLeft'
       >
-       <span className='hidden md:inline-block lg:inline-block'>
-        Sort by Pay Date ({sortOrder === 'asc' ? 'New - Old' : 'Old - New'})
-       </span>
-       <span className='flex items-center gap-1 md:hidden lg:hidden'>
-        <FaSort /> {sortOrder === 'asc' ? 'New - Old' : 'Old - New'}
+       <span className=' flex items-center gap-1 '>
+        <FaSort className='group-hover:-translate-y-0.5 duration-300  ' />{' '}
+        {sortOrder === 'asc' ? 'New - Old' : 'Old - New'}
        </span>
       </button>
      </div>
      {filteredSalaries.length > 0 ? (
-      <div className='overflow-x-auto mt-8 shadow-md rounded-lg'>
+      <div className='overflow-x-auto mt-8 shadow-md rounded-lg  animate-slideUp'>
        <table className='w-full  text-center '>
         <thead className='text-[15px] text-primary-text  bg-white border border-gray-200'>
          <tr>
@@ -133,11 +146,11 @@ const ViewSalary = () => {
             <td className='px-6 py-3'>
              <Link
               to={`/salary/view/${salary._id}`}
-              className='bg-emerald-600 flex items-center justify-center rounded-md px-1.5 py-1 text-white group hover:shadow-md duration-300'
+              className=' flex items-center justify-center  px-0 py-1 border-2 border-emerald-700 rounded-lg group hover:shadow-md duration-300'
              >
-              <MdMenu
+              <HiMenu
                size={20}
-               className='group-hover:-translate-y-0.5 duration-300'
+               className='group-hover:-translate-y-0.5 duration-300 text-emerald-700  '
               />
              </Link>
             </td>

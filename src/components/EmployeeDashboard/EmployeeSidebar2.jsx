@@ -157,7 +157,7 @@ const EmployeeSidebar2 = () => {
       </NavLink>
      ))}
      {/* logout button */}
-     <div className=' text-white text-lg w-full flex flex-col duration-300 mt-14'>
+     <div className=' text-white text-base w-full flex flex-col duration-300 mt-14'>
       <button
        onClick={() => {
         logout();

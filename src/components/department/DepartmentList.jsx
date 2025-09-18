@@ -107,18 +107,20 @@ const DepartmentList = () => {
       <input
        type='text'
        placeholder='Search Department  🔍'
-       className='px-4 py-0.5  rounded-md border-2 focus:outline-primary-dark focus:outline-1 focus:bg-white duration-300              '
+       className='px-4 py-0.5  rounded-md border-2 focus:outline-primary-dark focus:outline-1 focus:bg-white 
+       duration-300 animate-slideRight '
        onChange={filterDepartments}
       />
       <Link
        to='/admin-dashboard/add-department'
-       className='px-2 py-1 font-medium border-2 border-primary-light rounded-md text-primary-text hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light transition duration-300 text-center  '
+       className='px-2 py-1 font-medium border-2 text-shadow-2xs border-primary-light rounded-md text-primary-dark hover:text-white
+        hover:text-shadow-sm hover:shadow-md hover:bg-primary-light transition duration-300 text-center  animate-slideLeft'
       >
        <span className='hidden md:block lg:block'>Add Department</span>
        <span className='block md:hidden lg:hidden'>Add</span>
       </Link>
      </div>
-     <div className='mt-10 shadow-md overflow-x-auto text-primary-text rounded-lg'>
+     <div className='mt-10 shadow-md overflow-x-auto text-primary-text rounded-lg animate-slideUp'>
       <DataTable
        columns={columns}
        data={filteredDepartments}

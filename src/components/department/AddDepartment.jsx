@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import { ThreeCircles } from 'react-loader-spinner';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -41,6 +42,7 @@ const AddDepartment = () => {
     navigate('/admin-dashboard/departments');
    } else {
     console.log(response);
+    toast.error('Department could not be added !');
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
@@ -72,8 +74,16 @@ const AddDepartment = () => {
     </div>
    ) : (
     <div className='px-4 py-8'>
-     <div className='max-w-lg mx-auto bg-white  p-8 rounded-md '>
-      <h3 className='text-2xl text-blue-800  text-center mb-10  text-shadow-2xs font-semibold'>
+     <div className='mb-2 hidden md:block lg:block'>
+      <Link
+       to='/admin-dashboard/departments'
+       className='group inline-flex p-3 rounded-full bg-white/60 backdrop-blur-[1px] shadow-sm hover:shadow-lg duration-300 animate-slideRight'
+      >
+       <IoMdArrowRoundBack className='text-primary-dark text-2xl group-hover:-translate-x-0.5 duration-300' />
+      </Link>
+     </div>
+     <div className='max-w-lg mx-auto bg-white  p-8 rounded-md animate-slideUp'>
+      <h3 className='text-2xl text-blue-800  text-center mb-10  text-shadow-2xs font-semibold '>
        Department Register Form
       </h3>
       <form onSubmit={handleSubmit}>

@@ -5,6 +5,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FaRegEye } from 'react-icons/fa';
 import { FaRegEyeSlash } from 'react-icons/fa';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 const AddEmployee = () => {
  const navigate = useNavigate();
@@ -123,7 +124,15 @@ const AddEmployee = () => {
   <>
    {formData ? (
     <div className='px-4 py-8'>
-     <div className='max-w-4xl mx-auto bg-white rounded-2xl shadow-lg  p-8'>
+     <div className='mb-2 hidden md:block lg:block'>
+      <Link
+       to='/admin-dashboard/employees'
+       className='group inline-flex p-3 rounded-full bg-white/60 backdrop-blur-[1px] shadow-sm hover:shadow-lg duration-300 animate-slideRight'
+      >
+       <IoMdArrowRoundBack className='text-primary-dark text-2xl group-hover:-translate-x-0.5 duration-300' />
+      </Link>
+     </div>
+     <div className='max-w-4xl mx-auto bg-white rounded-2xl shadow-lg  p-8 animate-slideUp'>
       <h3 className='text-2xl text-blue-800  text-center mb-10  text-shadow-2xs font-semibold'>
        Employee Register Form
       </h3>

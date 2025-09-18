@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BiSolidEditAlt } from 'react-icons/bi';
 import { GiMoneyStack } from 'react-icons/gi';
-import { MdDateRange } from 'react-icons/md';
-import { MdMenu } from 'react-icons/md';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/authContext';
+import { MdOutlineModeEdit, MdOutlineCalendarToday } from 'react-icons/md';
+import { HiMenu } from 'react-icons/hi';
 
 export const columns = [
  {
@@ -217,15 +216,15 @@ export const EmployeeButtons = ({ Id }) => {
   <div className='flex gap-2 items-center'>
    {/* view button */}
    <button
-    className={`group py-1 px-2 bg-emerald-600 text-white rounded cursor-pointer ${
+    className={`group py-1 px-2 border-2 border-emerald-700 rounded-lg cursor-pointer ${
      !isActive || isLoading ? 'cursor-not-allowed' : ''
     }`}
     onClick={() => navigate(`/admin-dashboard/employees/${Id}`)}
     disabled={!isActive || isLoading}
    >
-    <MdMenu
+    <HiMenu
      size={20}
-     className={`${
+     className={`text-emerald-700 ${
       isActive
        ? 'group-hover:-translate-y-0.5 duration-300'
        : 'cursor-not-allowed'
@@ -234,15 +233,15 @@ export const EmployeeButtons = ({ Id }) => {
    </button>
    {/* edit button */}
    <button
-    className={`group py-1 px-2 bg-amber-600 text-white rounded cursor-pointer ${
+    className={`group py-1 px-2 border-2 border-amber-600 rounded-lg cursor-pointer ${
      !isActive || isLoading ? 'cursor-not-allowed' : ''
     }`}
     onClick={() => navigate(`/admin-dashboard/employees/edit/${Id}`)}
     disabled={!isActive || isLoading}
    >
-    <BiSolidEditAlt
+    <MdOutlineModeEdit
      size={20}
-     className={`${
+     className={`text-amber-600  ${
       isActive
        ? 'group-hover:-translate-y-0.5 duration-300'
        : 'cursor-not-allowed'
@@ -251,7 +250,7 @@ export const EmployeeButtons = ({ Id }) => {
    </button>
    {/* salary button */}
    <button
-    className={`group py-1 px-2 bg-blue-700 text-white rounded cursor-pointer ${
+    className={`group py-1 px-2 border-2 border-blue-800 rounded-lg cursor-pointer  ${
      !isActive || isLoading ? 'cursor-not-allowed' : ''
     }`}
     onClick={() => navigate(`/admin-dashboard/employee/salary/${Id}`)}
@@ -259,7 +258,7 @@ export const EmployeeButtons = ({ Id }) => {
    >
     <GiMoneyStack
      size={20}
-     className={`${
+     className={`text-blue-800 ${
       isActive
        ? 'group-hover:-translate-y-0.5 duration-300'
        : 'cursor-not-allowed'
@@ -268,15 +267,15 @@ export const EmployeeButtons = ({ Id }) => {
    </button>
    {/* leave button */}
    <button
-    className={`group py-1 px-2 bg-red-600 text-white rounded cursor-pointer ${
+    className={`group py-1 px-2  border-2 border-red-700 rounded-lg cursor-pointer ${
      !isActive || isLoading ? 'cursor-not-allowed' : ''
     }`}
     onClick={() => navigate(`/admin-dashboard/employees/leaves/${Id}`)}
     disabled={!isActive || isLoading}
    >
-    <MdDateRange
+    <MdOutlineCalendarToday
      size={20}
-     className={`${
+     className={` text-red-700 ${
       isActive
        ? 'group-hover:-translate-y-0.5 duration-300'
        : 'cursor-not-allowed'

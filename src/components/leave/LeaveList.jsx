@@ -75,13 +75,15 @@ const LeaveList = () => {
      <div className='flex justify-between items-center mt-5'>
       <input
        type='text'
-       className='px-4 py-0.5  rounded-md border-2 focus:outline-primary-dark focus:outline-1 focus:bg-white duration-300'
+       className='px-4 py-0.5  rounded-md border-2 focus:outline-primary-dark focus:outline-1 focus:bg-white 
+       duration-300 animate-slideRight'
        placeholder='Search by leave type  🔍'
       />
       {user.role === 'employee' && (
        <Link
         to='/employee-dashboard/add-leave'
-        className='px-2 py-1 border-2 border-primary-light rounded-md text-primary-text hover:text-white hover:text-shadow-sm hover:shadow-md hover:bg-primary-light transition duration-300 text-center '
+        className='px-2 py-1 border-2 border-primary-light rounded-md text-primary-text hover:text-white 
+        hover:text-shadow-sm hover:shadow-md hover:bg-primary-light transition duration-300 text-center animate-slideLeft '
        >
         <span className='hidden md:block lg:block'>Add Leave</span>
         <span className='block md:hidden lg:hidden'>Add</span>
@@ -89,7 +91,7 @@ const LeaveList = () => {
       )}
      </div>
      {leaves ? (
-      <div className='overflow-x-auto mt-5 shadow-md rounded-lg'>
+      <div className='overflow-x-auto mt-5 shadow-md rounded-lg animate-slideUp '>
        <table className='w-full text-center '>
         <thead className='text-[15px] text-primary-text   bg-white border border-gray-200'>
          <tr>

@@ -190,10 +190,11 @@ const AddSalary = () => {
      <div className='flex justify-end'>
       <Link
        to='/admin-dashboard/salary/export'
-       className='group py-1 px-2 border-2 border-green-700 text-green-700 hover:bg-green-700 hover:shadow-md hover:text-white transition-all duration-300 rounded-md '
+       className='group py-1 px-2 border-2 border-green-700 text-green-700 hover:bg-green-700
+        hover:shadow-md hover:text-white transition-all duration-300 rounded-md animate-slideLeft'
       >
        <div className='flex items-center gap-1 font-semibold'>
-        Export to Excel
+        Export
         <TiExport
          className='group-hover:translate-x-1 duration-300'
          size={20}
@@ -201,7 +202,7 @@ const AddSalary = () => {
        </div>
       </Link>
      </div>
-     <div className='max-w-4xl mx-auto bg-white shadow-lg rounded-xl mt-5 p-8 '>
+     <div className='max-w-4xl mx-auto bg-white shadow-lg rounded-xl mt-5 p-8 animate-slideUp'>
       <h3 className='text-2xl text-blue-800  text-center mb-10  text-shadow-2xs font-semibold'>
        Add Salary
       </h3>
