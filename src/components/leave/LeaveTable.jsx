@@ -10,6 +10,7 @@ import { BsClockFill } from 'react-icons/bs';
 import { FaCheck } from 'react-icons/fa';
 import { CgClose } from 'react-icons/cg';
 import toast from 'react-hot-toast';
+import { ThreeCircles } from 'react-loader-spinner';
 
 const LeaveTable = () => {
  const [leaves, setLeaves] = useState(null);

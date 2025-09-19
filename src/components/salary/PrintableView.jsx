@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IoMdArrowRoundBack, IoMdPrint } from 'react-icons/io';
 import { ThreeCircles } from 'react-loader-spinner';
+import toast from 'react-hot-toast';
 
 const PaymentSlip = () => {
  const { id } = useParams();
@@ -29,7 +30,7 @@ const PaymentSlip = () => {
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
-    alert(error.message);
+    toast.error(error.message);
    }
   } finally {
    setLoading(false);

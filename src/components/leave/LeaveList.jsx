@@ -73,12 +73,6 @@ const LeaveList = () => {
       </h2>
      </div>
      <div className='flex justify-between items-center mt-5'>
-      <input
-       type='text'
-       className='px-4 py-0.5  rounded-md border-2 focus:outline-primary-dark focus:outline-1 focus:bg-white 
-       duration-300 animate-slideRight'
-       placeholder='Search by leave type  🔍'
-      />
       {user.role === 'employee' && (
        <Link
         to='/employee-dashboard/add-leave'

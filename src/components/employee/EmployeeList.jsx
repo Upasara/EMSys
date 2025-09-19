@@ -9,6 +9,7 @@ import {
 } from '../../utils/EmployeeHelper';
 import DataTable from 'react-data-table-component';
 import { ThreeCircles } from 'react-loader-spinner';
+import toast from 'react-hot-toast';
 
 const EmployeeList = () => {
  const [employees, setEmployees] = useState([]);
@@ -51,7 +52,7 @@ const EmployeeList = () => {
     }
    } catch (error) {
     if (error.response && !error.response.data.success) {
-     alert(error.response.data.error);
+     toast.error(error.response.data.error);
     }
    } finally {
     setEmpLoading(false);

@@ -33,8 +33,11 @@ const getSummary = async (req,res) => {
 
     }
 
+    
+
+
     return res.status(200).json({success:true, totalDepartments, totalEmployees, activeEmployees, inactiveEmployees, 
-       totalNetSalary:Number(netSalary).toFixed(2), totalGrossSalary:Number(grossSalary).toFixed(2), leaveSummary})
+       totalNetSalary:Number(netSalary).toFixed(2), totalGrossSalary:Number(grossSalary).toFixed(2), leaveSummary, employeesPerDepartment})
    }catch(error){
     return res.status(500).json({success: false, error:"Error loading data !"})
    }

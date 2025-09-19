@@ -56,7 +56,7 @@ const LeaveDetails = () => {
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
-    alert(error.response.data.error);
+    toast.error(error.response.data.error);
    }
   }
  };

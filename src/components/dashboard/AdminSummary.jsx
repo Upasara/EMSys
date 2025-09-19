@@ -69,8 +69,10 @@ const AdminSummary = () => {
 
    {/*upper cards in dashboard */}
    <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-10'>
-    <div className='bg-white/50 backdrop-blur-[1px]  p-5 shadow-sm rounded-lg space-y-2  border border-transparent 
-    hover:shadow-lg  hover:border hover:border-primary-dark duration-300 animate-slideUp'>
+    <div
+     className='bg-white/50 backdrop-blur-[1px]  p-5 shadow-sm rounded-lg space-y-2  border border-transparent 
+    hover:shadow-lg  hover:border hover:border-primary-dark duration-300 animate-slideUp'
+    >
      <p className='mb-2 font-mono text-primary-text text-lg'>Employee</p>
      {/* total employees */}
      <SummaryCard
@@ -97,8 +99,10 @@ const AdminSummary = () => {
       textColor='text-secondary-dark'
      />
     </div>
-    <div className='bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2 border border-transparent  
-    hover:shadow-lg hover:border hover:border-primary-dark duration-300 animate-slideUp'>
+    <div
+     className='bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2 border border-transparent  
+    hover:shadow-lg hover:border hover:border-primary-dark duration-300 animate-slideUp'
+    >
      <p className='mb-2 font-mono text-primary-text text-lg'>Department</p>
      {/* departments */}
      <SummaryCard
@@ -109,8 +113,10 @@ const AdminSummary = () => {
       textColor='text-secondary-dark'
      />
     </div>
-    <div className='bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2 border border-transparent  
-    hover:shadow-lg hover:border hover:border-primary-dark duration-300 animate-slideUp '>
+    <div
+     className='bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2 border border-transparent  
+    hover:shadow-lg hover:border hover:border-primary-dark duration-300 animate-slideUp '
+    >
      <p className='mb-2 font-mono text-primary-text text-lg'>Salary</p>
      {/* net salary */}
      <SummaryCard
@@ -132,8 +138,10 @@ const AdminSummary = () => {
    </div>
 
    {/*lower cards in dashboard */}
-   <div className='mt-8 bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2  border border-transparent
-    hover:shadow-lg  hover:border hover:border-primary-dark duration-300 animate-slideUp'>
+   <div
+    className='mt-8 bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2  border border-transparent
+    hover:shadow-lg  hover:border hover:border-primary-dark duration-300 animate-slideUp'
+   >
     <p className='mb-2 font-mono text-primary-text text-lg'>Leave</p>
     <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
      {/* applied leaves */}
