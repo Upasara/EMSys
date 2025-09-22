@@ -72,7 +72,7 @@ const LeaveList = () => {
        Manage Leaves
       </h2>
      </div>
-     <div className='flex justify-between items-center mt-5'>
+     <div className='flex justify-end items-center mt-5 '>
       {user.role === 'employee' && (
        <Link
         to='/employee-dashboard/add-leave'
