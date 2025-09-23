@@ -16,9 +16,14 @@ import {
  PieChart,
  Pie,
  Cell,
+ ResponsiveContainer,
+ BarChart,
+ Bar,
+ XAxis,
+ YAxis,
+ CartesianGrid,
  Tooltip,
  Legend,
- ResponsiveContainer,
 } from 'recharts';
 
 const AdminSummary = () => {
@@ -98,6 +103,17 @@ const AdminSummary = () => {
   { name: 'Inactive', value: summary.inactiveEmployees },
  ];
 
+ const salaryData = [
+  { name: 'Net Salary', amount: salarySummary.totalNetSalary },
+  { name: 'Gross Salary', amount: salarySummary.totalGrossSalary },
+ ];
+
+ const leaveData = [
+  { name: 'Approved', value: summary.leaveSummary?.approved },
+  { name: 'Pending', value: summary.leaveSummary?.pending },
+  { name: 'Rejected', value: summary.leaveSummary?.rejected },
+ ];
+
  return (
   <div className='p-6 '>
    <h3 className='text-3xl text-blue-800  text-center mt-2 text-shadow-2xs font-semibold'>
@@ -111,7 +127,7 @@ const AdminSummary = () => {
      className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 bg-white/50 backdrop-blur-[1px]  p-5 shadow-sm rounded-lg   border border-transparent 
     hover:shadow-lg  hover:border hover:border-primary-dark duration-300 animate-slideUp'
     >
-     <div className='space-y-1'>
+     <div className='space-y-1 order-2 md:order-1'>
       <p className='mb-2 font-mono text-primary-text text-lg'>Employee</p>
       {/* total employees */}
       <SummaryCard
@@ -138,7 +154,7 @@ const AdminSummary = () => {
        textColor='text-secondary-dark'
       />
      </div>
-     <div className='p-5 h-48 md:h-full lg:h-full'>
+     <div className='p-5 h-48 md:h-full lg:h-full order-1 md:order-2'>
       <ResponsiveContainer width='100%' height='100%'>
        <PieChart>
         <Pie
@@ -154,6 +170,7 @@ const AdminSummary = () => {
          <Cell fill='#16a34a' />
          <Cell fill='#dc2626' />
         </Pie>
+        <Tooltip />
        </PieChart>
       </ResponsiveContainer>
      </div>
@@ -161,10 +178,10 @@ const AdminSummary = () => {
 
     {/* salary card */}
     <div
-     className='grid grid-cols-2 gap-2 bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg  border border-transparent  
+     className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg  border border-transparent  
     hover:shadow-lg hover:border hover:border-primary-dark duration-300 animate-slideUp '
     >
-     <div className='space-y-1'>
+     <div className='space-y-1 order-2 md:order-1'>
       <p className='mb-2 font-mono text-primary-text text-lg'>Salary</p>
       <div className='mt-5 flex cursor-pointer'>
        <input
@@ -191,14 +208,25 @@ const AdminSummary = () => {
        textColor='text-secondary-dark'
       />
      </div>
-     <div>Hello</div>
+     <div className='p-5 h-48 md:h-full lg:h-full order-1 md:order-2'>
+      <ResponsiveContainer width='100%' height='100%'>
+       <BarChart data={salaryData}>
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='name' className='text-xs' />
+        <YAxis className='text-xs' />
+        <Tooltip />
+
+        <Bar dataKey='amount' fill='#16a34a' />
+       </BarChart>
+      </ResponsiveContainer>
+     </div>
     </div>
     {/* leave card */}
     <div
-     className=' grid grid-cols-2 gap-2 bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2  border border-transparent
+     className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2  border border-transparent
     hover:shadow-lg  hover:border hover:border-primary-dark duration-300 animate-slideUp'
     >
-     <div className='space-y-1'>
+     <div className='space-y-1 order-2 md:order-1'>
       <p className='mb-2 font-mono text-primary-text text-lg'>Leave</p>
 
       {/* applied leaves */}
@@ -234,7 +262,26 @@ const AdminSummary = () => {
        textColor='text-secondary-dark'
       />
      </div>
-     <div>hello</div>
+     <div className='p-5 h-52 md:h-full lg:h-full order-1 md:order-2'>
+      <ResponsiveContainer width='100%' height='100%'>
+       <PieChart>
+        <Pie
+         data={leaveData}
+         cx='50%'
+         cy='50%'
+         outerRadius={60}
+         innerRadius={45}
+         dataKey='value'
+         label
+        >
+         <Cell fill='#16a34a' />
+         <Cell fill='#b98807' />
+         <Cell fill='#dc2626' />
+        </Pie>
+        <Tooltip />
+       </PieChart>
+      </ResponsiveContainer>
+     </div>
     </div>
     {/* department card */}
     <div

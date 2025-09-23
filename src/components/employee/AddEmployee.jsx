@@ -550,6 +550,21 @@ const AddEmployee = () => {
          />
         </div>
        </div>
+       {/*------------------------------------leave details------------------------------------------------------------------ */}
+       <div className='w-full h-0.5 bg-gray-400 mb-2 mt-10'></div>
+       <p className='mt-2 mb-5 text-gray-500 font-semibold '>Leave details</p>
+       <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6'>
+        {/* leave days */}
+        <div>
+         <label className='block text-gray-600 font-mono'>Leave Days</label>
+         <input
+          type='number'
+          name='leave_days'
+          onChange={handleChange}
+          className='mt-1 w-full py-1.5 px-2 border border-secondary-light rounded-md font-semibold outline-hidden text-primary-text focus:border focus:border-primary-dark focus:shadow-md   font-sans  duration-300'
+         />
+        </div>
+       </div>
 
        <div className='flex justify-between items-center mt-10 gap-3 '>
         <button

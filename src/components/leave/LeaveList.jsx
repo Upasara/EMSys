@@ -5,10 +5,15 @@ import { useState } from 'react';
 import { useAuth } from '../../context/authContext';
 import toast from 'react-hot-toast';
 import { ThreeCircles } from 'react-loader-spinner';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 const LeaveList = () => {
- const [leaves, setLeaves] = useState(null);
+ const [leaves, setLeaves] = useState([]);
  const [leaveLoading, setLeaveLoading] = useState(false);
+ const [remainingLeaveDays, setRemainingLeaveDays] = useState(0);
+ const [totalLeaveDays, setTotalLeaveDays] = useState(0);
+ const [usedLeaveDays, setUsedLeaveDays] = useState(0);
+
  let sno = 1;
  const { user } = useAuth();
  const { id } = useParams();
@@ -31,6 +36,9 @@ const LeaveList = () => {
      (a, b) => new Date(b.appliedAt) - new Date(a.appliedAt)
     );
     setLeaves(sortedLeaves);
+    setRemainingLeaveDays(response.data.remainingLeaveDays);
+    setTotalLeaveDays(response.data.totalLeaveDays);
+    setUsedLeaveDays(response.data.usedLeaveDays);
    }
   } catch (error) {
    if (error.response && !error.response.data.success) {
@@ -72,7 +80,21 @@ const LeaveList = () => {
        Manage Leaves
       </h2>
      </div>
-     <div className='flex justify-end items-center mt-5 '>
+     <div
+      className={`flex items-center mt-5 ${
+       user.role === 'admin' ? 'justify-between' : 'justify-end'
+      } `}
+     >
+      {user.role === 'admin' && (
+       <div className='mb-2 hidden md:block lg:block'>
+        <Link
+         to={`/admin-dashboard/employees`}
+         className='group inline-flex p-3 rounded-full bg-white/60 backdrop-blur-[1px] shadow-sm hover:shadow-lg duration-300 animate-slideRight'
+        >
+         <IoMdArrowRoundBack className='text-primary-dark text-2xl group-hover:-translate-x-0.5 duration-300' />
+        </Link>
+       </div>
+      )}
       {user.role === 'employee' && (
        <Link
         to='/employee-dashboard/add-leave'
@@ -85,54 +107,61 @@ const LeaveList = () => {
       )}
      </div>
      {leaves ? (
-      <div className='overflow-x-auto mt-5 shadow-md rounded-lg animate-slideUp '>
-       <table className='w-full text-center '>
-        <thead className='text-[15px] text-primary-text   bg-white border border-gray-200'>
-         <tr>
-          <th className='px-6 py-3'>SNO</th>
-          <th className='px-6 py-3'>Type</th>
-          <th className='px-6 py-3'>From</th>
-          <th className='px-6 py-3'>To</th>
-          <th className='px-6 py-3'>Days</th>
-          <th className='px-6 py-3'>Description</th>
-          <th className='px-6 py-3'>Status</th>
-         </tr>
-        </thead>
-        <tbody className='font-medium text-[14px] text-primary-text'>
-         {leaves.map((leave) => (
-          <tr key={leave._id} className='bg-white border-b '>
-           <td className='px-6 py-3'>{sno++}</td>
-           <td className='px-6 py-3'>{leave.leave_type}</td>
-           <td className='px-6 py-3'>
-            {new Date(leave.start_date).toLocaleDateString()}
-           </td>
-           <td className='px-6 py-3'>
-            {leave.end_date
-             ? new Date(leave.end_date).toLocaleDateString()
-             : 'N/A'}
-           </td>
-           <td className='px-6 py-3'>{leave.days}</td>
-           <td className='px-6 py-3'>
-            {leave.description ? leave.description : 'N/A'}
-           </td>
-           <td className='px-6 py-3'>
-            <span
-             className={`${
-              leave.status === 'Approved'
-               ? 'px-1 bg-green-100 text-green-800 rounded-md'
-               : leave.status === 'Rejected'
-               ? 'px-1 bg-red-100 text-red-800 rounded-md'
-               : 'px-1 bg-yellow-100 text-yellow-800 rounded-md'
-             }`}
-            >
-             {leave.status}
-            </span>
-           </td>
+      <>
+       <div className='flex justify-between md:justify-end   items-center mt-5 bg-white/50 backdrop-blur-[1px] p-3 gap-3 rounded-md shadow-md font-semibold animate-slideUp'>
+        <span className='text-blue-800'>Total - {totalLeaveDays}</span>
+        <span className='text-red-700'>Used - {usedLeaveDays}</span>
+        <span className='text-green-700'>Remaining - {remainingLeaveDays}</span>
+       </div>
+       <div className='overflow-x-auto mt-3 shadow-md rounded-lg animate-slideUp '>
+        <table className='w-full text-center '>
+         <thead className='text-[15px] text-primary-text   bg-white border border-gray-200'>
+          <tr>
+           <th className='px-6 py-3'>SNO</th>
+           <th className='px-6 py-3'>Type</th>
+           <th className='px-6 py-3'>From</th>
+           <th className='px-6 py-3'>To</th>
+           <th className='px-6 py-3'>Days</th>
+           <th className='px-6 py-3'>Description</th>
+           <th className='px-6 py-3'>Status</th>
           </tr>
-         ))}
-        </tbody>
-       </table>
-      </div>
+         </thead>
+         <tbody className='font-medium text-[14px] text-primary-text'>
+          {leaves.map((leave) => (
+           <tr key={leave._id} className='bg-white border-b '>
+            <td className='px-6 py-3'>{sno++}</td>
+            <td className='px-6 py-3'>{leave.leave_type}</td>
+            <td className='px-6 py-3'>
+             {new Date(leave.start_date).toLocaleDateString()}
+            </td>
+            <td className='px-6 py-3'>
+             {leave.end_date
+              ? new Date(leave.end_date).toLocaleDateString()
+              : 'N/A'}
+            </td>
+            <td className='px-6 py-3'>{leave.days}</td>
+            <td className='px-6 py-3'>
+             {leave.description ? leave.description : 'N/A'}
+            </td>
+            <td className='px-6 py-3'>
+             <span
+              className={`${
+               leave.status === 'Approved'
+                ? 'px-1 bg-green-100 text-green-800 rounded-md'
+                : leave.status === 'Rejected'
+                ? 'px-1 bg-red-100 text-red-800 rounded-md'
+                : 'px-1 bg-yellow-100 text-yellow-800 rounded-md'
+              }`}
+             >
+              {leave.status}
+             </span>
+            </td>
+           </tr>
+          ))}
+         </tbody>
+        </table>
+       </div>
+      </>
      ) : (
       <div className='bg-white p-5 mt-10 shadow-md rounded-lg'>No Records</div>
      )}

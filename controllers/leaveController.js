@@ -28,13 +28,27 @@ const getLeave = async (req,res) =>{
 try{
 const {id, role} = req.params
 let leaves
+let employee
+
 if(role === "admin"){
+    
+    employee = await Employee.findById(id)
     leaves = await Leave.find({employeeId: id})
 }else{
-    const employee = await Employee.findOne({userId: id})
+    employee = await Employee.findOne({userId: id})
     leaves = await Leave.find({employeeId: employee._id})
 }
-return res.status(200).json({success:true, leaves})
+
+//filter approved leaves for the current year 
+const currentYear = new Date().getFullYear()
+
+
+//calculating remaining leave days
+const approvedLeaves = leaves.filter(leave => leave.status === "Approved" && new Date(leave.start_date).getFullYear() === currentYear)
+const approvedDays = approvedLeaves.reduce((acc, leave) => acc + leave.days, 0)
+const totalLeaveDays = employee.leave_days || 0
+const remainingLeaveDays = totalLeaveDays - approvedDays
+return res.status(200).json({success:true, leaves, remainingLeaveDays, totalLeaveDays, usedLeaveDays: approvedDays})
 }catch(error){
     return res.status(500).json({success:false, error: "No leave record !"})
 }

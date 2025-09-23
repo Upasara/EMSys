@@ -42,6 +42,7 @@ const addEmployee = async (req, res) => {
       bank_name = '', //default value for bank name
       account_number = '', //default value for bank account
       bank_branch = '', //default value for bank branch
+      leave_days = '',
       name,
       email,
       password,
@@ -90,7 +91,8 @@ const addEmployee = async (req, res) => {
       festival_advance,
       bank_name,
       bank_branch,
-      account_number
+      account_number,
+      leave_days
     });
 
     // save user and employee to database
@@ -173,6 +175,7 @@ const updateEmployee = async (req, res) => {
       bank_name,
       bank_branch,
       account_number,
+      leave_days,
       name,
       email,
       role,
@@ -226,7 +229,8 @@ const updateEmployee = async (req, res) => {
         festival_advance,
         bank_name,
         bank_branch,
-        account_number
+        account_number,
+        leave_days
       }
     );
 

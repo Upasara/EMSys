@@ -28,6 +28,7 @@ const employeeSchema = new Schema({
     bank_name:{type: String},
     bank_branch:{type: String},
     account_number : {type: Number},
+    leave_days:{type: Number, default: 14},
     isActive:{type: Boolean, default: true},
     createdAt : {type : Date, default: Date.now},
     updatedAt : {type : Date, default: Date.now}

@@ -277,6 +277,13 @@ const ViewEmployee = () => {
           {employee.account_number}
          </p>
         </div>
+        <div className='w-full h-0.5 bg-gray-400 mb-5 mt-5'></div>
+        <div className='flex flex-wrap space-x-3 mb-5'>
+         <p className='text-gray-600 font-mono font-semibold'>Leave Days : </p>
+         <p className='font-bold text-primary-text font-sans '>
+          {employee.leave_days}
+         </p>
+        </div>
        </div>
       </div>
      </div>
