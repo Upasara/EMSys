@@ -4,6 +4,6 @@ import { getEmmployeeSummary } from '../controllers/employeeDashboardController.
 
 const router = express.Router()
 
-router.get('/summary/:id/:role', authMiddleware, getEmmployeeSummary)
+router.get('/summary/:id', authMiddleware, getEmmployeeSummary)
 
 export default router
