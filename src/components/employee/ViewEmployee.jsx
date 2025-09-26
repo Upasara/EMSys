@@ -86,9 +86,13 @@ const ViewEmployee = () => {
          src={
           employee.userId?.profileImage
            ? `http://localhost:5000/${employee.userId?.profileImage}`
-           : '/3.avif'
+           : '/1.png'
          }
          className='rounded-full border w-48 md:w-72 lg:w-72 hover:-translate-y-2 duration-300 shadow-md'
+         onError={(e) => {
+          e.target.onerror = null; // prevent infinite loop
+          e.target.src = '/1.png'; // fallback image
+         }}
         />
        </div>
        <div>

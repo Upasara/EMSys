@@ -23,9 +23,7 @@
             const fiveMonthsAgo = new Date()
             fiveMonthsAgo.setMonth(today.getMonth() - 5)
             const salaries = await Salary.find({sal_emp_id:employee._id, pay_date:{$gte:fiveMonthsAgo, $lte:today}}).sort({pay_date: -1}).limit(5)
-
-            console.log(salaries)
-            return res.status(200).json({success:true, remainingLeaveDays, totalLeaveDays, usedLeaveDays: approvedDays,salaries})
+                   return res.status(200).json({success:true, remainingLeaveDays, totalLeaveDays, usedLeaveDays: approvedDays,salaries})
         }catch(error){
             return res.status(500).json({success:false, error:"Could not fetch employee summary !"})
         }

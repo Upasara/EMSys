@@ -39,7 +39,15 @@ const EmployeeList = () => {
        <img
         width={40}
         className='rounded-full'
-        src={`http://localhost:5000/${emp.userId.profileImage}`}
+        src={
+         emp.userId.profileImage
+          ? `http://localhost:5000/${emp.userId.profileImage}`
+          : '/1.png'
+        }
+        onError={(e) => {
+         e.target.onerror = null; // prevent infinite loop
+         e.target.src = '/1.png'; // fallback image
+        }}
        />
       ),
       actions: <EmployeeButtons Id={emp._id} />,

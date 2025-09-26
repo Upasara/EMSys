@@ -191,8 +191,12 @@ const EditEmployee = () => {
         src={
          employee.profileImage
           ? `http://localhost:5000/${employee.profileImage}`
-          : '/placeholder.avif'
+          : '/1.png'
         }
+        onError={(e) => {
+         e.target.onerror = null; // prevent infinite loop
+         e.target.src = '/1.png'; // fallback image
+        }}
         className='rounded-full border w-52 hover:-translate-y-2 duration-300 shadow-md'
        />
       </div>

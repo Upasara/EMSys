@@ -124,7 +124,7 @@ const AdminSummary = () => {
    <div className='grid grid-cols-1 md:grid-cols-2  gap-4 mt-10'>
     {/* employee card */}
     <div
-     className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 bg-white/50 backdrop-blur-[1px]  p-5 shadow-sm rounded-lg   border border-transparent 
+     className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 bg-white/60 backdrop-blur-[1px]  p-5 shadow-sm rounded-lg   border border-transparent 
     hover:shadow-lg  hover:border hover:border-primary-dark duration-300 animate-slideUp'
     >
      <div className='space-y-1 order-2 md:order-1'>
@@ -178,7 +178,7 @@ const AdminSummary = () => {
 
     {/* salary card */}
     <div
-     className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg  border border-transparent  
+     className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  bg-white/60 backdrop-blur-[1px] p-5 shadow-sm rounded-lg  border border-transparent  
     hover:shadow-lg hover:border hover:border-primary-dark duration-300 animate-slideUp '
     >
      <div className='space-y-1 order-2 md:order-1'>
@@ -223,7 +223,7 @@ const AdminSummary = () => {
     </div>
     {/* leave card */}
     <div
-     className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2  border border-transparent
+     className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  bg-white/60 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2  border border-transparent
     hover:shadow-lg  hover:border hover:border-primary-dark duration-300 animate-slideUp'
     >
      <div className='space-y-1 order-2 md:order-1'>
@@ -285,7 +285,7 @@ const AdminSummary = () => {
     </div>
     {/* department card */}
     <div
-     className='bg-white/50 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2 border border-transparent  
+     className='bg-white/60 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2 border border-transparent  
     hover:shadow-lg hover:border hover:border-primary-dark duration-300 animate-slideUp'
     >
      <p className='mb-2 font-mono text-primary-text text-lg'>Department</p>
@@ -299,8 +299,6 @@ const AdminSummary = () => {
      />
     </div>
    </div>
-
-   {/*lower cards in dashboard */}
   </div>
  );
 };

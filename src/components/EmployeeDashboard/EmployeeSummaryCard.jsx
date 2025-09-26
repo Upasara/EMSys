@@ -5,13 +5,18 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 import {
  CartesianGrid,
+ Cell,
+ Legend,
  Line,
  LineChart,
+ Pie,
+ PieChart,
  ResponsiveContainer,
  Tooltip,
  XAxis,
  YAxis,
 } from 'recharts';
+import { data } from 'react-router-dom';
 
 const EmployeeSummaryCard = () => {
  const [remainingLeaveDays, setRemainingLeaveDays] = useState(0);
@@ -41,9 +46,10 @@ const EmployeeSummaryCard = () => {
        month: 'short',
        year: 'numeric',
       }),
-      netSalary: s.net_salary,
+      Net_Salary: s.net_salary,
      }))
      .reverse();
+
     setSalaries(salaries);
    }
   } catch (error) {
@@ -57,48 +63,76 @@ const EmployeeSummaryCard = () => {
   fetchLeaves();
  }, []);
 
+ const leaveData = [
+  { name: 'Remaining', value: remainingLeaveDays },
+  { name: 'Used', value: usedLeaveDays },
+  { name: 'Total', value: totalLeaveDays },
+ ];
+
  return (
-  <div className='p-6 animate-slideDown'>
-   <div className='rounded-md flex bg-white shadow-md border border-primary-light '>
-    <div
-     className={`text-3xl flex justify-center items-center px-3 bg-primary-dark text-white `}
-    >
-     <FaUserCircle />
+  <div className='p-6 animate-slideUp  '>
+   <div className='flex items-center bg-white/60 backdrop-blur-[1px] p-2 shadow-sm rounded-lg space-y-2 hover:shadow-lg  duration-300 animate-slideUp '>
+    <div className={` flex justify-center items-center px-3  `}>
+     <img
+      src={
+       user?.profileImage
+        ? `http://localhost:5000/${user?.profileImage}`
+        : '/3.avif'
+      }
+      className='rounded-full w-16 shadow-md '
+     />
     </div>
-    <div className={`pl-4 py-1 `}>
-     <p className='text-md'>Welcome Back</p>
-     <p className='text-lg font-semibold'>{user.name}</p>
-     {user._id}
-     remainingLeaveDays - {remainingLeaveDays}
-     totalLeaveDays - {totalLeaveDays}
-     usedLeaveDays - {usedLeaveDays}
+    <div className='pl-4 py-1 text-md '>
+     Welcome back
+     <br />
+     <span className='font-mono text-xl font-semibold'>{user.name}</span>
     </div>
    </div>
    {/* diagrams */}
-   <div>
+   <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
     {/* leave details */}
-    <div className='p-10 bg-amber-200'>
-     <ResponsiveContainer>
+    <div className='  bg-white/60 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2 hover:shadow-lg  hover:-translate-y-2 duration-300 animate-slideUp'>
+     <ResponsiveContainer width='100%' height={300}>
+      <PieChart>
+       <Pie
+        data={leaveData}
+        dataKey='value'
+        cx='50%'
+        cy='50%'
+        outerRadius={80}
+        innerRadius={65}
+        label
+       >
+        <Cell fill='#16a34a' />
+        <Cell fill='#dc2626' />
+        <Cell fill='#1e40af' />
+       </Pie>
+       <Tooltip />
+       <Legend />
+      </PieChart>
+     </ResponsiveContainer>
+    </div>
+    {/* salary deatials */}
+    <div className=' bg-white/60 backdrop-blur-[1px] p-5 shadow-sm rounded-lg space-y-2 hover:shadow-lg hover:-translate-y-2  duration-300 animate-slideUp'>
+     <ResponsiveContainer width='100%' height={300}>
       <LineChart data={salaries}>
        <CartesianGrid strokeDasharray='3 3' />
-       <XAxis dataKey='month' />
-       <YAxis />
+       <XAxis dataKey='month' className='text-xs' />
+       <YAxis className='text-xs' />
        <Tooltip />
+       <Legend />
        <Line
         type='monotone'
-        dataKey='netSalary'
-        stroke='#000000'
-        strokeWidth={3}
+        dataKey='Net_Salary'
+        stroke='#16a34a'
+        strokeWidth={4}
         dot={{ r: 5 }}
         activeDot={{ r: 8 }}
        />
       </LineChart>
      </ResponsiveContainer>
     </div>
-    {/* salary deatials */}
-    <div></div>
    </div>
-   {salaries}
   </div>
  );
 };

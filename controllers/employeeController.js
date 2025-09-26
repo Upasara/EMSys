@@ -3,6 +3,7 @@ import Employee from '../models/Employee.js';
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import path from 'path';
+import fs from 'fs';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -300,6 +301,32 @@ const activateEmployee = async (req, res) => {
   }
 }
 
+const updateProfileImage = async (req, res) => {
+  try{
+    const {id} = req.params
+    const employee = await User.findById({_id : id})
+    if(!employee){
+      return res.status(404).json({success : false, error: "Employee not found !"})
+    }
+
+    //delete old image from server
+    if(employee.profileImage){
+      const oldPath = path.join('public/uploads', employee.profileImage)
+      if(fs.existsSync(oldPath)){
+        fs.unlinkSync(oldPath)
+      }
+    }
+
+    //same new image path
+    employee.profileImage = req.file ? req.file.filename : ''
+    await employee.save()
+
+    return res.status(200).json({success:true, message: "Profile image updated successfully", profileImage:employee.profileImage})
+  }catch(error){
+    return res.status(500).json({success : false, error: "Profile image could not be updated !"})
+  }
+}
+
 export {
   addEmployee,
   upload,
@@ -308,5 +335,6 @@ export {
   updateEmployee,
   getEmployeesByDepartmentId,
   deactivateEmployee,
-  activateEmployee
+  activateEmployee,
+  updateProfileImage
 };
